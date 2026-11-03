@@ -6,7 +6,7 @@ import Link from 'next/link'; // NOTE: module id: 522016
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { formatImageUrll } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick'; // NOTE: module id: 995289
-import { formatInlineMarkdownHtml } from '@/features/common/DocBlockRenderer'; // NOTE: module id: 120322
+import { formatInlineMarkdownHtml } from '@/features/docs/components/DocBlockRenderer'; // NOTE: module id: 120322
 
 // NOTE: module id: 292917
 export default function ContentCard({

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useThree } from '@react-three/fiber';
 import { SRGBColorSpace, Texture } from 'three';
 
-import { loadImageBitmap } from '@/features/globe/utils/loadImageBitmap';
+import { loadImageBitmap } from '@/libs/utils/loadImageBitmap';
 import { logGlobePerformance } from '@/features/globe/utils/globeDiagnostics';
 
 export function useImageTextures(images) {

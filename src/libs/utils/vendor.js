@@ -7,6 +7,7 @@ import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
 import { CustomEase } from 'gsap/CustomEase'
+import { Flip } from 'gsap/Flip'
 
 gsap.registerPlugin(
   useGSAP,
@@ -16,7 +17,8 @@ gsap.registerPlugin(
   Draggable,
   InertiaPlugin,
   MotionPathPlugin,
-  CustomEase
+  CustomEase,
+  Flip
 )
 
 export {
@@ -28,5 +30,6 @@ export {
   Draggable,
   InertiaPlugin,
   MotionPathPlugin,
-  CustomEase
+  CustomEase,
+  Flip
 }

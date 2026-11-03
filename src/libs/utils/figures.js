@@ -6,11 +6,12 @@ import { CustomBounce } from 'gsap/CustomBounce';
 import { CustomWiggle } from 'gsap/CustomWiggle'; // NOTE: module id: 885067
 import { RoughEase, SlowMo } from 'gsap/EasePack'; // NOTE: module id: 757760
 
-gsap.registerPlugin(CustomEase, CustomBounce, CustomWiggle, RoughEase, SlowMo);
-
-CustomEase.create('figCustom', 'M0,0 C0.7,0 0.16,1 1,1');
-CustomBounce.create('figBounce', { strength: 0.55, squash: 0 });
-CustomWiggle.create('figWiggle', { wiggles: 6, type: 'easeOut' });
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(CustomEase, CustomBounce, CustomWiggle, RoughEase, SlowMo);
+  CustomEase.create('figCustom', 'M0,0 C0.7,0 0.16,1 1,1');
+  CustomBounce.create('figBounce', { strength: 0.55, squash: 0 });
+  CustomWiggle.create('figWiggle', { wiggles: 6, type: 'easeOut' });
+}
 
 const TRACK_BASE = { x: -120, y: -20, z: 0, w: 240, d: 40, h: 6 };
 const CUBE_ACCENT = {

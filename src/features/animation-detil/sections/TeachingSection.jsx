@@ -3,7 +3,7 @@
 import {
   formatInlineMarkdownHtml,
   DocBlockRenderer,
-} from '@/features/common/DocBlockRenderer'; // NOTE: module id: 120322
+} from '@/features/docs/components/DocBlockRenderer'; // NOTE: module id: 120322
 
 // NOTE: module id: 521041
 export default function TeachingSection({ animation }) {

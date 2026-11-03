@@ -5,7 +5,7 @@ import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import AnimationsHero from '@/features/animation-page/sections/AnimationsHero'; // NOTE: module id: 599178
 import NewsletterForm from '@/features/newsletter/NewsletterForm'; // NOTE: module id: 42242
-import StarterPackPopup from '@/features/animation-page/components/StarterPackPopup'; // NOTE: module id: 573564
+import StarterPackPopup from '@/features/newsletter/StarterPackPopup'; // NOTE: module id: 573564
 
 import AnimationsLibraryNav, { VIEW_MODES } from '@/features/animation-page/components/AnimationsLibraryNav'; // NOTE: module id: 108800
 import { AnimationCollection } from '@/features/common/AnimationCollection'; // NOTE: module id: 425565
