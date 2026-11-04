@@ -20,7 +20,7 @@ const COOKIE_CATEGORIES = [
     id: 'analytics',
     name: 'Analytics',
     description: 'Off: anonymous pageviews only (no cookies, no recording). On: persistent visitor ID, session recording with inputs masked, click and form capture.',
-    cookies: 'PostHog (EU)',
+    cookies: 'PostHog (US)',
     required: false,
   },
   {

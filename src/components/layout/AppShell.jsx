@@ -14,8 +14,8 @@ import Sidebar from '@/features/sidebar/Sidebar'; // NOTE: module id: 187797
 import UserProfileDropdown from '@/features/sidebar/UserProfileDropdown'; // NOTE: module id: 490620
 import LenisProvider from '@/contexts/LenisProvider'; // NOTE: module id: 776017
 import SidebarProvider from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
-import Header from '@/components/layout/Header'; // NOTE: module id: 76624
-import Footer from '@/components/layout/Footer'; // NOTE: module id: 297428
+import Header from '@/components/header/Header'; // NOTE: module id: 76624
+import Footer from '@/components/footer/Footer'; // NOTE: module id: 297428
 
 import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
 import { useAnimation } from '@/contexts/AnimationProvider'; // NOTE: module id: 488463

@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import Link from 'next/link'; // NOTE: module id: 522016
-import { AnnnimateLogo } from '@/assets/logos/AnnnimateLogo'; // NOTE: module id: 867584
+import AnnnimateLogo from '@/assets/logos/LogoText'; // NOTE: module id: 867584
 import { AnimatedStrokeIcon } from '@/assets/icons/AnimatedStrokeIcon'; // NOTE: module id: 503433
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick'; // NOTE: module id: 995289
