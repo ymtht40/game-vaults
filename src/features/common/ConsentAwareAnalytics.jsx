@@ -8,7 +8,7 @@ import { createClient } from '@/libs/supabase/client'; // NOTE: module id: 41698
 import { pricingConfig } from '@/libs/data/pricing'; // NOTE: module id: 516799
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
 
-const POSTHOG_API_KEY = 'phc_qoyfzrqaZkqjWRpAoj667FNfkTw4UQunpnmQCGYGEn4A';
+const POSTHOG_KEY = 'phc_qoyfzrqaZkqjWRpAoj667FNfkTw4UQunpnmQCGYGEn4A';
 const POSTHOG_PROXY = '/relay-A8q3';
 const POSTHOG_HOST = 'https://us.posthog.com';
 const SENSITIVE_PARAM_KEYS = ['token_hash', 'token', 'code', 'access_token', 'refresh_token'];

@@ -6,7 +6,7 @@ import { getLatestAnimation, getCategories } from '@/libs/supabase/latestAnimati
 import '@/assets/styles/global.css';
 
 export const metadata = {
-  metadataBase: new URL("https://anm.drivexstore.shop"),
+  metadataBase: new URL("https://app.drivexstore.shop"),
   title: {
     default: "Annnimate | Production-grade GSAP components",
     template: "%s | Annnimate",
@@ -20,7 +20,7 @@ export const metadata = {
     title: "Annnimate | Production-grade GSAP components",
     description:
       "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
-    url: "https://anm.drivexstore.shop",
+    url: "https://app.drivexstore.shop",
     siteName: "Annnimate",
     images: [
       {
@@ -100,11 +100,11 @@ export default async function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Annnimate",
-    url: "https://anm.drivexstore.shop/",
+    url: "https://app.drivexstore.shop/",
     description: "Production-grade GSAP components for React, Vue and HTML.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://anm.drivexstore.shop/animations?q={search_term_string}",
+      target: "https://app.drivexstore.shop/animations?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -113,8 +113,8 @@ export default async function RootLayout({ children }) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "DriveX Studio",
-    url: "https://anm.drivexstore.shop/",
-    logo: "https://anm.drivexstore.shop/imgs/logo.png",
+    url: "https://app.drivexstore.shop/",
+    logo: "https://app.drivexstore.shop/imgs/logo.png",
     sameAs: [
       "https://github.com/drivex-studio",
     ],
@@ -128,19 +128,19 @@ export default async function RootLayout({ children }) {
         "@type": "SiteNavigationElement",
         position: 1,
         name: "Component Library",
-        url: "https://anm.drivexstore.shop/animations",
+        url: "https://app.drivexstore.shop/animations",
       },
       {
         "@type": "SiteNavigationElement",
         position: 2,
         name: "Documentation",
-        url: "https://anm.drivexstore.shop/docs",
+        url: "https://app.drivexstore.shop/docs",
       },
       {
         "@type": "SiteNavigationElement",
         position: 3,
         name: "Roadmap",
-        url: "https://anm.drivexstore.shop/roadmap",
+        url: "https://app.drivexstore.shop/roadmap",
       },
     ],
   };
