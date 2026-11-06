@@ -48,6 +48,7 @@ function sendExceptionBeacon(error) {
 
 export default function GlobalError({ error, reset }) {
   useEffect(() => {
+    console.error('GlobalError:', error);
     try {
       if (typeof window.posthog?.captureException === 'function') {
         window.posthog.captureException(error, {

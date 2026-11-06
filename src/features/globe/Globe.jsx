@@ -85,6 +85,7 @@ function GlobeNode({
       position={position}
       rotation={rotation}
       geometry={PLANE_GEO}
+      dispose={null}
       frustumCulled={false}>
       <meshBasicMaterial
         map={texture}
@@ -347,13 +348,13 @@ function InteractiveGlobe({ images, wantsPlay, reducedMotion }) {
           let tex = textures[index];
           return tex && uploaded.has(index) ? (
             <GlobeNode
-              key="{index}"
-              position="{node.position}"
-              reducedMotion="{reducedMotion}"
-              revealDelay="{node.revealDelay}"
-              rotation="{node.rotation}"
-              texture="{tex}"
-              wantsPlay="{wantsPlay}"
+              key={index}
+              position={node.position}
+              reducedMotion={reducedMotion}
+              revealDelay={node.revealDelay}
+              rotation={node.rotation}
+              texture={tex}
+              wantsPlay={wantsPlay}
             />
           ) : null;
         })}

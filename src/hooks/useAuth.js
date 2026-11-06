@@ -7,7 +7,15 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const supabase = createClient();
+    let supabase;
+    try {
+      supabase = createClient();
+    } catch (err) {
+      console.error('useAuth: could not create Supabase client', err);
+      setUser(null);
+      setLoading(false);
+      return undefined;
+    }
 
     async function fetchUser() {
       try {
