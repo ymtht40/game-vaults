@@ -24,7 +24,7 @@ export function AuthShowcase({
 
   return (
     <div
-      className={`relative hidden overflow-hidden bg-background lg:block ${className}`.trim()}
+      className={`relative hidden overflow-hidden bg-background lg:sticky lg:top-0 lg:block lg:h-dvh lg:self-start ${className}`.trim()}
     >
       {images.length > 0 ? (
         <ImageShowcase

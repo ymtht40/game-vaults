@@ -24,6 +24,16 @@ export function useTransitionLinkClick(href, { replace = false, onClick } = {}) 
       href.startsWith('/')
     ) {
       event.preventDefault();
+      // Start login with a fresh document rather than retaining the marketing
+      // page's animated DOM during a client-side transition.
+      if (/^\/login\/?(?:[?#]|$)/.test(href)) {
+        if (replace) {
+          window.location.replace(href);
+        } else {
+          window.location.assign(href);
+        }
+        return;
+      }
       setPendingRoute(href);
       if (replace) {
         router.replace(href);
