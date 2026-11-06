@@ -53,10 +53,10 @@ function SidebarInner({ collapsed, footer, children }) {
   return (
     <div className="flex h-full flex-col">
       <header className={cn("flex h-56 items-center border-b border-foreground/10", collapsed ? "justify-center px-0" : "px-16")}>
-        <InlineLoader href="/" aria-label="Annnimate home" className="inline-flex items-center gap-8 text-foreground">
+        <InlineLoader href="/" aria-label="GameVault home" className="inline-flex items-center gap-8 text-foreground">
           {/* InlineLoader internals simplified as standard usage */}
           <AnimatedStrokeIcon className="h-16" />
-          {!collapsed && <span className="text-foreground">Annnimate</span>}
+          {!collapsed && <span className="text-foreground">GameVault</span>}
         </InlineLoader>
       </header>
       

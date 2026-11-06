@@ -55,7 +55,7 @@ function AuthStatusGrid({ images }) {
 }
 
 // NOTE: module id: 430550
-export function SentNotice({ to, subject, from = 'julian@annnimate.com' }) {
+export function SentNotice({ to, subject, from = 'contact@drivexstore.shop' }) {
   return (
     <div className="flex flex-col gap-8 border border-foreground/15 bg-surface p-16">
       <p className="text-mono-sm text-foreground">Sent to {to || 'your inbox'}</p>
@@ -157,7 +157,7 @@ export function LibraryShowcaseLayout({
             {footer || (
               <>
                 Something off?{' '}
-                <NavLink href="mailto:julian@annnimate.com" inline className="text-foreground">
+                <NavLink href="mailto:contact@drivexstore.shop" inline className="text-foreground">
                   Reply to any of our emails
                 </NavLink>{' '}
                 and we sort it by hand.

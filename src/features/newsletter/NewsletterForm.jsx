@@ -210,8 +210,8 @@ export default function NewsletterForm({
 
       toast.success(
         STARTER_PACK_SOURCES.has(source)
-          ? 'Almost there. Open the email from julian@annnimate.com and confirm. Your Starter Pack lands right after.'
-          : 'Almost there. Open the email from julian@annnimate.com and click confirm.'
+          ? 'Almost there. Open the email from contact@drivexstore.shop and confirm. Your Starter Pack lands right after.'
+          : 'Almost there. Open the email from contact@drivexstore.shop and click confirm.'
       );
 
       markStarterPromptDismissed();
@@ -323,8 +323,8 @@ export default function NewsletterForm({
             <div className="flex flex-col gap-6">
               <p className="text-body-sm text-foreground">
                 {STARTER_PACK_SOURCES.has(source)
-                  ? 'Almost there - open the email from julian@annnimate.com and confirm. Your Starter Pack lands right after.'
-                  : 'Almost there - open the email from julian@annnimate.com and click confirm.'}
+                  ? 'Almost there - open the email from contact@drivexstore.shop and confirm. Your Starter Pack lands right after.'
+                  : 'Almost there - open the email from contact@drivexstore.shop and click confirm.'}
               </p>
               <p className="text-body-sm text-foreground/70">
                 One quick thing: what should we call you?

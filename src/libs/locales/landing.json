@@ -19,13 +19,13 @@
   "problem": {
     "headlineLine1": "Good motion takes days.",
     "headlineLine2": "Fast motion looks generic.",
-    "resolve": "Annnimate is the version that's fast and good: the component you'd build yourself, already done in real GSAP and React, held to the standard we ship for real brands.",
+    "resolve": "GameVault is the version that's fast and good: the component you'd build yourself, already done in real GSAP and React, held to the standard we ship for real brands.",
     "card1Label": "01 / The fast way",
     "card1Body": "Fast to drop in, but landing-page polish, not what award winners run on.",
     "card2Label": "02 / The good way",
     "card2Body": "Rebuild it from an Awwwards site yourself. Great result, if you have the week.",
     "card3Label": "03 / The third option",
-    "card3Term": "Annnimate",
+    "card3Term": "GameVault",
     "card3Body": "already built it. Real GSAP, real React, paste it in and you're done.",
     "cta": "Browse the library"
   },

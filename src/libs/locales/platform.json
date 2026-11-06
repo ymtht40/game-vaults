@@ -1,7 +1,7 @@
 {
   "hero": {
     "eyebrow": "The platform",
-    "headline": "Everything inside Annnimate.",
+    "headline": "Everything inside GameVault.",
     "body": "A curated library of GSAP signature components, full Landmark Kits, real React and Vue code, and documentation written by the people who built the originals. Here is how all of it works.",
     "ctaPrimary": "Browse the library",
     "ctaSecondary": "View pricing"
@@ -30,7 +30,7 @@
   "library": {
     "eyebrow": "The library",
     "headline": "Curated, not a catalog dump.",
-    "body": "Annnimate is deliberately not five hundred components. It is the components worth keeping, each one chosen because it earned its place on a real site. Hover a category to isolate it.",
+    "body": "GameVault is deliberately not five hundred components. It is the components worth keeping, each one chosen because it earned its place on a real site. Hover a category to isolate it.",
     "categoriesLabel": "Categories / {count}"
   },
   "provenance": {
@@ -66,7 +66,7 @@
     "headline": "Documented by the people who built it.",
     "body": "Every component carries the things that bit us when we shipped it the first time. Real warnings, real fixes, real reasons - written by the studio that built the original. And when you'd rather not leave the editor: connect the MCP server and your coding agent pulls components for you.",
     "listHeading": "Real edge cases / {count} entries",
-    "listSource": "From the Annnimate docs",
+    "listSource": "From the GameVault docs",
     "footnote": "{count} of many guides shown. The full set lives in the docs.",
     "cta": "Read the docs",
     "edges": [

@@ -138,7 +138,7 @@ function AttributionTracker() {
 
 const SUBSCRIPTION_MESSAGES = {
   newsletter: {
-    title: "You're in. Welcome to the Annnimate newsletter.",
+    title: "You're in. Welcome to the GameVault newsletter.",
     description: "Expect one short email when there's something worth saying.",
   },
   kits: {

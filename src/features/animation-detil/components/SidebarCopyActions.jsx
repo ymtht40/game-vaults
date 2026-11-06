@@ -61,7 +61,7 @@ export function getCodeForPlatform(codeState, platform) {
 
 function formatCodeForAi({ animation, code, platform, lang }) {
   const title = animation.title || animation.name || 'this component';
-  const sourceUrl = `https://annnimate.com/animations/${animation.slug}`;
+  const sourceUrl = `https://app.drivexstore.shop/animations/${animation.slug}`;
   const howItWorks = animation.metadata?.teaching?.blocks
     ?.map((block) => block.text)
     .filter(Boolean)
@@ -73,7 +73,7 @@ function formatCodeForAi({ animation, code, platform, lang }) {
     howItWorks ? `## How it works\n\n${howItWorks}` : '',
     `## Code (${platform})`,
     '```' + lang + '\n' + code.trim() + '\n```',
-    `Source: ${sourceUrl} - a production GSAP component from Annnimate. Keep the data-anm-* attributes; they configure the animation.`,
+    `Source: ${sourceUrl} - a production GSAP component from GameVault. Keep the data-anm-* attributes; they configure the animation.`,
   ]
     .filter(Boolean)
     .join('\n\n');

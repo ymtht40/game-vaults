@@ -13,7 +13,7 @@ const COOKIE_CATEGORIES = [
     id: 'essential',
     name: 'Essential',
     description: 'Authentication, payments, and your own preferences. Always on.',
-    cookies: 'Supabase Auth · Stripe · annnimate_consent',
+    cookies: 'Supabase Auth · Stripe · gamevault_consent',
     required: true,
   },
   {

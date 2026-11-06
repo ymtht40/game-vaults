@@ -18,7 +18,7 @@ export function BrandLogo({ className }) {
       href="/"
       onClick={handleClick}
       onMouseEnter={() => iconRef.current?.play()}
-      aria-label="Annnimate - Home"
+      aria-label="GameVault - Home"
       className={cn('flex shrink-0 items-end justify-start gap-8', className)}
     >
       <span className="flex items-end gap-6">

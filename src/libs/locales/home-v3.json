@@ -47,7 +47,7 @@
     "open": "Open the component"
   },
   "showcase": {
-    "headline": "These sites were built with Annnimate",
+    "headline": "These sites were built with GameVault",
     "link": "See all sites"
   },
   "pricing": {
@@ -75,36 +75,36 @@
     "subtext": "The ones people ask right before they buy. The full list lives on the FAQ page.",
     "items": [
       {
-        "q": "Can I use Annnimate in commercial and client work?",
-        "a": "Yes. Every Annnimate tier covers unlimited commercial client projects. You and your seats can ship with the components on any work you produce. The only limit is repackaging or reselling the components as a competing library."
+        "q": "Can I use GameVault in commercial and client work?",
+        "a": "Yes. Every GameVault tier covers unlimited commercial client projects. You and your seats can ship with the components on any work you produce. The only limit is repackaging or reselling the components as a competing library."
       },
       {
-        "q": "How does Annnimate Studio pricing work?",
-        "a": "Annnimate Studio covers as many seats as you choose, from 2 to 20, and you can add or remove seats any time. Every seat after the first costs 10% less, up to 40% off. Seats are per-developer, so every team member shipping with the components needs one. More than 20, email us."
+        "q": "How does GameVault Studio pricing work?",
+        "a": "GameVault Studio covers as many seats as you choose, from 2 to 20, and you can add or remove seats any time. Every seat after the first costs 10% less, up to 40% off. Seats are per-developer, so every team member shipping with the components needs one. More than 20, email us."
       },
       {
         "q": "What happens to components I shipped if I cancel?",
-        "a": "Annnimate code you already pasted into your projects is yours and keeps working. Cancelling pauses access to the library and to new components, not to anything you already shipped. The components in your codebase do not phone home."
+        "a": "GameVault code you already pasted into your projects is yours and keeps working. Cancelling pauses access to the library and to new components, not to anything you already shipped. The components in your codebase do not phone home."
       },
       {
-        "q": "What is Annnimate's refund policy?",
-        "a": "Annnimate has a 14-day money-back guarantee on your first Library payment. Email us within 14 days and we refund you in full. Renewals are not refunded. The guarantee is for trying Annnimate, so it ends once your account has taken more than {cap} components. Landmark Kits and Packs are final sale, because you get the full code the moment you pay."
+        "q": "What is GameVault's refund policy?",
+        "a": "GameVault has a 14-day money-back guarantee on your first Library payment. Email us within 14 days and we refund you in full. Renewals are not refunded. The guarantee is for trying GameVault, so it ends once your account has taken more than {cap} components. Landmark Kits and Packs are final sale, because you get the full code the moment you pay."
       },
       {
-        "q": "Does Annnimate work with Next.js App Router and Nuxt?",
-        "a": "Yes. Annnimate's React components are Server Component safe and work with the Next.js App Router. The Vue components are Nuxt ready. Every component that runs GSAP uses useGSAP in React and starts in onMounted in Vue, so the GSAP context cleans up on unmount without extra plumbing from you."
+        "q": "Does GameVault work with Next.js App Router and Nuxt?",
+        "a": "Yes. GameVault's React components are Server Component safe and work with the Next.js App Router. The Vue components are Nuxt ready. Every component that runs GSAP uses useGSAP in React and starts in onMounted in Vue, so the GSAP context cleans up on unmount without extra plumbing from you."
       },
       {
-        "q": "Does Annnimate work with my AI agent?",
-        "a": "Yes. Annnimate has an MCP server, so Claude Code, Cursor or any MCP client can search the library and pull a component's real source straight into your project. Your agent starts from production GSAP code instead of guessing it."
+        "q": "Does GameVault work with my AI agent?",
+        "a": "Yes. GameVault has an MCP server, so Claude Code, Cursor or any MCP client can search the library and pull a component's real source straight into your project. Your agent starts from production GSAP code instead of guessing it."
       },
       {
-        "q": "Is there a free version of Annnimate?",
+        "q": "Is there a free version of GameVault?",
         "a": "There is a free Starter Pack of production components in React, Vue and HTML, delivered to your inbox and free to use in any project with no expiration. A new component goes free every week and joins the pack. Every component's live preview is also free to explore with no account needed, and the full code library is a paid subscription."
       },
       {
         "q": "Do Library subscribers get a discount on Landmark Kits?",
-        "a": "Annnimate Library members get 20% off every Landmark Kit purchase for as long as the subscription is active. Past Kit buyers get 20% off their first year of any Library plan. The two products are separate, but they reward each other."
+        "a": "GameVault Library members get 20% off every Landmark Kit purchase for as long as the subscription is active. Past Kit buyers get 20% off their first year of any Library plan. The two products are separate, but they reward each other."
       }
     ]
   },

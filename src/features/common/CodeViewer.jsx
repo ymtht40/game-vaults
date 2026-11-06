@@ -397,7 +397,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
               type="button"
               onClick={() => {
                 const name = animation.title || animation.name || "this component";
-                const url = `https://annnimate.com/animations/${animation.slug}`;
+                const url = `https://app.drivexstore.shop/animations/${animation.slug}`;
                 const instructionText = animation.metadata?.teaching?.blocks?.map(b => b.text).filter(Boolean).join("\n\n");
                 const aiPrompt = [
                   `# ${name}`,
@@ -405,7 +405,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
                   instructionText ? `## How it works\n\n${instructionText}` : "",
                   `## Code (${activePlatform})`,
                   "```" + langStr + "\n" + rawCode.trim() + "\n```",
-                  `Source: ${url} - a production GSAP component from Annnimate. Keep the data-anm-* attributes; they configure the animation.`
+                  `Source: ${url} - a production GSAP component from GameVault. Keep the data-anm-* attributes; they configure the animation.`
                 ].filter(Boolean).join("\n\n");
 
                 navigator.clipboard.writeText(aiPrompt);

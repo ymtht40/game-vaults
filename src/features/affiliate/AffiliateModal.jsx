@@ -121,7 +121,7 @@ export default function AffiliateModal({ open, onOpenChange, onAction }) {
       onOpenChange={onOpenChange}
       onAction={onAction}
       media={<AffiliateModalMedia />}
-      title="Recommend Annnimate. Keep 25% of every payment."
+      title="Recommend GameVault. Keep 25% of every payment."
       facts={[
         { label: 'Cookie', value: '30 days' },
         { label: 'Payouts', value: 'Monthly' }

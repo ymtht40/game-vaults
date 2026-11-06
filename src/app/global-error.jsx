@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 const ACCENT_COLOR = '#fd551d';
 const BACKGROUND_COLOR = '#141314';
 const TEXT_COLOR = '#eeeeee';
-const POSTHOG_API_KEY = 'phc_qoyfzrqaZkqjWRpAoj667FNfkTw4UQunpnmQCGYGEn4A';
+const POSTHOG_API_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || '';
 
 function sendExceptionBeacon(error) {
   if (

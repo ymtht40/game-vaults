@@ -10,7 +10,7 @@ import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855
 import { useNotificationFeed } from '@/contexts/NotificationProvider'; // NOTE: module id: 594886
 import NotificationsDrawer from '@/components/notifications/NotificationsDrawer';
 
-const LAST_SEEN_STORAGE_KEY = 'annnimate_notifications_last_seen_at';
+const LAST_SEEN_STORAGE_KEY = 'gamevault_notifications_last_seen_at';
 
 // NOTE: module id: 583246
 export default function NotificationsButton({ className }) {

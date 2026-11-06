@@ -248,7 +248,7 @@ export const VIEW_MODES = {
   LIST: 'list',
 };
 
-const STORAGE_VIEW_KEY = 'annnimate_view_mode';
+const STORAGE_VIEW_KEY = 'gamevault_view_mode';
 
 const VIEW_MODE_OPTIONS = [
   {

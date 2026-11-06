@@ -88,22 +88,22 @@ export const KITS_LINKS = {
 export const SOCIAL_LINKS = [
   {
     label: 'X',
-    href: 'https://x.com/juli_fella',
+    href: 'https://x.com/driivexstore',
     Icon: XIcon,
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/julianfella/',
+    href: 'https://www.linkedin.com/in/driivexstore/',
     Icon: LinkedInIcon,
   },
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/goodfelladesign/',
+    href: 'https://www.instagram.com/driivexstore/',
     Icon: InstagramIcon,
   },
   {
     label: 'GitHub',
-    href: 'https://github.com/GoodFellaStudio',
+    href: 'https://github.com/drivex-studio',
     Icon: GitHubIcon,
   },
 ];

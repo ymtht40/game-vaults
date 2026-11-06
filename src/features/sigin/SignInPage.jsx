@@ -121,13 +121,13 @@ export default function SignInPage({ images = [] }) {
             );
           } else if (hasMultipleAccounts) {
             toast.error(
-              'Your account has multiple emails matching different Annnimate users. Please sign in with your email instead.',
+              'Your account has multiple emails matching different GameVault users. Please sign in with your email instead.',
               { duration: 10000 },
             );
           } else if (callbackError === 'oauth_no_subscription') {
             toast.error(
               callbackDescription?.replace(/\+/g, ' ') ||
-                "We didn't find an Annnimate subscription at this email.",
+                "We didn't find an GameVault subscription at this email.",
               {
                 duration: 10000,
                 action: {
@@ -203,7 +203,7 @@ export default function SignInPage({ images = [] }) {
             errorCode === 'hook_rejected' ||
             errorCode === 'access_denied' ||
             (typeof hashDescription === 'string' &&
-              hashDescription.includes('Annnimate subscription'));
+              hashDescription.includes('GameVault subscription'));
 
           const hasMultipleAccounts =
             typeof hashDescription === 'string' &&
@@ -215,13 +215,13 @@ export default function SignInPage({ images = [] }) {
             );
           } else if (hasMultipleAccounts) {
             toast.error(
-              'Your account has multiple emails matching different Annnimate users. Please sign in with your email instead.',
+              'Your account has multiple emails matching different GameVault users. Please sign in with your email instead.',
               { duration: 10000 },
             );
           } else if (hasSubscriptionError) {
             toast.error(
               hashDescription?.replace(/\+/g, ' ') ||
-                "We didn't find an Annnimate subscription at this email.",
+                "We didn't find an GameVault subscription at this email.",
               {
                 duration: 10000,
                 action: {
@@ -498,7 +498,7 @@ export default function SignInPage({ images = [] }) {
                           theme="brand"
                           size="sm"
                         >
-                          Subscribe to Annnimate
+                          Subscribe to GameVault
                         </Button>
                       </div>
 
@@ -595,7 +595,7 @@ export default function SignInPage({ images = [] }) {
                   <div className="flex flex-col">
                     <header className="mb-32">
                       <h1 className="text-h3 m-0 text-foreground">
-                        Sign in to Annnimate.
+                        Sign in to GameVault.
                       </h1>
                       <p className="text-body-sm mt-12 text-foreground-muted">
                         Copy code, save components, manage your plan.

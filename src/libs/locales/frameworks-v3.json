@@ -23,7 +23,7 @@
     "name": "Next.js",
     "hero": {
       "headline": "A Next.js animation library, built on GSAP.",
-      "body": "Annnimate is a library of {count} GSAP components you copy into a Next.js app. Each file starts with \"use client\" and cleans up when it unmounts, so your pages stay Server Components and nothing leaks between routes."
+      "body": "GameVault is a library of {count} GSAP components you copy into a Next.js app. Each file starts with \"use client\" and cleans up when it unmounts, so your pages stay Server Components and nothing leaks between routes."
     },
     "start": {
       "bodies": [
@@ -75,7 +75,7 @@
       "subtext": "What Next.js developers ask before they copy a component.",
       "items": [
         {
-          "q": "Does Annnimate work with the Next.js App Router?",
+          "q": "Does GameVault work with the Next.js App Router?",
           "a": "Yes. Every React component starts with \"use client\" and cleans up when it unmounts, so it works from any page in app/ and the page stays a Server Component. The Pages Router works too."
         },
         {
@@ -100,7 +100,7 @@
     "name": "Nuxt",
     "hero": {
       "headline": "A Nuxt animation library, built on GSAP.",
-      "body": "Annnimate is a library of {count} GSAP components you copy into a Nuxt app as plain Vue files. Each one starts its animation in onMounted, which Nuxt only runs in the browser, and cleans up when you leave the page."
+      "body": "GameVault is a library of {count} GSAP components you copy into a Nuxt app as plain Vue files. Each one starts its animation in onMounted, which Nuxt only runs in the browser, and cleans up when you leave the page."
     },
     "start": {
       "bodies": [
@@ -152,7 +152,7 @@
       "subtext": "What Nuxt developers ask before they copy a component.",
       "items": [
         {
-          "q": "Does Annnimate work with Nuxt?",
+          "q": "Does GameVault work with Nuxt?",
           "a": "Yes. The components are plain Vue 3 files with <script setup>. Import one into any page, layout or component. Each one starts its animation in onMounted, which Nuxt only runs in the browser."
         },
         {
@@ -177,7 +177,7 @@
     "name": "Vue",
     "hero": {
       "headline": "A Vue animation library, built on GSAP.",
-      "body": "Annnimate is a library of {count} GSAP components you copy into a Vue 3 app as single-file components. Each one uses <script setup>, needs only gsap and cleans up after itself on unmount."
+      "body": "GameVault is a library of {count} GSAP components you copy into a Vue 3 app as single-file components. Each one uses <script setup>, needs only gsap and cleans up after itself on unmount."
     },
     "start": {
       "bodies": [
@@ -229,7 +229,7 @@
       "subtext": "What Vue developers ask before they copy a component.",
       "items": [
         {
-          "q": "Does Annnimate work with Vue 3?",
+          "q": "Does GameVault work with Vue 3?",
           "a": "Yes. Every component ships as a Vue 3 single-file component with <script setup>. It needs only gsap and works with Vite or any Vue 3 setup."
         },
         {

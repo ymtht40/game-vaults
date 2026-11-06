@@ -8,8 +8,8 @@ import gsap from 'gsap'; // NOTE: module id: 989970
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 const HOUSE_EASES = [
-  { value: 'annnimate', label: 'Annnimate Drift', bezier: [0.3, 0.9, 0.1, 1] },
-  { value: 'annnimateInOut', label: 'Annnimate Punch', bezier: [0.7, 0, 0.16, 1] },
+  { value: 'annnimate', label: 'GameVault Drift', bezier: [0.3, 0.9, 0.1, 1] },
+  { value: 'annnimateInOut', label: 'GameVault Punch', bezier: [0.7, 0, 0.16, 1] },
 ];
 
 const EASE_FAMILIES = [

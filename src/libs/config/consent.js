@@ -1,7 +1,7 @@
 export const ASCII_CHARS =
   ' .\'`^",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$';
   
-const COOKIE_NAME = 'annnimate_consent';
+const COOKIE_NAME = 'gamevault_consent';
 
 export const defaultConsent = {
   version: 1,
@@ -37,7 +37,7 @@ export function saveConsent(consent) {
 }
 
 export function notifyConsentChange() {
-  window.dispatchEvent(new CustomEvent('annnimate:consent-changed'));
+  window.dispatchEvent(new CustomEvent('gamevault:consent-changed'));
 }
 
 export function acceptAllConsent() {

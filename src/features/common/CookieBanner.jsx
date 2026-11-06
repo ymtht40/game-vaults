@@ -24,10 +24,10 @@ export function CookieBanner({ onOpenPreferences }) {
 
   useEffect(() => {
     const handleConsentChanged = () => dismissBanner();
-    window.addEventListener('annnimate:consent-changed', handleConsentChanged);
+    window.addEventListener('gamevault:consent-changed', handleConsentChanged);
     return () =>
       window.removeEventListener(
-        'annnimate:consent-changed',
+        'gamevault:consent-changed',
         handleConsentChanged
       );
   }, []);

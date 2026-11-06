@@ -6,7 +6,7 @@ import InlineCode from '@/features/docs/InlineCode';
 import NavLink from '@/components/navigation/NavSurface';
 
 export const metadata = {
-  title: 'Quick start | Annnimate Docs',
+  title: 'Quick start | GameVault Docs',
   description:
     'Take one component from the library into a page, start to finish: where the files go, how to import it, and how to change it. React, Vue and HTML.',
 };
@@ -55,13 +55,13 @@ const steps = [
       react: {
         file: 'Your project',
         lang: 'bash',
-        code: 'components/annnimate/text-reveal/\n  text-reveal.jsx   the component\n  text-reveal.css   its styles, imported by the component',
+        code: 'components/gamevault/text-reveal/\n  text-reveal.jsx   the component\n  text-reveal.css   its styles, imported by the component',
         note: 'The component imports its own CSS, so keep the two files side by side under those names.',
       },
       vue: {
         file: 'Your project',
         lang: 'bash',
-        code: 'components/annnimate/text-reveal/\n  text-reveal.vue   the component\n  text-reveal.css   its styles',
+        code: 'components/gamevault/text-reveal/\n  text-reveal.vue   the component\n  text-reveal.css   its styles',
       },
       html: {
         file: 'Your project',
@@ -81,7 +81,7 @@ const steps = [
       react: {
         file: 'app/page.jsx',
         lang: 'jsx',
-        code: 'import TextReveal from "@/components/annnimate/text-reveal/text-reveal";\n\nexport default function Page() {\n  return (\n    <main>\n      <TextReveal type="words" start="top 75%" stagger={0.1}>\n        Every stride is a statement.\n      </TextReveal>\n    </main>\n  );\n}',
+        code: 'import TextReveal from "@/components/gamevault/text-reveal/text-reveal";\n\nexport default function Page() {\n  return (\n    <main>\n      <TextReveal type="words" start="top 75%" stagger={0.1}>\n        Every stride is a statement.\n      </TextReveal>\n    </main>\n  );\n}',
         note: (
           <>
             That&apos;s all. The component file starts with{' '}
@@ -93,7 +93,7 @@ const steps = [
       vue: {
         file: 'App.vue',
         lang: 'javascript',
-        code: '<script setup>\nimport TextReveal from "./components/annnimate/text-reveal/text-reveal.vue";\nimport "./components/annnimate/text-reveal/text-reveal.css";\n</script>\n\n<template>\n  <TextReveal type="words" start="top 75%" :stagger="0.1">\n    Every stride is a statement.\n  </TextReveal>\n</template>',
+        code: '<script setup>\nimport TextReveal from "./components/gamevault/text-reveal/text-reveal.vue";\nimport "./components/gamevault/text-reveal/text-reveal.css";\n</script>\n\n<template>\n  <TextReveal type="words" start="top 75%" :stagger="0.1">\n    Every stride is a statement.\n  </TextReveal>\n</template>',
         note: 'The component registers ScrollTrigger and SplitText itself. The second import loads its stylesheet; Vue components leave that to you, so the CSS is only loaded where you need it.',
       },
       html: {
@@ -171,7 +171,7 @@ const troubleshooting = [
   },
   {
     q: 'Do I need containerRef, useGSAP or gsap.from?',
-    a: 'No. Those are for writing an animation of your own (see Installation). An Annnimate component sets up its own refs, scope and cleanup. You import it and render it.',
+    a: 'No. Those are for writing an animation of your own (see Installation). An GameVault component sets up its own refs, scope and cleanup. You import it and render it.',
   },
   {
     q: 'Which plugins does a component need?',

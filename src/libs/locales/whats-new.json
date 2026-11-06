@@ -1,18 +1,18 @@
 {
   "hero": {
     "stamp": [
-      "Annnimate",
+      "GameVault",
       "Volume 02",
       "May 2026"
     ],
-    "headline": "Annnimate grew up.",
-    "subtext": "Annnimate is now Annnimate by Good Fella. GSAP for React and Vue, where every component carries the landmark site it shipped on - the same library you know, rebuilt around the craft underneath it.",
+    "headline": "GameVault grew up.",
+    "subtext": "GameVault is now GameVault. GSAP for React and Vue, where every component carries the landmark site it shipped on - the same library you know, rebuilt around the craft underneath it.",
     "ctaPrimary": "See the new library",
     "ctaSecondary": "What I keep"
   },
   "reframe": {
     "headline": "What changed, and why.",
-    "body": "Annnimate started as a GSAP component library. Useful, but it looked like a lot of other things. What it never said out loud is where the components actually came from. We build motion for landmark brand sites at Good Fella, and the best of that work is what fills the library. So we rebuilt Annnimate around it. Every component now carries its provenance - the real site it shipped on. The library is curated harder, the focus is React and Vue, and the whole thing reads like what it is: the motion craft of a working studio, made copyable."
+    "body": "GameVault started as a GSAP component library. Useful, but it looked like a lot of other things. What it never said out loud is where the components actually came from. We build motion for landmark brand sites at Good Fella, and the best of that work is what fills the library. So we rebuilt GameVault around it. Every component now carries its provenance - the real site it shipped on. The library is curated harder, the focus is React and Vue, and the whole thing reads like what it is: the motion craft of a working studio, made copyable."
   },
   "changes": {
     "headline": "What is new.",
@@ -41,7 +41,7 @@
     ]
   },
   "kept": {
-    "headline": "If you already have Annnimate.",
+    "headline": "If you already have GameVault.",
     "subline": "Nothing taken. Both segments gain.",
     "columns": [
       "You keep",
@@ -52,14 +52,14 @@
         "category": "Pro or Team subscription",
         "values": [
           "Full access at your current price, until your renewal date.",
-          "The rewritten library, provenance on every component, and the founding-member 25% off every future Annnimate product."
+          "The rewritten library, provenance on every component, and the founding-member 25% off every future GameVault product."
         ]
       },
       {
         "category": "Lifetime access",
         "values": [
           "The full Library, forever, exactly as promised - including every future component.",
-          "The founding-member 25% off every future Annnimate product, Landmark Kits included."
+          "The founding-member 25% off every future GameVault product, Landmark Kits included."
         ]
       }
     ],
@@ -67,8 +67,8 @@
   },
   "founding": {
     "headline": "The founding offer.",
-    "caption": "Off everything Annnimate ships from now on",
-    "body": "Lock in 25%, then keep it. New Kits, new tiers, future add-ons. Anything Annnimate launches after the founding window comes priced at the founding rate, for as long as you stay a founding member.",
+    "caption": "Off everything GameVault ships from now on",
+    "body": "Lock in 25%, then keep it. New Kits, new tiers, future add-ons. Anything GameVault launches after the founding window comes priced at the founding rate, for as long as you stay a founding member.",
     "windowLabel": "Founding window · Closes",
     "windowClose": "later this year",
     "cta": "Become a founding member"

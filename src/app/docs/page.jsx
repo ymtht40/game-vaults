@@ -4,9 +4,9 @@ import DocsQuickStart from '@/features/docs/components/DocsQuickStart';
 import { DOC_CARDS } from '@/features/docs/docsNav';
 
 export const metadata = {
-  title: 'Documentation | Annnimate',
+  title: 'Documentation | GameVault',
   description:
-    'Install Annnimate, copy your first component, and learn how the components are built to be tuned.',
+    'Install GameVault, copy your first component, and learn how the components are built to be tuned.',
 };
 
 function slugify(text) {
@@ -37,7 +37,7 @@ export default function DocsPage() {
           <div className="flex min-w-0 flex-col">
             <h1 className="text-h2 text-foreground">Documentation.</h1>
             <p className="text-body mt-16 leading-relaxed text-foreground-reading max-w-[64ch]">
-              Install Annnimate, copy your first component, and learn how the components are built to be tuned. Every component also has its own doc on its library page.
+              Install GameVault, copy your first component, and learn how the components are built to be tuned. Every component also has its own doc on its library page.
             </p>
           </div>
         </div>

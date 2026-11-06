@@ -81,7 +81,7 @@
       },
       {
         "q": "How do I get the code after buying?",
-        "a": "Annnimate emails you right after checkout. You sign in with a 6-digit code, no password, and download the Pack as a ZIP from its page in your account. You can download it again any time."
+        "a": "GameVault emails you right after checkout. You sign in with a 6-digit code, no password, and download the Pack as a ZIP from its page in your account. You can download it again any time."
       },
       {
         "q": "Can I get a refund?",
@@ -89,7 +89,7 @@
       },
       {
         "q": "Is the Pack part of the Library?",
-        "a": "All {packCount} Pack components are part of the Annnimate Library, which has {count} components and keeps growing. The Pack is those {packCount} on their own, for a one-time price; it does not include the rest of the Library."
+        "a": "All {packCount} Pack components are part of the GameVault Library, which has {count} components and keeps growing. The Pack is those {packCount} on their own, for a one-time price; it does not include the rest of the Library."
       },
       {
         "q": "I already have the Library. Do I need the Pack?",

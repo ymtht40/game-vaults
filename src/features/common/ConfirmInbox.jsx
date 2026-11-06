@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { SentNotice } from '@/features/common/LibraryShowcaseLayout'; // NOTE: module id: 430550
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
 
-const SENDER_EMAIL = 'julian@annnimate.com';
+const SENDER_EMAIL = 'contact@drivexstore.shop';
 
 // NOTE: module id: 987025
 export function inboxFor(email) {
@@ -63,7 +63,7 @@ export default function ConfirmInbox({
 
       <SentNotice
         to={email}
-        subject={wantsPack ? 'Confirm and grab your Starter Pack' : 'Confirm your Annnimate subscription'}
+        subject={wantsPack ? 'Confirm and grab your Starter Pack' : 'Confirm your GameVault subscription'}
       />
 
       <div className="flex flex-wrap items-center justify-between gap-12">

@@ -393,7 +393,7 @@ export default function Footer({ latestAnimation }) {
             <div className="col-span-12 flex flex-col gap-32 lg:col-span-5">
               <TransitionLink
                 href="/"
-                aria-label="Annnimate home"
+                aria-label="GameVault home"
                 className="inline-block w-fit"
               >
                 <LogoIcon height={20} className="text-foreground" />
@@ -516,7 +516,7 @@ export default function Footer({ latestAnimation }) {
                 type="button"
                 onClick={() =>
                   window.dispatchEvent(
-                    new CustomEvent('annnimate:open-cookie-preferences')
+                    new CustomEvent('gamevault:open-cookie-preferences')
                   )
                 }
                 className="text-mono-sm inline-flex items-center text-foreground-muted transition-colors duration-300 ease-out hover:text-foreground"

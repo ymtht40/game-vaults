@@ -1,6 +1,6 @@
 {
   "hero": {
-    "headline": "Built with Annnimate.",
+    "headline": "Built with GameVault.",
     "body": "Sites that shipped with components from the library. Submit yours and get it in front of the developers and studios who read us every week.",
     "cta": "Submit your site"
   },
@@ -19,7 +19,7 @@
   },
   "endCta": {
     "headline": "Show what you shipped.",
-    "subtext": "Got a site running on Annnimate components? Submit it and we feature it.",
+    "subtext": "Got a site running on GameVault components? Submit it and we feature it.",
     "primaryCtaLabel": "Submit your site",
     "secondaryCtaLabel": "Browse the library"
   },
@@ -54,7 +54,7 @@
     "siteNameLabel": "Site name",
     "siteNamePlaceholder": "Studio, product or client name",
     "industryLabel": "Industry",
-    "componentsLabel": "Annnimate components in it",
+    "componentsLabel": "GameVault components in it",
     "componentsPlaceholder": "Search the library",
     "componentsAddCustom": "Add “{query}”",
     "descriptionLabel": "What you built",
@@ -110,7 +110,7 @@
       "added": "Added"
     },
     "componentsLabel": "Components",
-    "componentsTitle": "Annnimate components in it",
+    "componentsTitle": "GameVault components in it",
     "componentsUnmatched": "Also in the build",
     "awardsLabel": "Recognition",
     "awardsTitle": "Awards",

@@ -8,7 +8,7 @@ import { createClient } from '@/libs/supabase/client'; // NOTE: module id: 41698
 import { pricingConfig } from '@/libs/data/pricing'; // NOTE: module id: 516799
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
 
-const POSTHOG_KEY = 'phc_qoyfzrqaZkqjWRpAoj667FNfkTw4UQunpnmQCGYGEn4A';
+const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || '';
 const POSTHOG_PROXY = '/relay-A8q3';
 const POSTHOG_HOST = 'https://us.posthog.com';
 const SENSITIVE_PARAM_KEYS = ['token_hash', 'token', 'code', 'access_token', 'refresh_token'];
@@ -53,7 +53,7 @@ function PostHogConsentSync() {
 
       let isAllowed = false;
       try {
-        const match = document.cookie.match(/(?:^|; )annnimate_consent=([^;]+)/);
+        const match = document.cookie.match(/(?:^|; )gamevault_consent=([^;]+)/);
         if (match) {
           const consent = JSON.parse(atob(decodeURIComponent(match[1])));
           isAllowed = Boolean(consent && consent.analytics === true);
@@ -90,8 +90,8 @@ function PostHogConsentSync() {
       }
     };
 
-    window.addEventListener('annnimate:consent-changed', handleConsentChange);
-    return () => window.removeEventListener('annnimate:consent-changed', handleConsentChange);
+    window.addEventListener('gamevault:consent-changed', handleConsentChange);
+    return () => window.removeEventListener('gamevault:consent-changed', handleConsentChange);
   }, []);
 
   return null;
@@ -117,7 +117,7 @@ function PostHogSnippet() {
             (function () {
               var allowed = false;
               try {
-                var match = document.cookie.match(/(?:^|; )annnimate_consent=([^;]+)/);
+                var match = document.cookie.match(/(?:^|; )gamevault_consent=([^;]+)/);
                 if (match) {
                   var data = JSON.parse(atob(decodeURIComponent(match[1])));
                   allowed = data && data.analytics === true;
@@ -309,8 +309,8 @@ export function ConsentAwareAnalytics() {
     setConsent(getConsentState()); // NOTE: module id: 160725
 
     const handleConsentChange = () => setConsent(getConsentState()); // NOTE: module id: 160725
-    window.addEventListener('annnimate:consent-changed', handleConsentChange);
-    return () => window.removeEventListener('annnimate:consent-changed', handleConsentChange);
+    window.addEventListener('gamevault:consent-changed', handleConsentChange);
+    return () => window.removeEventListener('gamevault:consent-changed', handleConsentChange);
   }, []);
 
   if (!mounted) return null;

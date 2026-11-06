@@ -1,400 +1,185 @@
-project tree 
-tree
-.
-├── README.md
-├── jsconfig.json
-├── next.config.mjs
-├── package.json
-├── postcss.config.mjs
-├── public
-│   ├── fonts
-│   │   ├── AktivGroteskCorp-Bold.woff2
-│   │   ├── AktivGroteskCorp-BoldItalic.woff2
-│   │   ├── AktivGroteskCorp-Italic.woff2
-│   │   ├── AktivGroteskCorp-Light.woff2
-│   │   ├── AktivGroteskCorp-Medium.woff2
-│   │   ├── AktivGroteskCorp-MediumItalic.woff2
-│   │   ├── AktivGroteskCorp-Regular.woff2
-│   │   ├── Geist-Variable.woff2
-│   │   ├── GeistMono-Variable.woff2
-│   │   └── ShadowsIntoLight_Regular.woff2
-│   └── imgs
-│       ├── apple-touch-icon.png
-│       ├── edoardo_avatar.avif
-│       ├── favicon.ico
-│       ├── logo.png
-│       ├── lukas_avatar.avif
-│       ├── matthew_avatar.avif
-│       └── og-image.jpg
-└── src
-    ├── animations
-    │   ├── AnimatedHeadline.jsx
-    │   ├── AnimatedList.jsx
-    │   ├── AnimatedNumber.jsx
-    │   ├── AnimatedReveal.jsx
-    │   ├── AnimatedSubtext.jsx
-    │   ├── AnimatedTabs.jsx
-    │   ├── AnimatedText.jsx
-    │   ├── AnimationCard.jsx
-    │   ├── EaseSelect.jsx
-    │   ├── FadeIn.jsx
-    │   ├── PageEnterAnimation.jsx
-    │   ├── RevealHeading.jsx
-    │   ├── SaveAnimationButton.jsx
-    │   ├── ScrambleText.jsx
-    │   ├── SegmentedControl.jsx
-    │   └── Switch.jsx
-    ├── app
-    │   ├── api
-    │   │   ├── animations
-    │   │   │   ├── save
-    │   │   │   │   └── route.js
-    │   │   │   └── view
-    │   │   │       └── route.js
-    │   │   ├── announcements
-    │   │   │   └── route.js
-    │   │   ├── attribution
-    │   │   │   └── backfill
-    │   │   │       └── route.js
-    │   │   ├── events
-    │   │   │   └── route.js
-    │   │   ├── newsletter
-    │   │   │   ├── profile
-    │   │   │   │   └── route.js
-    │   │   │   └── route.js
-    │   │   ├── sandbox
-    │   │   │   └── iframe
-    │   │   │       └── [slug]
-    │   │   │           └── route.js
-    │   │   ├── starter-pack
-    │   │   │   └── resend
-    │   │   │       └── route.js
-    │   │   └── stripe
-    │   │       └── create-portal
-    │   │           └── route.js
-    │   ├── global-error.jsx
-    │   ├── layout.jsx
-    │   ├── login
-    │   │   └── page.jsx
-    │   ├── page.jsx
-    │   ├── provider.jsx
-    │   ├── robots.js
-    │   └── sitemap.js
-    ├── assets
-    │   ├── icons
-    │   │   ├── AnimatedStrokeIcon.jsx
-    │   │   ├── ArrowUpRightIcon.jsx
-    │   │   ├── HtmlIcon.jsx
-    │   │   ├── LockIcon.jsx
-    │   │   ├── ReactIcon.jsx
-    │   │   └── VueIcon.jsx
-    │   ├── logos
-    │   │   ├── AnnnimateLogo.jsx
-    │   │   ├── BodyArmorLogo.js
-    │   │   ├── BrandLogo.jsx
-    │   │   ├── CocaColaLogo.js
-    │   │   ├── LogoIcon.jsx
-    │   │   ├── LogoText.jsx
-    │   │   ├── PoweradeLogo.js
-    │   │   └── WkndhrsLogo.js
-    │   └── styles
-    │       ├── cursor.css
-    │       ├── global.css
-    │       ├── macc.css
-    │       └── prose.css
-    ├── components
-    │   ├── announcements
-    │   │   └── AnnouncementHost.jsx
-    │   ├── layout
-    │   │   ├── AppShell.jsx
-    │   │   ├── LoadingScreen.jsx
-    │   │   ├── ScrollerSync.jsx
-    │   │   └── TransitionLayout.jsx
-    │   ├── navigation
-    │   │   ├── ConceptTooltipLink.jsx
-    │   │   ├── NavSurface.jsx
-    │   │   ├── SidebarNav.jsx
-    │   │   └── TransitionLink.jsx
-    │   ├── notifications
-    │   │   ├── NotificationItem.jsx
-    │   │   ├── NotificationsButton.jsx
-    │   │   └── NotificationsDrawer.jsx
-    │   ├── onboarding
-    │   │   ├── OnboardingChecklist.jsx
-    │   │   └── OnboardingComplete.jsx
-    │   └── ui
-    │       ├── Avatar.jsx
-    │       ├── Badge.jsx
-    │       ├── BrandMark.jsx
-    │       ├── BulletPoints.jsx
-    │       ├── Button.jsx
-    │       ├── ConceptChip.jsx
-    │       ├── FAQItem.jsx
-    │       ├── GroundBackground.jsx
-    │       ├── LibraryPreview.jsx
-    │       ├── Loader.jsx
-    │       ├── OAuthButton.jsx
-    │       ├── ProvenanceChip.jsx
-    │       ├── SecondaryButton.jsx
-    │       ├── SlideText.jsx
-    │       ├── Tooltip.jsx
-    │       └── VideoLabelOverlay.jsx
-    ├── contexts
-    │   ├── AnimationProvider.jsx
-    │   ├── CategoryProvider.jsx
-    │   ├── CookieConsentProvider.jsx
-    │   ├── GlobalProviders.jsx
-    │   ├── LenisProvider.jsx
-    │   ├── ListSizeProvider.jsx
-    │   ├── NotificationProvider.jsx
-    │   ├── OnboardingProvider.jsx
-    │   ├── RouterTransitionProvider.jsx
-    │   ├── ScrollLockProvider.jsx
-    │   ├── SidebarProvider.jsx
-    │   ├── ThemeProvider.jsx
-    │   ├── TooltipProvider.jsx
-    │   ├── TransitionRouterProvider.jsx
-    │   └── UserProvider.jsx
-    ├── features
-    │   ├── affiliate
-    │   │   ├── AffiliateEarningsCard.jsx
-    │   │   └── AffiliateModal.jsx
-    │   ├── animation-detil
-    │   │   ├── AnimationDetailPage.jsx
-    │   │   ├── components
-    │   │   │   ├── AnimationDetailHeader.jsx
-    │   │   │   ├── CodeAccessGate.jsx
-    │   │   │   ├── FirstComponentBanner.jsx
-    │   │   │   ├── InlineCodeCollapsible.jsx
-    │   │   │   ├── LockedDocsCallout.jsx
-    │   │   │   ├── MobileCaptureCard.jsx
-    │   │   │   └── SidebarCopyActions.jsx
-    │   │   ├── preview
-    │   │   │   ├── AnimationPreview.jsx
-    │   │   │   ├── AnimationViewTracker.jsx
-    │   │   │   └── PreviewIframe.jsx
-    │   │   ├── sections
-    │   │   │   ├── AnimationFAQ.jsx
-    │   │   │   ├── CategoryBrowseSection.jsx
-    │   │   │   ├── ProvenanceSection.jsx
-    │   │   │   ├── RelatedAnimationsSection.jsx
-    │   │   │   ├── RequirementsSection.jsx
-    │   │   │   └── TeachingSection.jsx
-    │   │   └── utils
-    │   │       ├── inlinePreviewAssets.js
-    │   │       ├── shortcutBridgeScript.js
-    │   │       ├── templateBuilder.js
-    │   │       ├── timelineCaptureScript.js
-    │   │       └── viewportPresets.js
-    │   ├── animation-page
-    │   │   ├── AnimationsLibrary.jsx
-    │   │   ├── components
-    │   │   │   ├── AnimationAttributes.jsx
-    │   │   │   ├── AnimationTips.jsx
-    │   │   │   ├── AnimationsLibraryNav.jsx
-    │   │   │   ├── AttributesTable.jsx
-    │   │   │   ├── FrameworkGuideLink.jsx
-    │   │   │   ├── FrameworkGuides.jsx
-    │   │   │   ├── LearnConceptLink.jsx
-    │   │   │   ├── PresetItem.jsx
-    │   │   │   ├── StaggerSegments.jsx
-    │   │   │   ├── StarterPackPopup.jsx
-    │   │   │   ├── TimelineRow.jsx
-    │   │   │   ├── TimelineRowTooltip.jsx
-    │   │   │   ├── TimelineStrip.jsx
-    │   │   │   ├── TipItem.jsx
-    │   │   │   ├── TipsList.jsx
-    │   │   │   └── UseCaseItem.jsx
-    │   │   ├── sections
-    │   │   │   ├── AnimationsHero.jsx
-    │   │   │   └── FAQ.jsx
-    │   │   └── utils
-    │   │       └── sortOptions.js
-    │   ├── common
-    │   │   ├── AnimationCollection.jsx
-    │   │   ├── AnimationDetailNav.jsx
-    │   │   ├── AnimationsFilterBar.jsx
-    │   │   ├── Breadcrumb.jsx
-    │   │   ├── CodeBlock.jsx
-    │   │   ├── CodeViewer.jsx
-    │   │   ├── ConfirmInbox.jsx
-    │   │   ├── ConsentAwareAnalytics.jsx
-    │   │   ├── ContentCard.jsx
-    │   │   ├── CookiePreferencesModal.jsx
-    │   │   ├── CopyPageButton.jsx
-    │   │   ├── CustomizePanel.jsx
-    │   │   ├── DescriptionList.jsx
-    │   │   ├── Dialog.jsx
-    │   │   ├── DocBlockRenderer.jsx
-    │   │   ├── DraggableGrid.jsx
-    │   │   ├── EmptyAnimationsState.jsx
-    │   │   ├── EndCta.jsx
-    │   │   ├── EndCtaRing.jsx
-    │   │   ├── IsometricFigure.jsx
-    │   │   ├── LibraryShowcaseLayout.jsx
-    │   │   ├── MediaHoverReveal.jsx
-    │   │   ├── PageReadyTrigger.jsx
-    │   │   ├── PillContainer.jsx
-    │   │   ├── PingIndicator.jsx
-    │   │   ├── PlatformSwitcher.jsx
-    │   │   ├── RangeSlider.jsx
-    │   │   ├── Select.jsx
-    │   │   └── SmoothScroll.jsx
-    │   ├── demos
-    │   │   ├── DocDemoLoader.jsx
-    │   │   ├── EasingGraph.jsx
-    │   │   ├── ScrubDemo.jsx
-    │   │   ├── SplitTextReveal.jsx
-    │   │   └── StaggerDemo.jsx
-    │   ├── globe
-    │   │   ├── Globe.jsx
-    │   │   ├── ImageCard.jsx
-    │   │   ├── ImageGlobe.jsx
-    │   │   ├── ImageGlobeScene.jsx
-    │   │   ├── ImageSphere.jsx
-    │   │   ├── WebGLWarmup.jsx
-    │   │   └── utils
-    │   │       ├── globeDiagnostics.js
-    │   │       └── loadImageBitmap.js
-    │   ├── landing
-    │   │   ├── BottomCTA.jsx
-    │   │   ├── CircularSlider.jsx
-    │   │   ├── CustomCursor.jsx
-    │   │   ├── FAQSection.jsx
-    │   │   ├── HeroSection.jsx
-    │   │   ├── HowItWorksSection.jsx
-    │   │   ├── LandingClient.jsx
-    │   │   ├── LandingLogos.jsx
-    │   │   ├── OneComponentSection.jsx
-    │   │   ├── PricingSection.jsx
-    │   │   ├── ProblemSection.jsx
-    │   │   ├── RingBackground.jsx
-    │   │   ├── StarterPackSection.jsx
-    │   │   ├── Testimonials.jsx
-    │   │   ├── TwoWaysSection.jsx
-    │   │   └── ValueMath.jsx
-    │   ├── newsletter
-    │   │   ├── NewsletterForm.jsx
-    │   │   └── StarterPackPopup.jsx
-    │   ├── paywall
-    │   │   ├── PaywallBlock.jsx
-    │   │   └── PaywallSubscribedBlock.jsx
-    │   ├── pricing
-    │   │   ├── PricingCard.jsx
-    │   │   ├── PricingFeatures.jsx
-    │   │   ├── PricingToggle.jsx
-    │   │   └── components
-    │   │       ├── CheckoutButton.jsx
-    │   │       ├── FeatureList.jsx
-    │   │       ├── KitPrice.jsx
-    │   │       └── PppLabel.jsx
-    │   ├── sidebar
-    │   │   ├── Sidebar.jsx
-    │   │   ├── SidebarGroup.jsx
-    │   │   ├── SidebarItem.jsx
-    │   │   ├── SidebarMobileTrigger.jsx
-    │   │   └── UserProfileDropdown.jsx
-    │   └── sigin
-    │       ├── AuthShowcase.jsx
-    │       ├── ImageShowcase.jsx
-    │       ├── SignInCodeForm.jsx
-    │       └── SignInPage.jsx
-    ├── hooks
-    │   ├── useBreakpoint.js
-    │   ├── useDualLayerScramble.js
-    │   ├── useImageTextures.js
-    │   ├── useInfiniteScroll.js
-    │   ├── useMultilineScrambleText.js
-    │   ├── usePauseOffscreenAnimations.js
-    │   ├── usePppGeo.js
-    │   ├── usePreviewDocument.js
-    │   ├── useRevealTimeline.js
-    │   ├── useSaveAnimation.js
-    │   ├── useScramble.js
-    │   ├── useScrollAnimation.js
-    │   ├── useTransitionLinkClick.js
-    │   └── useWebGLSupport.js
-    └── libs
-        ├── analytics
-        │   ├── analytics-utils.js
-        │   ├── analytics.js
-        │   └── posthogAnalytics.js
-        ├── auth
-        │   ├── authHashErrorHandler.js
-        │   ├── gameAccounts.js
-        │   └── site.js
-        ├── code
-        │   ├── anmAttributeCatalog.js
-        │   ├── anmAttributeHighlighter.js
-        │   ├── anmAttributeMarks.js
-        │   ├── anmBaseExtensions.js
-        │   ├── anmColors.js
-        │   ├── anmEditorTheme.js
-        │   ├── anmHighlightStyle.js
-        │   ├── anmThemeExtensions.js
-        │   ├── createAnmAutocomplete.js
-        │   ├── editorSetup.js
-        │   ├── index.js
-        │   └── parseAttributesFromJs.js
-        ├── config
-        │   ├── affiliate.js
-        │   ├── configurables.js
-        │   ├── consent.js
-        │   ├── constants.js
-        │   ├── discord.js
-        │   ├── isRouteActive.js
-        │   ├── onboarding.js
-        │   ├── pricing.js
-        │   ├── pricingHelpers.js
-        │   ├── routeConfig.js
-        │   └── stripe.js
-        ├── data
-        │   ├── pricing.js
-        │   ├── seat-prices.js
-        │   ├── stripe-prices.js
-        │   └── testimonials.js
-        ├── locales
-        │   ├── affiliate-v3.json
-        │   ├── affiliate.json
-        │   ├── built-with.json
-        │   ├── common.json
-        │   ├── contact.json
-        │   ├── faq.json
-        │   ├── frameworks-v3.json
-        │   ├── home-v3.json
-        │   ├── kits-v3.json
-        │   ├── kits.json
-        │   ├── landing.json
-        │   ├── packs-v3.json
-        │   ├── packs.json
-        │   ├── platform-v3.json
-        │   ├── platform.json
-        │   ├── pricing-v3.json
-        │   ├── pricing.json
-        │   ├── seo.json
-        │   ├── starter-pack.json
-        │   ├── students-v3.json
-        │   ├── students.json
-        │   └── whats-new.json
-        ├── supabase
-        │   ├── animationDetail.js
-        │   ├── client.js
-        │   ├── latestAnimation.js
-        │   └── server.js
-        └── utils
-            ├── className.js
-            ├── discord.js
-            ├── events.js
-            ├── figures.jsx
-            ├── formatCode.js
-            ├── formatImageUrl.js
-            ├── i18n.js
-            ├── loadImageBitmap.js
-            ├── loadSharedImage.js
-            ├── packSlugs.js
-            ├── pendingRoute.js
-            ├── perf.js
-            ├── ppp.js
-            ├── provenance.js
-            ├── resolvePostAuthPath.js
-            └── vendor.js
+<div align="center">
+
+# Annnimate
+
+**Production-grade GSAP components for React, Vue and HTML.**
+
+Browse, preview live, copy the code, and ship motion that holds up on real client work.
+
+[Live site](https://anm.drivexstore.shop) · [Component library](https://anm.drivexstore.shop/animations) · [Documentation](https://anm.drivexstore.shop/docs) · [Roadmap](https://anm.drivexstore.shop/roadmap)
+
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=nextdotjs)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![GSAP](https://img.shields.io/badge/GSAP-3.15-88CE02?logo=greensock&logoColor=black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?logo=supabase&logoColor=white)
+
+</div>
+
+---
+
+## Overview
+
+Annnimate is a curated library of GSAP motion components. Instead of rebuilding timing, interaction states, responsive behavior and reduced-motion handling from scratch, you find a component, see exactly how it moves, copy it in your preferred format, and adjust it with props or data attributes.
+
+This repository contains the web platform behind the library: the public site, the live component previews, authentication, the code viewer, and the supporting API routes.
+
+## Features
+
+- **Live component library**: every animation runs in the browser before you copy it, with category filters and search.
+- **Multiple output formats**: React (with `useGSAP`), Vue (composables) and plain HTML / CSS / JS.
+- **Configurable**: tune behavior through props or `data-anm-*` attributes (duration, ease, type and more).
+- **Accessible by default**: components respect `prefers-reduced-motion` and handle keyboard focus and ARIA where interactive.
+- **Framework friendly**: works with the Next.js App Router, Nuxt, Astro and any modern JS setup.
+- **Landmark Kits**: deeper, stand-alone motion systems built around one idea (for example, the Menu and Reveal kits).
+- **Learning hub**: concepts, patterns and free tools covering easing, scroll, timelines, text, React and performance.
+- **Accounts and saved items**: sign-in via Supabase, with the ability to save components.
+- **Editor integration**: an MCP server lets you pull components straight into editors such as Cursor and Claude Code.
+
+## Component categories
+
+| Category | Examples |
+| --- | --- |
+| Buttons | Interactive and magnetic buttons |
+| Scroll | Text Reveal, Image Fly In |
+| UI Components | Circular Slider, Accordion |
+| Menus | Mega Menu, Drawer Menu |
+| Sections | Card Fan |
+| Experimental | Dual Scramble |
+
+## Tech stack
+
+| Area | Technology |
+| --- | --- |
+| Framework | [Next.js](https://nextjs.org/) 16 (App Router), React 19 |
+| Animation | [GSAP](https://gsap.com/), `@gsap/react`, [Lenis](https://lenis.darkroom.engineering/) smooth scroll |
+| 3D / WebGL | three.js, `@react-three/fiber` |
+| Styling | Tailwind CSS 4, `class-variance-authority`, `tailwind-merge`, `clsx` |
+| UI primitives | Radix UI (Dialog, Tooltip, Dropdown Menu), Sonner, Phosphor and Lucide icons |
+| Code viewer | CodeMirror 6 (HTML, CSS, JavaScript) |
+| Backend | Supabase (auth and database via `@supabase/ssr`) |
+| Email | Resend |
+| Hosting | Vercel |
+
+## Project structure
+
+```text
+src/
+├── animations/        # Animation source: components, hooks and shared helpers
+├── app/               # Next.js App Router
+│   ├── animations/    # Library listing, [slug] detail pages and saved items
+│   ├── api/           # Route handlers (animations, auth, events, geo,
+│   │                  #   newsletter, sandbox, starter-pack, teams, ...)
+│   ├── login/         # Authentication pages
+│   ├── layout.jsx     # Root layout, fonts and theme bootstrap
+│   └── provider.jsx   # App-wide providers
+├── assets/            # Static assets used by the app
+├── components/        # Site UI: landing, layout, navigation, pricing,
+│                      #   paywall, login, globe, cookies, analytics, ui
+├── hooks/             # Reusable React hooks
+├── libs/              # Auth, config, editor, locales, Supabase clients, utils
+├── providers/         # Context providers
+└── styles/            # Global styles
+public/
+└── fonts/             # Self-hosted fonts (Geist, Geist Mono, Aktiv Grotesk, ...)
+```
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 20.9 or later
+- npm (or another Node package manager)
+- A Supabase project for authentication and data
+
+### Installation
+
+```bash
+git clone https://github.com/drivex-studio/gsap-annnimate.git
+cd gsap-annnimate
+npm install
+```
+
+### Environment variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+Additional keys (for example, for transactional email through Resend) may be required for features such as the newsletter. Never commit `.env*` files.
+
+### Run locally
+
+```bash
+npm run dev
+```
+
+The app starts at [http://localhost:3000](http://localhost:3000).
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server on port 3000 |
+| `npm run build` | Create an optimized production build |
+| `npm run start` | Serve the production build on port 3000 |
+
+## Using a component
+
+Components are designed to be copied into your own project. GSAP is required:
+
+```bash
+npm install gsap @gsap/react
+```
+
+A minimal React example with `useGSAP`:
+
+```jsx
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
+export default function Box() {
+  const box = useRef(null);
+
+  useGSAP(() => {
+    gsap.to(box.current, { x: 200, duration: 1, ease: "expo.out" });
+  });
+
+  return <div ref={box} className="box" />;
+}
+```
+
+The vanilla HTML version is configured through data attributes:
+
+```html
+<div data-anm-circular-slider
+     data-anm-circular-slider-type="snap"
+     data-anm-duration="0.9"
+     data-anm-ease="back.out(1.4)">
+  <img class="circular_slider_image" src="card-1.jpg" alt="" />
+</div>
+```
+
+Full setup guides for React, Vue and HTML are in the [documentation](https://anm.drivexstore.shop/docs).
+
+## Deployment
+
+The project is deployed on [Vercel](https://vercel.com/). To deploy your own instance:
+
+1. Import the repository into Vercel.
+2. Add the environment variables listed above.
+3. Deploy. Vercel detects Next.js automatically.
+
+## Contributing
+
+1. Create a branch from `main` (for example, `feature/my-change`).
+2. Make your changes and verify them with `npm run build`.
+3. Open a pull request describing what changed and why.
+
+## License
+
+All rights reserved. The component library is a commercial product; see the [terms](https://anm.drivexstore.shop/terms) on the live site for usage details.

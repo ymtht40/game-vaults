@@ -281,11 +281,11 @@ const AIAvatar = memo(function ({ size = 32, className = '' }) {
         viewBox="0 0 60 60"
         fill="none"
         role="img"
-        aria-label="Annnimate AI"
+        aria-label="GameVault AI"
         width="100%"
         height={size}
       >
-        <title id={titleId}>Annnimate AI</title>
+        <title id={titleId}>GameVault AI</title>
         <mask
           id={maskId}
           maskUnits="userSpaceOnUse"

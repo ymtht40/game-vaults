@@ -212,7 +212,7 @@ export default function AnimationPreview({
       const link = document.createElement('a');
 
       link.href = objectUrl;
-      link.download = `annnimate-${animation.slug}.mp4`;
+      link.download = `gamevault-${animation.slug}.mp4`;
       link.click();
 
       setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
@@ -262,7 +262,7 @@ export default function AnimationPreview({
     if (!bare) return;
 
     function handleMessage(event) {
-      if (event?.data?.type !== 'annnimate-shortcut') return;
+      if (event?.data?.type !== 'gamevault-shortcut') return;
 
       const key = event.data.key;
 

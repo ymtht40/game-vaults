@@ -107,7 +107,7 @@ export function PaywallQuote({ className = 'mt-8' }) {
   return featuredTestimonial ? (
     <blockquote className={`${className} flex max-w-[34ch] flex-col gap-6 text-center`}>
       <p className="text-body-sm text-foreground-muted">
-        “Similar services are 2-3 times the cost and don&apos;t offer the level of polish that Annnimate does.”
+        “Similar services are 2-3 times the cost and don&apos;t offer the level of polish that GameVault does.”
       </p>
       <footer className="text-accent-xs text-foreground-muted">
         {featuredTestimonial.name} · {featuredTestimonial.role}

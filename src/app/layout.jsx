@@ -8,8 +8,8 @@ import '@/assets/styles/global.css';
 export const metadata = {
   metadataBase: new URL("https://app.drivexstore.shop"),
   title: {
-    default: "Annnimate | Production-grade GSAP components",
-    template: "%s | Annnimate",
+    default: "GameVault | Production-grade GSAP components",
+    template: "%s | GameVault",
   },
   description:
     "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
@@ -17,17 +17,17 @@ export const metadata = {
   authors: [{ name: "DriveX Studio" }],
   creator: "DriveX Studio",
   openGraph: {
-    title: "Annnimate | Production-grade GSAP components",
+    title: "GameVault | Production-grade GSAP components",
     description:
       "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
     url: "https://app.drivexstore.shop",
-    siteName: "Annnimate",
+    siteName: "GameVault",
     images: [
       {
         url: "/imgs/og-image.jpg", 
         width: 1200,
         height: 630,
-        alt: "Annnimate - Production-grade GSAP components",
+        alt: "GameVault - Production-grade GSAP components",
       },
     ],
     locale: "en_US",
@@ -35,7 +35,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Annnimate | Production-grade GSAP components",
+    title: "GameVault | Production-grade GSAP components",
     description:
       "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
     images: ["/imgs/og-image.jpg"], 
@@ -99,7 +99,7 @@ export default async function RootLayout({ children }) {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Annnimate",
+    name: "GameVault",
     url: "https://app.drivexstore.shop/",
     description: "Production-grade GSAP components for React, Vue and HTML.",
     potentialAction: {

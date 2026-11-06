@@ -22,10 +22,10 @@ const getInitialStudioPrice = (cycle) =>
 
 // NOTE: module id: 516799
 export const pricingConfig = {
-  appName: 'Annnimate',
+  appName: 'GameVault',
   appDescription:
     'Production GSAP motion components for React and Vue. Every component shipped on a real brand site before it reached the library. By Good Fella.',
-  domainName: 'annnimate.com',
+  domainName: 'app.drivexstore.shop',
   crisp: {
     id: '',
     onlyShowOnRoutes: ['/'],
@@ -145,10 +145,10 @@ export const pricingConfig = {
     cdn: 'https://cdn-id.cloudfront.net/',
   },
   resend: {
-    fromNoReply: 'Annnimate <noreply@annnimate.com>',
-    fromAdmin: 'Team at Annnimate <team@annnimate.com>',
-    supportEmail: 'support@annnimate.com',
-    contactEmail: 'contact@annnimate.com',
+    fromNoReply: 'GameVault <hello@drivexstore.shop>',
+    fromAdmin: 'Team at GameVault <admin@drivexstore.shop>',
+    supportEmail: 'contact@drivexstore.shop',
+    contactEmail: 'contact@drivexstore.shop',
   },
   colors: {
     main: '#b3fca0',

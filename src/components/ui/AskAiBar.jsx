@@ -6,7 +6,7 @@ import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module i
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 
 const ASK_AI_PROMPT = encodeURIComponent(
-  'What does Annnimate (https://annnimate.com), the production-ready GSAP component library for React, Vue and HTML, offer - and how do I add a component to my project?'
+  'What does GameVault (https://app.drivexstore.shop), the production-ready GSAP component library for React, Vue and HTML, offer - and how do I add a component to my project?'
 );
 
 const AI_PROVIDERS = [
@@ -116,7 +116,7 @@ export default function AskAiBar() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Ask about Annnimate on ${name}`}
+            aria-label={`Ask about GameVault on ${name}`}
             onClick={() => analytics.askAi.clicked(name.toLowerCase())}
             className="inline-flex size-40 items-center justify-center border lg:size-28 border-foreground/10 text-foreground-muted transition-colors duration-300 ease-out hover:border-foreground/30 hover:text-foreground"
           >

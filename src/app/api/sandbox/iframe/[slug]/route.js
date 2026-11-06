@@ -47,7 +47,7 @@ const SHORTCUT_SCRIPT = `
     else if (e.key === 'r' || e.key === 'R') key = 'r';
     if (!key) return;
     try {
-      window.parent.postMessage({ type: 'annnimate-shortcut', key: key }, '*');
+      window.parent.postMessage({ type: 'gamevault-shortcut', key: key }, '*');
     } catch (err) {}
   });
 })();

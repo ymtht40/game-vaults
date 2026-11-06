@@ -10,7 +10,7 @@
       "Code in your inbox"
     ],
     "requestLine": "Use it within 30 days",
-    "plan": "Annnimate Solo",
+    "plan": "GameVault Solo",
     "billed": "Billed yearly",
     "solo": "Solo, yearly",
     "discount": "Student code applied",
@@ -44,7 +44,7 @@
     "extra": [
       {
         "q": "Does it stack with other discounts?",
-        "a": "Annnimate allows one discount per checkout, so a student code doesn't stack with regional or member pricing."
+        "a": "GameVault allows one discount per checkout, so a student code doesn't stack with regional or member pricing."
       },
       {
         "q": "How long does the code last?",

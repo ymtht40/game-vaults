@@ -16,8 +16,8 @@
     "offerAria": "Road to 100 offer. Regular price {price} euro {cycle}",
     "pppName": "Regional pricing",
     "pppAria": "Regional pricing for your country. Regular price {price} euro {cycle}",
-    "pppNotice": "Prices are localized for {country} to keep Annnimate affordable for everyone. The discount applies to subscriptions and Kits, and is added automatically at checkout, no code needed.",
-    "pppNoticeGeneric": "Prices are localized for your region to keep Annnimate affordable for everyone. The discount applies to subscriptions and Kits, and is added automatically at checkout, no code needed.",
+    "pppNotice": "Prices are localized for {country} to keep GameVault affordable for everyone. The discount applies to subscriptions and Kits, and is added automatically at checkout, no code needed.",
+    "pppNoticeGeneric": "Prices are localized for your region to keep GameVault affordable for everyone. The discount applies to subscriptions and Kits, and is added automatically at checkout, no code needed.",
     "billedQuarterly": "Billed quarterly",
     "billedQuarterlyExact": "Billed €{total} quarterly",
     "shippedRecently": "{count} shipped in the last 30 days",
@@ -70,35 +70,35 @@
     "items": [
       {
         "q": "Is a subscription worth it for a component library?",
-        "a": "Annnimate's subscription is worth it if you ship more than one project a year. The Library keeps growing, the components stay maintained against new GSAP and framework versions, and you are paying for work that stays current. If you only need one motion system once, buy a Kit instead and skip the subscription."
+        "a": "GameVault's subscription is worth it if you ship more than one project a year. The Library keeps growing, the components stay maintained against new GSAP and framework versions, and you are paying for work that stays current. If you only need one motion system once, buy a Kit instead and skip the subscription."
       },
       {
         "q": "What happens when my year ends?",
         "a": "Your subscription renews automatically at the end of each billing period. You can cancel anytime from your settings and keep access until the period ends. Code you already copied into your projects is yours and keeps working either way. You only lose access to the library and to new components."
       },
       {
-        "q": "Can I use Annnimate components in client work?",
-        "a": "Yes. Every Annnimate tier covers commercial client projects. The license is for you and your seats to build with. You cannot resell the components as a competing library, that is the only real limit."
+        "q": "Can I use GameVault components in client work?",
+        "a": "Yes. Every GameVault tier covers commercial client projects. The license is for you and your seats to build with. You cannot resell the components as a competing library, that is the only real limit."
       },
       {
         "q": "Do I need to know GSAP?",
-        "a": "Annnimate helps even if you do not know GSAP. You can copy and ship a component without writing any GSAP yourself. The code is documented and tuned. If you want to go deeper and customize, knowing GSAP makes that easier, and GSAP is free."
+        "a": "GameVault helps even if you do not know GSAP. You can copy and ship a component without writing any GSAP yourself. The code is documented and tuned. If you want to go deeper and customize, knowing GSAP makes that easier, and GSAP is free."
       },
       {
         "q": "React and Vue, both real?",
-        "a": "Yes. Annnimate ships both React and Vue as first-class formats with proper framework integration, not a vanilla snippet wrapped in a component. Plain HTML / CSS / JS ships alongside."
+        "a": "Yes. GameVault ships both React and Vue as first-class formats with proper framework integration, not a vanilla snippet wrapped in a component. Plain HTML / CSS / JS ships alongside."
       },
       {
         "q": "What if it is not for me?",
-        "a": "Annnimate has a 14-day, no-questions-asked refund on both Library subscriptions and Landmark Kits. If it does not fit how you work, email us within 14 days of purchase and we refund you in full."
+        "a": "GameVault has a 14-day, no-questions-asked refund on both Library subscriptions and Landmark Kits. If it does not fit how you work, email us within 14 days of purchase and we refund you in full."
       },
       {
         "q": "Do the two products discount each other?",
-        "a": "Annnimate Library members get 20% off every Landmark Kit purchase, for as long as the subscription is active. Past Kit buyers get 20% off their first year of any Library plan. Separate products, reciprocal reward."
+        "a": "GameVault Library members get 20% off every Landmark Kit purchase, for as long as the subscription is active. Past Kit buyers get 20% off their first year of any Library plan. Separate products, reciprocal reward."
       },
       {
         "q": "Why not free, like Aceternity or Magic UI?",
-        "a": "Aceternity and Magic UI are excellent and free, and they run on Framer Motion for landing-page UI. Annnimate is a different thing: GSAP animations built and maintained by a working studio, each one proven on real client sites. The subscription is what keeps them working against new GSAP and framework versions."
+        "a": "Aceternity and Magic UI are excellent and free, and they run on Framer Motion for landing-page UI. GameVault is a different thing: GSAP animations built and maintained by a working studio, each one proven on real client sites. The subscription is what keeps them working against new GSAP and framework versions."
       }
     ]
   },

@@ -9,8 +9,8 @@ export function CookieConsentProvider() {
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
-    window.addEventListener('annnimate:open-cookie-preferences', handleOpen);
-    return () => window.removeEventListener('annnimate:open-cookie-preferences', handleOpen);
+    window.addEventListener('gamevault:open-cookie-preferences', handleOpen);
+    return () => window.removeEventListener('gamevault:open-cookie-preferences', handleOpen);
   }, []);
 
   return (

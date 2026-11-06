@@ -88,7 +88,7 @@ export default function SignInCodeForm({ onVerify }) {
     return (
       <div className="border-t border-foreground/10 pt-16">
         <p role="status" className="text-body-sm text-foreground">
-          Signed in. One moment, taking you to Annnimate.
+          Signed in. One moment, taking you to GameVault.
         </p>
       </div>
     );

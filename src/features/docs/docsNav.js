@@ -53,13 +53,13 @@ export const DOC_CARDS = {
     {
       href: '/docs/guides/mcp',
       figure: 'doc-mcp',
-      title: 'Using Annnimate with AI agents',
+      title: 'Using GameVault with AI agents',
       line: 'Connect Cursor, Claude Code or any MCP client, and your agent finds components and pulls their code for you.',
     },
     {
       href: '/docs/guides/webflow',
       figure: 'doc-webflow',
-      title: 'Using Annnimate in Webflow',
+      title: 'Using GameVault in Webflow',
       line: 'Paste older components into the Designer as JSON. New ones ship for React, Vue and HTML.',
     },
   ],

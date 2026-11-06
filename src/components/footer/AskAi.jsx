@@ -9,7 +9,7 @@ import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module i
 // b -> AskAi
 
 const ASK_AI_QUERY = encodeURIComponent(
-  'What does Annnimate (https://annnimate.com), the production-ready GSAP component library for React, Vue and HTML, offer - and how do I add a component to my project?'
+  'What does GameVault (https://app.drivexstore.shop), the production-ready GSAP component library for React, Vue and HTML, offer - and how do I add a component to my project?'
 );
 
 function ClaudeIcon(props) {
@@ -127,7 +127,7 @@ export function AskAi() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Ask about Annnimate on ${name}`}
+            aria-label={`Ask about GameVault on ${name}`}
             onClick={() => analytics.askAi.clicked(name.toLowerCase())}
             className="inline-flex size-40 items-center justify-center border lg:size-28 border-foreground/10 text-foreground-muted transition-colors duration-300 ease-out hover:border-foreground/30 hover:text-foreground"
           >
