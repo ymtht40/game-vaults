@@ -1,3 +1,4 @@
+import ReferenceSearchButton from '@/components/ui/ReferenceSearchButton';
 import MobileSectionNav from '@/components/navigation/MobileSectionNav';
 import DesktopSectionNav from '@/components/navigation/DesktopSectionNav';
 import NewsletterForm from '@/features/newsletter/NewsletterForm';
@@ -12,7 +13,9 @@ export default function DocsLayout({ children }) {
       <div className="v2-container pt-[calc(var(--v2-header-h)+var(--v2-header-gap)+32px)] pb-32 lg:pt-[calc(var(--v2-header-h)+var(--v2-header-gap)+48px)] lg:pb-48">
         <div className="group/ref grid grid-cols-12 gap-x-24">
           <aside className="col-span-12 lg:col-span-2">
-            {/* module 6648 (the ⌘K search button) is not available, so it is omitted */}
+            {/* ⌘K search button (module 6648) - desktop only, opens reference search */}
+            <ReferenceSearchButton />
+
             <MobileSectionNav
               ariaLabel="Documentation"
               variant="sliding-bar"

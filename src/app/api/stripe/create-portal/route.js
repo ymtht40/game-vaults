@@ -1,16 +1,23 @@
 import { NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { createClient } from '@/libs/supabase/client';
+import { createServerSupabase } from '@/libs/supabase/server';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2023-10-16',
-});
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error('STRIPE_SECRET_KEY is not set');
+  }
+  return new Stripe(key, {
+    apiVersion: '2023-10-16',
+  });
+}
 
 export async function POST(req) {
   try {
     const { returnUrl } = await req.json();
 
-    const supabase = createClient();
+    // Server route: must use the cookie-aware server client so the logged-in user is identified.
+    const supabase = await createServerSupabase();
     const { data: { user }, error: authError } = await supabase.auth.getUser();
 
     if (authError || !user) {
@@ -29,6 +36,7 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Stripe customer ID not found' }, { status: 400 });
     }
 
+    const stripe = getStripe();
     const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
       return_url: returnUrl,
@@ -37,7 +45,7 @@ export async function POST(req) {
     return NextResponse.json({ url: session.url });
 
   } catch (error) {
+    console.error('[create-portal]', error);
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
-
