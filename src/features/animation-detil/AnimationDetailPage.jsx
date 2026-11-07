@@ -21,7 +21,7 @@ import StaggerSegments from '@/features/animation-page/components/StaggerSegment
 import AttributesTable from '@/features/animation-page/components/AttributesTable'; // NOTE: module id: 747198
 import UseCaseItem from '@/features/animation-page/components/UseCaseItem'; // NOTE: module id: 799422
 import { CustomizePanel } from '@/features/common/CustomizePanel'; // NOTE: module id: 135178
-import { CodeViewer, CodeViewer as CodeViewerFooter } from '@/features/common/CodeViewer'; // NOTE: module id: 343931
+import { CodeViewer, McpNotice } from '@/features/common/CodeViewer'; // NOTE: module id: 343931
 import { PaywallBlock } from '@/features/paywall/PaywallBlock'; // NOTE: module id: 993603
 import FaqSection from '@/features/animation-detil/sections/AnimationFAQ'; // NOTE: module id: 126272
 import StarterPackPopup from '@/features/newsletter/StarterPackPopup'; // NOTE: module id: 573564
@@ -406,7 +406,7 @@ export default function AnimationDetailPage({
                     />
                   </CodeAccessGate>
                 </div>
-                {!hasAccess && <CodeViewerFooter showMcp={false} />}
+                {!hasAccess && <McpNotice showMcp={false} />}
               </div>
             </aside>
           )}

@@ -18,6 +18,7 @@ import { HeaderMarquee } from '@/components/header/HeaderMarquee'; // NOTE: modu
 import { NAV_ITEMS } from '@/components/header/header.config'; // NOTE: module id: 76624
 import { isRouteActive } from '@/libs/config/isRouteActive'; // NOTE: module id: 76624
 import { useAuth } from '@/hooks/useAuth'; // NOTE: module id: 76624
+import { useScrollLockContext } from '@/contexts/ScrollLockProvider';
 import { useHeaderState } from '@/hooks/useHeaderState'; // NOTE: module id: 76624
 
 // NOTE: module id: 76624
@@ -46,6 +47,11 @@ export default function Header({ latestAnimation }) {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileExpandedKey, setMobileExpandedKey] = useState(null);
+  const { lockScroll, unlockScroll } = useScrollLockContext();
+  const closeMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setMobileExpandedKey(null);
+  }, []);
   const [isMegaAnimating, setIsMegaAnimating] = useState(false);
   const [marqueeShiftY, setMarqueeShiftY] = useState(0);
 
@@ -330,16 +336,25 @@ export default function Header({ latestAnimation }) {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setActiveMegaKey(null);
+        closeMobileMenu();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [closeMobileMenu]);
+
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const handleDesktop = () => { if (desktop.matches) closeMobileMenu(); };
+    handleDesktop();
+    desktop.addEventListener('change', handleDesktop);
+    return () => desktop.removeEventListener('change', handleDesktop);
+  }, [closeMobileMenu]);
 
   useEffect(() => {
     setActiveMegaKey(null);
-    setIsMobileMenuOpen(false);
-  }, [pathname]);
+    closeMobileMenu();
+  }, [pathname, closeMobileMenu]);
 
   useEffect(() => {
     const handleTransition = () => {
@@ -465,7 +480,13 @@ export default function Header({ latestAnimation }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('v2-scroll-locked', isMobileMenuOpen);
-  }, [isMobileMenuOpen]);
+    if (!isMobileMenuOpen) return;
+    lockScroll();
+    return () => {
+      document.documentElement.classList.remove('v2-scroll-locked');
+      unlockScroll();
+    };
+  }, [isMobileMenuOpen, lockScroll, unlockScroll]);
 
   return (
     <>
@@ -623,6 +644,7 @@ export default function Header({ latestAnimation }) {
                           <NavLink
                             key={link.label}
                             href={link.href}
+                            onClick={() => setActiveMegaKey(null)}
                             variant="nav"
                             className="text-body-sm -mx-12 text-foreground"
                           >
@@ -739,6 +761,7 @@ export default function Header({ latestAnimation }) {
                       <MobileNavAccordion
                         item={item}
                         expanded={mobileExpandedKey === item.key}
+                        onNavigate={closeMobileMenu}
                         onToggle={() =>
                           setMobileExpandedKey((prev) => (prev === item.key ? null : item.key))
                         }
@@ -746,6 +769,7 @@ export default function Header({ latestAnimation }) {
                     ) : (
                       <Link
                         href={item.href}
+                        onClick={closeMobileMenu}
                         className="text-h4 block border-b border-border-muted py-16 text-foreground"
                       >
                         {item.label}
@@ -758,12 +782,13 @@ export default function Header({ latestAnimation }) {
                   {!authLoading && (
                     <Link
                       href={hasAccess ? '/animations' : '/login'}
+                      onClick={closeMobileMenu}
                       className="text-body py-12 text-foreground-muted"
                     >
                       {hasAccess ? t('common.header.actions.account') : t('common.header.actions.login')}
                     </Link>
                   )}
-                  <Button href="/checkout?plan=solo&cycle=quarterly" size="sm" theme="brand">
+                  <Button href="/checkout?plan=solo&cycle=quarterly" onClick={closeMobileMenu} size="sm" theme="brand">
                     {t('common.header.actions.getAccess')}
                   </Button>
                 </div>
@@ -782,7 +807,7 @@ export default function Header({ latestAnimation }) {
 
       <div
         data-open={isMobileMenuOpen}
-        onClick={() => setIsMobileMenuOpen(false)}
+        onClick={closeMobileMenu}
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-[290] bg-black/60 opacity-0 transition-opacity duration-300 ease-(--ease-expo-out) data-[open=true]:pointer-events-auto data-[open=true]:opacity-100 lg:hidden"
       />

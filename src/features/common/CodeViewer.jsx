@@ -24,7 +24,7 @@ import { jsonLanguage } from '@codemirror/lang-json'; // NOTE: module id: 693125
 import { Check, Copy, Info, Eye, Brain, ChatText } from '@phosphor-icons/react';
 
 // Tooltips
-import { HoverArea, TooltipManager, TooltipRoot, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip'; // NOTE: module id: 672706
+import { HoverArea, TooltipManager, TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip'; // NOTE: module id: 672706
 
 function getTabsForPlatform(platform, animation) {
   const hasJsGsap = animation.js_code || animation.gsap_code;
@@ -50,7 +50,8 @@ function getTabsForPlatform(platform, animation) {
 
 export function McpNotice({ showMcp = false }) {
   return (
-    <TooltipRoot delayDuration={150}>
+    <TooltipProvider delayDuration={150}>
+    <TooltipRoot>
       <TooltipTrigger asChild>
         <button type="button" className="text-accent-xs mt-12 inline-flex items-center gap-6 text-foreground-muted transition-colors duration-(--duration-quick) hover:text-foreground">
           <Info size={13} />
@@ -75,6 +76,7 @@ export function McpNotice({ showMcp = false }) {
         </p>
       </TooltipContent>
     </TooltipRoot>
+    </TooltipProvider>
   );
 }
 
@@ -108,7 +110,17 @@ function WebflowCopyPanel({ onCopy, copied }) {
 
 // NOTE: module id: 343931
 export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform, flush = false, hideCopyActions = false }) {
-  const initialPlatform = defaultPlatform || "react";
+  const availablePlatforms = useMemo(() => {
+    const list = [];
+    if (animation.html_code || animation.css_code || animation.js_code || animation.gsap_code) list.push("html");
+    if (animation.react_code) list.push("react");
+    if (animation.vue_code) list.push("vue");
+    if (animation.webflow_code) list.push("webflow");
+    return PLATFORM_LIST.filter(p => list.includes(p));
+  }, [animation]);
+  const initialPlatform = availablePlatforms.includes(defaultPlatform)
+    ? defaultPlatform
+    : availablePlatforms[0] || "html";
   const [activePlatform, setActivePlatform] = useState(initialPlatform);
   const [activeTab, setActiveTab] = useState(() => getTabsForPlatform(initialPlatform, animation)[0] || "HTML");
   const [isCopied, setIsCopied] = useState(false);
@@ -123,22 +135,15 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
   const typingTimeoutRef = useRef(null);
   const ignoreNextUpdateRef = useRef(false);
 
-  const availablePlatforms = useMemo(() => {
-    const list = [];
-    if (animation.html_code || animation.css_code || animation.js_code || animation.gsap_code) list.push("html");
-    if (animation.react_code) list.push("react");
-    if (animation.vue_code) list.push("vue");
-    if (animation.webflow_code) list.push("webflow");
-    return PLATFORM_LIST.filter(p => list.includes(p));
-  }, [animation]);
+
 
   useEffect(() => {
-    if (availablePlatforms.length && !availablePlatforms.includes(activePlatform)) {
-      const first = availablePlatforms[0];
-      setActivePlatform(first);
-      setActiveTab(getTabsForPlatform(first, animation)[0]);
-    }
-  }, [availablePlatforms]);
+    const platform = availablePlatforms.includes(activePlatform)
+      ? activePlatform : availablePlatforms[0] || "html";
+    const nextTabs = getTabsForPlatform(platform, animation);
+    if (platform !== activePlatform) setActivePlatform(platform);
+    if (!nextTabs.includes(activeTab)) setActiveTab(nextTabs[0] || "HTML");
+  }, [availablePlatforms, activePlatform, activeTab, animation]);
 
   const tabs = useMemo(() => getTabsForPlatform(activePlatform, animation), [activePlatform, animation]);
 
@@ -212,20 +217,23 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
         ...anmThemeExtensions,
         ...cmExtraExt,
         EditorView.updateListener.of((update) => {
-          if (update.docChanged && !ignoreNextUpdateRef.current && update.transactions.find((tr) => !tr.annotation(EditorState.transactionFilter))) {
+          if (update.docChanged && !ignoreNextUpdateRef.current) {
             handleCodeEdit(update.state.doc.toString());
           }
         })
       ]
     });
 
-    editorViewRef.current = new EditorView({
+    const view = new EditorView({
       state,
       parent: editorParentRef.current
     });
+    editorViewRef.current = view;
 
     return () => {
       if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+      view.destroy();
+      if (editorViewRef.current === view) editorViewRef.current = null;
     };
   }, [activePlatform, activeTab, cmLanguageExt]);
 
@@ -235,8 +243,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
     if (currentDoc !== finalCode) {
       ignoreNextUpdateRef.current = true;
       const tr = editorViewRef.current.state.update({
-        changes: { from: 0, to: currentDoc.length, insert: finalCode },
-        annotations: [EditorState.transactionFilter.of(true)]
+        changes: { from: 0, to: currentDoc.length, insert: finalCode }
       });
       editorViewRef.current.dispatch(tr);
       ignoreNextUpdateRef.current = false;
@@ -249,19 +256,27 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
     }
   }, [animation?.id]);
 
-  const handleCopy = () => {
-    if (activePlatform === "webflow" && activeTab === "JSON") {
-      const handleClipboard = (e) => {
-        e.clipboardData.setData("application/json", rawCode);
-        e.preventDefault();
-        document.removeEventListener("copy", handleClipboard);
-      };
-      document.addEventListener("copy", handleClipboard);
-      document.execCommand("copy");
-    } else {
-      navigator.clipboard.writeText(finalCode);
+  const handleCopy = async () => {
+    try {
+      if (activePlatform === "webflow" && activeTab === "JSON") {
+        const handleClipboard = (event) => {
+          event.clipboardData.setData("application/json", rawCode);
+          event.preventDefault();
+        };
+        document.addEventListener("copy", handleClipboard);
+        try {
+          if (!document.execCommand("copy")) throw new Error("Copy failed");
+        } finally {
+          document.removeEventListener("copy", handleClipboard);
+        }
+      } else {
+        await navigator.clipboard.writeText(finalCode);
+      }
+    } catch {
+      toast.error("Unable to copy code. Please try again.");
+      return;
     }
-    
+
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
     toast.success(`${fileName} copied`);
@@ -395,7 +410,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
             </button>
             <button
               type="button"
-              onClick={() => {
+              onClick={async () => {
                 const name = animation.title || animation.name || "this component";
                 const url = `https://app.drivexstore.shop/animations/${animation.slug}`;
                 const instructionText = animation.metadata?.teaching?.blocks?.map(b => b.text).filter(Boolean).join("\n\n");
@@ -408,7 +423,12 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
                   `Source: ${url} - a production GSAP component from GameVault. Keep the data-anm-* attributes; they configure the animation.`
                 ].filter(Boolean).join("\n\n");
 
-                navigator.clipboard.writeText(aiPrompt);
+                try {
+                  await navigator.clipboard.writeText(aiPrompt);
+                } catch {
+                  toast.error("Unable to copy code. Please try again.");
+                  return;
+                }
                 setIsAiCopied(true);
                 setTimeout(() => setIsAiCopied(false), 2000);
                 toast.success("Copied with context - paste into your AI assistant");

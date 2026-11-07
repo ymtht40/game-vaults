@@ -1,120 +1,124 @@
 'use client';
 
-// Variable Mapping: f -> useSaveAnimation, e -> animationId, t -> initialIsSaved, n -> initialAnimation, r -> isSaved, i -> setIsSaved, s -> isLoading, l -> setIsLoading, h -> user, x -> setUser, p -> animationData, g -> setAnimationData, b -> router, v -> trackView, y -> toggleSave
+import { useState, useEffect, useCallback, useContext, useRef } from 'react';
+import { toast } from 'sonner';
+import { analytics } from '@/libs/analytics/posthogAnalytics';
+import { serverEvents } from '@/libs/utils/events';
+import { useTransitionRouter as useTransitionRouterProviderTransition } from '@/contexts/TransitionRouterProvider';
+import { useUser } from '@/contexts/UserProvider';
+import { AnimationSaveContext } from '@/contexts/AnimationSaveContext';
 
-import { useState, useEffect, useCallback } from 'react';
-import { toast } from 'sonner'; // NOTE: module id: 846696
-import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
-import { createClient } from '@/libs/supabase/client'; // NOTE: module id: 416983
-import { serverEvents } from '@/libs/utils/events'; // NOTE: module id: 185161
-import { useTransitionRouter as useTransitionRouterProviderTransition } from '@/contexts/TransitionRouterProvider'; // NOTE: module id: 676040
-
-// NOTE: module id: 488843
 export function useSaveAnimation(
   animationId,
   initialIsSaved = false,
   initialAnimation = null
 ) {
-  const [isSaved, setIsSaved] = useState(initialIsSaved);
+  const [isSaved, setIsSaved] = useState(Boolean(initialIsSaved));
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
-  const [animationData, setAnimationData] = useState(initialAnimation);
+  const savedRef = useRef(Boolean(initialIsSaved));
+  const pendingRef = useRef(false);
+  const library = useContext(AnimationSaveContext);
+  const { user } = useUser();
   const router = useTransitionRouterProviderTransition();
 
   useEffect(() => {
-    const supabase = createClient();
-    (async () => {
-      const {
-        data: { user: currentUser }
-      } = await supabase.auth.getUser();
-      setUser(currentUser);
-      if (animationId && !initialAnimation) {
-        const { data } = await supabase
-          .from('animations')
-          .select('id, title, slug, category')
-          .eq('id', animationId)
-          .single();
-        if (data) setAnimationData(data);
-      }
-    })();
-  }, [animationId, initialAnimation]);
+    if (!pendingRef.current) {
+      savedRef.current = Boolean(initialIsSaved);
+      setIsSaved(Boolean(initialIsSaved));
+    }
+  }, [animationId, initialIsSaved]);
+
+  const signIn = useCallback(() => {
+    toast.error('Please sign in to save animations');
+    const returnTo = window.location.pathname + window.location.search;
+    router.push('/login?redirectTo=' + encodeURIComponent(returnTo));
+  }, [router]);
 
   const trackView = useCallback(async () => {
     if (animationId) {
       try {
-        (
-          await fetch('/api/animations/view', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ animationId })
-          })
-        ).ok;
-      } catch (error) {}
+        await fetch('/api/animations/view', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ animationId })
+        });
+      } catch {}
     }
   }, [animationId]);
 
-  const toggleSave = useCallback(
-    async (event) => {
-      if (event) {
-        event.preventDefault();
-        event.stopPropagation();
+  const toggleSave = useCallback(async (event) => {
+    event?.preventDefault();
+    event?.stopPropagation();
+    if (pendingRef.current || library?.pendingIds.has(animationId)) return false;
+    if (!animationId) {
+      signIn();
+      return false;
+    }
+    if (library && !library.beginSave(animationId)) return false;
+
+    const previous = savedRef.current;
+    const next = !previous;
+    pendingRef.current = true;
+    savedRef.current = next;
+    setIsSaved(next);
+    setIsLoading(true);
+    library?.onSaveChange(animationId, next, true);
+
+    let succeeded = false;
+    try {
+      // The endpoint verifies the session and derives user_id on the server.
+      const response = await fetch('/api/animations/save', {
+        method: next ? 'POST' : 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ animationId })
+      });
+      if (response.status === 401) {
+        signIn();
+      } else if (!response.ok) {
+        throw Error('Save request failed');
+      } else {
+        const result = await response.json();
+        if (result?.success !== true) throw Error('Invalid save response');
+        succeeded = true;
       }
-      if (!user) {
-        toast.error('Please sign in to save animations');
-        router.push('/login');
-        return;
+    } catch {
+      toast.error('Unable to update saved animations. Please try again.');
+    } finally {
+      if (!succeeded) {
+        savedRef.current = previous;
+        setIsSaved(previous);
       }
-      if (!isLoading) {
-        setIsLoading(true);
-        try {
-          const response = await fetch('/api/animations/save', {
-            method: isSaved ? 'DELETE' : 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ animationId })
-          });
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw Error(errorData.error || 'Failed to save animation');
-          }
-          setIsSaved(!isSaved);
-          if (isSaved) {
-            analytics.animation.unsaved(
-              animationId,
-              animationData?.title || 'Unknown',
-              animationData?.category || 'Unknown'
-            );
-            toast.success('Animation removed from saved');
-          } else {
-            analytics.animation.saved(
-              animationId,
-              animationData?.title || 'Unknown',
-              animationData?.category || 'Unknown'
-            );
-            serverEvents.animationSaved(
-              animationId,
-              animationData?.title || 'Unknown',
-              animationData?.category || 'Unknown'
-            );
-            toast.success('Animation saved!');
-          }
-          router.refresh();
-        } catch (error) {
-          console.error('Error toggling save:', error);
-          toast.error(error.message || 'Something went wrong');
-        } finally {
-          setIsLoading(false);
+      library?.onSaveChange(animationId, succeeded ? next : previous, false);
+      library?.finishSave(animationId);
+      pendingRef.current = false;
+      setIsLoading(false);
+    }
+
+    if (succeeded) {
+      toast.success(next ? 'Animation saved!' : 'Animation removed from saved');
+      try {
+        const track = next ? analytics.animation.saved : analytics.animation.unsaved;
+        track(animationId, initialAnimation?.title || 'Unknown', initialAnimation?.category || 'Unknown');
+        if (next) {
+          void serverEvents.animationSaved(
+            animationId,
+            initialAnimation?.title || 'Unknown',
+            initialAnimation?.category || 'Unknown'
+          );
         }
+      } catch {
+        console.warn('Unable to track the saved animation change.');
       }
-    },
-    [animationId, isSaved, isLoading, user, router]
-  );
+      router.refresh();
+    }
+    return succeeded;
+  }, [animationId, initialAnimation, library, router, signIn]);
 
   return {
     isSaved,
-    isLoading,
+    isLoading: isLoading || Boolean(library?.pendingIds.has(animationId)),
     user,
     trackView,
     toggleSave
   };
 }
-

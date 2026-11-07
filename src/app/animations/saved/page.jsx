@@ -10,10 +10,10 @@ export const metadata = {
 };
 
 export default async function SavedAnimationsPage() {
-  const viewer = await getViewerContext();
+  const viewer = await getViewerContext({ throwOnSavedError: true });
   if (!viewer.user) redirect('/login?redirectTo=/animations/saved');
 
-  const all = await getPublishedAnimations();
+  const all = await getPublishedAnimations({ throwOnError: true });
   const saved = all.filter((a) => viewer.savedIds.includes(a.id));
 
   return (
@@ -22,6 +22,7 @@ export default async function SavedAnimationsPage() {
         initialAnimations={saved}
         savedAnimationIds={viewer.savedIds}
         isAuthenticated
+        savedOnly
       />
     </Suspense>
   );

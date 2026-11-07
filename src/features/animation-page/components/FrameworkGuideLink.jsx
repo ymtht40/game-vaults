@@ -6,7 +6,7 @@ import Link from 'next/link'; // module id: 522016
 import HtmlIcon from '@/assets/icons/HtmlIcon'; // module id: 732633
 import ReactIcon from '@/assets/icons/ReactIcon'; // module id: 408125
 import VueIcon from '@/assets/icons/VueIcon'; // module id: 900128
-import { Tooltip } from '@/contexts/TooltipProvider'; // module id: 672706
+import { HoverArea as Tooltip } from '@/components/ui/Tooltip'; // module id: 672706
 
 import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick'; // module id: 995289
 

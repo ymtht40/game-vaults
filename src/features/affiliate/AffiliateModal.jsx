@@ -14,7 +14,7 @@ import {
 } from '@/features/common/Dialog'; // NOTE: module id: 753145
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { SecondaryButton } from '@/components/ui/SecondaryButton'; // NOTE: module id: 511757
-import DescriptionList from '@/features/common/DescriptionList'; // NOTE: module id: 567874
+import DescriptionList from '@/components/ui/SpecList'; // NOTE: module id: 567874
 import GroundBackground from '@/components/ui/GroundBackground'; // NOTE: module id: 578275
 import { AffiliateEarningsCard } from '@/features/affiliate/AffiliateEarningsCard'; // NOTE: module id: 664466
 

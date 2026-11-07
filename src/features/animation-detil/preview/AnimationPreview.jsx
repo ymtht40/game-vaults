@@ -140,6 +140,7 @@ export default function AnimationPreview({
     (hasInlineCode ? undefined : fallbackPreviewUrl);
 
   const { srcdoc, isLoading } = usePreviewDocument({
+    enabled: hasInlineCode,
     animationName: animation.title,
     animationDescription: animation.description,
     category: animation.category,

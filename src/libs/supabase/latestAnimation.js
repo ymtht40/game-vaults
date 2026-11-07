@@ -2,9 +2,9 @@ import { cache } from 'react';
 import { createClient } from '@supabase/supabase-js';
 
 const FIELDS =
-  'id, title, slug, category, preview_image_url, preview_video_url, published_at, content_updated_at, is_free_preview, metadata';
+  'id, title, slug, category, description, view_count, save_count, preview_image_url, preview_video_url, published_at, created_at, content_updated_at, is_free_preview, metadata';
 
-const DETAIL_FIELDS = `${FIELDS}, description, dependencies, html_code, css_code, js_code, gsap_code, code_react, code_vue, code_html`;
+const DETAIL_FIELDS = `${FIELDS}, dependencies, html_code, css_code, js_code, gsap_code, code_react, code_vue, code_html`;
 
 const CATEGORY_LABELS = {
   button: 'Buttons',
@@ -26,21 +26,45 @@ function getSupabaseClient() {
   return createClient(url, key);
 }
 
-export const getPublishedAnimations = cache(async () => {
-  const supabase = getSupabaseClient();
-  if (!supabase) return [];
+function normalizeSummary(animation) {
+  const safeCount = (value) => {
+    const count = Number(value);
+    return Number.isFinite(count) && count > 0 ? count : 0;
+  };
+  return {
+    ...animation,
+    description: typeof animation.description === 'string' ? animation.description : '',
+    view_count: safeCount(animation.view_count),
+    save_count: safeCount(animation.save_count),
+  };
+}
 
-  const { data, error } = await supabase
-    .from('animations')
-    .select(FIELDS)
-    .not('published_at', 'is', null)
-    .order('published_at', { ascending: false });
+// Share one query between the layout, library, and other summary consumers.
+const loadPublishedAnimations = cache(async () => {
+  try {
+    const supabase = getSupabaseClient();
+    if (!supabase) return { animations: [], failed: true };
 
-  if (error) {
-    console.error('getPublishedAnimations:', error.message);
-    return [];
+    const { data, error } = await supabase
+      .from('animations')
+      .select(FIELDS)
+      .not('published_at', 'is', null)
+      .order('published_at', { ascending: false });
+
+    if (error) throw error;
+    return { animations: (data ?? []).map(normalizeSummary), failed: false };
+  } catch {
+    console.error('Unable to load published animations.');
+    return { animations: [], failed: true };
   }
-  return data ?? [];
+});
+
+export const getPublishedAnimations = cache(async ({ throwOnError = false } = {}) => {
+  const result = await loadPublishedAnimations();
+  if (throwOnError && result.failed) {
+    throw Error('Unable to load animations. Please try again.');
+  }
+  return result.animations;
 });
 
 export const getLatestAnimation = cache(async () => {
@@ -74,8 +98,8 @@ export const getAnimationBySlug = cache(async (slug) => {
     .maybeSingle();
 
   if (error) {
-    console.error('getAnimationBySlug:', error.message);
+    console.error('Unable to load the animation.');
     return null;
   }
-  return data ?? null;
+  return data ? normalizeSummary(data) : null;
 });

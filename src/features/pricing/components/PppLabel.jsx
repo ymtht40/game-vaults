@@ -4,8 +4,7 @@ import { usePathname } from 'next/navigation';
 import { Info } from 'lucide-react';
 import { translate, translate as t } from '@/libs/utils/i18n';
 import { getPppDiscountPercent } from '@/libs/utils/ppp';
-import { Tooltip, TooltipProvider } from '@/contexts/TooltipProvider';
-import { TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
+import { TooltipRoot as Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
 import { usePppGeo } from '@/hooks/usePppGeo';
 
 function getCountryName(code) {

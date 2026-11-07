@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react'; // NOTE: module id: 271645
 import { usePathname } from 'next/navigation'; // NOTE: module id: 618566
 import { InfoIcon } from '@phosphor-icons/react'; // NOTE: module id: 30910
-import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent,
+import { TooltipProvider, TooltipRoot as Tooltip, TooltipTrigger, TooltipContent,
 } from '@/components/ui/Tooltip'; // NOTE: module id: 672706
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { usePppGeo } from '@/hooks/usePppGeo'; // NOTE: module id: 12895

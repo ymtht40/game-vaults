@@ -8,7 +8,7 @@ import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { useScramble } from '@/hooks/useScramble'; // NOTE: module id: 254359
 
 // NOTE: module id: 76624
-export function MobileNavAccordion({ item, expanded, onToggle }) {
+export function MobileNavAccordion({ item, expanded, onToggle, onNavigate }) {
   const iconRef = useRef(null);
   const verticalLineRef = useRef(null);
   const isFirstRenderRef = useRef(true);
@@ -80,6 +80,7 @@ export function MobileNavAccordion({ item, expanded, onToggle }) {
                 <Link
                   key={link.label}
                   href={link.href}
+                  onClick={onNavigate}
                   className="text-body py-8 text-foreground-muted hover:text-foreground"
                 >
                   {link.label}

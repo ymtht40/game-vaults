@@ -1,6 +1,6 @@
 'use client';
 
-import { TooltipProvider } from '@/contexts/TooltipProvider'; // module id: 672706
+import { TooltipManager as TooltipProvider } from '@/components/ui/Tooltip'; // module id: 672706
 import FrameworkGuideLink from '@/features/animation-page/components/FrameworkGuideLink'; // module id: 367649
 
 const FRAMEWORK_CODE_FIELDS = {

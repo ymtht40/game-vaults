@@ -72,6 +72,7 @@ const FALLBACK_TEMPLATE = `<!DOCTYPE html>
 </html>`;
 
 export function usePreviewDocument({
+  enabled = true,
   animationName = 'Animation Preview',
   animationDescription = '',
   category = 'instant',
@@ -89,7 +90,13 @@ export function usePreviewDocument({
   const [isHtmlLoading, setIsHtmlLoading] = useState(true);
 
   useEffect(() => {
+    if (!enabled) {
+      setTemplateHtml('');
+      setIsTemplateLoading(false);
+      return;
+    }
     let cancelled = false;
+    setIsTemplateLoading(true);
 
     async function loadTemplate() {
       try {
@@ -114,13 +121,17 @@ export function usePreviewDocument({
           `/animations/templates/${templateName}.html`,
         );
 
+        if (!response.ok) throw new Error('Preview template unavailable');
         const html = await response.text();
+        if (!html.includes('{{ANIMATION_HTML}}')) {
+          throw new Error('Invalid preview template');
+        }
 
         if (!cancelled) {
           setTemplateHtml(html);
         }
-      } catch (error) {
-        console.error('Failed to load template:', error);
+      } catch {
+        console.warn('Preview template unavailable; using the existing fallback.');
 
         if (!cancelled) {
           setTemplateHtml(FALLBACK_TEMPLATE);
@@ -138,6 +149,7 @@ export function usePreviewDocument({
       cancelled = true;
     };
   }, [
+    enabled,
     category,
     animationName,
     compact,
@@ -153,15 +165,17 @@ export function usePreviewDocument({
     async function prepareHtml() {
       setIsHtmlLoading(true);
 
-      const html = await inlinePreviewAssets(htmlCode);
-
-      if (!cancelled) {
-        setProcessedHtmlCode(html);
-        setIsHtmlLoading(false);
+      try {
+        const html = await inlinePreviewAssets(htmlCode);
+        if (!cancelled) setProcessedHtmlCode(html);
+      } catch {
+        if (!cancelled) setProcessedHtmlCode(htmlCode);
+      } finally {
+        if (!cancelled) setIsHtmlLoading(false);
       }
     }
 
-    if (htmlCode) {
+    if (enabled && htmlCode) {
       prepareHtml();
     } else {
       setProcessedHtmlCode('');
@@ -171,7 +185,7 @@ export function usePreviewDocument({
     return () => {
       cancelled = true;
     };
-  }, [htmlCode]);
+  }, [enabled, htmlCode]);
 
   const srcdoc = useMemo(
     () =>

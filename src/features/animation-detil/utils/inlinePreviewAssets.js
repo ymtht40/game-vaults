@@ -28,13 +28,15 @@ export async function inlinePreviewAssets(htmlCode) {
 
       const blob = await response.blob();
 
-      const dataUrl = await new Promise((resolve) => {
+      const dataUrl = await new Promise((resolve, reject) => {
         const reader = new FileReader();
 
         reader.onloadend = () => {
           resolve(reader.result);
         };
 
+        reader.onerror = () => reject(new Error('Preview asset could not be read'));
+        reader.onabort = () => reject(new Error('Preview asset read was cancelled'));
         reader.readAsDataURL(blob);
       });
 

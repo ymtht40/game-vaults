@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 
 import {
   STARTER_PROMPT_DISMISSED_KEY,
-  markStarterPromptDismissed,
 } from '@/features/newsletter/NewsletterForm';
 
 import { X } from '@phosphor-icons/react'; // module id: 137410
@@ -27,13 +26,14 @@ function hasRecentDismissal(storageKey) {
       return false;
     }
 
-    const dismissedAt = parseInt(storedValue, 10);
+    const dismissedAt = Number(storedValue);
 
-    if (Number.isNaN(dismissedAt)) {
+    if (!Number.isFinite(dismissedAt) || dismissedAt <= 0) {
       return false;
     }
 
-    return Date.now() - dismissedAt < DISMISSAL_TTL_MS;
+    const elapsed = Date.now() - dismissedAt;
+    return elapsed >= 0 && elapsed < DISMISSAL_TTL_MS;
   } catch {
     return false;
   }
@@ -43,7 +43,6 @@ function shouldSuppressPopup(storageKey) {
   return (
     hasRecentDismissal(STARTER_PROMPT_DISMISSED_KEY)
     || hasRecentDismissal(storageKey)
-    || Boolean(markStarterPromptDismissed())
   );
 }
 
@@ -90,6 +89,7 @@ export default function StarterPackPopup({
 
   useEffect(() => {
     if (isAuthenticated || shouldSuppressPopup(storageKey)) {
+      setIsOpen(false);
       return;
     }
 

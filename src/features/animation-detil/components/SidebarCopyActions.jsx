@@ -150,13 +150,18 @@ export default function SidebarCopyActions({
           size="sm"
           className="flex-1"
           icon={isCodeCopied ? <CheckIcon size={14} /> : <CopyIcon size={14} />}
-          onClick={() => {
+          onClick={async () => {
             if (!hasAccess) return scrollToCapture();
 
             const { code } = getCodeForPlatform(codeState, activePlatform);
             if (!code) return;
 
-            navigator.clipboard.writeText(code);
+            try {
+              await navigator.clipboard.writeText(code);
+            } catch {
+              toast.error('Unable to copy code. Please try again.');
+              return;
+            }
             setIsCodeCopied(true);
             setTimeout(() => setIsCodeCopied(false), 2000);
 
@@ -204,20 +209,20 @@ export default function SidebarCopyActions({
           size="sm"
           className="flex-1"
           icon={isAiCopied ? <CheckIcon size={14} /> : <ChatTextIcon size={14} />}
-          onClick={() => {
+          onClick={async () => {
             if (!hasAccess) return scrollToCapture();
 
             const { code, lang } = getCodeForPlatform(codeState, activePlatform);
             if (!code) return;
 
-            navigator.clipboard.writeText(
-              formatCodeForAi({
-                animation,
-                code,
-                platform: activePlatform,
-                lang,
-              })
-            );
+            try {
+              await navigator.clipboard.writeText(
+                formatCodeForAi({ animation, code, platform: activePlatform, lang })
+              );
+            } catch {
+              toast.error('Unable to copy code. Please try again.');
+              return;
+            }
             setIsAiCopied(true);
             setTimeout(() => setIsAiCopied(false), 2000);
             toast.success('Copied with context - paste into your AI assistant');

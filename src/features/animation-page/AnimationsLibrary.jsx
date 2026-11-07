@@ -14,6 +14,8 @@ import EntCta from '@/features/common/EndCta'; // NOTE: module id: 482232
 import FAQ from '@/features/animation-detil/sections/AnimationFAQ'; // NOTE: module id: 126272
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'; // NOTE: module id: 451945
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
+import { AnimationSaveContext } from '@/contexts/AnimationSaveContext';
+import { filterAnimations, getInteractions } from '@/features/animation-page/utils/filterAnimations';
 import { sortOptions } from '@/features/animation-page/utils/sortOptions'; // NOTE: module id: 738629
 import { useCategorySlugs, useCategoryOptions } from '@/contexts/CategoryProvider'; // NOTE: module id: 87207
 
@@ -26,19 +28,64 @@ const INTERACTION_OPTIONS = [
 ];
 
 const interactionValues = INTERACTION_OPTIONS.map(e => e.value);
+const sortValues = new Set(["recent", ...sortOptions.map(option => option.value)]);
 
 export default function AnimationsLibrary({
   initialAnimations = [],
   savedAnimationIds = [],
   isAuthenticated = false,
-  faq = []
+  faq = [],
+  savedOnly = false
 }) {
   const searchParams = useSearchParams();
   const searchTimeoutRef = useRef(null);
   const categorySlugs = useCategorySlugs();
   const categoryOptions = useCategoryOptions();
   
-  const [animations] = useState(initialAnimations);
+  const [saveChanges, setSaveChanges] = useState({});
+  const inFlightSaves = useRef(new Set());
+  const savedIdsSet = useMemo(() => {
+    const ids = new Set(savedAnimationIds);
+    Object.entries(saveChanges).forEach(([id, change]) => {
+      if (change.isSaved) ids.add(id);
+      else ids.delete(id);
+    });
+    return ids;
+  }, [savedAnimationIds, saveChanges]);
+  const currentSavedIds = useMemo(() => [...savedIdsSet], [savedIdsSet]);
+  const animations = useMemo(() => {
+    const originalSaved = new Set(savedAnimationIds);
+    return initialAnimations.map(animation => {
+      const change = saveChanges[animation.id];
+      if (!change) return animation;
+      const delta = Number(change.isSaved) - Number(originalSaved.has(animation.id));
+      return { ...animation, save_count: Math.max(0, (Number(animation.save_count) || 0) + delta) };
+    }).filter(animation => !savedOnly || savedIdsSet.has(animation.id));
+  }, [initialAnimations, savedAnimationIds, saveChanges, savedOnly, savedIdsSet]);
+
+  useEffect(() => {
+    // Accept refreshed server data while retaining in-flight optimistic changes.
+    setSaveChanges(changes => {
+      const entries = Object.entries(changes).filter(([, change]) => change.pending);
+      return entries.length === Object.keys(changes).length ? changes : Object.fromEntries(entries);
+    });
+  }, [initialAnimations, savedAnimationIds]);
+
+  const beginSave = useCallback(id => {
+    if (inFlightSaves.current.has(id)) return false;
+    inFlightSaves.current.add(id);
+    return true;
+  }, []);
+  const finishSave = useCallback(id => inFlightSaves.current.delete(id), []);
+  const onSaveChange = useCallback((id, isSaved, pending) => {
+    setSaveChanges(changes => ({ ...changes, [id]: { isSaved, pending } }));
+  }, []);
+  const saveContext = useMemo(() => ({
+    beginSave,
+    finishSave,
+    onSaveChange,
+    pendingIds: new Set(Object.keys(saveChanges).filter(id => saveChanges[id].pending)),
+  }), [beginSave, finishSave, onSaveChange, saveChanges]);
   
   const [categories, setCategories] = useState(() => {
     let category = searchParams.get("category");
@@ -54,7 +101,10 @@ export default function AnimationsLibrary({
   
   const [freeOnly, setFreeOnly] = useState(() => "1" === searchParams.get("free"));
   const [search, setSearch] = useState(() => searchParams.get("search") || "");
-  const [sort, setSort] = useState(() => searchParams.get("sort") || "recent");
+  const [sort, setSort] = useState(() => {
+    const value = searchParams.get("sort");
+    return sortValues.has(value) ? value : "recent";
+  });
   const [viewMode, setViewMode] = useState(VIEW_MODES.GRID);
   const [previousCount, setPreviousCount] = useState(0);
 
@@ -62,7 +112,25 @@ export default function AnimationsLibrary({
     if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
   }, []);
 
+  const queryString = searchParams.toString();
+  const categorySignature = JSON.stringify(categorySlugs);
+  useEffect(() => {
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    const params = new URLSearchParams(queryString);
+    const category = (params.get("category") || "").split(/[?&]/)[0];
+    const nextCategories = JSON.parse(categorySignature).includes(category) ? [category] : [];
+    setCategories(current => current.length === nextCategories.length && current[0] === nextCategories[0]
+      ? current : nextCategories);
+    const nextInteraction = params.get("interaction");
+    setInteraction(interactionValues.includes(nextInteraction) ? nextInteraction : null);
+    setFreeOnly(params.get("free") === "1");
+    setSearch(params.get("search") || "");
+    const nextSort = params.get("sort");
+    setSort(sortValues.has(nextSort) ? nextSort : "recent");
+  }, [queryString, categorySignature]);
+
   const updateUrl = useCallback((categoriesParam, searchParam, sortParam, interactionParam, freeOnlyParam) => {
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
     let params = new URLSearchParams();
     if (categoriesParam.length > 0) params.set("category", categoriesParam[0]);
     if (interactionParam) params.set("interaction", interactionParam);
@@ -85,59 +153,16 @@ export default function AnimationsLibrary({
 
   const interactionOptionsMapped = useMemo(() => INTERACTION_OPTIONS.map(option => ({
     ...option,
-    count: animations.filter(anim => (anim.metadata?.interaction || []).includes(option.value)).length
+    count: animations.filter(anim => getInteractions(anim).includes(option.value)).length
   })), [animations]);
 
   const freeCount = useMemo(() => animations.filter(anim => anim.is_free_preview).length, [animations]);
 
-  const filteredAnimations = useMemo(() => {
-    let filtered = [...animations];
-    
-    if (categories.length > 0) {
-      filtered = filtered.filter(anim => categories.includes(anim.category));
-    }
-    
-    if (interaction) {
-      filtered = filtered.filter(anim => (anim.metadata?.interaction || []).includes(interaction));
-    }
-    
-    if (freeOnly) {
-      filtered = filtered.filter(anim => anim.is_free_preview);
-    }
-    
-    if (search.trim()) {
-      let query = search.toLowerCase().trim();
-      filtered = filtered.filter(anim => 
-        anim.title?.toLowerCase().includes(query) || 
-        anim.description?.toLowerCase().includes(query) || 
-        anim.category?.toLowerCase().includes(query)
-      );
-    }
-    
-    switch (sort) {
-      case "hot":
-        filtered.sort((a, b) => (b.view_count || 0) - (a.view_count || 0));
-        break;
-      case "new":
-        filtered.sort((a, b) => new Date(b.published_at || b.created_at) - new Date(a.published_at || a.created_at));
-        break;
-      case "saved":
-        filtered.sort((a, b) => (b.save_count || 0) - (a.save_count || 0));
-        break;
-      default: {
-        let now = Date.now();
-        let oneWeekAgo = now - 604800000;
-        let twoWeeksAgo = now - 1209600000;
-        let isRecent = (anim) => (anim.published_at && new Date(anim.published_at).getTime() > twoWeeksAgo) || (anim.content_updated_at && new Date(anim.content_updated_at).getTime() > oneWeekAgo) ? 1 : 0;
-        
-        filtered.sort((a, b) => {
-          let recencyDiff = isRecent(b) - isRecent(a);
-          return 0 !== recencyDiff ? recencyDiff : new Date(b.published_at || b.created_at) - new Date(a.published_at || a.created_at);
-        });
-      }
-    }
-    return filtered;
-  }, [animations, categories, interaction, freeOnly, search, sort]);
+  const filteredAnimations = useMemo(() => filterAnimations(
+    animations,
+    { categories, interaction, freeOnly, search, sort },
+    categoryOptions,
+  ), [animations, categories, interaction, freeOnly, search, sort, categoryOptions]);
 
   const { displayedCount, sentinelRef, hasMore } = useInfiniteScroll(filteredAnimations.length, [categories, interaction, freeOnly, search, sort]);
 
@@ -172,28 +197,16 @@ export default function AnimationsLibrary({
     setCategories(newCategories);
     updateUrl(newCategories, search, sort, interaction, freeOnly);
     
-    let filtered = [...animations];
-    if (newCategories.length > 0) {
-      filtered = filtered.filter(anim => newCategories.includes(anim.category));
-    }
-    if (interaction) {
-      filtered = filtered.filter(anim => (anim.metadata?.interaction || []).includes(interaction));
-    }
-    if (search.trim()) {
-      let query = search.toLowerCase().trim();
-      filtered = filtered.filter(anim => 
-        anim.title?.toLowerCase().includes(query) || 
-        anim.description?.toLowerCase().includes(query) || 
-        anim.category?.toLowerCase().includes(query)
-      );
-    }
-    
+    const filtered = filterAnimations(animations, {
+      categories: newCategories, interaction, freeOnly, search, sort,
+    }, categoryOptions);
+
     analytics.search.filtered({
       category: newCategories[0] || null,
       interaction: interaction,
       sort: sort
     }, filtered.length);
-  }, [animations, search, sort, interaction, freeOnly, updateUrl]);
+  }, [animations, search, sort, interaction, freeOnly, updateUrl, categoryOptions]);
 
   const handleInteractionChange = useCallback((newInteraction) => {
     setInteraction(newInteraction);
@@ -202,8 +215,10 @@ export default function AnimationsLibrary({
       category: categories[0] || null,
       interaction: newInteraction,
       sort: sort
-    }, filteredAnimations.length);
-  }, [categories, search, sort, freeOnly, updateUrl, filteredAnimations.length]);
+    }, filterAnimations(animations, {
+      categories, search, sort, interaction: newInteraction, freeOnly,
+    }, categoryOptions).length);
+  }, [categories, search, sort, freeOnly, updateUrl, animations, categoryOptions]);
 
   const handleFreeChange = useCallback((isFree) => {
     setFreeOnly(isFree);
@@ -213,8 +228,10 @@ export default function AnimationsLibrary({
       interaction: interaction,
       free: isFree,
       sort: sort
-    }, filteredAnimations.length);
-  }, [categories, search, sort, interaction, updateUrl, filteredAnimations.length]);
+    }, filterAnimations(animations, {
+      categories, search, sort, interaction, freeOnly: isFree,
+    }, categoryOptions).length);
+  }, [categories, search, sort, interaction, updateUrl, animations, categoryOptions]);
 
   const handleSearchChange = useCallback((newSearch) => {
     setSearch(newSearch);
@@ -223,22 +240,20 @@ export default function AnimationsLibrary({
     searchTimeoutRef.current = setTimeout(() => {
       updateUrl(categories, newSearch, sort, interaction, freeOnly);
       if (newSearch.trim()) {
-        let query = newSearch.toLowerCase().trim();
-        let resultCount = animations.filter(anim => 
-          anim.title?.toLowerCase().includes(query) || 
-          anim.description?.toLowerCase().includes(query) || 
-          anim.category?.toLowerCase().includes(query)
-        ).length;
-        
+        const resultCount = filterAnimations(animations, {
+          categories, interaction, freeOnly, search: newSearch, sort,
+        }, categoryOptions).length;
+
         analytics.search.performed(newSearch.trim(), resultCount, {
           category: categories[0] || null,
           sort: sort
         });
       }
     }, 300);
-  }, [categories, animations, sort, interaction, freeOnly, updateUrl]);
+  }, [categories, animations, sort, interaction, freeOnly, updateUrl, categoryOptions]);
 
   const handleSortChange = useCallback((newSort) => {
+    if (!sortValues.has(newSort)) return;
     setSort(newSort);
     updateUrl(categories, search, newSort, interaction, freeOnly);
     analytics.search.filtered({
@@ -262,6 +277,7 @@ export default function AnimationsLibrary({
   const previewImages = useMemo(() => animations.map(anim => anim.preview_image_url).filter(Boolean).slice(0, 24), [animations]);
 
   return (
+    <AnimationSaveContext.Provider value={saveContext}>
     <div data-theme="dark" className="bg-background text-foreground">
       <AnimationsHero
         headline="GSAP animations, every framework."
@@ -269,13 +285,22 @@ export default function AnimationsLibrary({
       />
       <div className="relative pb-32">
         {displayedAnimations.length === 0 ? (
-          <EmptyAnimationsState query={search} onReset={handleReset} />
+          animations.length === 0 && !categories.length && !interaction && !freeOnly && !search.trim() ? (
+            <EmptyAnimationsState
+              heading={savedOnly ? "No saved animations yet." : "No animations published yet."}
+              description={savedOnly ? "Save animations from the library to find them here." : "Check back soon for new animations."}
+              actionLabel="Browse animations"
+              actionHref={savedOnly ? "/animations" : undefined}
+            />
+          ) : (
+            <EmptyAnimationsState query={search.trim()} onReset={handleReset} />
+          )
         ) : (
           <AnimationCollection
             animations={displayedAnimations}
             viewMode={viewMode}
             isAuthenticated={isAuthenticated}
-            savedAnimationIds={savedAnimationIds}
+            savedAnimationIds={currentSavedIds}
             sentinelRef={sentinelRef}
             hasMore={hasMore}
             animationKey={animationKey}
@@ -349,5 +374,6 @@ export default function AnimationsLibrary({
         idPrefix="animations-list-modal"
       />
     </div>
+    </AnimationSaveContext.Provider>
   );
 }

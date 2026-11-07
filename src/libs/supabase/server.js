@@ -25,7 +25,7 @@ export async function createServerSupabase(existingCookieStore) {
   );
 }
 
-export async function getViewerContext() {
+export async function getViewerContext({ throwOnSavedError = false } = {}) {
   // Keep Next.js request/rendering signals outside the Auth error handler.
   const cookieStore = await cookies();
   const anonymousViewer = { user: null, hasAccess: false, savedIds: [] };
@@ -49,6 +49,11 @@ export async function getViewerContext() {
       .select('animation_id')
       .eq('user_id', user.id),
   ]);
+
+  if (throwOnSavedError &&
+    (savedResult.status === 'rejected' || savedResult.value.error)) {
+    throw Error('Unable to load saved animations. Please try again.');
+  }
 
   const profile =
     profileResult.status === 'fulfilled' && !profileResult.value.error

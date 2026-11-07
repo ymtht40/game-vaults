@@ -5,6 +5,7 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip'; // NOTE: module id:
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
+export const TooltipProvider = TooltipPrimitive.Provider;
 export const TooltipRoot = TooltipPrimitive.Root;
 export const TooltipTrigger = TooltipPrimitive.Trigger;
 

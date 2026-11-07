@@ -11,8 +11,8 @@ export const metadata = {
 
 export default async function AnimationsLibraryPage() {
   const [animations, viewer] = await Promise.all([
-    getPublishedAnimations(),
-    getViewerContext(),
+    getPublishedAnimations({ throwOnError: true }),
+    getViewerContext({ throwOnSavedError: true }),
   ]);
 
   return (

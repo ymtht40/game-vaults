@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react'; // NOTE: module id: 271645
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
-import { f as cn } from '@/libs/config/stripe'; // NOTE: module id: 103746
+import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 gsap.registerPlugin(useGSAP);
 
