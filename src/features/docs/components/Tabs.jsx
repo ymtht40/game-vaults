@@ -1,12 +1,9 @@
 'use client';
-
 import { useCallback, useRef } from 'react';
-
 import { cx } from '@/libs/utils/className';
-
 import FlipPill from '@/features/docs/components/FlipPill'; // module id: 876355
 
-export default function Tabs({
+export function Tabs({
   tabs,
   activeId,
   onChange,
@@ -123,3 +120,4 @@ export default function Tabs({
     </div>
   );
 }
+export default Tabs

@@ -2,7 +2,7 @@
 
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import gsap from 'gsap'; // NOTE: module id: 989970
-import { formatImageUrll } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
+import { formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 
 const DEFAULT_LAYOUT = {
   cardW: 320,
@@ -59,7 +59,7 @@ export const DraggableGrid = forwardRef(function DraggableGrid(
         list.push({
           x: posX,
           y: posY,
-          src: formatImageUrll(src, { width: 640 }),
+          src: formatImageUrl(src, { width: 640 }),
         });
         imageIdx++;
       }

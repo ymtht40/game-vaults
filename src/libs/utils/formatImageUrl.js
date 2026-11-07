@@ -1,5 +1,5 @@
 // NOTE: module id: 632021
-export function formatImageUrll(url, { width, height, quality, format } = {}) {
+export function formatImageUrl(url, { width, height, quality, format } = {}) {
   if (!url || (!width && !height && !quality && !format)) {
     return url;
   }
@@ -15,4 +15,3 @@ export function formatImageUrll(url, { width, height, quality, format } = {}) {
     return url;
   }
 }
-

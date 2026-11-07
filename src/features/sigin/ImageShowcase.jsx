@@ -10,7 +10,7 @@ import {
 } from 'react';
 import gsap from 'gsap';
 
-import { formatImageUrll } from '@/libs/utils/formatImageUrl';
+import { formatImageUrl } from '@/libs/utils/formatImageUrl';
 
 const defaultLayout = {
   cardW: 320,
@@ -100,7 +100,7 @@ export const ImageShowcase = forwardRef(function ImageShowcase(
         items.push({
           x: cardX,
           y: cardY,
-          src: formatImageUrll(source, { width: 640 }),
+          src: formatImageUrl(source, { width: 640 }),
         });
 
         imageIndex++;

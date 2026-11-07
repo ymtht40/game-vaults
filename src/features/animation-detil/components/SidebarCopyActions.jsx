@@ -1,6 +1,6 @@
 'use client';
 
-// Variable Mapping: Y -> resolvePlatform, X -> getCodeForPlatform, Q -> SidebarCopyActions, e -> animation / codeState, a -> codeState, i -> hasAccess, l -> userLoading, o -> preferredPlatform, c -> isCodeCopied, d -> setIsCodeCopied, u -> isAiCopied, m -> setIsAiCopied, x -> availablePlatforms, f -> activePlatform, g -> setActivePlatform, h -> scrollToCapture, W.U -> PlatformSwitcher, W.L -> PLATFORM_NAMES, r.default -> Button, J._ -> CheckIcon, G.f -> CopyIcon, V.f -> ChatTextIcon, K.c -> toast, n.H -> analytics, D.G -> serverEvents, R.r -> EVENTS
+// Variable Mapping: Y -> resolvePlatform, X -> getCodeForPlatform, Q -> SidebarCopyActions, e -> animation / codeState, a -> codeState, i -> hasAccess, l -> userLoading, o -> preferredPlatform, c -> isCodeCopied, d -> setIsCodeCopied, u -> isAiCopied, m -> setIsAiCopied, x -> availablePlatforms, f -> activePlatform, g -> setActivePlatform, h -> scrollToCapture, W.U -> PlatformSwitcher, W.L -> PLATFORM_LABELS, r.default -> Button, J._ -> CheckIcon, G.f -> CopyIcon, V.f -> ChatTextIcon, K.c -> toast, n.H -> analytics, D.G -> serverEvents, R.r -> EVENTS
 
 import { useEffect, useMemo, useState } from 'react'; // NOTE: module id: 271645
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
@@ -10,7 +10,7 @@ import { EVENTS } from '@/libs/config/onboarding'; // NOTE: module id: 734601
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import {
   PlatformSwitcher,
-  PLATFORM_NAMES,
+  PLATFORM_LABELS,
 } from '@/features/common/PlatformSwitcher'; // NOTE: module id: 247733
 import { CopyIcon, ChatTextIcon, CheckIcon } from '@phosphor-icons/react'; // NOTE: module id: 499839
 
@@ -161,7 +161,7 @@ export default function SidebarCopyActions({
             setTimeout(() => setIsCodeCopied(false), 2000);
 
             toast.success(
-              `${PLATFORM_NAMES[activePlatform]} code copied`,
+              `${PLATFORM_LABELS[activePlatform]} code copied`,
               activePlatform === 'html'
                 ? undefined
                 : {

@@ -4,7 +4,7 @@
 
 import { useRef, useState, useCallback } from 'react';
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { formatImageUrll as formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
+import { formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 import { getProvenanceSite } from '@/libs/utils/provenance'; // NOTE: module id: 809630
 import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
 import { ProvenanceChip } from '@/components/ui/ProvenanceChip'; // NOTE: module id: 909247

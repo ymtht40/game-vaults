@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useMemo, useEffect, useCallback } from 'react';
-import { PlatformSwitcher, PLATFORMS } from '@/features/common/PlatformSwitcher'; // NOTE: module id: 247733
+import { PlatformSwitcher, PLATFORM_LIST } from '@/features/common/PlatformSwitcher'; // NOTE: module id: 247733
 import { toast } from 'sonner'; // NOTE: module id: 84669
 import { EditorState } from '@codemirror/state'; // NOTE: module id: 356421
 import { EditorView, lineNumbers } from '@codemirror/view'; // NOTE: module id: 115080
@@ -129,7 +129,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
     if (animation.react_code) list.push("react");
     if (animation.vue_code) list.push("vue");
     if (animation.webflow_code) list.push("webflow");
-    return PLATFORMS.filter(p => list.includes(p));
+    return PLATFORM_LIST.filter(p => list.includes(p));
   }, [animation]);
 
   useEffect(() => {

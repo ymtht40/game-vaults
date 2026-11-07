@@ -3,10 +3,10 @@
 
 import { Fragment, useState, useRef, useEffect, useLayoutEffect, useMemo, useCallback } from 'react';
 import { usePathname } from 'next/navigation';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import Link from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { formatImageUrll } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
+import { formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 import { BrandLogo } from '@/assets/logos/BrandLogo'; // NOTE: module id: 635566
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
@@ -690,7 +690,7 @@ export default function Header({ latestAnimation }) {
                               />
                             ) : latestAnimation.preview_image_url ? (
                               <img
-                                src={formatImageUrll(latestAnimation.preview_image_url, { width: 480 })}
+                                src={formatImageUrl(latestAnimation.preview_image_url, { width: 480 })}
                                 alt=""
                                 className="h-full w-full object-cover transition-transform duration-300 ease-(--ease-expo-out) group-hover:scale-[1.04] motion-reduce:transition-none"
                               />

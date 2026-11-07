@@ -191,4 +191,3 @@ export {
   useIsometricFigureAnimation as t,
   computeViewBox as O,
 };
-

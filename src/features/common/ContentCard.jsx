@@ -4,7 +4,7 @@
 
 import Link from 'next/link'; // NOTE: module id: 522016
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { formatImageUrll } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
+import { formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick'; // NOTE: module id: 995289
 import { formatInlineMarkdownHtml } from '@/features/docs/components/DocBlockRenderer'; // NOTE: module id: 120322
 
@@ -60,7 +60,7 @@ export default function ContentCard({
       {media ? (
         <span className="relative block aspect-[16/10] overflow-hidden bg-foreground/[0.04]">
           <img
-            src={formatImageUrll(media, { width: 640 })}
+            src={formatImageUrl(media, { width: 640 })}
             alt=""
             className="block object-cover"
             style={{ width: '100%', height: '100%' }}

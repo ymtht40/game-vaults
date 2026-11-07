@@ -8,7 +8,7 @@ import {
   f as ArrowIcon,
   f as BookmarkIcon,
 } from '@phosphor-icons/react'; // NOTE: module id: 933325, 683845
-import { formatImageUrll as formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
+import { formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 import AnimationCard from '@/animations/AnimationCard'; // NOTE: module id: 591611
 import { MediaHoverReveal } from '@/features/common/MediaHoverReveal'; // NOTE: module id: 934783
 import { useSaveAnimation } from '@/hooks/useSaveAnimation'; // NOTE: module id: 488843
