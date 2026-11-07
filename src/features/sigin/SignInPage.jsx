@@ -33,19 +33,15 @@ function sanitizeRedirectPath(value, fallback = '/animations') {
 }
 
 function resolveRedirect({ destination, redirectTo }) {
-  const redirectPath = sanitizeRedirectPath(redirectTo);
+  const redirectPath = sanitizeRedirectPath(
+    redirectTo,
+    sanitizeRedirectPath(destination),
+  );
 
   if (redirectPath.startsWith('/api/teams/invites/accept')) {
     return {
       href: redirectPath,
       hard: true,
-    };
-  }
-
-  if (destination === '/welcome') {
-    return {
-      href: '/welcome',
-      hard: false,
     };
   }
 
@@ -79,8 +75,15 @@ export default function SignInPage({ images = [] }) {
   const [incompleteUser, setIncompleteUser] = useState(null);
 
   const navigate = useCallback(
-    ({ href, hard }) =>
-      hard ? window.location.assign(href) : router.push(href),
+    ({ href, hard }) => {
+      if (hard) {
+        window.location.assign(href);
+      } else {
+        // Discard anonymous prefetched pages after the session cookie changes.
+        router.refresh();
+        router.push(href);
+      }
+    },
     [router],
   );
 
@@ -158,11 +161,9 @@ export default function SignInPage({ images = [] }) {
         return;
       }
 
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const { data: userData, error: userError } = await supabase.auth.getUser();
 
-      if (user) {
+      if (!userError && userData?.user) {
         const {
           data: { session },
         } = await supabase.auth.getSession();
@@ -296,7 +297,11 @@ export default function SignInPage({ images = [] }) {
       }
 
       setIsCheckingSession(false);
-    })();
+    })().catch(() => {
+      console.error('Unable to check the current session.');
+      toast.error('Unable to check your session. Please try signing in again.');
+      setIsCheckingSession(false);
+    });
   }, [router, redirectTo, searchParams, navigate]);
 
   const sendSignInCode = useCallback(async () => {
@@ -394,7 +399,9 @@ export default function SignInPage({ images = [] }) {
       navigate(
         resolveRedirect({
           destination,
-          redirectTo: emailRedirectTo || redirectTo,
+          redirectTo: searchParams.get('redirectTo')
+            ? redirectTo
+            : emailRedirectTo || redirectTo,
         }),
       );
     },
@@ -404,6 +411,7 @@ export default function SignInPage({ images = [] }) {
       navigate,
       redirectTo,
       emailRedirectTo,
+      searchParams,
     ],
   );
 
@@ -416,7 +424,7 @@ export default function SignInPage({ images = [] }) {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/api/auth/callback?redirectTo=${redirectTo}`,
+          redirectTo: `${window.location.origin}/api/auth/callback?redirectTo=${encodeURIComponent(redirectTo)}`,
         },
       });
 
@@ -439,7 +447,7 @@ export default function SignInPage({ images = [] }) {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'github',
         options: {
-          redirectTo: `${window.location.origin}/api/auth/callback?redirectTo=${redirectTo}`,
+          redirectTo: `${window.location.origin}/api/auth/callback?redirectTo=${encodeURIComponent(redirectTo)}`,
         },
       });
 

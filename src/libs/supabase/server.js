@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers';
 import { createServerClient } from '@supabase/ssr';
 
-export async function createServerSupabase() {
-  const cookieStore = await cookies();
+export async function createServerSupabase(existingCookieStore) {
+  const cookieStore = existingCookieStore ?? (await cookies());
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
@@ -16,7 +16,9 @@ export async function createServerSupabase() {
             list.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options),
             );
-          } catch {}
+          } catch {
+            // Server Components cannot write cookies; middleware refreshes them.
+          }
         },
       },
     },
@@ -24,14 +26,23 @@ export async function createServerSupabase() {
 }
 
 export async function getViewerContext() {
-  const supabase = await createServerSupabase();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // Keep Next.js request/rendering signals outside the Auth error handler.
+  const cookieStore = await cookies();
+  const anonymousViewer = { user: null, hasAccess: false, savedIds: [] };
+  let supabase;
+  let user;
 
-  if (!user) return { user: null, hasAccess: false, savedIds: [] };
+  try {
+    supabase = await createServerSupabase(cookieStore);
+    const { data, error } = await supabase.auth.getUser();
+    if (error || !data?.user) return anonymousViewer;
+    user = data.user;
+  } catch {
+    console.warn('Unable to verify the current session.');
+    return anonymousViewer;
+  }
 
-  const [{ data: profile }, { data: saved }] = await Promise.all([
+  const [profileResult, savedResult] = await Promise.allSettled([
     supabase.from('users').select('has_access').eq('id', user.id).maybeSingle(),
     supabase
       .from('saved_animations')
@@ -39,9 +50,24 @@ export async function getViewerContext() {
       .eq('user_id', user.id),
   ]);
 
+  const profile =
+    profileResult.status === 'fulfilled' && !profileResult.value.error
+      ? profileResult.value.data
+      : null;
+  const saved =
+    savedResult.status === 'fulfilled' && !savedResult.value.error
+      ? savedResult.value.data
+      : [];
+
   return {
     user,
-    hasAccess: !!profile?.has_access,
-    savedIds: (saved ?? []).map((row) => row.animation_id),
+    hasAccess: profile?.has_access === true,
+    savedIds: [
+      ...new Set(
+        (saved ?? [])
+          .map((row) => row.animation_id)
+          .filter((id) => typeof id === 'string' && id.length > 0),
+      ),
+    ],
   };
 }

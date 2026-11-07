@@ -13,27 +13,39 @@ function createUserRecord({ id, email, now = new Date() }) {
 }
 
 export async function resolvePostAuthPath({ supabase, session }) {
-  const userId = session.user.id;
-  const email = session.user.email;
+  const userId = session?.user?.id;
+  const email = session?.user?.email;
 
-  const { data: user } = await supabase
-    .from('users')
-    .select('id, onboarding_completed, has_access, preferred_platform')
-    .eq('id', userId)
-    .single();
-
-  if (!user) {
-    await supabase.from('users').insert(
-      createUserRecord({
-        id: userId,
-        email,
-      }),
-    );
+  if (!userId || typeof email !== 'string' || !email) {
+    throw Error('A valid email sign-in session is required.');
   }
 
-  return user &&
-    (user.onboarding_completed !== false || user.preferred_platform)
-    ? '/animations'
-    : '/welcome';
-}
+  try {
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('id')
+      .eq('id', userId)
+      .maybeSingle();
 
+    if (!error && !user) {
+      const { error: insertError } = await supabase.from('users').insert(
+        createUserRecord({
+          id: userId,
+          email,
+        }),
+      );
+
+      if (insertError && insertError.code !== '23505') {
+        console.warn('Unable to initialize the user profile.');
+      }
+    } else if (error) {
+      console.warn('Unable to load the user profile after sign-in.');
+    }
+  } catch {
+    // Profile failures must not discard a successfully verified OTP session.
+    console.warn('Unable to initialize the user profile.');
+  }
+
+  // Onboarding is available in the app; there is no standalone /welcome route.
+  return '/animations';
+}
