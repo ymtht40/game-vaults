@@ -72,7 +72,7 @@ export function MobileNavAccordion({ item, expanded, onToggle }) {
         </svg>
       </button>
 
-      <div className="v2-mm-collapse" data-open={expanded} inert={!expanded ? '' : undefined}>
+      <div className="v2-mm-collapse" data-open={expanded} inert={!expanded}>
         <div>
           <div className="flex flex-col pb-16">
             {item.mega.columns.flatMap((col) =>

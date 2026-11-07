@@ -4,10 +4,7 @@
 
 import { Fragment, useCallback, useEffect, useMemo, useRef } from 'react'; // NOTE: module id: 271645
 import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
-import {
-  f as ArrowIcon,
-  f as BookmarkIcon,
-} from '@phosphor-icons/react'; // NOTE: module id: 933325, 683845
+import { ArrowIcon, BookmarkIcon } from '@/assets/icons/index'; // NOTE: module id: 933325, 683845
 import { formatImageUrl } from '@/libs/utils/formatImageUrl'; // NOTE: module id: 632021
 import AnimationCard from '@/animations/AnimationCard'; // NOTE: module id: 591611
 import { MediaHoverReveal } from '@/features/common/MediaHoverReveal'; // NOTE: module id: 934783

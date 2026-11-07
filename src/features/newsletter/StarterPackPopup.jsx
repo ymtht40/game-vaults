@@ -7,7 +7,7 @@ import {
   markStarterPromptDismissed,
 } from '@/features/newsletter/NewsletterForm';
 
-import { x } from '@/libs/config/consent'; // module id: 137410
+import { X } from '@phosphor-icons/react'; // module id: 137410
 import {
   Dialog,
   DialogContent,
@@ -138,7 +138,7 @@ export default function StarterPackPopup({
           aria-label="Close"
           className="group/close absolute right-16 top-16 inline-flex size-40 items-center justify-center border border-foreground/15 bg-background text-foreground/70 transition-colors duration-(--duration-quick) ease-(--ease-expo-out) hover:border-foreground/40 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-brand/50"
         >
-          <x className="size-18 transition-transform duration-(--duration-quick) ease-(--ease-back-out) group-hover/close:rotate-90" />
+          <X className="size-18 transition-transform duration-(--duration-quick) ease-(--ease-back-out) group-hover/close:rotate-90" />
         </DialogClose>
 
         <div className="flex flex-col gap-12 pr-48">

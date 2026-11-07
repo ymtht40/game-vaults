@@ -206,11 +206,13 @@ export default function PricingCard({
 
         {cycleTotal ? (
           <p className={`text-body-sm mt-6 ${mutedText}`}>
-            {hasPpp
-              ? translate('pricing.tiers.billedQuarterlyExact', {
-                  total: cycleTotal,
-                })
-              : translate('pricing.tiers.billedQuarterly')}
+            {cycle === 'yearly'
+              ? translate('pricing.tiers.billedYearly')
+              : hasPpp
+                ? translate('pricing.tiers.billedQuarterlyExact', {
+                    total: cycleTotal,
+                  })
+                : translate('pricing.tiers.billedQuarterly')}
           </p>
         ) : null}
 

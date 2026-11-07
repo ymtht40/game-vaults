@@ -129,7 +129,7 @@ export default function NotificationsDrawer({ open, onClose, items, lastSeenAt }
                 aria-label="Close"
                 className="flex h-32 w-32 items-center justify-center rounded-md microinteraction hover:bg-secondary"
               >
-                <x className="h-16 w-16" />
+                <X className="h-16 w-16" />
               </button>
             </div>
             <div

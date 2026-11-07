@@ -377,7 +377,7 @@ export default function SignInPage({ images = [] }) {
       const { data, error } = await supabase.auth.verifyOtp({
         email: verificationEmail || email.trim(),
         token: code,
-        type: 'magiclink',
+        type: 'email',
       });
 
       if (error || !data?.session) {

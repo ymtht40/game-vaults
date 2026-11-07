@@ -4,7 +4,7 @@
 
 import { useEffect, useMemo, useState } from 'react'; // NOTE: module id: 271645
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
-import { serverEvents } from '@/libs/utils/events'; // NOTE: module id: 185161
+import { sendServerEvent } from '@/libs/utils/events'; // NOTE: module id: 185161
 import { toast } from 'sonner';
 import { EVENTS } from '@/libs/config/onboarding'; // NOTE: module id: 734601
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
@@ -180,7 +180,7 @@ export default function SidebarCopyActions({
               activePlatform,
               animation.category?.name || animation.category || 'unknown'
             );
-            serverEvents('animation_copied', {
+            sendServerEvent('animation_copied', {
               animation_id: animation.id,
               animation_name: animationTitle,
               category:

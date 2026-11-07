@@ -29,7 +29,7 @@ export default function OnboardingComplete({ onClose }) {
         aria-label="Dismiss"
         className="absolute right-0 top-0 flex size-24 items-center justify-center text-foreground-muted transition-colors duration-(--duration-quick) ease-(--ease-expo-out) hover:text-foreground"
       >
-        <x size={14} />
+        <X size={14} />
       </button>
       <span
         className={`mb-16 block size-12 bg-brand transition-transform duration-(--duration-snap) ease-(--ease-back-out) ${

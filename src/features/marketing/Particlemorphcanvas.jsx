@@ -1156,7 +1156,7 @@ const ParticleMorphCanvas = forwardRef(function ParticleMorphCanvas(
   }, []);
 
   const isDesktop = useBreakpoint('lg');
-  const isWebGLSupported = useWebGLSupported();
+  const isWebGLSupported = useWebGLSupport();
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {

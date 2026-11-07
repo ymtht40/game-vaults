@@ -721,7 +721,7 @@ export default function Header({ latestAnimation }) {
         <div
           className="v2-mm-collapse group/panel v2-container absolute inset-x-0 top-full lg:hidden"
           data-open={isMobileMenuOpen}
-          inert={!isMobileMenuOpen ? '' : undefined}
+          inert={!isMobileMenuOpen}
         >
           <div>
             <div

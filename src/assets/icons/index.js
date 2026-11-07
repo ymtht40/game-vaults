@@ -4,4 +4,6 @@ export {
   LinkedinLogoIcon as LinkedInIcon,
   InstagramLogoIcon as InstagramIcon,
   GithubLogoIcon as GitHubIcon,
-} from "@phosphor-icons/react";
+  ArrowRightIcon as ArrowIcon,
+  BookmarkSimpleIcon as BookmarkIcon,
+} from '@phosphor-icons/react';

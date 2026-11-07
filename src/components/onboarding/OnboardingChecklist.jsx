@@ -106,7 +106,7 @@ export default function OnboardingChecklist() {
                 aria-label="Dismiss"
                 className="flex size-24 items-center justify-center text-foreground-muted transition-colors duration-(--duration-quick) ease-(--ease-expo-out) hover:text-foreground"
               >
-                <x size={14} />
+                <X size={14} />
               </button>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default function OnboardingChecklist() {
                   aria-label="Dismiss Discord tip"
                   className="flex size-20 shrink-0 items-center justify-center text-foreground-muted transition-colors duration-(--duration-quick) ease-(--ease-expo-out) hover:text-foreground"
                 >
-                  <x size={12} />
+                  <X size={12} />
                 </button>
               </div>
               <p className="text-body-sm mb-12 text-foreground-muted">

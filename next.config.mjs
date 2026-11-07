@@ -1,15 +1,16 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
+  allowedDevOrigins: ['13.211.143.127'],
+
   images: {
-    remotePatterns: [{ protocol: 'https', hostname: '**.supabase.co' }],
+    remotePatterns: [
+      { protocol: 'https', hostname: '**.supabase.co' },
+    ],
   },
 
-  // Required so PostHog's trailing-slash endpoints (e.g. /e/) are not redirected
   skipTrailingSlashRedirect: true,
 
   async rewrites() {
     return [
-      // Static assets must be matched before the generic API rule
       {
         source: '/relay-A8q3/static/:path*',
         destination: 'https://us-assets.i.posthog.com/static/:path*',

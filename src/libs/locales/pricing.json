@@ -19,6 +19,7 @@
     "pppNotice": "Prices are localized for {country} to keep GameVault affordable for everyone. The discount applies to subscriptions and Kits, and is added automatically at checkout, no code needed.",
     "pppNoticeGeneric": "Prices are localized for your region to keep GameVault affordable for everyone. The discount applies to subscriptions and Kits, and is added automatically at checkout, no code needed.",
     "billedQuarterly": "Billed quarterly",
+    "billedYearly": "Billed yearly",
     "billedQuarterlyExact": "Billed €{total} quarterly",
     "shippedRecently": "{count} shipped in the last 30 days",
     "pppBanner": "Regional pricing is on for {country}.",

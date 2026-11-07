@@ -10,7 +10,7 @@ import { javascript } from '@codemirror/lang-javascript'; // NOTE: module id: 83
 import { html } from '@codemirror/lang-html'; // NOTE: module id: 724433
 
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
-import { serverEvents } from '@/libs/utils/events'; // NOTE: module id: 185161
+import { sendServerEvent } from '@/libs/utils/events'; // NOTE: module id: 185161
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { EVENTS } from '@/libs/config/onboarding'; // NOTE: module id: 734601
 import { useOnboarding } from '@/contexts/OnboardingProvider'; // NOTE: module id: 92451
@@ -268,7 +268,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
     
     const name = animation.title || animation.name;
     analytics.animation.copied(animation.id, name, activePlatform, animation.category?.name || animation.category || "unknown");
-    serverEvents("animation_copied", {
+    sendServerEvent("animation_copied", {
       animation_id: animation.id,
       animation_name: name,
       category: animation.category?.slug || animation.category?.name || "unknown",
