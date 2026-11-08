@@ -7,7 +7,7 @@ import Link from 'next/link'; // NOTE: module id: 522016
 import { Crisp } from 'crisp-sdk-web';
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
-import { pricingConfig as config } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { appConfig as config } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { SecondaryButton } from '@/components/ui/SecondaryButton'; // NOTE: module id: 511757

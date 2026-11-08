@@ -5,7 +5,7 @@ import Script from 'next/script'; // NOTE: module id: 3303
 import { usePathname, useSearchParams } from 'next/navigation'; // NOTE: module id: 618566
 import { getConsentState } from '@/libs/config/consent'; // NOTE: module id: 160725
 import { createClient } from '@/libs/supabase/client'; // NOTE: module id: 416983
-import { pricingConfig } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { appConfig } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
 
 const POSTHOG_KEY = process.env.NEXT_PUBLIC_POSTHOG_KEY || '';
@@ -217,16 +217,16 @@ function CrispChat() {
   }, [userId]);
 
   useEffect(() => {
-    if (!pricingConfig.crisp?.id) return; // NOTE: module id: 516799
+    if (!appConfig.crisp?.id) return; // NOTE: module id: 516799
     const timer = setTimeout(() => {
-      if (window.$crisp && pricingConfig.crisp.onlyShowOnRoutes && !pricingConfig.crisp.onlyShowOnRoutes.includes(pathname)) {
+      if (window.$crisp && appConfig.crisp.onlyShowOnRoutes && !appConfig.crisp.onlyShowOnRoutes.includes(pathname)) {
         window.$crisp.push(['do', 'chat:hide']);
       }
     }, 2000);
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  if (!pricingConfig.crisp?.id) return null; // NOTE: module id: 516799
+  if (!appConfig.crisp?.id) return null; // NOTE: module id: 516799
 
   return (
     <Fragment>
@@ -235,7 +235,7 @@ function CrispChat() {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            window.$crisp=[];window.CRISP_WEBSITE_ID="${pricingConfig.crisp.id}";
+            window.$crisp=[];window.CRISP_WEBSITE_ID="${appConfig.crisp.id}";
           `,
         }}
       />

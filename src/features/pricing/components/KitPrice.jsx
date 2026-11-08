@@ -1,4 +1,4 @@
-import { getPppKitEffectivePrice, PPP_KIT_PRICING } from '@/libs/utils/ppp';
+import { getAddonTierPrice, ADDON_PRICING } from '@/libs/utils/pricingUtils';
 
 import { usePppTier } from '@/hooks/usePppGeo';
 export default function KitPrice({
@@ -8,14 +8,14 @@ export default function KitPrice({
 }) {
   const pppTier = usePppTier();
   const effectivePrice = pppTier
-    ? getPppKitEffectivePrice(kitSlug, pppTier)
+    ? getAddonTierPrice(kitSlug, pppTier)
     : null;
 
   if (effectivePrice == null) {
     return fallback;
   }
 
-  const listPrice = PPP_KIT_PRICING[kitSlug]?.list;
+  const listPrice = ADDON_PRICING[kitSlug]?.list;
   return (
     <span aria-label={`€${effectivePrice}, regularly €${listPrice}`}>
       €{effectivePrice}{' '}

@@ -9,7 +9,7 @@ import { TooltipProvider, TooltipRoot as Tooltip, TooltipTrigger, TooltipContent
 } from '@/components/ui/Tooltip'; // NOTE: module id: 672706
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { usePppGeo } from '@/hooks/usePppGeo'; // NOTE: module id: 12895
-import { getPppDiscountPercent } from '@/features/marketing/Ppppricing'; // NOTE: module id: 397242
+import { getSoloQuarterlyDiscount } from '@/libs/utils/pricingUtils'; // NOTE: module id: 397242
 
 function getCountryName(countryCode) {
   if (!countryCode) return null;
@@ -115,7 +115,7 @@ export function PppTooltipBadge({ className = '', tone = 'dark' }) {
               : t('pricing.tiers.pppName')}
             <span className="ml-auto whitespace-nowrap text-brand">
               {t('pricing.tiers.pppTipPct', {
-                pct: getPppDiscountPercent(pppGeo?.tier),
+                pct: getSoloQuarterlyDiscount(pppGeo?.tier),
               })}
             </span>
           </p>
@@ -202,7 +202,7 @@ export function PppBanner() {
   if (!isVisible) return null;
 
   const countryName = getCountryName(pppGeo.country);
-  const discountPercent = getPppDiscountPercent(pppGeo.tier);
+  const discountPercent = getSoloQuarterlyDiscount(pppGeo.tier);
 
   return (
     <div

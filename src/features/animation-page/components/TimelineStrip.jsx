@@ -7,9 +7,9 @@ import { gsap, useGSAP } from '@/libs/utils/vendor';
 import { cx } from '@/libs/utils/className';
 import { analytics } from '@/libs/analytics/posthogAnalytics';
 import {
-  pricingConfig,
-  formatMonthlyPrice,
-} from '@/libs/data/pricing';
+  appConfig,
+  getActivePrice,
+} from '@/libs/config/appConfig';
 
 import Button from '@/components/ui/Button'; // module id: 687989
 import { CaretDown } from '@phosphor-icons/react'; // module id: 815330
@@ -461,8 +461,8 @@ export default function TimelineStrip({
   const visibleRows = hasAccess ? rows : rows.slice(0, 1);
   const gatedRows = hasAccess ? [] : rows.slice(1, 3);
 
-  const monthlyPrice = formatMonthlyPrice(
-    pricingConfig.stripe?.landingPlans
+  const monthlyPrice = getActivePrice(
+    appConfig.stripe?.landingPlans
       ?.find((plan) => plan.key === 'solo')
       ?.quarterly,
   );

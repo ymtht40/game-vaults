@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import AnimatedSubtext from '@/animations/AnimatedSubtext';
 import AnimatedHeadline from '@/animations/AnimatedHeadline';
 import CircularSlider from '@/features/landing/CircularSlider';
-import { pricingConfig } from '@/libs/data/pricing';
+import { appConfig } from '@/libs/config/appConfig';
 
 const TABS = t('landing.oneComponent.tabs');
 const PRESET_LABELS = t('landing.oneComponent.presetLabels');
@@ -167,7 +167,7 @@ export default function OneComponentSection() {
   let activePreset = PRESETS[presetIdx];
   let isDesktop = useBreakpoint('lg');
 
-  let displayCount = pricingConfig?.animationStats?.displayCount ?? 50;
+  let displayCount = appConfig?.animationStats?.displayCount ?? 50;
 
   return (
     <section

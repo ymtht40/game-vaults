@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Info } from 'lucide-react';
 import { translate, translate as t } from '@/libs/utils/i18n';
-import { getPppDiscountPercent } from '@/libs/utils/ppp';
+import { getSoloQuarterlyDiscount } from '@/libs/utils/pricingUtils';
 import { TooltipRoot as Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/Tooltip';
 import { usePppGeo } from '@/hooks/usePppGeo';
 
@@ -96,7 +96,7 @@ export function PppLabel({ className = '', tone = 'dark' }) {
               : t('pricing.tiers.pppName')}
             <span className="ml-auto whitespace-nowrap text-brand">
               {translate('pricing.tiers.pppTipPct', {
-                pct: getPppDiscountPercent(geoData?.tier),
+                pct: getSoloQuarterlyDiscount(geoData?.tier),
               })}
             </span>
           </p>
@@ -171,7 +171,7 @@ export function PppStrip() {
   if (!showStrip) return null;
 
   const countryName = getCountryName(geoData.country);
-  const discountPct = getPppDiscountPercent(geoData.tier);
+  const discountPct = getSoloQuarterlyDiscount(geoData.tier);
 
   return (
     <div

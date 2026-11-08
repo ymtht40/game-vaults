@@ -74,18 +74,16 @@ export default function SignInPage({ images = [] }) {
   const [resendCountdown, setResendCountdown] = useState(0);
   const [incompleteUser, setIncompleteUser] = useState(null);
 
-  const navigate = useCallback(
-    ({ href, hard }) => {
-      if (hard) {
-        window.location.assign(href);
-      } else {
-        // Discard anonymous prefetched pages after the session cookie changes.
-        router.refresh();
-        router.push(href);
-      }
-    },
-    [router],
-  );
+   const navigate = useCallback(
+     ({ href, hard }) => {
+       if (hard) {
+         window.location.assign(href);
+       } else {
+         router.push(href);
+       }
+     },
+     [router],
+   );
 
   useEffect(() => {
     if (resendCountdown > 0) {

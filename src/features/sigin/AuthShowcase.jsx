@@ -1,7 +1,9 @@
 'use client';
 
 import { useRef } from 'react';
-import { ImageShowcase } from '@/features/sigin/ImageShowcase'; // module id: 73062
+export {
+  DraggableGrid as ImageShowcase,
+} from '@/features/common/DraggableGrid';
 import { usePageEnterAnimation } from '@/contexts/AnimationProvider'; // module id: 488463
 
 const showcaseLayout = {

@@ -8,9 +8,9 @@ import AnimatedHeadline from '@/animations/AnimatedHeadline';
 import PricingToggle from '@/features/pricing/PricingToggle';
 import PricingCard from '@/features/pricing/PricingCard';
 import PricingFeatures from '@/features/pricing/PricingFeatures';
-import { pricingConfig } from '@/libs/data/pricing';
+import { appConfig } from '@/libs/config/appConfig';
 
-const LANDING_PLANS = pricingConfig.stripe.landingPlans;
+const LANDING_PLANS = appConfig.stripe.landingPlans;
 
 export default function PricingSection({ shippedRecently = 0 }) {
   let [cycle, setCycle] = useState('quarterly');

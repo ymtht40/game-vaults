@@ -30,15 +30,15 @@ import { useState } from 'react';
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
 import {
-  pricingConfig,
-  formatMonthlyPrice,
-  formatCycleTotalPrice,
-} from '@/libs/data/pricing'; // NOTE: module id: 516799 // UNRESOLVED: name guessed from usage
-import { getPlanCyclePricing } from '@/features/marketing/Ppppricing'; // NOTE: module id: 397242 // UNRESOLVED: name guessed from usage
+  appConfig,
+  getActivePrice,
+  getActiveCycleTotal,
+} from '@/libs/config/appConfig'; // NOTE: module id: 516799 // UNRESOLVED: name guessed from usage
+import { getBillingDetails } from '@/libs/utils/pricingUtils'; // NOTE: module id: 397242 // UNRESOLVED: name guessed from usage
 import {
-  calculateTieredStudioTotalCents,
+  calculateTierSeatsPrice,
   CYCLE_MONTHS,
-} from '@/libs/data/seat-prices'; // NOTE: module id: 59011 // UNRESOLVED: name guessed from usage
+} from '@/libs/config/appConfig'; // NOTE: module id: 59011 // UNRESOLVED: name guessed from usage
 import { roundCurrency, resolveSoloFeatures } from '@/libs/config/pricingFormatters'; // NOTE: module id: 586818
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { BulletList } from '@/features/pricing/components/BulletList'; // NOTE: module id: 702954 // UNRESOLVED: unused import retained from bundle
@@ -86,22 +86,22 @@ export default function PricingSection({
   const [seats, setSeats] = useState(studioPlan?.minSeats ?? 2);
   const pppTier = usePppTier();
 
-  const soloQuarterlyPpp = pppTier ? getPlanCyclePricing('solo', 'quarterly', pppTier) : null;
-  const soloYearlyPpp = pppTier ? getPlanCyclePricing('solo', 'yearly', pppTier) : null;
+  const soloQuarterlyPpp = pppTier ? getBillingDetails('solo', 'quarterly', pppTier) : null;
+  const soloYearlyPpp = pppTier ? getBillingDetails('solo', 'yearly', pppTier) : null;
 
   const soloPricing = {
     quarterMonth: soloQuarterlyPpp
       ? soloQuarterlyPpp.price
-      : formatMonthlyPrice(soloPlan.quarterly),
+      : getActivePrice(soloPlan.quarterly),
     quarter: soloQuarterlyPpp
       ? soloQuarterlyPpp.cycleTotal
-      : formatCycleTotalPrice(soloPlan.quarterly),
-    year: soloYearlyPpp ? soloYearlyPpp.price : formatMonthlyPrice(soloPlan.yearly),
+      : getActiveCycleTotal(soloPlan.quarterly),
+    year: soloYearlyPpp ? soloYearlyPpp.price : getActivePrice(soloPlan.yearly),
   };
 
   const getStudioCycleTotal = (targetCycle) =>
     studioPlan
-      ? calculateTieredStudioTotalCents(
+      ? calculateTierSeatsPrice(
           seats,
           studioPlan.soloCents[targetCycle],
           pppTier,
@@ -225,7 +225,7 @@ export default function PricingSection({
               <div className="mt-auto flex flex-col gap-12">
                 <p className="text-body-sm text-foreground-muted">
                   <a
-                    href={`mailto:${pricingConfig.resend.supportEmail}`}
+                    href={`mailto:${appConfig.resend.supportEmail}`}
                     className="underline underline-offset-2"
                   >
                     {t('home-v3.pricing.moreSeats', { max: studioPlan.maxSeats })}

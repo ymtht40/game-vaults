@@ -5,7 +5,7 @@
 import { useMemo, useRef } from 'react'; // NOTE: module id: 271645
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
 import { EVENTS } from '@/libs/config/onboarding'; // NOTE: module id: 734601
-import { formatMonthlyPrice, pricingConfig } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { getActivePrice, appConfig } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { Switch } from '@/animations/Switch'; // NOTE: module id: 870777
 import EaseSelect from '@/animations/EaseSelect'; // NOTE: module id: 666542
@@ -173,8 +173,8 @@ export function CustomizePanel({
   const visibleControls = locked ? configurables.slice(0, 3) : configurables;
   const lockedControls = locked ? configurables.slice(3) : [];
   const hasCustomValues = Object.keys(values).length > 0;
-  const soloMonthlyPrice = formatMonthlyPrice(
-    pricingConfig.stripe?.landingPlans?.find((plan) => plan.key === 'solo')
+  const soloMonthlyPrice = getActivePrice(
+    appConfig.stripe?.landingPlans?.find((plan) => plan.key === 'solo')
       ?.quarterly
   );
 

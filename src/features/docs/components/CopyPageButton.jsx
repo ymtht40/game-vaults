@@ -11,7 +11,7 @@ import {
   Copy,
   FileMd,
 } from '@phosphor-icons/react'; // NOTE: module id: 364203, 815330, 499839, 999723, 656140
-import { pricingConfig } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { appConfig } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 const BUTTON_BASE_CLASS =
@@ -106,7 +106,7 @@ export default function CopyPageButton({
   }
 
   const markdownPath = `${pathname}.md`;
-  const markdownUrl = `https://${pricingConfig.domainName}${markdownPath}`;
+  const markdownUrl = `https://${appConfig.domainName}${markdownPath}`;
   const encodedPrompt = encodeURIComponent(
     `Read ${markdownUrl} and answer my questions about it.`
   );

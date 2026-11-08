@@ -13,8 +13,7 @@ import {
   slugToPascalCase,
   applyHtmlConfigurables,
   applyReactConfigurables,
-  applyVueConfigurables,
-} from '@/libs/config/configurables'; // NOTE: module id: 726368
+  applyVueConfigurables } from '@/libs/config/configurables'; // NOTE: module id: 726368
 import { ProvenanceChip } from '@/components/ui/ProvenanceChip'; // NOTE: module id: 909247
 import AnimationPreview from '@/features/animation-detil/preview/AnimationPreview'; // NOTE: module id: 113861
 import StaggerSegments from '@/features/animation-page/components/StaggerSegments'; // NOTE: module id: 444230

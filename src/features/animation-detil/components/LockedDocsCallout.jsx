@@ -1,15 +1,15 @@
-// Variable Mapping: ed -> LockedDocsCallout, e -> isAuthenticated, s -> soloPlan, n -> monthlyPrice, c.U -> pricingConfig, c.K -> formatMonthlyPrice, a.f -> LockIcon, r.default -> Button
+// Variable Mapping: ed -> LockedDocsCallout, e -> isAuthenticated, s -> soloPlan, n -> monthlyPrice, c.U -> appConfig, c.K -> getActivePrice, a.f -> LockIcon, r.default -> Button
 
-import { U as pricingConfig, K as formatMonthlyPrice } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { appConfig, getActivePrice } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { LockIcon } from '@phosphor-icons/react'; // NOTE: module id: 499141
 
 // NOTE: module id: 521041
 export default function LockedDocsCallout({ isAuthenticated }) {
-  const soloPlan = pricingConfig.stripe?.landingPlans?.find(
+  const soloPlan = appConfig.stripe?.landingPlans?.find(
     (plan) => plan.key === 'solo'
   );
-  const monthlyPrice = formatMonthlyPrice(soloPlan?.quarterly);
+  const monthlyPrice = getActivePrice(soloPlan?.quarterly);
 
   return (
     <section className="border-t border-foreground/10 pt-32">

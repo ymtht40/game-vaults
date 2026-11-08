@@ -1,12 +1,12 @@
 import { translate } from '@/libs/utils/i18n';
 import { isOfferActive } from '@/libs/utils/packSlugs';
 import {
-  getPppDisplayPrice,
-  getPppEffectivePrice,
-} from '@/libs/utils/ppp';
+  getBillingDetails,
+  getProductTierPrice,
+} from '@/libs/utils/pricingUtils';
 import { relativeShipped } from '@/components/ui/LibraryPreview';
 import { analytics } from '@/libs/analytics/posthogAnalytics';
-import { pricingConfig, formatMonthlyPrice } from '@/libs/data/pricing';
+import { appConfig, getActivePrice } from '@/libs/config/appConfig';
 import { usePppTier } from '@/hooks/usePppGeo';
 
 import Button from '@/components/ui/Button';
@@ -21,12 +21,12 @@ const SURFACE_STYLES = {
   'surface-light': 'bg-foreground/[0.06] text-foreground',
 };
 
-const TOTAL_ANIMATIONS = pricingConfig?.animationStats?.totalCount ?? 50;
+const TOTAL_ANIMATIONS = appConfig?.animationStats?.totalCount ?? 50;
 
 function calculateSavings(plan, pppTier) {
   if (pppTier) {
-    const quarterlyPpp = getPppEffectivePrice(plan.key, 'quarterly', pppTier);
-    const yearlyPpp = getPppEffectivePrice(plan.key, 'yearly', pppTier);
+    const quarterlyPpp = getProductTierPrice(plan.key, 'quarterly', pppTier);
+    const yearlyPpp = getProductTierPrice(plan.key, 'yearly', pppTier);
 
     if (quarterlyPpp != null && yearlyPpp != null) {
       const savings = 4 * quarterlyPpp - yearlyPpp;
@@ -36,8 +36,8 @@ function calculateSavings(plan, pppTier) {
   }
 
   const savings =
-    (formatMonthlyPrice(plan.quarterly) ?? 0) * 12 -
-    (formatMonthlyPrice(plan?.yearly) ?? 0);
+    (getActivePrice(plan.quarterly) ?? 0) * 12 -
+    (getActivePrice(plan?.yearly) ?? 0);
 
   return savings > 0 ? savings : 0;
 }
@@ -60,14 +60,14 @@ export default function PricingCard({
   const offerActive = isOfferActive();
   const pppTier = usePppTier();
   const pppDisplay = pppTier
-    ? getPppDisplayPrice(plan.key, cycle, pppTier)
+    ? getBillingDetails(plan.key, cycle, pppTier)
     : null;
-  const effectivePrice = formatMonthlyPrice(cycleData);
+  const effectivePrice = getActivePrice(cycleData);
 
   const displayPrice = pppDisplay ? pppDisplay.price : effectivePrice;
   const cycleTotal = pppDisplay
     ? pppDisplay.cycleTotal
-    : formatMonthlyPrice(cycleData);
+    : getActivePrice(cycleData);
   const hasPpp = !!pppDisplay;
 
   const showOfferListPrice =

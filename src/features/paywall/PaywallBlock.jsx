@@ -7,7 +7,7 @@ import gsap from 'gsap'; // NOTE: module id: 989970
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
 import { Lock } from '@phosphor-icons/react'; // NOTE: module id: 499141
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
-import { pricingConfig, formatMonthlyPrice } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { appConfig, getActivePrice } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import { testimonials } from '@/libs/data/testimonials'; // NOTE: module id: 967791
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
@@ -135,9 +135,9 @@ export function PaywallBlock({
   const title = animation?.title || animation?.name || 'this component';
   const slug = animation?.slug;
   const isInStarterPack = !!animation?.is_free_preview;
-  const displayCount = pricingConfig.animationStats?.displayCount || '100+';
-  const soloPlan = pricingConfig.stripe?.landingPlans?.find((plan) => plan.key === 'solo');
-  const monthlyPrice = formatMonthlyPrice(soloPlan?.quarterly);
+  const displayCount = appConfig.animationStats?.displayCount || '100+';
+  const soloPlan = appConfig.stripe?.landingPlans?.find((plan) => plan.key === 'solo');
+  const monthlyPrice = getActivePrice(soloPlan?.quarterly);
   const checkoutHref = `/checkout?plan=solo&cycle=quarterly${slug ? `&component=${slug}` : ''}`;
   const unlockLabel = monthlyPrice
     ? `Unlock everything - €${monthlyPrice}/mo`

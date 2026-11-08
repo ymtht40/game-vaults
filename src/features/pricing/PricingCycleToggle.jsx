@@ -15,7 +15,7 @@
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
-import { pricingConfig, formatMonthlyPrice } from '@/libs/data/pricing'; // NOTE: module id: 516799
+import { appConfig, getActivePrice } from '@/libs/config/appConfig'; // NOTE: module id: 516799
 import { Switch } from '@/animations/Switch'; // NOTE: module id: 870777 // UNRESOLVED: name guessed from usage
 import PillContainer from '@/features/common/PillContainer'; // NOTE: module id: 876355 // UNRESOLVED: name guessed from usage
 import { PingIndicator } from '@/features/common/PingIndicator'; // NOTE: module id: 400545 // UNRESOLVED: name guessed from usage
@@ -31,11 +31,11 @@ export function PricingCycleToggle({
   const isQuarterly = cycle === 'quarterly';
 
   const maxSavingsPercent = (function () {
-    const plans = pricingConfig.stripe?.landingPlans || [];
+    const plans = appConfig.stripe?.landingPlans || [];
     let maxPct = 0;
     for (const plan of plans) {
-      const quarterlyMonthly = formatMonthlyPrice(plan.quarterly);
-      const yearlyTotal = formatMonthlyPrice(plan.yearly);
+      const quarterlyMonthly = getActivePrice(plan.quarterly);
+      const yearlyTotal = getActivePrice(plan.yearly);
       if (!quarterlyMonthly || !yearlyTotal) continue;
       const annualizedQuarterly = 12 * quarterlyMonthly;
       if (annualizedQuarterly <= 0) continue;

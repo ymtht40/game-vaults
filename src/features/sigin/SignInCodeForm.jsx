@@ -2,7 +2,6 @@
 
 import { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-
 import Button from '@/components/ui/Button'; // module id: 687989
 
 function isValidCode(code) {

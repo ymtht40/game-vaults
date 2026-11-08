@@ -175,10 +175,7 @@ export default async function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(navigationSchema) }}
         />
       </head>
-      <body
-        className="bg-background text-foreground font-sans"
-        data-preloader-ready="true"
-      >
+      <body className="bg-background text-foreground font-sans">
       <Provider categories={categories}>
       {children}
       </Provider>

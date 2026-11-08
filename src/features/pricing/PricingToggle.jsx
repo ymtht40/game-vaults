@@ -5,7 +5,7 @@ import { analytics } from '@/libs/analytics/posthogAnalytics';
 import { cn } from '@/libs/utils/className';
 import { Switch } from '@/animations/Switch';
 import AnimatedTabs from '@/animations/AnimatedTabs';
-import { pricingConfig, formatMonthlyPrice } from '@/libs/data/pricing';
+import { appConfig, getActivePrice } from '@/libs/config/appConfig';
 
 export default function PricingToggle({
   cycle,
@@ -15,12 +15,12 @@ export default function PricingToggle({
   let isQuarterly = cycle === 'quarterly';
 
   let maxSavings = (function () {
-    let plans = pricingConfig.stripe?.landingPlans || [];
+    let plans = appConfig.stripe?.landingPlans || [];
     let max = 0;
 
     for (let plan of plans) {
-      let qPrice = formatMonthlyPrice(plan.quarterly);
-      let yPrice = formatMonthlyPrice(plan?.yearly);
+      let qPrice = getActivePrice(plan.quarterly);
+      let yPrice = getActivePrice(plan?.yearly);
 
       if (!qPrice || !yPrice) continue;
 

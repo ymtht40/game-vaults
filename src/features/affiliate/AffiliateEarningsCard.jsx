@@ -5,23 +5,23 @@
 import { useRef } from 'react';
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { pricingConfig, formatMonthlyPrice } from '@/libs/data/pricing'; // NOTE: module id: 516799 
-import { calculateStudioTotalCents as calculateBaseVolumePrice, calculateTieredStudioTotalCents as calculateDiscountedPrice } from '@/libs/data/seat-prices'; // NOTE: module id: 59011
+import { appConfig, getActivePrice } from '@/libs/config/appConfig'; // NOTE: module id: 516799 
+import { calculateSeatsTotalCents as calculateBaseVolumePrice, calculateTierSeatsPrice as calculateDiscountedPrice } from '@/libs/config/appConfig'; // NOTE: module id: 59011
 
 import { AFFILIATE_COMMISSION_RATE } from '@/libs/config/affiliate'; // NOTE: module id: 664294
 import { useRevealTimeline } from '@/hooks/useRevealTimeline'; // NOTE: module id: 228414
 
 // NOTE: module id: 664466
 export const soloYearlyCommission =
-  formatMonthlyPrice(
-  pricingConfig.stripe.landingPlans.find((plan) => plan.key === 'solo')?.yearly
+  getActivePrice(
+  appConfig.stripe.landingPlans.find((plan) => plan.key === 'solo')?.yearly
   ) * AFFILIATE_COMMISSION_RATE;
 
 const monthlyNewEarnings = 5 * soloYearlyCommission;
 const firstYearTotal = 12 * monthlyNewEarnings;
 
 const studioFiveSeatsPrice =
-  calculateBaseVolumePrice(5, pricingConfig.studioPricing?.yearly, calculateDiscountedPrice?.yearly) / 100;
+  calculateBaseVolumePrice(5, appConfig.studioPricing?.yearly, calculateDiscountedPrice?.yearly) / 100;
 
 export const formatEuro = (amount) =>
   Number.isInteger(amount)

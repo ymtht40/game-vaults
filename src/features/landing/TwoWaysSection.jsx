@@ -8,9 +8,9 @@ import AnimatedHeadline from '@/animations/AnimatedHeadline';
 import AnimatedSubtext from '@/animations/AnimatedSubtext';
 import { DraggableGrid } from '@/features/common/DraggableGrid';
 import VideoLabelOverlay from '@/components/ui/VideoLabelOverlay';
-import { pricingConfig } from '@/libs/data/pricing';
+import { appConfig } from '@/libs/config/appConfig';
 
-const FALLBACK_TOTAL_COUNT = pricingConfig?.animationStats?.totalCount ?? 50;
+const FALLBACK_TOTAL_COUNT = appConfig?.animationStats?.totalCount ?? 50;
 
 const LAYOUT_DESKTOP = { cardW: 320, cardH: 180, gap: 48, offsetX: 184 };
 const LAYOUT_MOBILE = { cardW: 200, cardH: 112, gap: 24, offsetX: 112 };

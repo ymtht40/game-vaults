@@ -20,32 +20,28 @@ export async function resolvePostAuthPath({ supabase, session }) {
     throw Error('A valid email sign-in session is required.');
   }
 
+  let redirectPath = '/welcome';
+
   try {
     const { data: user, error } = await supabase
       .from('users')
-      .select('id')
+      .select('id, onboarding_completed, has_access, preferred_platform')
       .eq('id', userId)
       .maybeSingle();
 
     if (!error && !user) {
-      const { error: insertError } = await supabase.from('users').insert(
+      await supabase.from('users').insert(
         createUserRecord({
           id: userId,
           email,
-        }),
+        })
       );
-
-      if (insertError && insertError.code !== '23505') {
-        console.warn('Unable to initialize the user profile.');
-      }
-    } else if (error) {
-      console.warn('Unable to load the user profile after sign-in.');
+    } else if (user && (user.onboarding_completed !== false || user.preferred_platform)) {
+      redirectPath = '/animations';
     }
-  } catch {
-    // Profile failures must not discard a successfully verified OTP session.
-    console.warn('Unable to initialize the user profile.');
+  } catch (err) {
+    console.warn('Unable to process user profile.');
   }
 
-  // Onboarding is available in the app; there is no standalone /welcome route.
-  return '/animations';
+  return redirectPath;
 }

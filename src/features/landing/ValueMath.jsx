@@ -11,7 +11,7 @@ import AnimatedSubtext from '@/animations/AnimatedSubtext';
 import Button from '@/components/ui/Button';
 import SegmentedControl from '@/animations/SegmentedControl';
 import BulletPoints from '@/components/ui/BulletPoints';
-import { pricingConfig, formatMonthlyPrice } from '@/libs/data/pricing';
+import { appConfig, getActivePrice } from '@/libs/config/appConfig';
 
 const USE_CASES = [
   { id: 'site', components: 4 },
@@ -106,10 +106,10 @@ export default function ValueMath({ cta, sectionId = 'value-math' }) {
     { id: 'hand', label: t('common.valueMath.mode.hand'), Icon: Hand },
     { id: 'ai', label: t('common.valueMath.mode.ai'), Icon: Robot },
   ];
-  let soloPlan = pricingConfig.stripe?.landingPlans?.find(
+  let soloPlan = appConfig.stripe?.landingPlans?.find(
     (p) => p.key === 'solo',
   )?.yearly;
-  let soloPrice = formatMonthlyPrice(soloPlan);
+  let soloPrice = getActivePrice(soloPlan);
 
   return (
     <section
