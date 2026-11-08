@@ -1,5 +1,4 @@
 import Provider from '@/app/provider';
-import AppShell from '@/components/layout/AppShell';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { getLatestAnimation, getCategories } from '@/libs/supabase/latestAnimation';
@@ -180,11 +179,9 @@ export default async function RootLayout({ children }) {
         className="bg-background text-foreground font-sans"
         data-preloader-ready="true"
       >
-        <Provider categories={categories}>
-          <AppShell latestAnimation={latestAnimation}>
-            {children}
-          </AppShell>
-        </Provider>
+      <Provider categories={categories}>
+      {children}
+      </Provider>
       </body>
     </html>
   );
