@@ -6,4 +6,5 @@ export {
   GithubLogoIcon as GitHubIcon,
   ArrowRightIcon as ArrowIcon,
   BookmarkSimpleIcon as BookmarkIcon,
+  X as CloseIcon,
 } from '@phosphor-icons/react';

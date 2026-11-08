@@ -1,30 +1,34 @@
 'use client';
 
-// Variable Mapping: ep -> PLATFORM_NAV_ITEMS, eg -> SUPPORT_NAV_ITEMS, ex -> isNavItemActive, eb -> SidebarNav, e -> pathname, a -> profile, n -> isCollapsed, l -> isMobile, i -> isIconOnly, s -> discordUrl, (callbacks) a -> item, (isNavItemActive) e -> pathname, t -> item
+/* Variable Mapping:
+ * ep -> PLATFORM_NAV_ITEMS, eg -> SUPPORT_NAV_ITEMS, ex -> isNavItemActive,
+ * eb -> SidebarNav, e -> pathname, a -> profile, n -> isCollapsed,
+ * l -> isMobile, i -> isDesktopCollapsed, s -> discordUrl
+ */
 
-import { usePathname } from 'next/navigation'; // NOTE: module id: 618566
-import { 
- HandCoinsIcon, 
- WrenchIcon, 
- LightbulbIcon,
- BookOpenIcon, 
- SquaresFourIcon,
- BookmarkSimpleIcon, 
- PackageIcon, 
- PlugsConnectedIcon,
- GraduationCapIcon, 
- QuestionIcon, 
- GearSixIcon,
- DiscordLogoIcon 
-} from '@phosphor-icons/react'; 
-import { cn } from '@/libs/utils/className'; 
-import { getDiscordInviteUrl } from '@/libs/config/discord'; // NOTE: module id: 768947
+import { usePathname } from 'next/navigation';
+import {
+  BookOpenIcon,
+  BookmarkSimpleIcon,
+  DiscordLogoIcon,
+  GearSixIcon,
+  GraduationCapIcon,
+  HandCoinsIcon,
+  LightbulbIcon,
+  PackageIcon,
+  PlugsConnectedIcon,
+  QuestionIcon,
+  SquaresFourIcon,
+  WrenchIcon,
+} from '@phosphor-icons/react';
 
+import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
+import { getDiscordInviteUrl } from '@/libs/config/discord'; // NOTE: module id: 768947 // UNRESOLVED: name guessed from usage
+import { NotificationsButton } from '@/components/notifications/NotificationsButton'; // NOTE: module id: 583246
+import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382 // UNRESOLVED: name guessed from usage
+import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
 import SidebarGroup from '@/features/sidebar/SidebarGroup'; // NOTE: module id: 166509
 import SidebarItem from '@/features/sidebar/SidebarItem'; // NOTE: module id: 812543
-import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
-import NotificationsButton from '@/components/notifications/NotificationsButton';
 
 const PLATFORM_NAV_ITEMS = [
   { title: 'Animations', url: '/animations', icon: SquaresFourIcon, exact: true },
@@ -49,11 +53,11 @@ function isNavItemActive(pathname, item) {
 }
 
 // NOTE: module id: 583246
-export default function SidebarNav() {
+export function SidebarNav() {
   const pathname = usePathname();
   const { profile } = useUser();
   const { isCollapsed, isMobile } = useSidebar();
-  const isIconOnly = isCollapsed && !isMobile;
+  const isDesktopCollapsed = isCollapsed && !isMobile;
   const discordUrl = getDiscordInviteUrl(profile);
 
   return (
@@ -80,16 +84,9 @@ export default function SidebarNav() {
             active={isNavItemActive(pathname, item)}
           />
         ))}
-        <SidebarItem
-          href={discordUrl}
-          icon={DiscordLogoIcon}
-          label="Discord"
-          external
-        />
+        <SidebarItem href={discordUrl} icon={DiscordLogoIcon} label="Discord" external={true} />
       </SidebarGroup>
-      <div
-        className={cn('mt-auto flex flex-col pt-8', isIconOnly ? 'px-12' : 'px-8')}
-      >
+      <div className={cn('mt-auto flex flex-col pt-8', isDesktopCollapsed ? 'px-12' : 'px-8')}>
         <SidebarItem
           href="/affiliate"
           icon={HandCoinsIcon}
@@ -97,7 +94,7 @@ export default function SidebarNav() {
           active={isNavItemActive(pathname, { url: '/affiliate' })}
         />
       </div>
-      <div className={cn(isIconOnly ? 'px-0 py-8' : 'px-8 py-8')}>
+      <div className={cn(isDesktopCollapsed ? 'px-0 py-8' : 'px-8 py-8')}>
         <NotificationsButton />
       </div>
     </>

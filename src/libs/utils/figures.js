@@ -1,10 +1,8 @@
-// Variable Mapping: f -> TRACK_BASE, m -> CUBE_ACCENT, x -> createTargetMarker, g -> WIDE_TRACK_BASE, h -> LANE_Y_OFFSETS, y -> createLaneCube, w -> LANE_START_X, b -> createThresholdPlane, v -> addPause, j -> fadeResetBoxes, V -> createSingleEaseFigure, E -> createMultiLaneFigure, H -> createStaggerFigure, M -> createYoyoFigure, O -> createRepeatFigure, z -> createPositionParamFigure, A -> createTimelineFigure, Z -> createDelayedCallFigure, N -> createTimeScaleFigure, k -> EASING_FIGURES, C -> TIMELINE_FIGURES, P -> CORE_API_FIGURES, L -> createScrollIndicator, S -> createSplitCharBox, _ -> SQUARE_BOARD_BASE, F -> PLUGIN_FIGURES, R -> REACT_FIGURES, T -> DOC_FIGURES, $ -> ALL_FIGURES, B -> COMMON_EASES, I -> createInteractiveEaseSpec, q -> INTERACTIVE_SPECS
-
-import gsap from 'gsap'; // NOTE: module id: 989970
-import { CustomEase } from 'gsap/CustomEase'; // NOTE: module id: 563208
+import gsap from 'gsap';
+import { CustomEase } from 'gsap/CustomEase';
 import { CustomBounce } from 'gsap/CustomBounce';
-import { CustomWiggle } from 'gsap/CustomWiggle'; // NOTE: module id: 885067
-import { RoughEase, SlowMo } from 'gsap/EasePack'; // NOTE: module id: 757760
+import { CustomWiggle } from 'gsap/CustomWiggle';
+import { RoughEase, SlowMo } from 'gsap/EasePack';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(CustomEase, CustomBounce, CustomWiggle, RoughEase, SlowMo);
@@ -14,6 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 const TRACK_BASE = { x: -120, y: -20, z: 0, w: 240, d: 40, h: 6 };
+
 const CUBE_ACCENT = {
   x: -110,
   y: -12,
@@ -23,6 +22,7 @@ const CUBE_ACCENT = {
   h: 24,
   accent: true,
 };
+
 const createTargetMarker = (x, overrides = {}) => ({
   ...CUBE_ACCENT,
   x,
@@ -33,7 +33,9 @@ const createTargetMarker = (x, overrides = {}) => ({
 });
 
 const WIDE_TRACK_BASE = { x: -120, y: -46, z: 0, w: 240, d: 92, h: 6 };
+
 const LANE_Y_OFFSETS = [-40, -12, 16];
+
 const createLaneCube = (x, laneIndex, overrides = {}) => ({
   x,
   y: LANE_Y_OFFSETS[laneIndex],
@@ -43,7 +45,9 @@ const createLaneCube = (x, laneIndex, overrides = {}) => ({
   h: 20,
   ...overrides,
 });
+
 const LANE_START_X = -112;
+
 const createThresholdPlane = (x, overrides = {}) => ({
   x,
   y: -46,
@@ -82,7 +86,7 @@ function createMultiLaneFigure(animateLanes, { posts = [], tail = 0.45 } = {}) {
       { ...WIDE_TRACK_BASE },
       ...posts.map((postX) => createThresholdPlane(postX)),
       ...LANE_Y_OFFSETS.map((_, laneIndex) =>
-        createLaneCube(LANE_START_X, laneIndex, { accent: laneIndex === 0 })
+        createLaneCube(LANE_START_X, laneIndex, { accent: laneIndex === 0 }),
       ),
     ],
     cycle: (tl, boxes, groups) => {
@@ -95,7 +99,7 @@ function createMultiLaneFigure(animateLanes, { posts = [], tail = 0.45 } = {}) {
           b: boxes[startIndex + laneIndex],
           g: groups[startIndex + laneIndex],
         })),
-        LANE_Y_OFFSETS.map(() => ({ x: LANE_START_X, z: 6 }))
+        LANE_Y_OFFSETS.map(() => ({ x: LANE_START_X, z: 6 })),
       );
     },
   };
@@ -126,8 +130,8 @@ function createStaggerFigure(staggerAmount) {
             repeat: 1,
             yoyo: true,
           },
-          index * staggerAmount
-        )
+          index * staggerAmount,
+        ),
       );
       addPause(tl, 0.5);
     },
@@ -164,20 +168,14 @@ function createRepeatFigure(repeat, repeatDelay) {
 function createPositionParamFigure(position) {
   return createMultiLaneFigure((tl, laneBoxes) => {
     tl.to(laneBoxes[0], { x: 92, duration: 0.9, ease: 'power3.inOut' })
-      .to(
-        laneBoxes[1],
-        { x: 92, duration: 0.9, ease: 'power3.inOut' },
-        position
-      )
+      .to(laneBoxes[1], { x: 92, duration: 0.9, ease: 'power3.inOut' }, position)
       .to(laneBoxes[2], { x: 92, duration: 0.9, ease: 'power3.inOut' }, '<');
   });
 }
 
 function createTimelineFigure(duration) {
   return createMultiLaneFigure((tl, laneBoxes) =>
-    laneBoxes.forEach((box) =>
-      tl.to(box, { x: 92, duration, ease: 'power3.inOut' })
-    )
+    laneBoxes.forEach((box) => tl.to(box, { x: 92, duration, ease: 'power3.inOut' })),
   );
 }
 
@@ -212,7 +210,7 @@ function createTimeScaleFigure(scale) {
       tl.to(boxes[1], { x: 92, duration: 1.2, ease: 'power2.inOut' }, 0).to(
         boxes[2],
         { x: 92, duration: 1.2 / scale, ease: 'power2.inOut' },
-        0
+        0,
       );
       addPause(tl, 0.45);
       fadeResetBoxes(
@@ -221,7 +219,7 @@ function createTimeScaleFigure(scale) {
           { b: boxes[1], g: groups[1] },
           { b: boxes[2], g: groups[2] },
         ],
-        [{ x: LANE_START_X }, { x: LANE_START_X }]
+        [{ x: LANE_START_X }, { x: LANE_START_X }],
       );
     },
   };
@@ -254,12 +252,19 @@ const EASING_FIGURES = {
   'power4-out': createSingleEaseFigure('power4.out'),
   rough: createSingleEaseFigure(
     'rough({ strength: 1.5, points: 24, template: power2.out, taper: none, randomize: false, clamp: false })',
-    1.2
+    1.2,
   ),
   sine: createSingleEaseFigure('sine.inOut'),
   slow: createSingleEaseFigure('slow(0.7, 0.7, false)', 1.6),
   steps: createSingleEaseFigure('steps(6)', 1.2),
 };
+
+function resetSeamlessCubes(visibleCubes, endBox) {
+  visibleCubes.forEach((cube, index) => {
+    cube.x = -110 + 44 * index;
+  });
+  endBox.x = -154;
+}
 
 const TIMELINE_FIGURES = {
   'gsap-timeline': createTimelineFigure(0.5),
@@ -291,7 +296,7 @@ const TIMELINE_FIGURES = {
         .to(box, { z: 6, duration: 0.25, ease: 'power2.in' })
         .to(box, { x: 92, duration: 0.5, ease: 'power3.inOut' });
       tl.add(nestedTl, 0.35 * index);
-    })
+    }),
   ),
   'position-parameter': createPositionParamFigure('<0.3'),
   'repeat-repeatdelay': createRepeatFigure(2, 0.3),
@@ -321,17 +326,12 @@ const TIMELINE_FIGURES = {
     cycle: (tl, boxes, groups) => {
       const visibleCubes = boxes.slice(1, 6);
       visibleCubes.forEach((cube) =>
-        tl.to(cube, { x: cube.x + 44, duration: 0.8, ease: 'none' }, 0)
+        tl.to(cube, { x: cube.x + 44, duration: 0.8, ease: 'none' }, 0),
       );
       tl.to(groups[5], { opacity: 0, duration: 0.8, ease: 'none' }, 0)
         .to(boxes[6], { x: -110, duration: 0.8, ease: 'none' }, 0)
         .to(groups[6], { opacity: 1, duration: 0.8, ease: 'none' }, 0)
-        .add(() => {
-          visibleCubes.forEach((cube, index) => {
-            cube.x = -110 + 44 * index;
-          });
-          boxes[6].x = -154;
-        })
+        .add(() => resetSeamlessCubes(visibleCubes, boxes[6]))
         .set(groups[5], { opacity: 1 })
         .set(groups[6], { opacity: 0 });
     },
@@ -398,9 +398,9 @@ const CORE_API_FIGURES = {
       tl.to(
         box,
         { z: 30, x: LANE_START_X + 60, duration: 0.3, ease: 'power2.out' },
-        0.25 * index
+        0.25 * index,
       ).to(box, { z: 6, duration: 0.25, ease: 'power2.in' }, 0.25 * index + 0.3);
-    })
+    }),
   ),
   'gsap-set': {
     model: () => [{ ...TRACK_BASE }, createTargetMarker(86), { ...CUBE_ACCENT }],
@@ -427,7 +427,7 @@ const CORE_API_FIGURES = {
     ],
     cycle: (tl, boxes) => {
       boxes.slice(1).forEach((bar, index) =>
-        tl.to(bar, { h: 30, duration: 0.08, ease: 'none' }, 0.2 * index)
+        tl.to(bar, { h: 30, duration: 0.08, ease: 'none' }, 0.2 * index),
       );
       addPause(tl, 0.4);
       tl.to(boxes.slice(1), { h: 0, duration: 0.25, ease: 'power2.in' });
@@ -445,7 +445,7 @@ const CORE_API_FIGURES = {
       tl.to(boxes[2], { x: 86, duration: 1, ease: 'power2.inOut' }, 0).to(
         boxes[3],
         { x: 34, duration: 1, ease: 'power2.inOut' },
-        0
+        0,
       );
       addPause(tl, 0.4);
       fadeResetBoxes(
@@ -454,7 +454,7 @@ const CORE_API_FIGURES = {
           { b: boxes[2], g: groups[2] },
           { b: boxes[3], g: groups[3] },
         ],
-        [{ x: -110 }, { x: -54 }]
+        [{ x: -110 }, { x: -54 }],
       );
     },
   },
@@ -509,8 +509,8 @@ const CORE_API_FIGURES = {
   },
 };
 
-const createScrollIndicator = (x = LANE_START_X) =>
-  createLaneCube(x, 0, { h: 10 });
+const createScrollIndicator = (x = LANE_START_X) => createLaneCube(x, 0, { h: 10 });
+
 const createSplitCharBox = (index, overrides = {}) => ({
   x: -110 + 44 * index,
   y: -10,
@@ -521,6 +521,7 @@ const createSplitCharBox = (index, overrides = {}) => ({
   accent: index === 0,
   ...overrides,
 });
+
 const SQUARE_BOARD_BASE = { x: -100, y: -80, z: 0, w: 200, d: 160, h: 6 };
 
 const PLUGIN_FIGURES = {
@@ -550,19 +551,11 @@ const PLUGIN_FIGURES = {
     ],
     cycle: (tl, boxes) => {
       tl.to(boxes[2], { x: 86, duration: 0.8, ease: 'power3.inOut' }, 0)
-        .to(
-          boxes[2],
-          { z: 40, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 },
-          0
-        )
+        .to(boxes[2], { z: 40, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 }, 0)
         .to(boxes[1], { x: -110, duration: 0.8, ease: 'power3.inOut' }, 0);
       addPause(tl, 0.4);
       tl.to(boxes[2], { x: -110, duration: 0.8, ease: 'power3.inOut' }, '>')
-        .to(
-          boxes[2],
-          { z: 40, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 },
-          '<'
-        )
+        .to(boxes[2], { z: 40, duration: 0.4, ease: 'power2.out', yoyo: true, repeat: 1 }, '<')
         .to(boxes[1], { x: 86, duration: 0.8, ease: 'power3.inOut' }, '<');
       addPause(tl, 0.3);
     },
@@ -583,15 +576,15 @@ const PLUGIN_FIGURES = {
         tl.to(
           box,
           { x: -12, y: -66 + 46 * index, duration: 0.6, ease: 'power3.inOut' },
-          0
-        )
+          0,
+        ),
       );
       boxes.slice(1).forEach((box, index) =>
         tl.to(
           box,
           { x: -80 + 60 * index, y: -12, duration: 0.6, ease: 'power3.inOut' },
-          1.1
-        )
+          1.1,
+        ),
       );
       addPause(tl, 0.4);
     },
@@ -602,7 +595,7 @@ const PLUGIN_FIGURES = {
       tl.to(boxes[2], { x: 86, duration: 1.1, ease: 'power1.inOut' }, 0).to(
         boxes[2],
         { z: 64, duration: 0.55, ease: 'sine.out', yoyo: true, repeat: 1 },
-        0
+        0,
       );
       addPause(tl, 0.4);
       fadeResetBoxes(tl, [{ b: boxes[2], g: groups[2] }], [{ x: -110 }]);
@@ -631,7 +624,7 @@ const PLUGIN_FIGURES = {
         tl.set(boxes[1], { x: targetX }, 0.45 * index).to(
           boxes[2],
           { x: targetX, duration: 0.5, ease: 'power3.out' },
-          0.45 * index + 0.05
+          0.45 * index + 0.05,
         );
       });
       tl.set(boxes[1], { x: -40 });
@@ -664,7 +657,7 @@ const REACT_FIGURES = {
       addPause(tl, 0.4);
       tl.set(laneBoxes, { x: LANE_START_X, z: 6 });
     },
-    { tail: 0.5 }
+    { tail: 0.5 },
   ),
 };
 
@@ -679,7 +672,7 @@ const DOC_FIGURES = {
       tl.to(boxes[2], { z: 70, duration: 0.5, ease: 'power2.out' }).to(
         boxes[2],
         { z: 6, duration: 0.6, ease: 'bounce.out' },
-        '+=0.15'
+        '+=0.15',
       );
       addPause(tl, 0.5);
     },
@@ -696,7 +689,7 @@ const DOC_FIGURES = {
       tl.to(boxes[4], { x: 64, duration: 0.9, ease: 'power3.inOut' }, 0).to(
         boxes[4],
         { z: 46, duration: 0.45, ease: 'sine.out', yoyo: true, repeat: 1 },
-        0
+        0,
       );
       addPause(tl, 0.5);
       fadeResetBoxes(tl, [{ b: boxes[4], g: groups[4] }], [{ x: -90 }]);
@@ -711,7 +704,7 @@ const DOC_FIGURES = {
     tl.to(laneBoxes[0], { x: 92, duration: 0.9, ease: 'expo.out' }, 0).set(
       laneBoxes[2],
       { x: 92 },
-      0.45
+      0.45,
     );
   }),
   'doc-mcp': {
@@ -725,7 +718,7 @@ const DOC_FIGURES = {
       tl.to(boxes[3], { x: 68, duration: 1, ease: 'power2.inOut' }, 0).to(
         boxes[3],
         { z: 6, duration: 1, ease: 'power2.in' },
-        0
+        0,
       );
       addPause(tl, 0.5);
       fadeResetBoxes(tl, [{ b: boxes[3], g: groups[3] }], [{ x: -96, z: 46 }]);
@@ -748,7 +741,7 @@ const DOC_FIGURES = {
       tl.set(boxes[5], { z: 70 }).to(
         boxes[5],
         { z: 4, duration: 0.7, ease: 'expo.out' },
-        '+=0.15'
+        '+=0.15',
       );
       addPause(tl, 0.6);
     },
@@ -770,7 +763,7 @@ const ALL_FIGURES = {
       tl.to(boxes[2], { x: 92, duration: 1.4, ease: 'none' }, 0).to(
         boxes[3],
         { x: 92, duration: 0.7, ease: 'expo.out' },
-        0.62
+        0.62,
       );
       addPause(tl, 0.4);
       fadeResetBoxes(
@@ -779,7 +772,7 @@ const ALL_FIGURES = {
           { b: boxes[2], g: groups[2] },
           { b: boxes[3], g: groups[3] },
         ],
-        [{ x: LANE_START_X }, { x: LANE_START_X }]
+        [{ x: LANE_START_X }, { x: LANE_START_X }],
       );
     },
   },
@@ -799,7 +792,7 @@ const ALL_FIGURES = {
         tl.to(boxes[1], { x: targetX, duration, ease: 'power1.inOut' }).to(
           boxes[2],
           { x: targetX, duration, ease: 'power1.inOut' },
-          '<'
+          '<',
         );
       });
       addPause(tl, 0.3);
@@ -816,13 +809,13 @@ const ALL_FIGURES = {
       tl.to(boxes[2], { x: 30, duration: 0.7, ease: 'none' }).to(
         boxes[3],
         { z: 36, duration: 0.4, ease: 'expo.out' },
-        0.35
+        0.35,
       );
       addPause(tl, 0.3);
       tl.to(boxes[2], { x: LANE_START_X, duration: 0.7, ease: 'none' }).to(
         boxes[3],
         { z: 6, duration: 0.4, ease: 'expo.in' },
-        '<0.3'
+        '<0.3',
       );
       addPause(tl, 0.4);
     },
@@ -880,7 +873,7 @@ const ALL_FIGURES = {
       [-30, 50, 86].forEach((stopX) => {
         tl.to(boxes[4], { x: stopX - 18, duration: 0.35, ease: 'power1.out' }).to(
           boxes[4],
-          { x: stopX, duration: 0.3, ease: 'power3.out' }
+          { x: stopX, duration: 0.3, ease: 'power3.out' },
         );
         addPause(tl, 0.2);
       });
@@ -909,7 +902,7 @@ const ALL_FIGURES = {
       tl.to(boxes[1], { x: 92, duration: 0.5, ease: 'power1.inOut' }, 0).to(
         boxes[2],
         { x: 92, duration: 1.3, ease: 'power3.out' },
-        0.05
+        0.05,
       );
       addPause(tl, 0.35);
       fadeResetBoxes(
@@ -918,7 +911,7 @@ const ALL_FIGURES = {
           { b: boxes[1], g: groups[1] },
           { b: boxes[2], g: groups[2] },
         ],
-        [{ x: LANE_START_X }, { x: LANE_START_X }]
+        [{ x: LANE_START_X }, { x: LANE_START_X }],
       );
     },
   },
@@ -939,18 +932,18 @@ const ALL_FIGURES = {
         createLaneCube(-100 + (index % 3) * 70, index < 3 ? 0 : 2, {
           accent: index === 0,
           h: 0,
-        })
+        }),
       ),
     ],
     cycle: (tl, boxes) => {
       tl.to(
         boxes.slice(1, 4),
         { h: 22, duration: 0.4, ease: 'back.out(2)' },
-        0.1
+        0.1,
       ).to(
         boxes.slice(4),
         { h: 22, duration: 0.4, ease: 'back.out(2)' },
-        0.75
+        0.75,
       );
       addPause(tl, 0.5);
       tl.to(boxes.slice(1), { h: 0, duration: 0.25, ease: 'power2.in' });
@@ -963,14 +956,14 @@ const ALL_FIGURES = {
       tl.to(boxes[0], { w: 170, duration: 0.5, ease: 'power2.inOut' }).to(
         boxes[1],
         { x: 16, duration: 0.5, ease: 'power2.inOut' },
-        '<'
+        '<',
       );
       tl.to(boxes[2], { x: 16, duration: 0.8, ease: 'expo.out' });
       addPause(tl, 0.4);
       tl.to(boxes[0], { w: 240, duration: 0.4, ease: 'power2.inOut' }).to(
         boxes[1],
         { x: 86, duration: 0.4, ease: 'power2.inOut' },
-        '<'
+        '<',
       );
       fadeResetBoxes(tl, [{ b: boxes[2], g: groups[2] }], [{ x: -110 }]);
     },
@@ -990,16 +983,16 @@ const ALL_FIGURES = {
             duration: 0.5,
             ease: 'power3.out',
           },
-          0.04 * index
-        )
+          0.04 * index,
+        ),
       );
       addPause(tl, 0.4);
       boxes.slice(1).forEach((box, index) =>
         tl.to(
           box,
           { x: -110 + 44 * index, z: 6, duration: 0.5, ease: 'power3.inOut' },
-          '<'
-        )
+          '<',
+        ),
       );
       addPause(tl, 0.4);
     },
@@ -1008,14 +1001,14 @@ const ALL_FIGURES = {
     model: () => [
       { ...TRACK_BASE },
       ...Array.from({ length: 5 }, (_, index) =>
-        createSplitCharBox(index, { w: 40 })
+        createSplitCharBox(index, { w: 40 }),
       ),
     ],
     cycle: (tl, boxes) => {
       tl.set(boxes.slice(1), { h: 0 }).to(
         boxes.slice(1),
         { h: 14, duration: 0.45, ease: 'expo.out', stagger: 0.09 },
-        '+=0.15'
+        '+=0.15',
       );
       addPause(tl, 0.6);
     },
@@ -1046,8 +1039,8 @@ const ALL_FIGURES = {
         tl.to(
           box,
           { h: targetHeights[index], duration: 0.15, ease: 'power2.out' },
-          `>-${0.1 * !!index}`
-        )
+          `>-${0.1 * !!index}`,
+        ),
       );
       addPause(tl, 0.6);
     },
@@ -1068,7 +1061,7 @@ const ALL_FIGURES = {
     cycle: (tl, _, groups) => {
       tl.set(groups.slice(1), { opacity: 0 });
       groups.slice(1).forEach((group, index) =>
-        tl.set(group, { opacity: 1 }, 0.25 + 0.12 * index)
+        tl.set(group, { opacity: 1 }, 0.25 + 0.12 * index),
       );
       addPause(tl, 0.7);
     },
@@ -1110,7 +1103,7 @@ const ALL_FIGURES = {
             duration: 0.55,
             ease: 'power3.inOut',
           },
-          '+=0.15'
+          '+=0.15',
         )
         .to(
           boxes[1],
@@ -1123,7 +1116,7 @@ const ALL_FIGURES = {
             duration: 0.55,
             ease: 'power3.inOut',
           },
-          '+=0.15'
+          '+=0.15',
         );
       addPause(tl, 0.4);
     },
@@ -1220,7 +1213,7 @@ const ALL_FIGURES = {
     cycle: (tl, boxes, groups) => {
       tl.to(boxes[2], { x: -12, z: 30, duration: 0.6, ease: 'expo.out' }).to(
         boxes[2],
-        { z: 6, duration: 0.3, ease: 'power2.in' }
+        { z: 6, duration: 0.3, ease: 'power2.in' },
       );
       addPause(tl, 0.4);
       tl.to(groups[1], { opacity: 0, duration: 0.15 })
@@ -1249,7 +1242,7 @@ const createInteractiveEaseSpec = (defaultEase, defaultDuration = 1) => ({
       ...COMMON_EASES.filter((ease) => ease !== defaultEase),
     ],
     duration: [...new Set([0.5, 1, 1.5, defaultDuration])].sort(
-      (a, b) => a - b
+      (a, b) => a - b,
     ),
   },
   code: [
@@ -1362,7 +1355,6 @@ const INTERACTIVE_SPECS = {
   },
 };
 
-// NOTE: module id: 158024
 export function getFigureDefinition(key) {
   return ALL_FIGURES[key] || null;
 }
@@ -1372,4 +1364,3 @@ export function getInteractiveFigureSpec(key) {
 }
 
 export { getFigureDefinition as I, getInteractiveFigureSpec as s };
-

@@ -1,6 +1,8 @@
-// Variable Mapping: R -> badgeVariants, z -> Badge, e -> className, a -> variant, r -> children, n -> props
+'use client';
 
-import { cva } from 'class-variance-authority'; // NOTE: module id: 665623
+// Variable Mapping: R -> badgeVariants, z -> Badge, e -> className, a -> variant, r -> children, n -> restProps
+
+import { cva } from 'class-variance-authority';
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 const badgeVariants = cva(
@@ -22,9 +24,9 @@ const badgeVariants = cva(
 );
 
 // NOTE: module id: 583246
-export default function Badge({ className, variant, children, ...props }) {
+export function Badge({ className, variant, children, ...restProps }) {
   return (
-    <span className={cn(badgeVariants({ variant }), className)} {...props}>
+    <span className={cn(badgeVariants({ variant }), className)} {...restProps}>
       {children}
     </span>
   );

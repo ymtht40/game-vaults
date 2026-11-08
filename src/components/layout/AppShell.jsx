@@ -1,49 +1,52 @@
 'use client';
 
-// Variable Mapping: eh -> isShellMounted, default -> AppShell?, e -> children, s -> isMounted, o -> setIsMounted, c -> authTimedOut, d -> setAuthTimedOut, u -> scrollerRef, f -> isScrollerReady, m -> setIsScrollerReady, h -> handleScrollerReady, p -> pathname, g -> routeConfig, x -> edgeToEdge, b -> hasSidebar, v -> movesTransitionContent, y -> isE2eTestingMode, A -> setIsE2eTestingMode, E -> addReadyGate, M -> hasAddedReadyGateRef, _ -> releaseReadyGateRef, S -> releaseReadyGate, C -> isAuthResolved, N -> isShellReady, (watchdog effect) e -> timeoutId
+/* Variable Mapping:
+ * eh -> hasMountedAppShell, e -> children, n -> user, l -> profile,
+ * i -> loading, s -> isMounted, o -> setIsMounted, c -> authTimedOut,
+ * d -> setAuthTimedOut, u -> scrollerRef, f -> scrollerReady,
+ * m -> setScrollerReady, h -> handleScrollerReady, p -> pathname,
+ * g -> routeConfig, x -> isEdgeToEdge, b -> hasSidebar,
+ * v -> movesTransitionContent, y -> isE2eTestingMode, A -> setIsE2eTestingMode,
+ * E -> addReadyGate, M -> gateRegisteredRef, _ -> releaseReadyGateRef,
+ * S -> releaseReadyGate, C -> isAuthResolved, N -> isShellReady
+ */
 
-import { useCallback, useEffect, useRef, useState } from 'react'; // NOTE: module id: 271645
-import { usePathname } from 'next/navigation'; // NOTE: module id: 618566
-import gsap from 'gsap'; // NOTE: module id: 989970
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // NOTE: module id: 883495
-
-// import '@/lib/sideEffects'; // NOTE: module id: 627731
-import { getRouteConfig, getRouteGroup } from '@/libs/config/routeConfig'; // NOTE: module id: 107255
-import SidebarMobileTrigger from '@/features/sidebar/SidebarMobileTrigger';
-import Sidebar from '@/features/sidebar/Sidebar'; // NOTE: module id: 187797
-import UserProfileDropdown from '@/features/sidebar/UserProfileDropdown'; // NOTE: module id: 490620
-import LenisProvider from '@/contexts/LenisProvider'; // NOTE: module id: 776017
-import SidebarProvider from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
-import Header from '@/components/header/Header'; // NOTE: module id: 76624
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import '@/libs/auth/authHashErrorHandler'; // NOTE: module id: 627731 // UNRESOLVED: side-effect import guessed from tree
+import { getRouteConfig } from '@/libs/config/routeConfig'; // NOTE: module id: 107255 // UNRESOLVED: name guessed from usage
+import { AnnouncementHost } from '@/components/announcements/AnnouncementHost'; // NOTE: module id: 583246
 import Footer from '@/components/footer/Footer'; // NOTE: module id: 297428
-
-import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
+import Header from '@/components/header/Header'; // NOTE: module id: 76624
+import { LoadingScreen } from '@/components/layout/LoadingScreen'; // NOTE: module id: 583246
+import { ScrollerSync } from '@/components/layout/ScrollerSync'; // NOTE: module id: 583246
+import { SidebarNav } from '@/components/navigation/SidebarNav'; // NOTE: module id: 583246
+import { OnboardingChecklist } from '@/components/onboarding/OnboardingChecklist'; // NOTE: module id: 583246
 import { useAnimation } from '@/contexts/AnimationProvider'; // NOTE: module id: 488463
-
+import LenisProvider from '@/contexts/LenisProvider'; // NOTE: module id: 776017
 import { OnboardingProvider } from '@/contexts/OnboardingProvider'; // NOTE: module id: 92451
-import AnnouncementHost from '@/components/announcements/AnnouncementHost';
-import LoadingScreen from '@/components/layout/LoadingScreen';
-import OnboardingChecklist from '@/components/onboarding/OnboardingChecklist';
-import ScrollerSync from '@/components/layout/ScrollerSync';
-import SidebarNav from '@/components/navigation/SidebarNav';
+import SidebarProvider from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
+import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
+import Sidebar from '@/features/sidebar/Sidebar'; // NOTE: module id: 187797
+import SidebarMobileTrigger from '@/features/sidebar/SidebarMobileTrigger'; // NOTE: module id: 977303
+import UserProfileDropdown from '@/features/sidebar/UserProfileDropdown'; // NOTE: module id: 490620
 
 gsap.registerPlugin(ScrollTrigger);
 
-let isShellMounted = false;
+let hasMountedAppShell = false;
 
-// Register the auth watchdog only in the browser
-if (typeof window !== 'undefined') {
-  setTimeout(() => {
-    if (!isShellMounted) {
-      try {
-        if (!sessionStorage.getItem('anm-auth-watchdog')) {
-          sessionStorage.setItem('anm-auth-watchdog', '1');
-          window.location.reload();
-        }
-      } catch {}
-    }
-  }, 1e4);
-}
+setTimeout(() => {
+  if (!hasMountedAppShell) {
+    try {
+      if (!sessionStorage.getItem('anm-auth-watchdog')) {
+        sessionStorage.setItem('anm-auth-watchdog', '1');
+        window.location.reload();
+      }
+    } catch {}
+  }
+}, 10000);
 
 // NOTE: module id: 583246
 export default function AppShell({ children }) {
@@ -58,7 +61,8 @@ export default function AppShell({ children }) {
       } catch {}
       return;
     }
-    const timeoutId = setTimeout(() => {
+
+    const timerId = setTimeout(() => {
       try {
         if (!sessionStorage.getItem('anm-auth-watchdog')) {
           sessionStorage.setItem('anm-auth-watchdog', '1');
@@ -67,24 +71,21 @@ export default function AppShell({ children }) {
         }
       } catch {}
       setAuthTimedOut(true);
-    }, 8e3);
-    return () => clearTimeout(timeoutId);
+    }, 8000);
+
+    return () => clearTimeout(timerId);
   }, [loading]);
 
   const scrollerRef = useRef(null);
-  const [isScrollerReady, setIsScrollerReady] = useState(false);
-  const handleScrollerReady = useCallback(() => setIsScrollerReady(true), []);
+  const [scrollerReady, setScrollerReady] = useState(false);
+  const handleScrollerReady = useCallback(() => setScrollerReady(true), []);
+
   const pathname = usePathname();
   const routeConfig = getRouteConfig(pathname);
-  // Marketing, auth and standalone pages are always public (this also covers /_not-found)
-  const isPublicRoute =
-    routeConfig.public ||
-    ['marketing', 'auth', 'standalone'].includes(getRouteGroup(pathname));
-  // /login renders its own BrandLogo, so the global Header would duplicate it
-  const hidesGlobalHeader = pathname === '/login' || pathname?.startsWith('/login/');
-  const edgeToEdge = routeConfig.edgeToEdge;
+  const isEdgeToEdge = routeConfig.edgeToEdge;
   const hasSidebar = routeConfig.sidebar;
   const movesTransitionContent = hasSidebar || routeConfig.movesTransitionContent;
+
   const [isE2eTestingMode, setIsE2eTestingMode] = useState(false);
 
   useEffect(() => {
@@ -93,16 +94,18 @@ export default function AppShell({ children }) {
 
   useEffect(() => {
     setIsMounted(true);
-    isShellMounted = true;
+    hasMountedAppShell = true;
   }, []);
 
   const { addReadyGate } = useAnimation();
-  const hasAddedReadyGateRef = useRef(false);
+  const gateRegisteredRef = useRef(false);
   const releaseReadyGateRef = useRef(null);
-  if (!hasAddedReadyGateRef.current) {
-    hasAddedReadyGateRef.current = true;
+
+  if (!gateRegisteredRef.current) {
+    gateRegisteredRef.current = true;
     releaseReadyGateRef.current = addReadyGate('app-shell');
   }
+
   const releaseReadyGate = useCallback(() => {
     releaseReadyGateRef.current?.();
     releaseReadyGateRef.current = null;
@@ -113,23 +116,17 @@ export default function AppShell({ children }) {
   const isAuthResolved = !loading || authTimedOut;
   const isShellReady =
     (isMounted && isAuthResolved && !user && !isE2eTestingMode) ||
-    (isMounted && isAuthResolved && (user || isE2eTestingMode) && isScrollerReady);
+    (isMounted && isAuthResolved && (user || isE2eTestingMode) && scrollerReady);
 
   useEffect(() => {
-    if (isShellReady) releaseReadyGate();
+    if (isShellReady) {
+      releaseReadyGate();
+    }
   }, [isShellReady, releaseReadyGate]);
 
-  // Redirect unauthenticated visitors away from private routes (client-side only)
-  const shouldRedirectHome =
-    isAuthResolved && !user && !isE2eTestingMode && !isPublicRoute;
-
-  useEffect(() => {
-    if (shouldRedirectHome) {
-      window.location.href = '/';
-    }
-  }, [shouldRedirectHome]);
-
-  if (!isAuthResolved) return <LoadingScreen type="app" />;
+  if (!isAuthResolved) {
+    return <LoadingScreen type="app" />;
+  }
 
   if (user || isE2eTestingMode) {
     return (
@@ -155,7 +152,7 @@ export default function AppShell({ children }) {
             <div
               ref={scrollerRef}
               className={
-                edgeToEdge
+                isEdgeToEdge
                   ? 'flex-1 overflow-auto relative z-10 bg-secondary'
                   : 'flex-1 overflow-auto relative z-10 p-16'
               }
@@ -174,11 +171,11 @@ export default function AppShell({ children }) {
     );
   }
 
-  if (isPublicRoute) {
+  if (routeConfig.public) {
     return (
       <LenisProvider>
         <div className="v2-marketing">
-          {hidesGlobalHeader ? null : <Header />}
+          <Header />
           <main
             className={
               hasSidebar
@@ -197,6 +194,7 @@ export default function AppShell({ children }) {
       </LenisProvider>
     );
   }
-  // Show a loading screen while the effect above performs the redirect
+
+  window.location.href = '/';
   return <LoadingScreen type="app" />;
 }

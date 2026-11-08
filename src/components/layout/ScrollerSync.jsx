@@ -1,19 +1,25 @@
 'use client';
 
-// Variable Mapping: ev -> ScrollerSync, e -> scrollerRef, t -> onReady, a -> scroller, r -> handleScroll, n -> resizeObserver, i -> pendingFrame, s -> content, (observer) e -> lastHeight, t -> entries, a -> height, (cleanup) e -> trigger, (scrollTop) e -> value
+/* Variable Mapping:
+ * ev -> ScrollerSync, e -> scrollerRef, t -> onReady, a -> scrollerEl,
+ * r -> handleScroll, n -> resizeObserver, i -> rafId, s -> contentEl
+ */
 
-import { useEffect } from 'react'; // NOTE: module id: 271645
-import { ScrollTrigger } from 'gsap/ScrollTrigger'; // NOTE: module id: 883495
+import { useEffect } from 'react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // NOTE: module id: 583246
-export default function ScrollerSync({ scrollerRef, onReady }) {
+export function ScrollerSync({ scrollerRef, onReady }) {
   useEffect(() => {
-    const scroller = scrollerRef.current;
-    if (!scroller) return;
-    ScrollTrigger.scrollerProxy(scroller, {
+    const scrollerEl = scrollerRef.current;
+    if (!scrollerEl) return;
+
+    ScrollTrigger.scrollerProxy(scrollerEl, {
       scrollTop(value) {
-        if (arguments.length) scroller.scrollTop = value;
-        return scroller.scrollTop;
+        if (arguments.length) {
+          scrollerEl.scrollTop = value;
+        }
+        return scrollerEl.scrollTop;
       },
       getBoundingClientRect: () => ({
         top: 0,
@@ -23,34 +29,47 @@ export default function ScrollerSync({ scrollerRef, onReady }) {
       }),
       pinType: 'fixed',
     });
-    ScrollTrigger.defaults({ scroller });
+
+    ScrollTrigger.defaults({ scroller: scrollerEl });
+
     const handleScroll = () => ScrollTrigger.update();
-    scroller.addEventListener('scroll', handleScroll, { passive: true });
+    scrollerEl.addEventListener('scroll', handleScroll, { passive: true });
+
     let resizeObserver = null;
-    let pendingFrame = null;
-    const content = scroller.firstElementChild;
-    if (content && typeof ResizeObserver !== 'undefined') {
-      let lastHeight = content.getBoundingClientRect().height;
+    let rafId = null;
+    const contentEl = scrollerEl.firstElementChild;
+
+    if (contentEl && typeof ResizeObserver !== 'undefined') {
+      let lastHeight = contentEl.getBoundingClientRect().height;
       resizeObserver = new ResizeObserver((entries) => {
-        if (pendingFrame != null) return;
-        const height = entries[0]?.contentRect?.height ?? lastHeight;
-        if (Math.abs(height - lastHeight) < 1) return;
-        lastHeight = height;
-        pendingFrame = requestAnimationFrame(() => {
-          pendingFrame = null;
-          ScrollTrigger.refresh();
-        });
+        if (rafId != null) return;
+        const nextHeight = entries[0]?.contentRect?.height ?? lastHeight;
+        if (Math.abs(nextHeight - lastHeight) >= 1) {
+          lastHeight = nextHeight;
+          rafId = requestAnimationFrame(() => {
+            rafId = null;
+            ScrollTrigger.refresh();
+          });
+        }
       });
-      resizeObserver.observe(content);
+      resizeObserver.observe(contentEl);
     }
+
     ScrollTrigger.refresh();
     onReady?.();
+
     return () => {
-      scroller.removeEventListener('scroll', handleScroll);
-      if (resizeObserver) resizeObserver.disconnect();
-      if (pendingFrame != null) cancelAnimationFrame(pendingFrame);
+      scrollerEl.removeEventListener('scroll', handleScroll);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
+      if (rafId != null) {
+        cancelAnimationFrame(rafId);
+      }
       ScrollTrigger.getAll().forEach((trigger) => {
-        if (trigger.scroller === scroller) trigger.kill();
+        if (trigger.scroller === scrollerEl) {
+          trigger.kill();
+        }
       });
       ScrollTrigger.defaults({ scroller: window });
     };

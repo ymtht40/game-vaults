@@ -3,7 +3,7 @@
 import Image from 'next/image'; // NOTE: module id: 605500
 import Link from 'next/link'; // NOTE: module id: 522016
 
-import Badge from '@/components/ui/Badge';
+import { Badge } from '@/components/ui/Badge';
 
 const NOTIFICATION_TYPES = {
   animation: { label: 'Animation', variant: 'info' },

@@ -1,19 +1,23 @@
 'use client';
 
-// Variable Mapping: ec -> ANNOUNCEMENTS, ed -> ANNOUNCEMENT_CHECKED_KEY, eu -> trackAnnouncementEvent, ef -> AnnouncementHost, e -> announcement, r -> setAnnouncement, n -> isOpen, l -> setIsOpen, i -> wasActionClickedRef, s -> AnnouncementComponent, (effect) e -> timeoutId, t -> previewId, a -> isCancelled, n -> data, s -> nextAnnouncement, o -> showAnnouncement, (showAnnouncement) t -> retryCount, (handlers) t -> nextOpen / action
+/* Variable Mapping:
+ * ec -> ANNOUNCEMENT_COMPONENTS, ed -> ANNOUNCEMENT_CHECKED_KEY,
+ * eu -> postAnnouncementEvent, ef -> AnnouncementHost, e -> announcement,
+ * r -> setAnnouncement, n -> open, l -> setOpen, i -> actionClickedRef,
+ * s -> AnnouncementComponent
+ */
 
-import { useEffect, useRef, useState } from 'react'; // NOTE: module id: 271645
-
-import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
+import { useEffect, useRef, useState } from 'react';
+import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
 import AffiliateModal from '@/features/affiliate/AffiliateModal'; // NOTE: module id: 634401
 
-const ANNOUNCEMENTS = {
+const ANNOUNCEMENT_COMPONENTS = {
   'affiliate-launch': AffiliateModal,
 };
 
 const ANNOUNCEMENT_CHECKED_KEY = 'anm_announcement_checked';
 
-const trackAnnouncementEvent = (id, event) =>
+const postAnnouncementEvent = (id, event) =>
   fetch('/api/announcements', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -22,79 +26,84 @@ const trackAnnouncementEvent = (id, event) =>
   }).catch(() => {});
 
 // NOTE: module id: 583246
-export default function AnnouncementHost() {
+export function AnnouncementHost() {
   const [announcement, setAnnouncement] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const wasActionClickedRef = useRef(false);
+  const [open, setOpen] = useState(false);
+  const actionClickedRef = useRef(false);
 
   useEffect(() => {
-    let timeoutId;
-    const previewId = new URLSearchParams(window.location.search).get('announcement');
+    let timerId;
+    const previewParam = new URLSearchParams(window.location.search).get('announcement');
+
     try {
-      if (!previewId && sessionStorage.getItem(ANNOUNCEMENT_CHECKED_KEY)) return;
+      if (!previewParam && sessionStorage.getItem(ANNOUNCEMENT_CHECKED_KEY)) {
+        return;
+      }
     } catch {}
-    let isCancelled = false;
-    fetch(
-      `/api/announcements${
-        previewId ? `?preview=${encodeURIComponent(previewId)}` : ''
-      }`
-    )
-      .then((response) => (response.ok ? response.json() : null))
+
+    let cancelled = false;
+
+    fetch(`/api/announcements${previewParam ? `?preview=${encodeURIComponent(previewParam)}` : ''}`)
+      .then((res) => (res.ok ? res.json() : null))
       .then((data) => {
-        if (isCancelled) return;
+        if (cancelled) return;
         try {
-          if (!previewId) sessionStorage.setItem(ANNOUNCEMENT_CHECKED_KEY, '1');
+          if (!previewParam) {
+            sessionStorage.setItem(ANNOUNCEMENT_CHECKED_KEY, '1');
+          }
         } catch {}
-        const nextAnnouncement = data?.announcement;
-        if (!nextAnnouncement || !ANNOUNCEMENTS[nextAnnouncement.id]) return;
-        const showAnnouncement = (retryCount = 0) => {
-          if (
-            [
-              ...document.querySelectorAll('[role="dialog"], [role="alertdialog"]'),
-            ].some(
-              (element) =>
-                !element.closest('[aria-hidden="true"]') &&
-                element.getClientRects().length > 0 &&
-                getComputedStyle(element).visibility !== 'hidden'
-            )
-          ) {
-            if (retryCount < 5) {
-              timeoutId = setTimeout(() => showAnnouncement(retryCount + 1), 2e3);
+
+        const item = data?.announcement;
+        if (!item || !ANNOUNCEMENT_COMPONENTS[item.id]) return;
+
+        const tryShowAnnouncement = (attempt = 0) => {
+          const hasVisibleDialog = [
+            ...document.querySelectorAll('[role="dialog"], [role="alertdialog"]'),
+          ].some(
+            (el) =>
+              !el.closest('[aria-hidden="true"]') &&
+              el.getClientRects().length > 0 &&
+              getComputedStyle(el).visibility !== 'hidden'
+          );
+
+          if (hasVisibleDialog) {
+            if (attempt < 5) {
+              timerId = setTimeout(() => tryShowAnnouncement(attempt + 1), 2000);
             }
             return;
           }
-          wasActionClickedRef.current = false;
-          setAnnouncement(nextAnnouncement);
-          setIsOpen(true);
-          if (!nextAnnouncement.preview) {
-            trackAnnouncementEvent(nextAnnouncement.id, 'shown');
+
+          actionClickedRef.current = false;
+          setAnnouncement(item);
+          setOpen(true);
+          if (!item.preview) {
+            postAnnouncementEvent(item.id, 'shown');
           }
-          analytics.track('announcement_shown', {
-            id: nextAnnouncement.id,
-            preview: nextAnnouncement.preview,
-          });
+          analytics.track('announcement_shown', { id: item.id, preview: item.preview });
         };
-        timeoutId = setTimeout(showAnnouncement, nextAnnouncement.delayMs || 0);
+
+        timerId = setTimeout(tryShowAnnouncement, item.delayMs || 0);
       })
       .catch(() => {});
+
     return () => {
-      isCancelled = true;
-      clearTimeout(timeoutId);
+      cancelled = true;
+      clearTimeout(timerId);
     };
   }, []);
 
   if (!announcement) return null;
 
-  const AnnouncementComponent = ANNOUNCEMENTS[announcement.id];
+  const AnnouncementComponent = ANNOUNCEMENT_COMPONENTS[announcement.id];
 
   return (
     <AnnouncementComponent
-      open={isOpen}
+      open={open}
       onOpenChange={(nextOpen) => {
-        setIsOpen(nextOpen);
-        if (!nextOpen && !wasActionClickedRef.current) {
+        setOpen(nextOpen);
+        if (!nextOpen && !actionClickedRef.current) {
           if (!announcement.preview) {
-            trackAnnouncementEvent(announcement.id, 'dismissed');
+            postAnnouncementEvent(announcement.id, 'dismissed');
           }
           analytics.track('announcement_dismissed', {
             id: announcement.id,
@@ -103,16 +112,16 @@ export default function AnnouncementHost() {
         }
       }}
       onAction={(action) => {
-        wasActionClickedRef.current = true;
+        actionClickedRef.current = true;
         if (!announcement.preview) {
-          trackAnnouncementEvent(announcement.id, 'clicked');
+          postAnnouncementEvent(announcement.id, 'clicked');
         }
         analytics.track('announcement_clicked', {
           id: announcement.id,
           action,
           preview: announcement.preview,
         });
-        setIsOpen(false);
+        setOpen(false);
       }}
     />
   );
