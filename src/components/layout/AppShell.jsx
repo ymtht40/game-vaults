@@ -124,6 +124,15 @@ export default function AppShell({ children }) {
     }
   }, [isShellReady, releaseReadyGate]);
 
+  const needsRedirect =
+    isAuthResolved && !user && !isE2eTestingMode && !routeConfig.public;
+
+  useEffect(() => {
+    if (needsRedirect && pathname !== '/') {
+      window.location.replace('/');
+    }
+  }, [needsRedirect, pathname]);
+
   if (!isAuthResolved) {
     return <LoadingScreen type="app" />;
   }
@@ -195,6 +204,5 @@ export default function AppShell({ children }) {
     );
   }
 
-  window.location.href = '/';
   return <LoadingScreen type="app" />;
 }
