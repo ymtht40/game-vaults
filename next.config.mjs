@@ -1,5 +1,5 @@
 const nextConfig = {
-  allowedDevOrigins: ['13.211.143.127'],
+  allowedDevOrigins: ['3-107-182-159'],
 
   images: {
     remotePatterns: [
