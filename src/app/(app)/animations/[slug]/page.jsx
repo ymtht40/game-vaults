@@ -29,7 +29,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function AnimationDetailPage({ params }) {
+export default async function AnimationSlugPage({ params }) {
   const { slug } = await params;
   if (RESERVED.has(slug)) notFound();
 

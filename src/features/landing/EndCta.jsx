@@ -92,14 +92,14 @@ export default function EndCta({
               <p className="text-mono-sm text-foreground-muted">{eyebrow}</p>
             )}
             
-            <RevealHeadline
+            <RevealHeading
               ref={headingRevealRef}
               as="h2"
               trigger="manual"
               className="max-w-[18ch]"
             >
               {headline}
-            </RevealHeadline>
+            </RevealHeading>
             
             {subtext && (
               <AnimatedText

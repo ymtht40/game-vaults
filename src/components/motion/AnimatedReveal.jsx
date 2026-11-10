@@ -1,1 +1,1 @@
-export { default } from '@/components/motion/PageEnterAnimation';
+export { default } from '@/components/motion/FadeIn';
