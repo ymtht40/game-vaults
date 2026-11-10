@@ -1,5 +1,10 @@
+// next.config.mjs
+const allowedDevOrigins = process.env.ALLOWED_DEV_ORIGINS
+  ? process.env.ALLOWED_DEV_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean)
+  : [];
+
 const nextConfig = {
-  allowedDevOrigins: ['3.107.182.159'],
+  ...(allowedDevOrigins.length > 0 ? { allowedDevOrigins } : {}),
 
   images: {
     remotePatterns: [

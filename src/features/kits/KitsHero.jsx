@@ -9,7 +9,7 @@ import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 9631
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import Reveal from '@/animations/FadeIn'; // NOTE: module id: 460391
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
+import SplitTextReveal from '@/animations/AnimatedText';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { ANNNIMATE_EASE, prefersReducedMotion } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
 // UNRESOLVED: original source path or export names are absent from this chunk.

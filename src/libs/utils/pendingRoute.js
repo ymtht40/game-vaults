@@ -1,13 +1,12 @@
-// Variable Mapping: i -> pendingRoute, u -> setPendingRoute, y -> setPendingRoute, K -> getPendingRoute
+import {
+  setTransitionTarget,
+  getTransitionTarget,
+} from '@/libs/config/getTransitionLabel';
 
-let pendingRoute = null;
-
-// NOTE: module id: 842365
 export function setPendingRoute(route) {
-  pendingRoute = route || null;
+  setTransitionTarget(route);
 }
 
 export function getPendingRoute() {
-  return pendingRoute;
+  return getTransitionTarget();
 }
-

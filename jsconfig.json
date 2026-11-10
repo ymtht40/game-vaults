@@ -15,8 +15,7 @@
   },
   "include": [
     "src/**/*",
-    "next.config.mjs",
-    "env.mjs"
+    "next.config.mjs"
   ],
   "exclude": [
     "node_modules",

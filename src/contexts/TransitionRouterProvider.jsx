@@ -1,4 +1,18 @@
-"use client"; 
+"use client";
+
+import {
+  createContext,
+  useContext,
+  useState,
+  useTransition,
+  useRef,
+  useEffect,
+  useCallback,
+  useMemo
+} from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { setTransitionTarget } from "@/libs/config/getTransitionLabel";
+
 
 import {
   createContext,
@@ -125,26 +139,17 @@ export function TransitionRouterProvider({ children }) {
   let pathname = usePathname();
   let [transitionState, startTransition] = useRouterTransition();
 
-  ((...args) => 0)("Provider mounted, pathname:", pathname, "transition:", transitionState);
-
   let push = useCallback(
     (href, options) => {
-      ((...args) => 0)("push() called:", {
-        href: href,
-        pathname: pathname,
-        options: options
-      });
-      
       if (shouldSkipTransition(pathname, href)) {
-        ((...args) => 0)("push() - skipping transition (same pathname or query-only)");
         return router.push(href, options);
       }
-      
+
       let targetPath = getPathname(href);
-      ((...args) => 0)("push() - starting transition to:", targetPath);
-      
+      setTransitionTarget(targetPath);
+      router.prefetch?.(href);
+
       startTransition(() => {
-        ((...args) => 0)("push() - executing navigation");
         router.push(href, options);
       }, targetPath);
     },
@@ -153,22 +158,15 @@ export function TransitionRouterProvider({ children }) {
 
   let replace = useCallback(
     (href, options) => {
-      ((...args) => 0)("replace() called:", {
-        href: href,
-        pathname: pathname,
-        options: options
-      });
-      
       if (shouldSkipTransition(pathname, href)) {
-        ((...args) => 0)("replace() - skipping transition (same pathname or query-only)");
         return router.replace(href, options);
       }
-      
+
       let targetPath = getPathname(href);
-      ((...args) => 0)("replace() - starting transition to:", targetPath);
-      
+      setTransitionTarget(targetPath);
+      router.prefetch?.(href);
+
       startTransition(() => {
-        ((...args) => 0)("replace() - executing navigation");
         router.replace(href, options);
       }, targetPath);
     },
