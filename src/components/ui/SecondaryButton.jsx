@@ -1,11 +1,9 @@
 'use client';
 
-// Variable Mapping: s -> SIZE_CLASSES, o -> SecondaryButton, f -> SecondaryButton, e -> children, a -> className, i -> size, c -> icon, d -> onClick, u -> fullWidth, m -> type, h -> props, p -> ref, g -> handleLinkClick, x -> buttonClassName
-
 import { forwardRef } from 'react';
-import Link from 'next/link'; // NOTE: module id: 522016
-import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick'; // NOTE: module id: 995289
+import Link from 'next/link';
+import { cn } from '@/libs/utils/className';
+import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick';
 
 const SIZE_CLASSES = {
   xs: 'h-24 lg:h-28 px-10 lg:px-12 text-accent-xs gap-6',
@@ -13,7 +11,6 @@ const SIZE_CLASSES = {
   default: 'h-40 lg:h-48 px-16 lg:px-20 text-mono gap-10'
 };
 
-// NOTE: module id: 511757
 export const SecondaryButton = forwardRef(function (
   {
     children,
@@ -23,6 +20,7 @@ export const SecondaryButton = forwardRef(function (
     icon = null,
     onClick,
     fullWidth = false,
+    inline = false,
     type = 'button',
     disabled = false,
     ...props
@@ -71,4 +69,3 @@ export const SecondaryButton = forwardRef(function (
     </button>
   );
 });
-

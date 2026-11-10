@@ -3,7 +3,7 @@
 // Variable Mapping: f -> useTransitionLinkClick, e -> href, o -> replace, a -> onClick, i -> router, t -> event
 
 import { useContext } from 'react';
-import { TransitionRouterContext } from '@/contexts/TransitionRouterProvider'; // NOTE: module id: 676040
+import TransitionRouterContext from '@/contexts/TransitionRouterProvider'; // NOTE: module id: 676040
 import { setPendingRoute } from '@/libs/utils/pendingRoute'; // NOTE: module id: 842365
 
 // NOTE: module id: 995289

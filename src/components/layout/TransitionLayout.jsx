@@ -1,345 +1,404 @@
+
 'use client';
 
-import React, { useCallback, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation'; // NOTE: module id: 618566
-import gsap from 'gsap'; // NOTE: module id: 989970
-import { useRouterTransition } from '@/contexts/RouterTransitionProvider'; // NOTE: module id: 406262
-import { TransitionRouterProvider } from '@/contexts/TransitionRouterProvider'; // NOTE: module id: 676040
-import { useAnimation } from '@/contexts/AnimationProvider'; // NOTE: module id: 488463
-import { getRouteGroup } from '@/libs/config/routeConfig'; // NOTE: module id: 107255
-import { setPendingRoute, getPendingRoute } from '@/libs/utils/pendingRoute'; // NOTE: module id: 842365
-import { RouterTransitionProvider } from '@/contexts/RouterTransitionProvider';
+import { useRef, useEffect, useCallback } from 'react';
+import { usePathname } from 'next/navigation';
+import gsap from 'gsap';
+import { ScrambleTextPlugin } from '@/libs/utils/vendor';
+import { ASCII_CHARS } from '@/libs/config/consent';
+import { RouterTransition, TransitionRouterProvider } from '@/contexts/TransitionRouterProvider';
+import { useAnimation } from '@/contexts/AnimationProvider';
+import { getLayoutType } from '@/libs/config/GetLayoutType'; 
+import { setTransitionTarget, getTransitionTarget, getTransitionLabel } from '@/libs/config/getTransitionLabel';
 
-const TRANSITION_CONFIGS = {
+gsap.registerPlugin(ScrambleTextPlugin);
+
+const TRANSITION_CONFIG = {
   app: {
     mechanism: 'fade',
     leave: { duration: 0.3, ease: 'power4.out' },
-    enter: { duration: 0.4, ease: 'power4.out' },
+    enter: { duration: 0.4, ease: 'power4.out' }
   },
   sectionFade: {
     mechanism: 'fade',
     leave: { duration: 0.35, ease: 'power2.out' },
-    enter: { duration: 0.5, ease: 'power2.out' },
+    enter: { duration: 0.5, ease: 'power2.out' }
   },
   marketing: {
-    mechanism: 'ground',
-    in: { duration: 0.3, ease: 'expo.out' },
-    out: { duration: 0.4, ease: 'expo.out' },
+    mechanism: 'panel',
+    cover: { duration: 0.6, ease: 'expo.inOut' },
+    reveal: { duration: 0.8, ease: 'expo.inOut' }
   },
   auth: null,
   admin: {
     mechanism: 'fade',
     leave: { duration: 0.3, ease: 'power4.out' },
-    enter: { duration: 0.5, ease: 'power4.out' },
+    enter: { duration: 0.5, ease: 'power4.out' }
   },
   standalone: {
-    mechanism: 'ground',
-    in: { duration: 0.3, ease: 'expo.out' },
-    out: { duration: 0.4, ease: 'expo.out' },
-  },
-};
-
-const DEFAULT_CONFIG = TRANSITION_CONFIGS.marketing;
-const LIGHT_PAGES = ['/pricing', '/kits', '/roadmap'];
-
-function getPageTheme(url) {
-  const cleanPath = (url || '').split(/[?#]/)[0].replace(/(.)\/$/, '$1');
-  return LIGHT_PAGES.includes(cleanPath) ? 'light' : 'dark';
-}
-
-function resolveTransition(layoutType) {
-  return layoutType in TRANSITION_CONFIGS ? TRANSITION_CONFIGS[layoutType] : DEFAULT_CONFIG;
-}
-
-const scrollReset = () => {
-  if (window.lenis) {
-    window.lenis.scrollTo(0, { immediate: true });
-  } else {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    mechanism: 'panel',
+    cover: { duration: 0.6, ease: 'expo.inOut' },
+    reveal: { duration: 0.8, ease: 'expo.inOut' }
   }
 };
 
-const getEffectiveLayoutType = (pathname) => {
-  const layout = getRouteGroup(pathname); // NOTE: module id: 107255
-  if (layout !== 'app') return layout;
-  if (typeof document !== 'undefined' && document.querySelector('[data-anon-app-shell]')) {
-    return 'marketing';
-  }
-  return layout;
+const DEFAULT_CONFIG = {
+  mechanism: 'panel',
+  cover: { duration: 0.6, ease: 'expo.inOut' },
+  reveal: { duration: 0.8, ease: 'expo.inOut' }
 };
 
-const getFirstSegment = (path) =>
-  (path && typeof path === 'string' && path.split('?')[0].split('#')[0].split('/').filter(Boolean)[0]) || '';
+const getConfig = (type) => type in TRANSITION_CONFIG ? TRANSITION_CONFIG[type] : DEFAULT_CONFIG;
 
-const isSameSection = (pathA, pathB) => {
-  const segA = getFirstSegment(pathA);
-  const segB = getFirstSegment(pathB);
-  return segA !== '' && segA === segB;
+const CLIP_COVER = 'inset(50% 50% 50% 50%)';
+const CLIP_REVEAL = 'inset(0% 0% 0% 0%)';
+
+const getWipePolygon = (progress) => {
+  const t = 50 * progress;
+  const p1 = (50 - t).toFixed(3);
+  const p2 = (50 + t).toFixed(3);
+  const p3 = (50 - t).toFixed(3);
+  const p4 = (50 + t).toFixed(3);
+  return `polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, ${p1}% ${p3}%, ${p1}% ${p4}%, ${p2}% ${p4}%, ${p2}% ${p3}%, ${p1}% ${p3}%)`;
 };
 
-// NOTE: module id: 791141
-export default function TransitionLayout({ children }) {
-  const pathname = usePathname(); // NOTE: module id: 618566
-  const { triggerPageEnter, revealPage, onGatesClear } = useAnimation(); // NOTE: module id: 488463
+const debugLog = (...args) => 0;
 
-  const overlayRef = useRef(null);
-  const isBackForwardNav = useRef(false);
-  const currentLayoutType = useRef(null);
-  const previousPathname = useRef(pathname);
-  const isIntercepted = useRef(false);
-  const activeConfig = useRef(null);
-  const animatingElements = useRef([]);
-  const pathRef = useRef(pathname);
+const scrollToTop = () => {
+  if (window.lenis) window.lenis.scrollTo(0, { immediate: true });
+  else window.scrollTo({ top: 0, behavior: 'instant' });
+};
 
-  pathRef.current = pathname;
+const determineLayout = (pathname) => {
+  const type = getLayoutType(pathname);
+  if (type !== 'app') return type;
+  if (typeof document !== 'undefined' && document.querySelector('[data-anon-app-shell]')) return 'marketing';
+  return type;
+};
+
+const getBaseSlug = (url) => url && typeof url === 'string' ? url.split('?')[0].split('#')[0].split('/').filter(Boolean)[0] || '' : '';
+const isSameSection = (urlA, urlB) => {
+  const slugA = getBaseSlug(urlA);
+  return slugA !== '' && slugA === getBaseSlug(urlB);
+};
+
+function TransitionOverlay() {
+  const overlayClass = 'absolute inset-0 [will-change:clip-path]';
+  const initStyle = { clipPath: CLIP_COVER };
+  
+  const { revealed } = useAnimation();
+  const textWrapperRef = useRef(null);
+  const textElRef = useRef(null);
+  const tlRef = useRef(null);
+  const timeoutRef = useRef(null);
+  
+  const cleanup = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    tlRef.current?.kill();
+    tlRef.current = null;
+    
+    if (textWrapperRef.current) gsap.to(textWrapperRef.current, { autoAlpha: 0, duration: 0.3, ease: 'power2.in', overwrite: true });
+  }, []);
 
   useEffect(() => {
-    currentLayoutType.current = getEffectiveLayoutType(pathname);
-  }, [pathname]);
+    if (revealed) cleanup();
+  }, [revealed, cleanup]);
 
-  const leaveCallbackRef = useRef(null);
-  const enterCallbackRef = useRef(null);
+  useEffect(() => {
+    const handleCover = (e) => {
+      const wrapper = textWrapperRef.current;
+      const textEl = textElRef.current;
+      if (!wrapper || !textEl) return;
+      
+      const label = (e.detail?.label || 'Loading').trim() || 'Loading';
+      
+      tlRef.current?.kill();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => cleanup(), 5000);
+      
+      gsap.set(wrapper, { autoAlpha: 1 });
+      
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        textEl.className = 'text-accent-base scramble-brand';
+        textEl.innerText = label;
+        return;
+      }
+      
+      const charCount = label.replace(/\s/g, '').length;
+      textEl.className = 'text-accent-base';
+      textEl.innerText = label.replace(/[^\s]/g, ' ');
+      
+      const tl = gsap.timeline();
+      tl.to(textEl, {
+        duration: 0.8,
+        scrambleText: {
+          text: ((str) => {
+            let res = '';
+            for (const char of str) res += char === ' ' ? ' ' : ASCII_CHARS[Math.floor(Math.random() * ASCII_CHARS.length)];
+            return res;
+          })(label),
+          chars: ASCII_CHARS,
+          speed: 1,
+          revealDelay: 0.1,
+          oldClass: 'scramble-white',
+          newClass: 'scramble-white'
+        },
+        ease: 'none'
+      }, 0);
+      
+      tl.to(textEl, {
+        duration: 0.8,
+        scrambleText: {
+          text: label,
+          chars: ASCII_CHARS,
+          speed: 1,
+          revealDelay: 0.1,
+          oldClass: 'scramble-white',
+          newClass: 'scramble-brand'
+        },
+        ease: 'none'
+      }, charCount > 0 ? 0.8 / charCount : 0);
+      
+      tlRef.current = tl;
+    };
+    
+    const handleReveal = () => cleanup();
+    
+    window.addEventListener('seedtransition:cover', handleCover);
+    window.addEventListener('seedtransition:reveal', handleReveal);
+    
+    return () => {
+      window.removeEventListener('seedtransition:cover', handleCover);
+      window.removeEventListener('seedtransition:reveal', handleReveal);
+      tlRef.current?.kill();
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [cleanup]);
+
+  return (
+    <div id="transition-overlay" aria-hidden="true" className="pointer-events-none fixed inset-0 z-[310] overflow-hidden">
+      <div className={`ts-brand ${overlayClass} bg-brand`} style={initStyle} />
+      <div className={`ts-dark ${overlayClass} bg-[#141314]`} style={initStyle} />
+      <div ref={textWrapperRef} className="absolute inset-0 z-[2] grid place-items-center" style={{ opacity: 0 }}>
+        <span ref={textElRef} className="text-accent-base text-brand">Loading</span>
+      </div>
+    </div>
+  );
+}
+
+export default function TransitionLayout({ children }) {
+  const pathname = usePathname();
+  const { triggerPageEnter, revealPage, onGatesClear } = useAnimation();
+  
+  const currentType = useRef(null);
+  const lastPathname = useRef(pathname);
+  const isIntercepted = useRef(false);
+  const transitionConfig = useRef(null);
+  const leftElements = useRef([]);
+  const leaveRef = useRef(null);
+  const enterRef = useRef(null);
+
+  useEffect(() => {
+    currentType.current = determineLayout(pathname);
+  }, [pathname]);
 
   useEffect(() => {
     if (!('navigation' in window)) {
-      const handlePopState = () => {
-        const nextPath = window.location.pathname;
-        if (nextPath !== previousPathname.current) {
-          previousPathname.current = nextPath;
-          if (enterCallbackRef.current) enterCallbackRef.current();
-        }
+      const fallback = () => {
+        const currentPath = window.location.pathname;
+        if (currentPath === lastPathname.current) return;
+        lastPathname.current = currentPath;
+        if (enterRef.current) enterRef.current();
       };
-      window.addEventListener('popstate', handlePopState);
-      return () => window.removeEventListener('popstate', handlePopState);
+      window.addEventListener('popstate', fallback);
+      return () => window.removeEventListener('popstate', fallback);
     }
-
-    const handleNavigate = (event) => {
-      if (event.navigationType !== 'traverse') return;
-      if (event.hashChange) return;
-
-      const dest = new URL(event.destination.url);
-      if (dest.pathname === window.location.pathname) return;
-
-      if (event.canIntercept && leaveCallbackRef.current) {
+    
+    const onNavigate = (e) => {
+      if (e.navigationType !== 'traverse' || e.hashChange) return;
+      const destUrl = new URL(e.destination.url);
+      const currentPath = window.location.pathname;
+      
+      if (destUrl.pathname === currentPath) return;
+      
+      if (e.canIntercept && leaveRef.current) {
         isIntercepted.current = true;
-        isBackForwardNav.current = true;
-        setPendingRoute(dest.pathname); // NOTE: module id: 842365
-
-        event.intercept({
-          handler: async () => {
-            await leaveCallbackRef.current();
-          },
-        });
+        setTransitionTarget(destUrl.pathname);
+        e.intercept({ handler: async () => await leaveRef.current() });
       }
     };
-
-    const handleNavigateSuccess = () => {
-      if (isIntercepted.current && enterCallbackRef.current) {
+    
+    const onSuccess = () => {
+      if (isIntercepted.current && enterRef.current) {
         isIntercepted.current = false;
-        enterCallbackRef.current();
+        enterRef.current();
       }
     };
-
-    window.navigation.addEventListener('navigate', handleNavigate);
-    window.navigation.addEventListener('navigatesuccess', handleNavigateSuccess);
-
+    
+    window.navigation.addEventListener('navigate', onNavigate);
+    window.navigation.addEventListener('navigatesuccess', onSuccess);
+    
     return () => {
-      window.navigation.removeEventListener('navigate', handleNavigate);
-      window.navigation.removeEventListener('navigatesuccess', handleNavigateSuccess);
+      window.navigation.removeEventListener('navigate', onNavigate);
+      window.navigation.removeEventListener('navigatesuccess', onSuccess);
     };
   }, []);
 
-  const leave = useCallback(async () => {
-    const fromLayout = currentLayoutType.current;
-    const targetPath = getPendingRoute(); // NOTE: module id: 842365
-    const toLayout = targetPath ? getEffectiveLayoutType(targetPath) : fromLayout;
+  const handleLeave = useCallback(async () => {
+    const fromType = currentType.current;
+    const target = getTransitionTarget();
+    const toType = target ? determineLayout(target) : fromType;
     const currentPath = window.location.pathname;
-
-    let config =
-      fromLayout === toLayout
-        ? resolveTransition(fromLayout)
-        : fromLayout === 'marketing' || toLayout === 'marketing'
-        ? resolveTransition('marketing')
-        : resolveTransition(fromLayout);
-
-    if (
-      config &&
-      document.querySelector('[data-anon-sidebar-chrome]') &&
-      isSameSection(currentPath, targetPath)
-    ) {
-      config = resolveTransition('sectionFade');
-    }
-
-    activeConfig.current = config;
+    
+    let config = fromType === toType ? getConfig(fromType) : (fromType === 'marketing' || toType === 'marketing') ? getConfig('marketing') : getConfig(fromType);
+    if (config && isSameSection(currentPath, target)) config = getConfig('sectionFade');
+    
+    transitionConfig.current = config;
     if (!config) return Promise.resolve();
-
-    const transitionTheme = config.mechanism === 'ground' ? getPageTheme(targetPath) : null;
-    queueMicrotask(() => {
-      window.dispatchEvent(new CustomEvent('anm:transition', { detail: { theme: transitionTheme } }));
-    });
-
-    if (config.mechanism === 'ground') {
-      const overlay = overlayRef.current;
-      const skipAnimation = isBackForwardNav.current;
-      isBackForwardNav.current = false;
-
-      if (!overlay || skipAnimation || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    
+    if (config.mechanism === 'panel') {
+      const brandEl = document.querySelector('#transition-overlay .ts-brand');
+      const darkEl = document.querySelector('#transition-overlay .ts-dark');
+      
+      if (!brandEl || !darkEl) {
+        scrollToTop();
         return Promise.resolve();
       }
-
-      gsap.set(overlay, {
-        backgroundColor: getPageTheme(targetPath) === 'light' ? '#eeeeee' : '#141314',
-        pointerEvents: 'auto',
-      });
-
+      
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set('#transition-overlay', { pointerEvents: 'auto' });
+        gsap.set([brandEl, darkEl], { clipPath: CLIP_REVEAL });
+        scrollToTop();
+        return Promise.resolve();
+      }
+      
+      const { duration = 0.6, ease = 'expo.inOut' } = config.cover;
       return new Promise((resolve) => {
-        gsap.to(overlay, {
-          autoAlpha: 1,
-          ...config.in,
-          overwrite: true,
-          onComplete: () => {
-            scrollReset();
-            resolve();
-          },
-        });
+        gsap.set('#transition-overlay', { pointerEvents: 'auto' });
+        window.dispatchEvent(new CustomEvent('seedtransition:cover', { detail: { label: getTransitionLabel() } }));
+        
+        const tl = gsap.timeline({ onComplete: () => { scrollToTop(); resolve(); } });
+        tl.fromTo(brandEl, { clipPath: CLIP_COVER }, { clipPath: CLIP_REVEAL, duration, ease }, 0);
+        tl.fromTo(darkEl, { clipPath: CLIP_COVER }, { clipPath: CLIP_REVEAL, duration, ease }, 0.08);
       });
     }
-
-    const contentElements = document.querySelectorAll('[data-transition-content]');
-    const footerElement = document.querySelector('footer');
-
-    if (contentElements.length === 0) {
-      scrollReset();
-      return;
+    
+    const contentEls = document.querySelectorAll('[data-transition-content]');
+    const footerEl = document.querySelector('footer');
+    
+    if (contentEls.length === 0) {
+      scrollToTop();
+      return Promise.resolve();
     }
-
-    const { duration, ease } = config.leave;
-    const elementsToAnimate = Array.from(contentElements);
-    if (footerElement) elementsToAnimate.push(footerElement);
-    animatingElements.current = elementsToAnimate;
-
+    
+    const { duration: fDur, ease: fEase } = config.leave;
+    const elementsArray = Array.from(contentEls);
+    if (footerEl) elementsArray.push(footerEl);
+    leftElements.current = elementsArray;
+    
     return new Promise((resolve) => {
-      const tl = gsap.timeline({
-        onComplete: () => {
-          scrollReset();
-          resolve();
-        },
-      });
-      tl.to(contentElements, { opacity: 0, duration, ease }, 0);
-      if (footerElement) tl.to(footerElement, { opacity: 0, duration, ease }, 0);
+      const tl = gsap.timeline({ onComplete: () => { scrollToTop(); resolve(); } });
+      tl.to(contentEls, { opacity: 0, duration: fDur, ease: fEase }, 0);
+      if (footerEl) tl.to(footerEl, { opacity: 0, duration: fDur, ease: fEase }, 0);
     });
   }, []);
 
-  const enter = useCallback(async () => {
-    const config = activeConfig.current || resolveTransition(getEffectiveLayoutType(pathname));
+  const handleEnter = useCallback(async () => {
+    const config = transitionConfig.current || getConfig(determineLayout(pathname));
     if (!config) return Promise.resolve();
-
-    const runTrigger = () => {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          triggerPageEnter();
-        });
-      });
-    };
-
-    if (config.mechanism === 'ground') {
-      for (let i = 0; i < 60 && pathRef.current !== window.location.pathname; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 16));
+    
+    const finishEnter = () => requestAnimationFrame(() => requestAnimationFrame(() => triggerPageEnter()));
+    
+    if (config.mechanism === 'panel') {
+      const brandEl = document.querySelector('#transition-overlay .ts-brand');
+      const darkEl = document.querySelector('#transition-overlay .ts-dark');
+      
+      if (!brandEl || !darkEl) {
+        finishEnter();
+        return Promise.resolve();
       }
-
-      scrollReset();
-
-      await new Promise((resolve) => {
-        const timer = setTimeout(resolve, 1500);
-        onGatesClear(() => {
-          clearTimeout(timer);
-          resolve();
-        });
-      });
-
-      await new Promise((resolve) => {
-        const timeout = setTimeout(resolve, 1000);
-        let lastTimestamp = performance.now();
-        let frameCount = 0;
-
-        const checkFrame = (time) => {
-          frameCount = time - lastTimestamp < 40 ? frameCount + 1 : 0;
-          lastTimestamp = time;
-          if (frameCount >= 2) {
-            clearTimeout(timeout);
-            resolve();
-          } else {
-            requestAnimationFrame(checkFrame);
-          }
+      
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        finishEnter();
+        gsap.set([brandEl, darkEl], { clipPath: CLIP_COVER });
+        gsap.set('#transition-overlay', { pointerEvents: 'none' });
+        return Promise.resolve();
+      }
+      
+      const { duration = 0.8, ease = 'expo.inOut' } = config.reveal;
+      return new Promise((resolve) => {
+        let hasRevealed = false;
+        let unregisterGate = null;
+        let revealTimeout = null;
+        
+        const runReveal = () => {
+          if (hasRevealed) return;
+          hasRevealed = true;
+          if (revealTimeout) clearTimeout(revealTimeout);
+          if (unregisterGate) unregisterGate();
+          
+          window.dispatchEvent(new CustomEvent('seedtransition:reveal'));
+          
+          const tl = gsap.timeline({
+            onComplete: () => {
+              revealPage();
+              gsap.set([brandEl, darkEl], { clipPath: CLIP_COVER });
+              gsap.set('#transition-overlay', { pointerEvents: 'none' });
+              resolve();
+            }
+          });
+          
+          const progressObj = { pd: 0, pb: 0 };
+          if (darkEl) darkEl.style.clipPath = getWipePolygon(0);
+          if (brandEl) brandEl.style.clipPath = getWipePolygon(0);
+          
+          tl.to(progressObj, { pd: 1, duration, ease, onUpdate: () => { if (darkEl) darkEl.style.clipPath = getWipePolygon(progressObj.pd); } }, 0);
+          tl.to(progressObj, { pb: 1, duration, ease, onUpdate: () => { if (brandEl) brandEl.style.clipPath = getWipePolygon(progressObj.pb); } }, 0.16);
+          tl.call(revealPage, [], 0.16 + 0.8 * duration);
         };
-
-        requestAnimationFrame(checkFrame);
+        
+        revealTimeout = setTimeout(runReveal, 4000);
+        requestAnimationFrame(() => requestAnimationFrame(() => { unregisterGate = onGatesClear(runReveal); }));
       });
-
-      revealPage();
-
-      const overlay = overlayRef.current;
-      if (!overlay) return;
-
-      await new Promise((resolve) => {
-        gsap.to(overlay, {
-          autoAlpha: 0,
-          ...config.out,
-          overwrite: true,
-          onComplete: () => {
-            gsap.set(overlay, { pointerEvents: 'none' });
-            resolve();
-          },
-        });
-      });
-      return;
     }
-
-    const enterAnim = config.enter;
-    const contentElements = document.querySelectorAll('[data-transition-content]');
-    const footerElement = document.querySelector('footer');
-
-    const nextContentSet = new Set(contentElements);
-    const elementsToReset = animatingElements.current.filter((el) => el && !nextContentSet.has(el));
-    if (elementsToReset.length) {
-      gsap.set(elementsToReset, { opacity: 1 });
+    
+    const { duration: eDur, ease: eEase } = config.enter;
+    const contentEls = document.querySelectorAll('[data-transition-content]');
+    const footerEl = document.querySelector('footer');
+    
+    const currentElSet = new Set(contentEls);
+    const staleEls = leftElements.current.filter((el) => el && !currentElSet.has(el));
+    if (staleEls.length) gsap.set(staleEls, { opacity: 1 });
+    leftElements.current = [];
+    
+    if (contentEls.length === 0) {
+      finishEnter();
+      return Promise.resolve();
     }
-    animatingElements.current = [];
-
-    if (contentElements.length === 0) {
-      runTrigger();
-      return;
-    }
-
-    const { duration, ease } = enterAnim;
+    
     const tl = gsap.timeline();
-
     return new Promise((resolve) => {
-      tl.fromTo(contentElements, { opacity: 0 }, { opacity: 1, duration, ease }, 0);
-      if (footerElement) {
-        tl.fromTo(footerElement, { opacity: 0 }, { opacity: 1, duration, ease }, 0);
-      }
-      tl.call(runTrigger, [], 0);
+      tl.fromTo(contentEls, { opacity: 0 }, { opacity: 1, duration: eDur, ease: eEase }, 0);
+      if (footerEl) tl.fromTo(footerEl, { opacity: 0 }, { opacity: 1, duration: eDur, ease: eEase }, 0);
+      tl.call(finishEnter, [], 0);
       tl.call(() => resolve(), [], '>');
     });
   }, [pathname, triggerPageEnter, revealPage, onGatesClear]);
 
   useEffect(() => {
-    leaveCallbackRef.current = leave;
-    enterCallbackRef.current = enter;
-  }, [leave, enter]);
+    leaveRef.current = handleLeave;
+    enterRef.current = handleEnter;
+  }, [handleLeave, handleEnter]);
 
   return (
-    <RouterTransitionProvider leave={leave} enter={enter}>
+    <RouterTransition leave={handleLeave} enter={handleEnter}>
       <TransitionRouterProvider>
         {children}
-        <div
-          ref={overlayRef}
-          aria-hidden="true"
-          className="pointer-events-none invisible fixed inset-0 z-[299] opacity-0"
-        />
+        <TransitionOverlay />
       </TransitionRouterProvider>
-    </RouterTransitionProvider>
+    </RouterTransition>
   );
 }
-

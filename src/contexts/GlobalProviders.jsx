@@ -195,7 +195,6 @@ export default function GlobalProviders({ children }) {
     <IconContext.Provider value={iconContextValue}>
       {children}
       <AttributionTracker />
-      <DevGridOverlay />
       <ToasterContainer />
       <Suspense fallback={null}>
         <SubscriptionNotifier />

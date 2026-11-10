@@ -14,7 +14,7 @@ import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 52
 import NewsletterForm from '@/features/newsletter/NewsletterForm'; // NOTE: module id: 42242
 import PaywallSubscribedBlock from '@/features/paywall/PaywallSubscribedBlock'; // NOTE: module id: 928862
 import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701
-import { STARTER_PROMPT_DISMISSED_KEY } from '@/features/newsletter/NewsletterForm'; // NOTE: module id: 927627
+import { hasDismissedStarterPrompt } from '@/features/newsletter/NewsletterForm'; // NOTE: module id: 927627
 
 const featuredTestimonial = testimonials[2] || null;
 
@@ -147,7 +147,7 @@ export function PaywallBlock({
   const [isSubscriber, setIsSubscriber] = useState(false);
 
   useEffect(() => {
-    setIsSubscriber(!!STARTER_PROMPT_DISMISSED_KEY());
+    setIsSubscriber(hasDismissedStarterPrompt());
   }, []);
 
   const hasTrackedRef = useRef(false);
@@ -159,7 +159,7 @@ export function PaywallBlock({
         animation_slug: slug,
         animation_name: title,
         in_starter_pack: isInStarterPack,
-        subscriber: !!STARTER_PROMPT_DISMISSED_KEY()
+        subscriber: hasDismissedStarterPrompt()
       });
     }
   }, [trackShown, showStarterPackCapture, slug, title, isInStarterPack]);

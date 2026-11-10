@@ -505,3 +505,13 @@ export default function NewsletterForm({
   );
 }
 
+
+// Read counterpart of markStarterPromptDismissed, safe for SSR and blocked storage
+export function hasDismissedStarterPrompt() {
+  if (typeof window === 'undefined') return false;
+  try {
+    return !!window.localStorage.getItem(STARTER_PROMPT_DISMISSED_KEY);
+  } catch {
+    return false;
+  }
+}

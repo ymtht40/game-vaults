@@ -8,7 +8,7 @@ import { UserProvider } from '@/contexts/UserProvider';
 import { NotificationProvider } from '@/contexts/NotificationProvider';
 import { ThemeProvider } from '@/contexts/ThemeProvider';
 import { CategoryProvider } from '@/contexts/CategoryProvider';
-import GlobalProviders from '@/contexts/GlobalProviders';
+import AppProviders from '@/contexts/AppProviders';
 import { ListSizeProvider } from '@/contexts/ListSizeProvider';
 import PageReadyTrigger from '@/features/common/PageReadyTrigger';
 
@@ -28,11 +28,11 @@ export default function Provider({
               <NotificationProvider value={notifications}>
                 <ThemeProvider>
                   <CategoryProvider value={categories}>
-                  <GlobalProviders>
+                  <AppProviders>
                   <ListSizeProvider>
                     {children}
                     </ListSizeProvider>
-                    </GlobalProviders>
+                    </AppProviders>
                   </CategoryProvider>
                 </ThemeProvider>
               </NotificationProvider>

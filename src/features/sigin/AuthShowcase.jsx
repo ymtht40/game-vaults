@@ -1,10 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-export {
-  DraggableGrid as ImageShowcase,
-} from '@/features/common/DraggableGrid';
-import { usePageEnterAnimation } from '@/contexts/AnimationProvider'; // module id: 488463
+import { DraggableGrid as ImageShowcase } from '@/features/common/DraggableGrid';
+import { usePageEnterAnimation } from '@/contexts/AnimationProvider';
 
 const showcaseLayout = {
   rowCount: 9,
