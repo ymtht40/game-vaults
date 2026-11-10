@@ -13,7 +13,7 @@ import {
   DialogClose,
   DialogTitle,
   DialogDescription,
-} from '@/features/common/Dialog'; // module id: 753145
+} from '@/components/ui/Dialog'; // module id: 753145
 import NewsletterForm from '@/features/newsletter/NewsletterForm'; // module id: 42242
 
 const DISMISSAL_TTL_MS = 2_592_000_000;

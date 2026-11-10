@@ -1,7 +1,7 @@
 import React from 'react';
 import { translate } from '@/libs/utils/i18n';
-import RevealHeading from '@/animations/RevealHeading';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
+import RevealHeading from '@/components/motion/RevealHeading';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 import NewsletterForm from '@/features/newsletter/NewsletterForm';
 
 export default function StarterPackSection({

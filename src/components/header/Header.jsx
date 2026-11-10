@@ -11,14 +11,14 @@ import { BrandLogo } from '@/assets/logos/BrandLogo'; // NOTE: module id: 635566
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { useCategories } from '@/contexts/CategoryProvider'; // NOTE: module id: 87207
+import { useCategories } from '@/providers/CategoryProvider'; // NOTE: module id: 87207
 import { NavDropdownTrigger } from '@/components/header/NavDropdownTrigger'; // NOTE: module id: 76624
 import { MobileNavAccordion } from '@/components/header/MobileNavAccordion'; // NOTE: module id: 76624
 import { HeaderMarquee } from '@/components/header/HeaderMarquee'; // NOTE: module id: 76624
 import { NAV_ITEMS } from '@/components/header/header.config'; // NOTE: module id: 76624
-import { isRouteActive } from '@/libs/config/isRouteActive'; // NOTE: module id: 76624
+import { isRouteActive } from '@/libs/utils/isRouteActive'; // NOTE: module id: 76624
 import { useAuth } from '@/hooks/useAuth'; // NOTE: module id: 76624
-import { useScrollLockContext } from '@/contexts/ScrollLockProvider';
+import { useScrollLockContext } from '@/providers/ScrollLockProvider';
 import { useHeaderState } from '@/hooks/useHeaderState'; // NOTE: module id: 76624
 
 // NOTE: module id: 76624

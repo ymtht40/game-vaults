@@ -3,8 +3,8 @@
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
 import ConceptTooltipLink from '@/components/navigation/ConceptTooltipLink'; // NOTE: module id: 514120
-import ContentCard from '@/features/common/ContentCard'; // NOTE: module id: 292917
-import CodeBlock from '@/features/common/CodeBlock'; // NOTE: module id: 317840
+import ContentCard from '@/components/ui/ContentCard'; // NOTE: module id: 292917
+import CodeBlock from '@/features/animation-detail/components/CodeBlock'; // NOTE: module id: 317840
 import DocDemoLoader from '@/features/demos/DocDemoLoader'; // NOTE: module id: 45119
 
 const EMPTY_SLUG_SET = new Set();

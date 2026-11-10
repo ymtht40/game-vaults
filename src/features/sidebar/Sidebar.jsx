@@ -4,12 +4,12 @@
 
 // NOTE: module id: 187797
 import { useEffect, Fragment } from 'react';
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
+import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 855382
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 // NOTE: Components used internally by the sidebar layout block.
 import { InlineLoader } from '@/components/ui/Loader'; // NOTE: module id: 101836 (Annimate home link)
-import SidebarProvider from '@/contexts/SidebarProvider'; // Extracted from module 855382 helper 'm'
+import SidebarProvider from '@/providers/SidebarProvider'; // Extracted from module 855382 helper 'm'
 import { AnimatedStrokeIcon } from '@/assets/icons/AnimatedStrokeIcon'; // Guess based on ref animation play
 
 // Helper Component extracted from Module 855382 bundle logic that renders the toggle arrow button

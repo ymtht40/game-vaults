@@ -3,7 +3,7 @@
 // Variable Mapping: m -> RoadmapStatItem, e -> label, r -> value, a -> suffix, n -> accent, s -> isMissing, i -> href, l -> Wrapper, c -> wrapperProps
 
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import AnimatedNumber from '@/animations/AnimatedNumber'; // NOTE: module id: 162387
+import AnimatedNumber from '@/components/motion/AnimatedNumber'; // NOTE: module id: 162387
 import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
 
 // NOTE: module id: 626171

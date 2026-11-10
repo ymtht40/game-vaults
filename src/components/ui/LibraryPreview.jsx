@@ -1,7 +1,7 @@
 import React from 'react';
 import TransitionLink from '@/components/navigation/TransitionLink';
 import Button from '@/components/ui/Button';
-import AnimatedHeadline from '@/animations/AnimatedHeadline';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
 
 export function relativeShipped(dateString) {
   if (!dateString) return null;

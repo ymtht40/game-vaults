@@ -4,7 +4,7 @@
 
 import { useRef } from 'react';
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import { IsometricFigure, useIsometricFigureAnimation } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
+import { IsometricFigure, useIsometricFigureAnimation } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import SpecList from '@/components/ui/SpecList'; // NOTE: module id: 567874

@@ -4,12 +4,12 @@
 
 // NOTE: module id: 253454
 import { useState } from 'react';
-import { useTransitionRouter } from '@/contexts/TransitionRouterProvider'; // NOTE: module id: 676040
+import { useTransitionRouter } from '@/providers/TransitionRouterProvider'; // NOTE: module id: 676040
 import Link from 'next/link'; // NOTE: module id: 101836
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'; // Radix primitives replaced manual inline
 import { CreditCard, SignOut, ShieldCheck, CaretUpDown, Gear } from '@phosphor-icons/react';
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
-import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
+import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 855382
+import { useUser } from '@/providers/UserProvider'; // NOTE: module id: 201220
 import { createClient } from '@/libs/supabase/client'; // NOTE: module id: 628469
 import { Avatar } from '@/components/ui/Avatar'; // NOTE: module id: 813920
 import { InlineLoader } from '@/components/ui/Loader'; // NOTE: module id: 461376

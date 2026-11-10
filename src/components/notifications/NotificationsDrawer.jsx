@@ -9,7 +9,7 @@ import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
 
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { X } from '@phosphor-icons/react'; // NOTE: module id: 137410
-import { useScrollLockContext } from '@/contexts/ScrollLockProvider'; // NOTE: module id: 441409
+import { useScrollLockContext } from '@/providers/ScrollLockProvider'; // NOTE: module id: 441409
 import NotificationItem from '@/components/notifications/NotificationItem';
 
 function groupItemsByRecency(entries) {

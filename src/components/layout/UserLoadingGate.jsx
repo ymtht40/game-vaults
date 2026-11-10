@@ -1,7 +1,7 @@
 'use client';
 
 import Loader from '@/components/ui/Loader'; // NOTE: module id: 461376
-import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
+import { useUser } from '@/providers/UserProvider'; // NOTE: module id: 201220
 
 // NOTE: module id: 540374
 export default function UserLoadingGate({ children }) {

@@ -3,7 +3,7 @@ import CocaColaLogo from '@/assets/logos/CocaColaLogo';
 import BodyArmorLogo from '@/assets/logos/BodyArmorLogo';
 import WkndhrsLogo from '@/assets/logos/WkndhrsLogo';
 import PoweradeLogo from '@/assets/logos/PoweradeLogo';
-import AnimatedList from '@/animations/AnimatedList';
+import AnimatedList from '@/components/motion/AnimatedList';
 
 const LOGOS = [
   { name: 'Coca-Cola', Logo: CocaColaLogo, className: 'h-24' },

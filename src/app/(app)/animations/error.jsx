@@ -2,7 +2,7 @@
 
 import { startTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import { EmptyAnimationsState } from '@/features/common/EmptyAnimationsState';
+import { EmptyAnimationsState } from '@/features/animation-page/components/EmptyAnimationsState';
 
 export default function AnimationsError({ reset }) {
   const router = useRouter();

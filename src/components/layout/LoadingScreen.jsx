@@ -2,7 +2,7 @@
 
 // Variable Mapping: W -> LoadingScreen, e -> type
 
-import { ScrambleText } from '@/animations/ScrambleText'; // NOTE: module id: 531530
+import { ScrambleText } from '@/components/motion/ScrambleText'; // NOTE: module id: 531530
 import Loader from '@/components/ui/Loader'; // NOTE: module id: 461376
 
 // NOTE: module id: 583246

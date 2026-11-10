@@ -4,9 +4,9 @@ import { useState, useEffect, useCallback, useContext, useRef } from 'react';
 import { toast } from 'sonner';
 import { analytics } from '@/libs/analytics/posthogAnalytics';
 import { serverEvents } from '@/libs/utils/events';
-import { useTransitionRouter as useTransitionRouterProviderTransition } from '@/contexts/TransitionRouterProvider';
-import { useUser } from '@/contexts/UserProvider';
-import { AnimationSaveContext } from '@/contexts/AnimationSaveContext';
+import { useTransitionRouter as useTransitionRouterProviderTransition } from '@/providers/TransitionRouterProvider';
+import { useUser } from '@/providers/UserProvider';
+import { AnimationSaveContext } from '@/providers/AnimationSaveContext';
 
 export function useSaveAnimation(
   animationId,

@@ -19,9 +19,9 @@
 
 import { useState, useCallback } from 'react';
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/animations/AnimatedText';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
-import FadeIn from '@/animations/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
+import SplitTextReveal from '@/features/demos/SplitTextReveal';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701
 import { FaqItem } from '@/components/faq/FaqItem'; // NOTE: module id: 752362

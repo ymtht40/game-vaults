@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import { useUser } from '@/contexts/UserProvider';
+import { useUser } from '@/providers/UserProvider';
 import { captureFirstTouch, collectAttribution } from '@/libs/auth/getTouchData';
 
 export function AttributionTracker() {

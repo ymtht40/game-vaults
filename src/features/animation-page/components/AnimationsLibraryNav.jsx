@@ -24,10 +24,10 @@
 
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { CaretDown, Check, Columns, CursorClick, MagnifyingGlass, SquaresFour, Rows, X } from '@phosphor-icons/react';
-import AnimatedNumber from '@/animations/AnimatedNumber'; // NOTE: module id: 162387
-import AnimatedTabs from '@/animations/AnimatedTabs'; // NOTE: module id: 876355
+import AnimatedNumber from '@/components/motion/AnimatedNumber'; // NOTE: module id: 162387
+import AnimatedTabs from '@/components/motion/AnimatedTabs'; // NOTE: module id: 876355
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { useScrollLockContext } from '@/contexts/ScrollLockProvider'; // NOTE: module id: 441409
+import { useScrollLockContext } from '@/providers/ScrollLockProvider'; // NOTE: module id: 441409
 
 function ActiveFilterIndicator() {
   return (

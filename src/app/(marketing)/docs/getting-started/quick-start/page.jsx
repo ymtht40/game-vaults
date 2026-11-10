@@ -1,5 +1,5 @@
 import CopyPageButton from '@/features/docs/components/CopyPageButton';
-import ContentCard from '@/features/common/ContentCard';
+import ContentCard from '@/components/ui/ContentCard';
 import CodeWalkthrough from '@/features/docs/CodeWalkthrough';
 import FigurePlayground from '@/features/docs/FigurePlayground';
 import InlineCode from '@/features/docs/InlineCode';

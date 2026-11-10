@@ -12,8 +12,8 @@
 */
 
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { formatEuro } from '@/libs/config/pricingFormatters'; // NOTE: module id: 586818
-import RollerNumber from '@/animations/AnimatedNumber'; // NOTE: module id: 162387
+import { formatEuro } from '@/libs/utils/pricingFormatters'; // NOTE: module id: 586818
+import AnimatedNumber from '@/components/motion/AnimatedNumber'; // NOTE: module id: 162387
 import { CycleTextSwap } from '@/features/pricing/CycleTextSwap'; // NOTE: module id: 586818
 
 // NOTE: module id: 586818
@@ -25,7 +25,7 @@ export function PlanPriceDisplay({ amount, plan, cycle, muted, was }) {
     <div className="flex flex-wrap items-baseline justify-between gap-x-16 gap-y-4">
       <div className="text-h2 inline-flex items-baseline font-medium">
         <span>€</span>
-        <RollerNumber
+        <AnimatedNumber
           value={wholeEuros}
           minDigits={1}
           triggerMode="immediate"
@@ -36,7 +36,7 @@ export function PlanPriceDisplay({ amount, plan, cycle, muted, was }) {
         {cents > 0 ? (
           <>
             <span>.</span>
-            <RollerNumber
+            <AnimatedNumber
               value={cents}
               minDigits={2}
               triggerMode="immediate"

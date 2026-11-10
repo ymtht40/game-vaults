@@ -3,8 +3,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { buildPreviewDocument } from '@/features/animation-detil/utils/templateBuilder';
-import { inlinePreviewAssets } from '@/features/animation-detil/utils/inlinePreviewAssets';
+import { buildPreviewDocument } from '@/features/animation-detail/utils/templateBuilder';
+import { inlinePreviewAssets } from '@/features/animation-detail/utils/inlinePreviewAssets';
 
 const SUPPORTED_TEMPLATES = new Set([
   'instant',

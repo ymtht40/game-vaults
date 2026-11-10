@@ -1,4 +1,4 @@
-import MarketingLayout from '@/features/marketing/Marketinglayout';
+import MarketingLayout from '@/features/marketing/MarketingLayout';
 import {
   getLatestAnimation,
   getPublishedAnimations,

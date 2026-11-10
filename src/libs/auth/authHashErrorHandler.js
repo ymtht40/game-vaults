@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useTransitionRouter } from '@/contexts/TransitionRouterProvider'; // NOTE: module id: 676040
+import { useTransitionRouter } from '@/providers/TransitionRouterProvider'; // NOTE: module id: 676040
 import { toast } from 'sonner'; // NOTE: module id: 846696
 
 // NOTE: module id: 809335

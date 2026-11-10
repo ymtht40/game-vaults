@@ -1,4 +1,4 @@
-import CodeBlock from '@/features/common/CodeBlock'; // module id: 317840
+import CodeBlock from '@/features/animation-detail/components/CodeBlock'; // module id: 317840
 
 const URL_PATTERN = /(https?:\/\/[^\s<>()]+[^\s<>().,;:!?'"])/g;
 

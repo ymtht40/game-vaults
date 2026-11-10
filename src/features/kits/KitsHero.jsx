@@ -5,13 +5,13 @@
 import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import Reveal from '@/animations/FadeIn'; // NOTE: module id: 460391
+import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/animations/AnimatedText';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import SplitTextReveal from '@/features/demos/SplitTextReveal';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import { ANNNIMATE_EASE, prefersReducedMotion } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
+import { ANNNIMATE_EASE, prefersReducedMotion } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import gsap from 'gsap'; // NOTE: module id: 989970
 // UNRESOLVED: original source path or export names are absent from this chunk.
@@ -57,7 +57,7 @@ export default function KitsHero({ kits = [] }) {
       data-theme="light"
       className="bg-background pt-96 pb-96 text-foreground lg:pt-112 lg:pb-160"
     >
-      <Reveal className="v2-container">
+      <FadeIn className="v2-container">
         <div
           ref={heroRef}
           data-theme="dark"
@@ -82,7 +82,7 @@ export default function KitsHero({ kits = [] }) {
             />
           ))}
         </div>
-      </Reveal>
+      </FadeIn>
       <div className="v2-container grid gap-16 pt-32 lg:grid-cols-2 lg:gap-12 lg:pt-40">
         <RevealHeading
           as="h1"

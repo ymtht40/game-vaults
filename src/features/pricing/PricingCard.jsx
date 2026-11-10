@@ -11,7 +11,7 @@ import { usePppTier } from '@/hooks/usePppGeo';
 
 import Button from '@/components/ui/Button';
 import Link from '@/components/navigation/NavSurface';
-import AnimatedNumber from '@/animations/AnimatedNumber';
+import AnimatedNumber from '@/components/motion/AnimatedNumber';
 import FeatureList from '@/features/pricing/components/FeatureList';
 import PppNotice from '@/features/pricing/components/PppLabel';
 

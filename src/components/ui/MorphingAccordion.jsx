@@ -1,62 +1,8 @@
 'use client';
 
-/* Variable Mapping:
-   i -> DEFAULT_ITEMS
-   e -> className
-   a -> items
-   c -> duration
-   o -> ease
-   u -> goo
-   d -> multiple
-   f -> startOpen
-   h -> stagger
-   m -> instanceId
-   g -> filterIdPrefix
-   p -> stageRef
-   x -> rowRefs
-   w -> gooWrapRefs
-   y -> gooTriggerRefs
-   b -> gooPanelRefs
-   v -> crispTriggerRefs
-   j -> crispPanelRefs
-   k -> triggerRefs
-   C -> panelRefs
-   N -> panelInnerRefs
-   R -> answerRefs
-   T -> iconRefs
-   $ -> blurFilterRefs
-   U -> rowStatesRef
-   q -> closeEase
-   H -> durationRef
-   _ -> easeRef
-   E -> closeEaseRef
-   M -> gooRef
-   S -> multipleRef
-   P -> staggerRef
-   A -> measureRow
-   O -> syncTriggerPill
-   L -> resetPanelPill
-   D -> syncAriaState
-   W -> setGooFilterEnabled
-   z -> syncBlurStdDeviation
-   B -> killRowTweens
-   I -> resetAnswerSplit
-   F -> playAnswerLines
-   K -> openRow
-   G -> closeRow
-   X -> focusRelativeTrigger
-   Q -> handleTriggerKeyDown
-   V -> contextSafe
-   J -> handleToggleRow
-*/
+import React, { useCallback, useId, useRef } from 'react';
 
-import { useId, useRef, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { CustomEase } from 'gsap/CustomEase';
-import { SplitText } from 'gsap/SplitText';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(useGSAP, CustomEase, SplitText);
+import { gsap, useGSAP, CustomEase, SplitText } from '@/libs/utils/vendor';
 
 if (!CustomEase.get('annnimate')) {
   CustomEase.create('annnimate', 'M0,0 C0.3,0.9 0.1,1 1,1');
@@ -66,7 +12,7 @@ if (!CustomEase.get('annnimateInOut')) {
   CustomEase.create('annnimateInOut', 'M0,0 C0.7,0 0.16,1 1,1');
 }
 
-const DEFAULT_ITEMS = [
+const DEFAULT_ACCORDION_ITEMS = [
   {
     question: 'What makes the racket frames different?',
     answer:
@@ -94,10 +40,9 @@ const DEFAULT_ITEMS = [
   },
 ];
 
-// NOTE: module id: 4707
 export function MorphingAccordion({
   className = '',
-  items = DEFAULT_ITEMS,
+  items = DEFAULT_ACCORDION_ITEMS,
   duration = 0.8,
   ease = 'elastic.out(1,0.82)',
   goo = 9,
@@ -106,21 +51,22 @@ export function MorphingAccordion({
   stagger = 0.05,
 }) {
   const instanceId = useId().replace(/:/g, '');
-  const filterIdPrefix = `macc-goo-${instanceId}`;
+  const filterPrefix = `macc-goo-${instanceId}`;
+
   const stageRef = useRef(null);
   const rowRefs = useRef([]);
-  const gooWrapRefs = useRef([]);
+  const gooRefs = useRef([]);
   const gooTriggerRefs = useRef([]);
   const gooPanelRefs = useRef([]);
-  const crispTriggerRefs = useRef([]);
-  const crispPanelRefs = useRef([]);
+  const triggerCrispRefs = useRef([]);
+  const panelCrispRefs = useRef([]);
   const triggerRefs = useRef([]);
   const panelRefs = useRef([]);
   const panelInnerRefs = useRef([]);
   const answerRefs = useRef([]);
   const iconRefs = useRef([]);
   const blurFilterRefs = useRef([]);
-  const rowStatesRef = useRef([]);
+  const itemStatesRef = useRef([]);
 
   const closeEase = ease.indexOf('elastic') === 0 ? 'annnimate' : ease;
 
@@ -139,11 +85,11 @@ export function MorphingAccordion({
   staggerRef.current = stagger;
 
   rowRefs.current = [];
-  gooWrapRefs.current = [];
+  gooRefs.current = [];
   gooTriggerRefs.current = [];
   gooPanelRefs.current = [];
-  crispTriggerRefs.current = [];
-  crispPanelRefs.current = [];
+  triggerCrispRefs.current = [];
+  panelCrispRefs.current = [];
   triggerRefs.current = [];
   panelRefs.current = [];
   panelInnerRefs.current = [];
@@ -151,8 +97,8 @@ export function MorphingAccordion({
   iconRefs.current = [];
   blurFilterRefs.current = [];
 
-  const measureRow = useCallback((index) => {
-    const state = rowStatesRef.current[index];
+  const measureItem = useCallback((index) => {
+    const state = itemStatesRef.current[index];
     if (state) {
       state.triggerH = triggerRefs.current[index]?.offsetHeight || 0;
       state.innerH = panelInnerRefs.current[index]?.offsetHeight || 0;
@@ -160,20 +106,23 @@ export function MorphingAccordion({
     }
   }, []);
 
-  const syncTriggerPill = useCallback((index) => {
-    const state = rowStatesRef.current[index];
+  const syncTriggerShape = useCallback((index) => {
+    const state = itemStatesRef.current[index];
     if (state) {
-      gsap.set([gooTriggerRefs.current[index], crispTriggerRefs.current[index]], {
-        height: state.triggerH,
-        borderRadius: state.triggerH / 2,
-      });
+      gsap.set(
+        [gooTriggerRefs.current[index], triggerCrispRefs.current[index]],
+        {
+          height: state.triggerH,
+          borderRadius: state.triggerH / 2,
+        },
+      );
     }
   }, []);
 
-  const resetPanelPill = useCallback((index) => {
-    const state = rowStatesRef.current[index];
+  const syncClosedPanelShape = useCallback((index) => {
+    const state = itemStatesRef.current[index];
     if (state) {
-      gsap.set([gooPanelRefs.current[index], crispPanelRefs.current[index]], {
+      gsap.set([gooPanelRefs.current[index], panelCrispRefs.current[index]], {
         x: 4,
         y: 4,
         width: state.rowW - 8,
@@ -183,12 +132,14 @@ export function MorphingAccordion({
     }
   }, []);
 
-  const syncAriaState = useCallback((index, isOpen) => {
+  const setItemAria = useCallback((index, isOpen) => {
     const triggerEl = triggerRefs.current[index];
     const panelEl = panelRefs.current[index];
+
     if (triggerEl && panelEl) {
       triggerEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       panelEl.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+
       if (isOpen) {
         panelEl.removeAttribute('inert');
       } else {
@@ -197,34 +148,38 @@ export function MorphingAccordion({
     }
   }, []);
 
-  const setGooFilterEnabled = useCallback(
-    (index, enabled) => {
-      const gooWrapEl = gooWrapRefs.current[index];
-      if (gooWrapEl) {
-        gooWrapEl.style.filter = enabled ? `url(#${filterIdPrefix}-${index})` : 'none';
+  const toggleGooFilter = useCallback(
+    (index, isEnabled) => {
+      const gooEl = gooRefs.current[index];
+      if (gooEl) {
+        gooEl.style.filter = isEnabled
+          ? `url(#${filterPrefix}-${index})`
+          : 'none';
       }
     },
-    [filterIdPrefix]
+    [filterPrefix],
   );
 
-  const syncBlurStdDeviation = useCallback((index) => {
+  const updateBlurStdDeviation = useCallback((index) => {
     const blurEl = blurFilterRefs.current[index];
-    const state = rowStatesRef.current[index];
+    const state = itemStatesRef.current[index];
+
     if (blurEl && state) {
       blurEl.setAttribute('stdDeviation', String(state.gooProxy.std));
     }
   }, []);
 
-  const killRowTweens = useCallback((index) => {
-    const state = rowStatesRef.current[index];
+  const killItemTweens = useCallback((index) => {
+    const state = itemStatesRef.current[index];
     if (state) {
       if (state.tl) {
         state.tl.kill();
         state.tl = null;
       }
+
       gsap.killTweensOf([
         gooPanelRefs.current[index],
-        crispPanelRefs.current[index],
+        panelCrispRefs.current[index],
         panelRefs.current[index],
         rowRefs.current[index],
         iconRefs.current[index],
@@ -235,7 +190,7 @@ export function MorphingAccordion({
   }, []);
 
   const resetAnswerSplit = useCallback((index) => {
-    const state = rowStatesRef.current[index];
+    const state = itemStatesRef.current[index];
     if (state) {
       if (state.answerTl) {
         state.answerTl.kill();
@@ -245,19 +200,28 @@ export function MorphingAccordion({
         state.split.revert();
         state.split = null;
       }
-      gsap.set(answerRefs.current[index], { autoAlpha: 0 });
+
+      gsap.set(answerRefs.current[index], {
+        autoAlpha: 0,
+      });
     }
   }, []);
 
-  const playAnswerLines = useCallback(
+  const animateAnswerIn = useCallback(
     (index) => {
-      const state = rowStatesRef.current[index];
+      const state = itemStatesRef.current[index];
       const answerEl = answerRefs.current[index];
-      if (!state || !answerEl) return;
+
+      if (!state || !answerEl) {
+        return;
+      }
 
       const runSplit = () => {
         resetAnswerSplit(index);
-        gsap.set(answerEl, { autoAlpha: 1 });
+        gsap.set(answerEl, {
+          autoAlpha: 1,
+        });
+
         state.split = SplitText.create(answerEl, {
           type: 'lines',
           mask: 'lines',
@@ -268,6 +232,7 @@ export function MorphingAccordion({
               y: 0,
               force3D: true,
             });
+
             state.answerTl = gsap.timeline();
             state.answerTl.to(splitInstance.lines, {
               yPercent: 0,
@@ -287,27 +252,37 @@ export function MorphingAccordion({
         runSplit();
       }
     },
-    [resetAnswerSplit]
+    [resetAnswerSplit],
   );
 
-  const openRow = useCallback(
+  const openItem = useCallback(
     (index) => {
-      const state = rowStatesRef.current[index];
-      if (!state) return;
+      const state = itemStatesRef.current[index];
+      if (!state) {
+        return;
+      }
+
       state.isOpen = true;
-      measureRow(index);
-      syncAriaState(index, true);
-      killRowTweens(index);
+      measureItem(index);
+      setItemAria(index, true);
+      killItemTweens(index);
 
-      const panelHeight = 10 + state.innerH + 16;
-      setGooFilterEnabled(index, true);
+      const expandedHeight = 10 + state.innerH + 16;
+
+      toggleGooFilter(index, true);
       state.gooProxy.std = gooRef.current;
-      syncBlurStdDeviation(index);
+      updateBlurStdDeviation(index);
 
-      const tl = gsap.timeline({ defaults: { force3D: true } });
+      const tl = gsap.timeline({
+        defaults: {
+          force3D: true,
+        },
+      });
+
       state.tl = tl;
+
       tl.to(
-        [gooPanelRefs.current[index], crispPanelRefs.current[index]],
+        [gooPanelRefs.current[index], panelCrispRefs.current[index]],
         {
           x: 0,
           y: state.triggerH + 10,
@@ -316,16 +291,16 @@ export function MorphingAccordion({
           duration: durationRef.current,
           ease: easeRef.current,
         },
-        0
+        0,
       )
         .to(
           panelRefs.current[index],
           {
-            height: panelHeight,
+            height: expandedHeight,
             duration: durationRef.current,
             ease: easeRef.current,
           },
-          0
+          0,
         )
         .to(
           rowRefs.current[index],
@@ -334,7 +309,7 @@ export function MorphingAccordion({
             duration: durationRef.current,
             ease: easeRef.current,
           },
-          0
+          0,
         )
         .to(
           iconRefs.current[index],
@@ -343,7 +318,7 @@ export function MorphingAccordion({
             duration: 0.5,
             ease: 'annnimateInOut',
           },
-          0
+          0,
         )
         .to(
           state.gooProxy,
@@ -351,48 +326,57 @@ export function MorphingAccordion({
             std: 0,
             duration: 0.25 * durationRef.current,
             ease: 'power1.in',
-            onUpdate: () => syncBlurStdDeviation(index),
-            onComplete: () => setGooFilterEnabled(index, false),
+            onUpdate: () => updateBlurStdDeviation(index),
+            onComplete: () => toggleGooFilter(index, false),
           },
-          0.4 * durationRef.current
+          0.4 * durationRef.current,
         )
-        .call(() => playAnswerLines(index), null, 0.32 * durationRef.current);
+        .call(() => animateAnswerIn(index), null, 0.32 * durationRef.current);
     },
     [
-      measureRow,
-      syncAriaState,
-      killRowTweens,
-      setGooFilterEnabled,
-      syncBlurStdDeviation,
-      playAnswerLines,
-    ]
+      measureItem,
+      setItemAria,
+      killItemTweens,
+      toggleGooFilter,
+      updateBlurStdDeviation,
+      animateAnswerIn,
+    ],
   );
 
-  const closeRow = useCallback(
+  const closeItem = useCallback(
     (index) => {
-      const state = rowStatesRef.current[index];
-      if (!state) return;
+      const state = itemStatesRef.current[index];
+      if (!state) {
+        return;
+      }
+
       state.isOpen = false;
-      syncAriaState(index, false);
-      killRowTweens(index);
+      setItemAria(index, false);
+      killItemTweens(index);
 
       const closeDuration = 0.65 * durationRef.current;
-      setGooFilterEnabled(index, true);
+      toggleGooFilter(index, true);
 
-      const tl = gsap.timeline({ defaults: { force3D: true } });
+      const tl = gsap.timeline({
+        defaults: {
+          force3D: true,
+        },
+      });
+
       state.tl = tl;
+
       tl.to(
         state.gooProxy,
         {
           std: gooRef.current,
           duration: 0.3 * closeDuration,
           ease: 'power1.in',
-          onUpdate: () => syncBlurStdDeviation(index),
+          onUpdate: () => updateBlurStdDeviation(index),
         },
-        0
+        0,
       )
         .to(
-          [gooPanelRefs.current[index], crispPanelRefs.current[index]],
+          [gooPanelRefs.current[index], panelCrispRefs.current[index]],
           {
             x: 4,
             y: 4,
@@ -401,7 +385,7 @@ export function MorphingAccordion({
             duration: closeDuration,
             ease: closeEaseRef.current,
           },
-          0
+          0,
         )
         .to(
           panelRefs.current[index],
@@ -410,7 +394,7 @@ export function MorphingAccordion({
             duration: closeDuration,
             ease: closeEaseRef.current,
           },
-          0
+          0,
         )
         .to(
           rowRefs.current[index],
@@ -419,7 +403,7 @@ export function MorphingAccordion({
             duration: closeDuration,
             ease: closeEaseRef.current,
           },
-          0
+          0,
         )
         .to(
           iconRefs.current[index],
@@ -428,7 +412,7 @@ export function MorphingAccordion({
             duration: 0.5,
             ease: 'annnimateInOut',
           },
-          0
+          0,
         )
         .to(
           answerRefs.current[index],
@@ -437,7 +421,7 @@ export function MorphingAccordion({
             duration: 0.15,
             ease: 'power2.out',
           },
-          0
+          0,
         )
         .to(
           state.gooProxy,
@@ -445,44 +429,50 @@ export function MorphingAccordion({
             std: 0,
             duration: 0.3 * closeDuration,
             ease: 'power1.out',
-            onUpdate: () => syncBlurStdDeviation(index),
+            onUpdate: () => updateBlurStdDeviation(index),
             onComplete: () => {
-              setGooFilterEnabled(index, false);
+              toggleGooFilter(index, false);
               resetAnswerSplit(index);
             },
           },
-          0.7 * closeDuration
+          0.7 * closeDuration,
         );
     },
-    [syncAriaState, killRowTweens, setGooFilterEnabled, syncBlurStdDeviation, resetAnswerSplit]
+    [
+      setItemAria,
+      killItemTweens,
+      toggleGooFilter,
+      updateBlurStdDeviation,
+      resetAnswerSplit,
+    ],
   );
 
-  const focusRelativeTrigger = useCallback(
-    (index, delta) => {
+  const moveFocus = useCallback(
+    (index, direction) => {
       const total = items.length;
       if (total) {
-        triggerRefs.current[(index + delta + total) % total]?.focus();
+        triggerRefs.current[(index + direction + total) % total]?.focus();
       }
     },
-    [items.length]
+    [items.length],
   );
 
-  const handleTriggerKeyDown = useCallback(
+  const handleKeyDown = useCallback(
     (event, index) => {
       if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
         event.preventDefault();
-        focusRelativeTrigger(index, 1);
+        moveFocus(index, 1);
       } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
         event.preventDefault();
-        focusRelativeTrigger(index, -1);
+        moveFocus(index, -1);
       }
     },
-    [focusRelativeTrigger]
+    [moveFocus],
   );
 
   const { contextSafe } = useGSAP(
     () => {
-      rowStatesRef.current = items.map(() => ({
+      itemStatesRef.current = items.map(() => ({
         isOpen: false,
         triggerH: 0,
         innerH: 0,
@@ -490,30 +480,39 @@ export function MorphingAccordion({
         split: null,
         answerTl: null,
         tl: null,
-        gooProxy: { std: 0 },
+        gooProxy: {
+          std: 0,
+        },
       }));
 
       const initialOpenIndex = startOpen == null ? -1 : startOpen;
 
       items.forEach((item, index) => {
-        measureRow(index);
-        syncTriggerPill(index);
-        resetPanelPill(index);
-        setGooFilterEnabled(index, false);
-        gsap.set(answerRefs.current[index], { autoAlpha: 0 });
+        measureItem(index);
+        syncTriggerShape(index);
+        syncClosedPanelShape(index);
+        toggleGooFilter(index, false);
 
-        const state = rowStatesRef.current[index];
-        const isInitialOpen = index === initialOpenIndex;
-        state.isOpen = isInitialOpen;
-        syncAriaState(index, isInitialOpen);
+        gsap.set(answerRefs.current[index], {
+          autoAlpha: 0,
+        });
 
-        if (isInitialOpen) {
-          gsap.set([gooPanelRefs.current[index], crispPanelRefs.current[index]], {
-            x: 0,
-            y: state.triggerH + 10,
-            width: state.rowW,
-            height: state.innerH,
-          });
+        const state = itemStatesRef.current[index];
+        const isInitiallyOpen = index === initialOpenIndex;
+
+        state.isOpen = isInitiallyOpen;
+        setItemAria(index, isInitiallyOpen);
+
+        if (isInitiallyOpen) {
+          gsap.set(
+            [gooPanelRefs.current[index], panelCrispRefs.current[index]],
+            {
+              x: 0,
+              y: state.triggerH + 10,
+              width: state.rowW,
+              height: state.innerH,
+            },
+          );
           gsap.set(panelRefs.current[index], {
             height: 10 + state.innerH + 16,
           });
@@ -523,7 +522,7 @@ export function MorphingAccordion({
           gsap.set(iconRefs.current[index], {
             rotation: 135,
           });
-          playAnswerLines(index);
+          animateAnswerIn(index);
         }
       });
 
@@ -538,17 +537,21 @@ export function MorphingAccordion({
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
           items.forEach((item, index) => {
-            const state = rowStatesRef.current[index];
+            const state = itemStatesRef.current[index];
             if (state) {
-              measureRow(index);
-              syncTriggerPill(index);
+              measureItem(index);
+              syncTriggerShape(index);
+
               if (state.isOpen) {
-                gsap.set([gooPanelRefs.current[index], crispPanelRefs.current[index]], {
-                  x: 0,
-                  y: state.triggerH + 10,
-                  width: state.rowW,
-                  height: state.innerH,
-                });
+                gsap.set(
+                  [gooPanelRefs.current[index], panelCrispRefs.current[index]],
+                  {
+                    x: 0,
+                    y: state.triggerH + 10,
+                    width: state.rowW,
+                    height: state.innerH,
+                  },
+                );
                 gsap.set(panelRefs.current[index], {
                   height: 10 + state.innerH + 16,
                 });
@@ -556,7 +559,7 @@ export function MorphingAccordion({
                   marginTop: 16,
                 });
               } else {
-                resetPanelPill(index);
+                syncClosedPanelShape(index);
                 gsap.set(rowRefs.current[index], {
                   marginTop: 0,
                 });
@@ -580,39 +583,57 @@ export function MorphingAccordion({
       return () => {
         clearTimeout(resizeTimer);
         window.removeEventListener('resize', handleResize);
-        document.removeEventListener('visibilitychange', handleVisibilityChange);
+        document.removeEventListener(
+          'visibilitychange',
+          handleVisibilityChange,
+        );
         mm.revert();
-        rowStatesRef.current.forEach((state) => {
-          if (state?.tl) state.tl.kill();
-          if (state?.answerTl) state.answerTl.kill();
-          if (state?.split?.revert) state.split.revert();
+        itemStatesRef.current.forEach((state) => {
+          if (state?.tl) {
+            state.tl.kill();
+          }
+          if (state?.answerTl) {
+            state.answerTl.kill();
+          }
+          if (state?.split?.revert) {
+            state.split.revert();
+          }
         });
       };
     },
-    { scope: stageRef, dependencies: [items.length, startOpen] }
+    {
+      scope: stageRef,
+      dependencies: [items.length, startOpen],
+    },
   );
 
-  const handleToggleRow = contextSafe((index) => {
-    const state = rowStatesRef.current[index];
+  const handleToggleItem = contextSafe((index) => {
+    const state = itemStatesRef.current[index];
     if (state) {
       if (state.isOpen) {
-        closeRow(index);
+        closeItem(index);
         return;
       }
+
       if (!multipleRef.current) {
-        rowStatesRef.current.forEach((otherState, otherIndex) => {
+        itemStatesRef.current.forEach((otherState, otherIndex) => {
           if (otherIndex !== index && otherState && otherState.isOpen) {
-            closeRow(otherIndex);
+            closeItem(otherIndex);
           }
         });
       }
-      openRow(index);
+
+      openItem(index);
     }
   });
 
   return (
-    <div className={`macc_wrap${className ? ' ' + className : ''}`}>
-      <div ref={stageRef} className="macc_stage" data-anm-morphing-accordion={true}>
+    <div className={`macc_wrap${className ? ` ${className}` : ''}`}>
+      <div
+        ref={stageRef}
+        className="macc_stage"
+        data-anm-morphing-accordion={true}
+      >
         <svg
           className="macc_filter_svg"
           width="0"
@@ -624,7 +645,7 @@ export function MorphingAccordion({
             {items.map((item, index) => (
               <filter
                 key={index}
-                id={`${filterIdPrefix}-${index}`}
+                id={`${filterPrefix}-${index}`}
                 colorInterpolationFilters="sRGB"
                 x="-50%"
                 y="-50%"
@@ -633,7 +654,9 @@ export function MorphingAccordion({
               >
                 <feGaussianBlur
                   ref={(el) => {
-                    if (el) blurFilterRefs.current[index] = el;
+                    if (el) {
+                      blurFilterRefs.current[index] = el;
+                    }
                   }}
                   in="SourceGraphic"
                   stdDeviation="0"
@@ -649,22 +672,28 @@ export function MorphingAccordion({
             ))}
           </defs>
         </svg>
+
         <div className="macc_list">
           {items.map((item, index) => {
             const triggerId = `ga-trigger-${instanceId}-${index}`;
             const panelId = `ga-panel-${instanceId}-${index}`;
+
             return (
               <div
                 key={index}
                 ref={(el) => {
-                  if (el) rowRefs.current[index] = el;
+                  if (el) {
+                    rowRefs.current[index] = el;
+                  }
                 }}
                 className="macc_row"
                 data-anm-macc-row={true}
               >
                 <div
                   ref={(el) => {
-                    if (el) gooWrapRefs.current[index] = el;
+                    if (el) {
+                      gooRefs.current[index] = el;
+                    }
                   }}
                   className="macc_goo"
                   data-anm-macc-goo={true}
@@ -672,20 +701,27 @@ export function MorphingAccordion({
                 >
                   <div
                     ref={(el) => {
-                      if (el) gooTriggerRefs.current[index] = el;
+                      if (el) {
+                        gooTriggerRefs.current[index] = el;
+                      }
                     }}
                     className="macc_goo_trigger"
                   />
                   <div
                     ref={(el) => {
-                      if (el) gooPanelRefs.current[index] = el;
+                      if (el) {
+                        gooPanelRefs.current[index] = el;
+                      }
                     }}
                     className="macc_goo_panel"
                   />
                 </div>
+
                 <button
                   ref={(el) => {
-                    if (el) triggerRefs.current[index] = el;
+                    if (el) {
+                      triggerRefs.current[index] = el;
+                    }
                   }}
                   className="macc_trigger"
                   type="button"
@@ -693,14 +729,18 @@ export function MorphingAccordion({
                   id={triggerId}
                   aria-controls={panelId}
                   aria-expanded="false"
-                  onClick={() => handleToggleRow(index)}
-                  onKeyDown={(event) => handleTriggerKeyDown(event, index)}
+                  onClick={() => handleToggleItem(index)}
+                  onKeyDown={(event) => handleKeyDown(event, index)}
                 >
-                  <span className="macc_index">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="macc_index">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
                   <span className="macc_question">{item.question}</span>
                   <svg
                     ref={(el) => {
-                      if (el) iconRefs.current[index] = el;
+                      if (el) {
+                        iconRefs.current[index] = el;
+                      }
                     }}
                     className="macc_icon"
                     data-anm-macc-icon={true}
@@ -722,23 +762,32 @@ export function MorphingAccordion({
                     />
                   </svg>
                 </button>
+
                 <div
                   ref={(el) => {
-                    if (el) crispTriggerRefs.current[index] = el;
+                    if (el) {
+                      triggerCrispRefs.current[index] = el;
+                    }
                   }}
                   className="macc_trigger_crisp"
                   aria-hidden="true"
                 />
+
                 <div
                   ref={(el) => {
-                    if (el) crispPanelRefs.current[index] = el;
+                    if (el) {
+                      panelCrispRefs.current[index] = el;
+                    }
                   }}
                   className="macc_panel_crisp"
                   aria-hidden="true"
                 />
+
                 <div
                   ref={(el) => {
-                    if (el) panelRefs.current[index] = el;
+                    if (el) {
+                      panelRefs.current[index] = el;
+                    }
                   }}
                   className="macc_panel"
                   data-anm-macc-panel={true}
@@ -749,13 +798,17 @@ export function MorphingAccordion({
                 >
                   <div
                     ref={(el) => {
-                      if (el) panelInnerRefs.current[index] = el;
+                      if (el) {
+                        panelInnerRefs.current[index] = el;
+                      }
                     }}
                     className="macc_panel_inner"
                   >
                     <p
                       ref={(el) => {
-                        if (el) answerRefs.current[index] = el;
+                        if (el) {
+                          answerRefs.current[index] = el;
+                        }
                       }}
                       className="macc_answer"
                       data-anm-macc-answer={true}
@@ -771,4 +824,5 @@ export function MorphingAccordion({
       </div>
     </div>
   );
-}
+} 
+export default MorphingAccordion

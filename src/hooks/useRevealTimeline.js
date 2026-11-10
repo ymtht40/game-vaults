@@ -6,7 +6,7 @@ import { useRef, useCallback, useEffect } from 'react';
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { ScrollTrigger } from 'gsap/ScrollTrigger'; // NOTE: module id: 883495
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
-import { useAnimation } from '@/contexts/AnimationProvider'; // NOTE: module id: 488463
+import { useAnimation } from '@/providers/AnimationProvider'; // NOTE: module id: 488463
 import { perfMeasure } from '@/libs/utils/perf'; // NOTE: module id: 991763
 
 gsap.registerPlugin(ScrollTrigger);

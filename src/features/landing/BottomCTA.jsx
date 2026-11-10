@@ -4,8 +4,8 @@ import gsap from 'gsap';
 import { translate } from '@/libs/utils/i18n';
 import { useRevealTimeline } from '@/hooks/useRevealTimeline';
 import Button from '@/components/ui/Button';
-import RevealHeading from '@/animations/RevealHeading';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
+import RevealHeading from '@/components/motion/RevealHeading';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 import RingBackground, {
   RING_SECTION_MIN_VH,
 } from '@/features/landing/RingBackground';

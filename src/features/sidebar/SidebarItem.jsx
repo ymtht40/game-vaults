@@ -6,7 +6,7 @@
 import { createElement } from 'react';
 import Link from 'next/link'; // NOTE: module id: 522016
 import { usePathname } from 'next/navigation'; // NOTE: module id: 995289 (assuming usage context)
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
+import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 855382
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 export default function SidebarItem({ href, icon: Icon, label, active = false, badge, external = false, className, ...rest }) {

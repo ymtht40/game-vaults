@@ -1,17 +1,19 @@
 import PricingSection from '@/features/pricing/PricingSection';
-import LibraryOrKit from '@/features/pricing/LibraryOrKit';
-import StudentsSection from '@/features/pricing/StudentsSection'; 
-import ValueMath from '@/features/landing/ValueMath';
-import LibraryPreview from '@/components/ui/LibraryPreview';
-import Testimonials from '@/features/landing/Testimonials';
+import BuildCostSection from '@/features/pricing-page/sections/BuildCostSection';
+
+import LibraryOrKitSection from '@/features/pricing-page/sections/LibraryOrKitSection';
+import StudentsSection from '@/features/pricing/StudentsSection';
+
+import TestimonialsSection from '@/features/pricing-page/testimonials/TestimonialsSection';
 import V3Faq from '@/features/landing/V3Faq';
-import V3EndCta from '@/features/common/V3EndCta';
+
+import V3EndCta from '@/features/landing/V3EndCta';
 
 import { t } from '@/libs/utils/i18n';
 import { KITS } from '@/libs/data/kits';
 import { getActivePrice } from '@/libs/config/appConfig';
 import { soloPlan, DEFAULT_COMPONENT_COUNT } from '@/features/pricing/utils/pricing.config';
-import { formatEuro, roundCurrency } from '@/libs/config/pricingFormatters';
+import { formatEuro, roundCurrency } from '@/libs/utils/pricingFormatters';
 import {
   getPublishedAnimations,
   getShippedRecently,
@@ -67,24 +69,21 @@ export default async function PricingPage() {
         shippedRecently={shippedRecently}
         count={count}
       />
+      
+      <BuildCostSection
+        yearly={yearlyPrice}
+        count={count}
+      />
 
-      <LibraryOrKit
+      <LibraryOrKitSection
         count={count}
         perMonth={perMonth}
         kits={KITS}
         theme="dark"
         kitHref="/account/kits"
       />
-
-      <ValueMath
-        cta={{
-          label: soloPlan?.cta || 'Get Solo',
-          href: '/checkout?plan=solo&cycle=yearly',
-        }}
-      />
-
-      <LibraryPreview items={animations} count={count} />
-      <Testimonials images={imageUrls} />
+      <TestimonialsSection images={imageUrls} />
+      
       <StudentsSection />
 
       <V3Faq

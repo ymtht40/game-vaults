@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { translate as t } from '@/libs/utils/i18n';
 import { useRevealTimeline } from '@/hooks/useRevealTimeline';
 import Button from '@/components/ui/Button';
-import AnimatedHeadline from '@/animations/AnimatedHeadline';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
 
 const TOP_LEFT = { cx: 0, cy: 0.36, rx: 0.17, ry: 0.44 };
 const TOP_RIGHT = { cx: 1, cy: 0.22, rx: 0.29, ry: 0.28 };

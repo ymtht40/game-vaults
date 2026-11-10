@@ -1,8 +1,8 @@
 import { translate } from '@/libs/utils/i18n';
 import AnimatedButton from '@/components/ui/Button';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
-import AnimatedReveal from '@/animations/AnimatedReveal';
-import AnimationsFilterBar from '@/features/common/AnimationsFilterBar';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
+import AnimatedReveal from '@/components/motion/AnimatedReveal';
+import AnimationsFilterBar from '@/features/animation-page/components/AnimationsFilterBar';
 import LandingLogos from '@/features/landing/LandingLogos';
 
 const ANIMATION_PROPS = {

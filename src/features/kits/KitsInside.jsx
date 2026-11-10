@@ -5,18 +5,18 @@
 import { useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import Reveal from '@/animations/FadeIn'; // NOTE: module id: 460391
+import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/animations/AnimatedText'; // NOTE: module id: 218091
+import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import {
   ANNNIMATE_IN_OUT_EASE,
   ANNNIMATE_EASE,
   prefersReducedMotion
-} from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
+} from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { Tabs } from '@/features/docs/components/Tabs'; // NOTE: module id: 512922
 // UNRESOLVED: original source path or export names are absent from this chunk.
@@ -133,7 +133,7 @@ export default function KitsInside({ headline, sub, kits = [] }) {
             {sub}
           </SplitTextReveal>
         ) : null}
-        <Reveal trigger="scroll" delay={0.3} className="mt-16">
+        <FadeIn trigger="scroll" delay={0.3} className="mt-16">
           <Tabs
             tabs={kits.map((kit) => ({
               id: kit.slug,
@@ -143,9 +143,9 @@ export default function KitsInside({ headline, sub, kits = [] }) {
             onChange={handleTabChange}
             ariaLabel="Kits"
           />
-        </Reveal>
+        </FadeIn>
       </div>
-      <Reveal
+      <FadeIn
         trigger="scroll"
         delay={0.4}
         className="mt-[calc(20vw-112px)] md:mt-[calc(24px-7.65vw)]"
@@ -182,7 +182,7 @@ export default function KitsInside({ headline, sub, kits = [] }) {
             );
           })}
         </div>
-      </Reveal>
+      </FadeIn>
     </section>
   ) : null;
 }

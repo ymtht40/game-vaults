@@ -3,10 +3,10 @@ import React, { useMemo } from 'react';
 import { translate } from '@/libs/utils/i18n';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 import Button from '@/components/ui/Button';
-import AnimatedReveal from '@/animations/AnimatedReveal';
-import AnimatedHeadline from '@/animations/AnimatedHeadline';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
-import { DraggableGrid } from '@/features/common/DraggableGrid';
+import AnimatedReveal from '@/components/motion/AnimatedReveal';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
+import { DraggableGrid } from '@/components/motion/DraggableGrid';
 import VideoLabelOverlay from '@/components/ui/VideoLabelOverlay';
 import { appConfig } from '@/libs/config/appConfig';
 

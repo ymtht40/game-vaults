@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from '@/features/common/Dialog'; // NOTE: module id: 753145
+} from '@/components/ui/Dialog'; // NOTE: module id: 753145
 import { SuggestForm } from '@/features/roadmap/SuggestForm'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171

@@ -10,7 +10,7 @@
 */
 
 import { appConfig } from '@/libs/config/appConfig'; // NOTE: module id: 516799 // UNRESOLVED: name guessed from usage
-import { ANNNIMATE_IN_OUT_EASE } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720 // UNRESOLVED: name guessed from usage
+import { ANNNIMATE_IN_OUT_EASE } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720 // UNRESOLVED: name guessed from usage
 
 // NOTE: module id: 586818
 export const DEFAULT_COMPONENT_COUNT = appConfig?.animationStats?.totalCount ?? 50;

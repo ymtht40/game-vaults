@@ -5,7 +5,7 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom'; // NOTE: module id: 174080
 import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
-import { IsometricFigure } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
+import { IsometricFigure } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 import { getFigureDefinition } from '@/libs/utils/figures'; // NOTE: module id: 158024
 
 // NOTE: module id: 514120

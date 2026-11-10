@@ -3,7 +3,7 @@
 import { useMemo } from 'react';
 import Link from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { useCategories } from '@/contexts/CategoryProvider'; // NOTE: module id: 87207
+import { useCategories } from '@/providers/CategoryProvider'; // NOTE: module id: 87207
 import LogoIcon from '@/assets/logos/LogoIcon'; // NOTE: module id: 843028
 import { AnimatedStrokeIcon } from '@/assets/icons/AnimatedStrokeIcon'; // NOTE: module id: 503433
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237

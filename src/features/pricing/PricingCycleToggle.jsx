@@ -16,9 +16,9 @@ import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
 import { appConfig, getActivePrice } from '@/libs/config/appConfig'; // NOTE: module id: 516799
-import { Switch } from '@/animations/Switch'; // NOTE: module id: 870777 // UNRESOLVED: name guessed from usage
-import PillContainer from '@/features/common/PillContainer'; // NOTE: module id: 876355 // UNRESOLVED: name guessed from usage
-import { PingIndicator } from '@/features/common/PingIndicator'; // NOTE: module id: 400545 // UNRESOLVED: name guessed from usage
+import { Switch } from '@/components/ui/Switch'; // NOTE: module id: 870777 // UNRESOLVED: name guessed from usage
+import PillContainer from '@/components/ui/PillContainer'; // NOTE: module id: 876355 // UNRESOLVED: name guessed from usage
+import { PingIndicator } from '@/components/ui/PingIndicator'; // NOTE: module id: 400545 // UNRESOLVED: name guessed from usage
 
 // NOTE: module id: 821980
 // UNRESOLVED: name guessed from usage (exported as "f")

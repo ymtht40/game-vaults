@@ -5,7 +5,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import Tabs from '@/features/docs/components/Tabs'; // NOTE: module id: 512922
-import CodeBlock from '@/features/common/CodeBlock'; // NOTE: module id: 317840
+import CodeBlock from '@/features/animation-detail/components/CodeBlock'; // NOTE: module id: 317840
 import { STORAGE_KEY, SYNC_EVENT } from '@/features/docs/components/FrameworkTabs'; // NOTE: module id: 12236
 
 const FRAMEWORK_TABS = [

@@ -15,7 +15,7 @@ import { useGSAP } from '@gsap/react';
 import { CloseIcon } from '@/assets/icons'; // NOTE: module id: 137410 // UNRESOLVED: name guessed from usage
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import NotificationItem from '@/components/notifications/NotificationItem'; // NOTE: module id: 583246
-import { useScrollLockContext } from '@/contexts/ScrollLockProvider'; // NOTE: module id: 441409
+import { useScrollLockContext } from '@/providers/ScrollLockProvider'; // NOTE: module id: 441409
 
 // NOTE: module id: 583246
 export function NotificationsDrawer({ open, onClose, items, lastSeenAt }) {

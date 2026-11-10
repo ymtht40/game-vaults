@@ -3,7 +3,7 @@ import React, { useMemo, useEffect, useRef } from 'react';
 import { translate as t } from '@/libs/utils/i18n';
 import { preloadSharedImages } from '@/libs/utils/loadSharedImage';
 import { perfLog } from '@/libs/utils/perf';
-import { useAnimation } from '@/contexts/AnimationProvider';
+import { useAnimation } from '@/providers/AnimationProvider';
 import HeroSection from '@/features/landing/HeroSection';
 import ProblemSection from '@/features/landing/ProblemSection';
 import HowItWorksSection from '@/features/landing/HowItWorksSection';

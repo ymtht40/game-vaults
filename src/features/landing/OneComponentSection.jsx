@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { translate, translate as t } from '@/libs/utils/i18n';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 import Button from '@/components/ui/Button';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
-import AnimatedHeadline from '@/animations/AnimatedHeadline';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
 import CircularSlider from '@/features/landing/CircularSlider';
 import { appConfig } from '@/libs/config/appConfig';
 

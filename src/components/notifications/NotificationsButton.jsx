@@ -14,8 +14,8 @@ import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import NotificationsDrawer from '@/components/notifications/NotificationsDrawer'; // NOTE: module id: 583246
-import { useNotificationFeed } from '@/contexts/NotificationProvider'; // NOTE: module id: 594886
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382 // UNRESOLVED: name guessed from usage
+import { useNotificationFeed } from '@/providers/NotificationProvider'; // NOTE: module id: 594886
+import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 855382 // UNRESOLVED: name guessed from usage
 
 gsap.registerPlugin(useGSAP);
 

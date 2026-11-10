@@ -1,7 +1,7 @@
 // AnimationsHero.jsx
-import Title from '@/animations/RevealHeading'; // NOTE: module id: 963160
-import AnimatedText from '@/animations/AnimatedText'; // NOTE: module id: 218091
-import AnimatedContainer from '@/animations/PageEnterAnimation'; // NOTE: module id: 460391
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
+import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 
 const splitTextProps = {
   type: "lines",
@@ -24,14 +24,14 @@ export default function AnimationsHero({
     <section className="v2-container pt-128 pb-32 lg:pt-160 lg:pb-64">
       <div className="grid grid-cols-12 gap-x-24">
         <div className="col-span-12 lg:col-span-10 lg:col-start-2 lg:text-center">
-          <Title
+          <RevealHeading
             as="h1"
             sizeClass="text-h1"
             className="mx-auto max-w-[16ch]"
             trigger="pageEnter"
           >
             {headline}
-          </Title>
+          </RevealHeading>
           <AnimatedText
             tag="p"
             className="text-body-lg mx-auto mt-32 max-w-[48ch] text-foreground-muted"
@@ -41,9 +41,9 @@ export default function AnimationsHero({
             {subtext}
           </AnimatedText>
           {cta ? (
-            <AnimatedContainer className="mt-32 flex lg:justify-center" delay={0.4}>
+            <FadeIn className="mt-32 flex lg:justify-center" delay={0.4}>
               {cta}
-            </AnimatedContainer>
+            </FadeIn>
           ) : null}
         </div>
       </div>

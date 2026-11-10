@@ -6,10 +6,10 @@ import { useGSAP } from '@gsap/react';
 import { useRevealTimeline } from '@/hooks/useRevealTimeline';
 import { translate, translate as t } from '@/libs/utils/i18n';
 
-import RevealHeading from '@/animations/RevealHeading';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
+import RevealHeading from '@/components/motion/RevealHeading';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 import Button from '@/components/ui/Button';
-import SegmentedControl from '@/animations/SegmentedControl';
+import SegmentedControl from '@/components/ui/SegmentedControl';
 import BulletPoints from '@/components/ui/BulletPoints';
 import { appConfig, getActivePrice } from '@/libs/config/appConfig';
 

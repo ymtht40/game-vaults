@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrambleTextPlugin } from '@/libs/utils/vendor';
 import { ASCII_CHARS } from '@/libs/config/consent';
-import { RouterTransition, TransitionRouterProvider } from '@/contexts/TransitionRouterProvider';
-import { useAnimation } from '@/contexts/AnimationProvider';
-import { getLayoutType } from '@/libs/config/GetLayoutType'; 
-import { setTransitionTarget, getTransitionTarget, getTransitionLabel } from '@/libs/config/getTransitionLabel';
+import { RouterTransition, TransitionRouterProvider } from '@/providers/TransitionRouterProvider';
+import { useAnimation } from '@/providers/AnimationProvider';
+import { getLayoutType } from '@/libs/utils/getLayoutType'; 
+import { setTransitionTarget, getTransitionTarget, getTransitionLabel } from '@/libs/utils/getTransitionLabel';
 
 gsap.registerPlugin(ScrambleTextPlugin);
 

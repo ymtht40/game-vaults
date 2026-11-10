@@ -1,7 +1,7 @@
 import {
   setTransitionTarget,
   getTransitionTarget,
-} from '@/libs/config/getTransitionLabel';
+} from '@/libs/utils/getTransitionLabel';
 
 export function setPendingRoute(route) {
   setTransitionTarget(route);

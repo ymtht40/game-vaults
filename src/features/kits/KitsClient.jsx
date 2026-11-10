@@ -7,7 +7,7 @@ import KitsInside from '@/features/kits/KitsInside';
 import KitsWhy from '@/features/kits/KitsWhy';
 import LibraryOrKit from '@/features/pricing/LibraryOrKit';
 import V3Faq from '@/features/landing/V3Faq';
-import V3EndCta from '@/features/common/V3EndCta';
+import V3EndCta from '@/features/landing/V3EndCta';
 
 // Only answers 1 and 5 contain inline links (matches the production page).
 const KITS_FAQ_LINKS = [

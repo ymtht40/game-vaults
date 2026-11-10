@@ -3,7 +3,7 @@
 
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import Link from 'next/link'; // NOTE: module id: 522016
-import { ScrambleText } from '@/animations/ScrambleText'; // NOTE: module id: 991642
+import { ScrambleText } from '@/components/motion/ScrambleText'; // NOTE: module id: 991642
 import { NAV_SURFACE } from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
 import { useTransitionLinkClick } from '@/hooks/useTransitionLinkClick'; // NOTE: module id: 995289
 

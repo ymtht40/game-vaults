@@ -3,7 +3,7 @@
 // Variable Mapping: e -> label, t -> children, r -> className, n -> isCollapsed, o -> isMobile, l -> isCollapsedDesktop
 
 // NOTE: module id: 713637
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
+import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 855382
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 export default function SidebarGroup({ label, children, className }) {

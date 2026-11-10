@@ -17,7 +17,7 @@ import { useRef } from 'react';
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
-import { IsometricFigure, useIsometricFigureAnimation } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720 // UNRESOLVED: name guessed from usage
+import { IsometricFigure, useIsometricFigureAnimation } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720 // UNRESOLVED: name guessed from usage
 import { usePppTier } from '@/hooks/usePppGeo'; // NOTE: module id: 12895 // UNRESOLVED: name guessed from usage
 import KitPrice from '@/features/pricing/components/KitPrice'; // NOTE: module id: 597274
 import { PlanFeatureList } from '@/features/pricing/PlanFeatureList'; // NOTE: module id: 586818

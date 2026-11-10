@@ -2,7 +2,7 @@
 import React, { useRef, Suspense } from 'react';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { usePageEnterAnimation } from '@/contexts/AnimationProvider';
+import { usePageEnterAnimation } from '@/providers/AnimationProvider';
 
 const SUBSCRIPTION_MESSAGES = {
   newsletter: {

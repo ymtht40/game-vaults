@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import DetailPage from '@/features/animation-detil/AnimationDetailPage';
+import AnimationDetailPage from '@/features/animation-detail/AnimationDetailPage';
 import { getAnimationBySlug, getPublishedAnimations } from '@/libs/supabase/latestAnimation';
 import { getViewerContext } from '@/libs/supabase/server';
 import {
@@ -45,7 +45,7 @@ export default async function AnimationDetailPage({ params }) {
   const related = pickRelated(all, animation);
 
   return (
-    <DetailPage
+    <AnimationDetailPage
       animation={animation}
       isSaved={viewer.savedIds.includes(animation.id)}
       relatedAnimations={related}

@@ -3,9 +3,9 @@ import React, { useState, useCallback } from 'react';
 import { translate } from '@/libs/utils/i18n';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 import Button from '@/components/ui/Button';
-import RevealHeading from '@/animations/RevealHeading';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
-import AnimatedReveal from '@/animations/AnimatedReveal';
+import RevealHeading from '@/components/motion/RevealHeading';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
+import AnimatedReveal from '@/components/motion/AnimatedReveal';
 import FAQItem from '@/components/ui/FAQItem';
 
 export default function FAQ({

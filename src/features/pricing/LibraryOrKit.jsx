@@ -3,16 +3,16 @@
 // Variable Mapping: g -> pricingTextAnimation, p -> priceDisplay, f -> kitNames, m -> kitPrice
 
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import Reveal from '@/animations/FadeIn'; // NOTE: module id: 460391
+import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/animations/AnimatedText'; // NOTE: module id: 218091
+import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { revealFig } from '@/features/pricing/PricingSection'; // NOTE: module id: 586818
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { translate } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { weekly } from '@/components/home/bento-figures.config'; // NOTE: module id: 392197
+import { weekly } from '@/features/landing/bento-figures.config'; // NOTE: module id: 392197
 import { Column } from '@/features/pricing/components/Column'; // NOTE: module id: 547118
 import { interpolateFacts } from '@/features/pricing/utils/interpolateFacts'; // NOTE: module id: 547118
 
@@ -73,7 +73,7 @@ export default function LibraryOrKit({
             {translate('pricing-v3.libraryOrKit.stack')}
           </SplitTextReveal>
         </div>
-        <Reveal
+        <FadeIn
           trigger="scroll"
           className="grid grid-cols-12 gap-px border border-border bg-border"
         >
@@ -99,7 +99,7 @@ export default function LibraryOrKit({
             cta={translate('pricing-v3.libraryOrKit.kit.cta')}
             href={kitHref}
           />
-        </Reveal>
+        </FadeIn>
       </div>
     </section>
   );

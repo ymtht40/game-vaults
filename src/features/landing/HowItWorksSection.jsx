@@ -3,8 +3,8 @@ import React, { useRef, useMemo } from 'react';
 import gsap from 'gsap';
 import { translate, translate as t } from '@/libs/utils/i18n';
 import { useRevealTimeline } from '@/hooks/useRevealTimeline';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
-import AnimatedHeadline from '@/animations/AnimatedHeadline';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
 
 import { Columns } from '@phosphor-icons/react';
 import { GridFour } from '@phosphor-icons/react';

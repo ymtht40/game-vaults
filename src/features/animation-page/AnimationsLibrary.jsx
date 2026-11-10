@@ -8,16 +8,16 @@ import NewsletterForm from '@/features/newsletter/NewsletterForm'; // NOTE: modu
 import StarterPackPopup from '@/features/newsletter/StarterPackPopup'; // NOTE: module id: 573564
 
 import AnimationsLibraryNav, { VIEW_MODES } from '@/features/animation-page/components/AnimationsLibraryNav'; // NOTE: module id: 108800
-import { AnimationCollection } from '@/features/common/AnimationCollection'; // NOTE: module id: 425565
-import { EmptyAnimationsState } from '@/features/common/EmptyAnimationsState'; // NOTE: module id: 503408
-import EntCta from '@/features/common/EndCta'; // NOTE: module id: 482232
-import FAQ from '@/features/animation-detil/sections/AnimationFAQ'; // NOTE: module id: 126272
+import { AnimationCollection } from '@/features/animation-page/components/AnimationCollection'; // NOTE: module id: 425565
+import { EmptyAnimationsState } from '@/features/animation-page/components/EmptyAnimationsState'; // NOTE: module id: 503408
+import EndCta from '@/features/landing/EndCta'; // NOTE: module id: 482232
+import FAQ from '@/features/animation-page/sections/FAQ'; // NOTE: module id: 126272
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'; // NOTE: module id: 451945
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
-import { AnimationSaveContext } from '@/contexts/AnimationSaveContext';
+import { AnimationSaveContext } from '@/providers/AnimationSaveContext';
 import { filterAnimations, getInteractions } from '@/features/animation-page/utils/filterAnimations';
 import { sortOptions } from '@/features/animation-page/utils/sortOptions'; // NOTE: module id: 738629
-import { useCategorySlugs, useCategoryOptions } from '@/contexts/CategoryProvider'; // NOTE: module id: 87207
+import { useCategorySlugs, useCategoryOptions } from '@/providers/CategoryProvider'; // NOTE: module id: 87207
 
 const INTERACTION_OPTIONS = [
   { value: "hover", label: "Hover" },
@@ -351,7 +351,7 @@ export default function AnimationsLibrary({
         </div>
       </section>
       {isAuthenticated ? (
-        <EntCta
+        <EndCta
           images={previewImages}
           minimal={true}
           headline="Find your next component."
@@ -366,7 +366,7 @@ export default function AnimationsLibrary({
           }}
         />
       ) : (
-        <EntCta images={previewImages} bleed={true} />
+        <EndCta images={previewImages} bleed={true} />
       )}
       <StarterPackPopup
         isAuthenticated={isAuthenticated}

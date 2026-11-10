@@ -2,9 +2,9 @@
 
 // Variable Mapping: g -> RoadmapHero, e -> counts, r -> lastShippedDaysAgo, a -> onOpenSuggest, o -> suggestOpen
 
-import AnimatedText from '@/animations/AnimatedText'; // NOTE: module id: 218091
-import FadeIn from '@/animations/FadeIn'; // NOTE: module id: 460391
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
+import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { SecondaryButton } from '@/components/ui/SecondaryButton'; // NOTE: module id: 520237
 import { RoadmapStatItem } from '@/features/roadmap/RoadmapStatItem'; // NOTE: module id: 626171

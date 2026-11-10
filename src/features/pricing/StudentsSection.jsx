@@ -2,11 +2,11 @@
 
 // NOTE: module id: 952244
 import React, { useRef } from 'react';
-import RevealHeadline from '@/animations/RevealHeading'; // NOTE: module id: 963160
-import AnimatedText from '@/animations/AnimatedText'; // NOTE: module id: 218091
-import AnimatedReveal from '@/animations/AnimatedReveal'; // NOTE: module id: 460391
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
+import AnimatedReveal from '@/components/motion/AnimatedReveal'; // NOTE: module id: 460391
 import AnimatedButton from '@/components/ui/Button'; // NOTE: module id: 687989
-import { IsometricFigure, useIsometricFigureAnimation, ANNNIMATE_IN_OUT_EASE } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
+import { IsometricFigure, useIsometricFigureAnimation, ANNNIMATE_IN_OUT_EASE } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 
 const textAnimationProps = {
@@ -58,14 +58,14 @@ export default function StudentsSection() {
         
         <div className="flex flex-col items-center gap-32">
           <div className="flex flex-col items-center gap-16">
-            <RevealHeadline
+            <RevealHeading
               as="h2"
               sizeClass="text-h2"
               className="max-w-[22ch] font-medium text-balance"
               trigger="scroll"
             >
               {t("pricing-v3.students.headline")}
-            </RevealHeadline>
+            </RevealHeading>
             
             <AnimatedText
               tag="p"

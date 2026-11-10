@@ -1,5 +1,5 @@
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { PingIndicator } from '@/features/common/PingIndicator'; // NOTE: module id: 400545
+import { PingIndicator } from '@/components/ui/PingIndicator'; // NOTE: module id: 400545
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
 
 // Variable Mapping:

@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { translate } from '@/libs/utils/i18n';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

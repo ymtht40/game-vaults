@@ -25,8 +25,8 @@ import {
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import { getDiscordInviteUrl } from '@/libs/config/discord'; // NOTE: module id: 768947 // UNRESOLVED: name guessed from usage
 import { NotificationsButton } from '@/components/notifications/NotificationsButton'; // NOTE: module id: 583246
-import { useSidebar } from '@/contexts/SidebarProvider'; // NOTE: module id: 855382 // UNRESOLVED: name guessed from usage
-import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
+import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 855382 // UNRESOLVED: name guessed from usage
+import { useUser } from '@/providers/UserProvider'; // NOTE: module id: 201220
 import SidebarGroup from '@/features/sidebar/SidebarGroup'; // NOTE: module id: 166509
 import SidebarItem from '@/features/sidebar/SidebarItem'; // NOTE: module id: 812543
 

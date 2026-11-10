@@ -5,8 +5,8 @@ import { toast } from 'sonner'; // NOTE: module id: 846696
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import NavLink from '@/components/navigation/NavSurface'; // NOTE: module id: 520237
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348
-import { useListSize } from '@/contexts/ListSizeProvider'; // NOTE: module id: 637161
-import ConfirmInbox from '@/features/common/ConfirmInbox'; // NOTE: module id: 987025
+import { useListSize } from '@/providers/ListSizeProvider'; // NOTE: module id: 637161
+import ConfirmInbox from '@/features/auth/ConfirmInbox'; // NOTE: module id: 987025
 import { parseSessionCookie, parseUrlSession, SESSION_COOKIE_NAME } from '@/libs/analytics/analytics-utils'; // NOTE: module id: 660219
 
 // NOTE: module id: 927627

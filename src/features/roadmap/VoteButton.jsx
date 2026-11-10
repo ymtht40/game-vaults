@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { ArrowUpIcon } from '@phosphor-icons/react';
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import AnimatedNumber from '@/animations/AnimatedNumber'; // NOTE: module id: 162387
+import AnimatedNumber from '@/components/motion/AnimatedNumber'; // NOTE: module id: 162387
 import { toast } from 'sonner'; // NOTE: module id: 846696
 
 // NOTE: module id: 626171

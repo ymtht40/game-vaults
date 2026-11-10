@@ -3,8 +3,8 @@ import React from 'react';
 import { t } from '@/libs/utils/i18n';
 import { analytics } from '@/libs/analytics/posthogAnalytics';
 import { cn } from '@/libs/utils/className';
-import { Switch } from '@/animations/Switch';
-import AnimatedTabs from '@/animations/AnimatedTabs';
+import { Switch } from '@/components/ui/Switch';
+import AnimatedTabs from '@/components/motion/AnimatedTabs';
 import { appConfig, getActivePrice } from '@/libs/config/appConfig';
 
 export default function PricingToggle({

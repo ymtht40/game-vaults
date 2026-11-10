@@ -22,7 +22,7 @@ import {
   formatPoint,
   prefersReducedMotion,
   getBoxFaces,
-} from '@/features/common/IsometricFigure'; // NOTE: module id: 576720 // UNRESOLVED: name guessed from usage getBoxFaces
+} from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720 // UNRESOLVED: name guessed from usage getBoxFaces
 
 const getSeatBoxPosition = (index, total) => ({
   x: -16 + (index - (total - 1) / 2) * 30,

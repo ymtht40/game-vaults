@@ -39,11 +39,11 @@ import {
   calculateTierSeatsPrice,
   CYCLE_MONTHS,
 } from '@/libs/config/appConfig'; // NOTE: module id: 59011 // UNRESOLVED: name guessed from usage
-import { roundCurrency, resolveSoloFeatures } from '@/libs/config/pricingFormatters'; // NOTE: module id: 586818
+import { roundCurrency, resolveSoloFeatures } from '@/libs/utils/pricingFormatters'; // NOTE: module id: 586818
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { BulletList } from '@/features/pricing/components/BulletList'; // NOTE: module id: 702954 // UNRESOLVED: unused import retained from bundle
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import AnimatedText from '@/animations/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
 import { usePppTier } from '@/hooks/usePppGeo'; // NOTE: module id: 12895 // UNRESOLVED: name guessed from usage
 // import '@/lib/module-520237'; // NOTE: module id: 520237 // UNRESOLVED: unused side-effect import in 586818
 // import '@/lib/module-101836'; // NOTE: module id: 101836 // UNRESOLVED: unused side-effect import in 586818

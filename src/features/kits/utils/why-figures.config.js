@@ -1,7 +1,7 @@
 // Variable Mapping: s -> systemBlocks, l -> system, o -> properly, c -> getPlatformX, d -> forever
 
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import { ANNNIMATE_EASE } from '@/features/common/IsometricFigure'; // NOTE: module id: 576720
+import { ANNNIMATE_EASE } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 
 const systemBlocks = [
   [0, 0, 56, true],

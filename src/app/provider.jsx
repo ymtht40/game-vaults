@@ -1,16 +1,16 @@
-import LenisProvider from '@/contexts/LenisProvider';
-import { AnimationProvider } from '@/contexts/AnimationProvider';
-import { ScrollLockProvider } from '@/contexts/ScrollLockProvider';
-import { CookieConsentProvider } from '@/contexts/CookieConsentProvider';
-import { ConsentAwareAnalytics } from '@/features/common/ConsentAwareAnalytics';
+import LenisProvider from '@/providers/LenisProvider';
+import { AnimationProvider } from '@/providers/AnimationProvider';
+import { ScrollLockProvider } from '@/providers/ScrollLockProvider';
+import { CookieConsentProvider } from '@/providers/CookieConsentProvider';
+import { ConsentAwareAnalytics } from '@/features/legal/ConsentAwareAnalytics';
 import TransitionLayout from '@/components/layout/TransitionLayout';
-import { UserProvider } from '@/contexts/UserProvider';
-import { NotificationProvider } from '@/contexts/NotificationProvider';
-import { ThemeProvider } from '@/contexts/ThemeProvider';
-import { CategoryProvider } from '@/contexts/CategoryProvider';
-import AppProviders from '@/contexts/AppProviders';
-import { ListSizeProvider } from '@/contexts/ListSizeProvider';
-import PageReadyTrigger from '@/features/common/PageReadyTrigger';
+import { UserProvider } from '@/providers/UserProvider';
+import { NotificationProvider } from '@/providers/NotificationProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
+import { CategoryProvider } from '@/providers/CategoryProvider';
+import AppProviders from '@/providers/AppProviders';
+import { ListSizeProvider } from '@/providers/ListSizeProvider';
+import PageReadyTrigger from '@/components/layout/PageReadyTrigger';
 
 const EMPTY_FEED = { banner: null, items: [], latestDate: null };
 

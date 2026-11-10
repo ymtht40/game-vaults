@@ -1,10 +1,10 @@
 'use client';
 import React, { useState } from 'react';
 import { translate } from '@/libs/utils/i18n';
-import { useTransitionRouter } from '@/contexts/TransitionRouterProvider';
+import { useTransitionRouter } from '@/providers/TransitionRouterProvider';
 import Button from '@/components/ui/Button';
-import AnimatedSubtext from '@/animations/AnimatedSubtext';
-import AnimatedHeadline from '@/animations/AnimatedHeadline';
+import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
+import AnimatedHeadline from '@/components/motion/AnimatedHeadline';
 import PricingToggle from '@/features/pricing/PricingToggle';
 import PricingCard from '@/features/pricing/PricingCard';
 import PricingFeatures from '@/features/pricing/PricingFeatures';

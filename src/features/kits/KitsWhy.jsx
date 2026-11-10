@@ -3,10 +3,10 @@
 // Variable Mapping: e -> price, a -> renderTile
 
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import RevealHeading from '@/animations/RevealHeading'; // NOTE: module id: 963160
+import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { translate } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { Tile } from '@/components/home/Tile'; // NOTE: module id: 392197
+import { Tile } from '@/features/pricing-page/components/BentoTile'; // NOTE: module id: 392197
 import { forever, properly, system } from '@/features/kits/utils/why-figures.config'; // NOTE: module id: 913846
 
 // NOTE: module id: 913846

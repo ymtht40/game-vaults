@@ -23,12 +23,12 @@ import Header from '@/components/header/Header'; // NOTE: module id: 76624
 import { LoadingScreen } from '@/components/layout/LoadingScreen'; // NOTE: module id: 583246
 import { ScrollerSync } from '@/components/layout/ScrollerSync'; // NOTE: module id: 583246
 import { SidebarNav } from '@/components/navigation/SidebarNav'; // NOTE: module id: 583246
-import { OnboardingChecklist } from '@/components/onboarding/OnboardingChecklist'; // NOTE: module id: 583246
-import { useAnimation } from '@/contexts/AnimationProvider'; // NOTE: module id: 488463
-import LenisProvider from '@/contexts/LenisProvider'; // NOTE: module id: 776017
-import { OnboardingProvider } from '@/contexts/OnboardingProvider'; // NOTE: module id: 92451
-import SidebarProvider from '@/contexts/SidebarProvider'; // NOTE: module id: 855382
-import { useUser } from '@/contexts/UserProvider'; // NOTE: module id: 201220
+import { OnboardingChecklist } from '@/features/onboarding/OnboardingChecklist'; // NOTE: module id: 583246
+import { useAnimation } from '@/providers/AnimationProvider'; // NOTE: module id: 488463
+import LenisProvider from '@/providers/LenisProvider'; // NOTE: module id: 776017
+import { OnboardingProvider } from '@/providers/OnboardingProvider'; // NOTE: module id: 92451
+import SidebarProvider from '@/providers/SidebarProvider'; // NOTE: module id: 855382
+import { useUser } from '@/providers/UserProvider'; // NOTE: module id: 201220
 import Sidebar from '@/features/sidebar/Sidebar'; // NOTE: module id: 187797
 import SidebarMobileTrigger from '@/features/sidebar/SidebarMobileTrigger'; // NOTE: module id: 977303
 import UserProfileDropdown from '@/features/sidebar/UserProfileDropdown'; // NOTE: module id: 490620
