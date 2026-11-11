@@ -7,4 +7,5 @@ export {
   ArrowRightIcon as ArrowIcon,
   BookmarkSimpleIcon as BookmarkIcon,
   X as CloseIcon,
+  DeviceMobileIcon as PhoneIcon
 } from '@phosphor-icons/react';
