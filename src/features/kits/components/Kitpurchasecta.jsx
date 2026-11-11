@@ -1,7 +1,7 @@
 // Variable Mapping: e -> kit, i -> owns, s -> priceId, o -> className, a -> size, l -> buyLabel
 
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
-import KitCheckoutButton from '@/components/kits/Kitcheckoutbutton'; // NOTE: module id: 569424
+import KitCheckoutButton from '@/features/kits/components/Kitcheckoutbutton'; // NOTE: module id: 569424
 
 // NOTE: module id: 787160
 export function KitPurchaseCta({

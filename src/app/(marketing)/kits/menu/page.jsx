@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import MenuKitPage from '@/components/kits/Menukitpage';
+import MenuKitLayout from '@/features/kits/menu/MenuKitLayout';
 import { getKitPageData } from '@/libs/server/kits';
 
 export const metadata = { title: 'Menu Kit' };
@@ -9,7 +9,7 @@ export default async function Page() {
   if (!data) notFound();
 
   return (
-    <MenuKitPage
+    <MenuKitLayout
       kit={data.kit}
       owns={data.owns}
       priceId={data.priceId}

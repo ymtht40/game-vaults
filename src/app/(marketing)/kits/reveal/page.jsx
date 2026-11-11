@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import RevealKitPage from '@/components/kits/Revealkitpage';
+import RevealKitLayout from '@/features/kits/reveal/RevealKitLayout';
 import { getKitPageData } from '@/libs/server/kits';
 
 export const metadata = { title: 'Reveal Kit' };
@@ -9,7 +9,7 @@ export default async function Page() {
   if (!data) notFound();
 
   return (
-    <RevealKitPage
+    <RevealKitLayout
       kit={data.kit}
       owns={data.owns}
       priceId={data.priceId}

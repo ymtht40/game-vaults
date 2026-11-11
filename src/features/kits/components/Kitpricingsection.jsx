@@ -9,8 +9,8 @@ import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id:
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 import KitPrice from '@/features/pricing/components/KitPrice'; // NOTE: module id: 597274
 import { usePppTier } from '@/hooks/usePppGeo'; // NOTE: module id: 12895
-import { KitPurchaseCta } from '@/components/kits/Kitpurchasecta'; // NOTE: module id: 787160
-import { KIT_MEMBER_DISCOUNT_NOTE, isKitAvailable } from '@/components/kits/utils/menuKits'; // NOTE: module id: 12426
+import { KitPurchaseCta } from '@/features/kits/components/Kitpurchasecta'; // NOTE: module id: 787160
+import { KIT_LICENSE_NOTE, hasKitPricing } from '@/features/kits/utils/menuKits'; // NOTE: module id: 12426
 
 function useLazyViewportVideo(videoRef, isDisabled = false) {
   const [hasEnteredViewport, setHasEnteredViewport] = useState(false);
@@ -72,7 +72,7 @@ export default function KitPricingSection({
   const hasLoadedVideo = useLazyViewportVideo(videoRef, prefersReducedMotion);
   const fallbackPriceDisplay =
     kit?.metadata?.price_display ||
-    (isKitAvailable(kit) ? null : 'Announced at launch');
+    (hasKitPricing(kit) ? null : 'Announced at launch');
   const pppTier = usePppTier();
   const pppPrice = pppTier ? getAddonTierPrice(kit?.slug, pppTier) : null;
 
@@ -178,7 +178,7 @@ export default function KitPricingSection({
                       }
                     />
                     <span className="text-body-sm text-foreground-muted">
-                      {KIT_MEMBER_DISCOUNT_NOTE}
+                      {KIT_LICENSE_NOTE}
                     </span>
                   </div>
                 </div>

@@ -7,8 +7,8 @@ import { createPortal } from 'react-dom'; // NOTE: module id: 174080
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
 import KitPrice from '@/features/pricing/components/KitPrice'; // NOTE: module id: 597274
-import { KitPurchaseCta } from '@/components/kits/Kitpurchasecta'; // NOTE: module id: 787160
-import { isKitAvailable } from '@/components/kits/utils/menuKits'; // NOTE: module id: 12426
+import { KitPurchaseCta } from '@/features/kits/components/Kitpurchasecta'; // NOTE: module id: 787160
+import { hasKitPricing } from '@/features/kits/utils/menuKits'; // NOTE: module id: 12426
 
 gsap.registerPlugin(useGSAP);
 
@@ -90,7 +90,7 @@ export function KitFloatingBuyBar({ kit, owns = false, priceId = null }) {
 
   const fallbackPriceDisplay =
     kit?.metadata?.price_display ||
-    (isKitAvailable(kit) ? 'One-time' : 'Announced at launch');
+    (hasKitPricing(kit) ? 'One-time' : 'Announced at launch');
 
   return createPortal(
     <div className="pointer-events-none fixed inset-x-0 bottom-24 z-[10] flex justify-center px-16 lg:bottom-32">

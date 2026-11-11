@@ -9,3 +9,4 @@ export {
   X as CloseIcon,
   DeviceMobileIcon as PhoneIcon
 } from '@phosphor-icons/react';
+export { ArrowRightIcon as ReplayIcon } from "@phosphor-icons/react";

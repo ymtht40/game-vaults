@@ -2,8 +2,8 @@
 
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
-import { ImageRing } from '@/components/kits/Imagering'; // NOTE: module id: 809214
-import { KitPurchaseCta } from '@/components/kits/Kitpurchasecta'; // NOTE: module id: 787160
+import { ImageRing } from '@/features/kits/components/Imagering'; // NOTE: module id: 809214
+import { KitPurchaseCta } from '@/features/kits/components/Kitpurchasecta'; // NOTE: module id: 787160
 
 // NOTE: module id: 525425
 export function KitClosingCta({ kit, owns = false, priceId = null, images = [] }) {
