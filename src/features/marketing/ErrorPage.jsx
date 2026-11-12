@@ -12,7 +12,7 @@ import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module i
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { SecondaryButton } from '@/components/ui/SecondaryButton'; // NOTE: module id: 511757
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
 import { BrandLogo } from '@/assets/logos/BrandLogo'; // NOTE: module id: 843028
 
 // NOTE: module id: 760542
@@ -95,7 +95,7 @@ export default function ErrorPage({ error, reset }) {
           Something came apart.
         </RevealHeading>
 
-        <SplitTextReveal
+        <AnimatedText
           tag="p"
           className="text-body-lg mt-16 max-w-[44ch] text-foreground-muted lg:mt-20"
           type="lines"
@@ -111,7 +111,7 @@ export default function ErrorPage({ error, reset }) {
         >
           An unexpected error happened. Try refreshing the page, or reach out if it
           keeps happening.
-        </SplitTextReveal>
+        </AnimatedText>
 
         <div
           ref={actionsWrapperRef}

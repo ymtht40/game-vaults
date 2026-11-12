@@ -7,7 +7,7 @@ import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module i
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { revealFig } from '@/features/pricing-page/sections/PricingSection'; // NOTE: module id: 586818
 // UNRESOLVED: original source path or export names are absent from this chunk.
@@ -53,7 +53,7 @@ export default function LibraryOrKit({
             >
               {translate('pricing-v3.libraryOrKit.headline')}
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               tag="p"
               className="text-body-lg max-w-[46ch] text-foreground-muted"
               {...pricingTextAnimation}
@@ -61,9 +61,9 @@ export default function LibraryOrKit({
               delay={0.25}
             >
               {translate('pricing-v3.libraryOrKit.sub')}
-            </SplitTextReveal>
+            </AnimatedText>
           </div>
-          <SplitTextReveal
+          <AnimatedText
             tag="p"
             className="text-body-lg col-span-12 max-w-[46ch] md:col-span-6 md:col-start-7"
             {...pricingTextAnimation}
@@ -71,7 +71,7 @@ export default function LibraryOrKit({
             delay={0.35}
           >
             {translate('pricing-v3.libraryOrKit.stack')}
-          </SplitTextReveal>
+          </AnimatedText>
         </div>
         <FadeIn
           trigger="scroll"

@@ -7,7 +7,7 @@ import gsap from 'gsap'; // NOTE: module id: 989970
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
 import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701
 import { BrandLogo } from '@/assets/logos/BrandLogo'; // NOTE: module id: 843028
 import ParticleMorphCanvas from '@/features/marketing/ParticleMorphCanvas'; // NOTE: module id: 567028
@@ -95,7 +95,7 @@ export default function NotFoundPage() {
           This page came apart.
         </RevealHeading>
 
-        <SplitTextReveal
+        <AnimatedText
           tag="p"
           className="text-body-lg mt-12 max-w-[44ch] text-foreground-muted lg:mt-16"
           type="lines"
@@ -110,7 +110,7 @@ export default function NotFoundPage() {
           }}
         >
           The link is gone, but the rest of Annnimate is one click away.
-        </SplitTextReveal>
+        </AnimatedText>
 
         <div ref={ctaWrapperRef} className="mt-24 lg:mt-32">
           <Button href="/" theme="brand" size="sm">

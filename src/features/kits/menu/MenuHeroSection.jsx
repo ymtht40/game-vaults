@@ -5,7 +5,7 @@
 import { useEffect, useRef, useState } from 'react';
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import HtmlIcon from '@/assets/icons/HtmlIcon'; // NOTE: module id: 514162 // UNRESOLVED: name guessed from usage
 import ReactIcon from '@/assets/icons/ReactIcon'; // NOTE: module id: 989080 // UNRESOLVED: name guessed from usage
 import VueIcon from '@/assets/icons/VueIcon'; // NOTE: module id: 667024 // UNRESOLVED: name guessed from usage
@@ -70,7 +70,7 @@ export function MenuHeroSection({ kit, owns = false, priceId = null }) {
             >
               {`${kit.title} Kit`}
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               tag="p"
               className="text-body-lg mx-auto mt-16 max-w-[46ch] text-foreground-muted"
               {...HERO_TAGLINE_REVEAL_PROPS}
@@ -79,7 +79,7 @@ export function MenuHeroSection({ kit, owns = false, priceId = null }) {
               Every site has one, and it is the first thing anyone touches. Ten
               complete navigation surfaces, each one art-directed on its own,
               all built on the same contract.
-            </SplitTextReveal>
+            </AnimatedText>
             <FadeIn
               className="mt-32 flex flex-wrap items-center justify-center gap-x-16 gap-y-8 text-mono-sm text-foreground-muted"
               delay={0.35}

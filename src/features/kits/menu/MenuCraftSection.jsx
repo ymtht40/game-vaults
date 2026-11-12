@@ -2,7 +2,7 @@
 
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { MENU_CRAFT_ITEMS } from '@/features/kits/utils/menu-kit.config'; // NOTE: module id: 37418
 
 // NOTE: module id: 37418
@@ -23,7 +23,7 @@ export function MenuCraftSection() {
             >
               A menu is where sites quietly break.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body-lg mt-16 max-w-[62ch] leading-relaxed text-foreground-muted"
             >
@@ -31,7 +31,7 @@ export function MenuCraftSection() {
               component where the animation is the easy half. The Kit's contract
               handles the other half the same way in all ten, so you don't
               re-audit it per menu.
-            </SplitTextReveal>
+            </AnimatedText>
             <FadeIn
               trigger="scroll"
               stagger={0.06}

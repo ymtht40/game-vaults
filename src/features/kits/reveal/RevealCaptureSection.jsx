@@ -1,7 +1,7 @@
 // Variable Mapping: R -> RevealCaptureSection?
 
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import NewsletterForm from '@/features/newsletter/NewsletterForm'; // NOTE: module id: 42242 // UNRESOLVED: name guessed from usage
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 
@@ -24,12 +24,12 @@ export function RevealCaptureSection() {
             >
               {t('kits.capture.headline')}
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body mt-16 leading-relaxed text-foreground-muted"
             >
               {t('kits.capture.body')}
-            </SplitTextReveal>
+            </AnimatedText>
           </div>
           <div className="col-span-12 lg:col-span-4 lg:col-start-8">
             <NewsletterForm

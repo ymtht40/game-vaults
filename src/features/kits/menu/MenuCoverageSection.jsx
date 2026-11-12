@@ -2,7 +2,7 @@
 
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { groupComponentsByKind } from '@/features/kits/utils/menuKits'; // NOTE: module id: 12426 // UNRESOLVED: name guessed from usage
 import { COVERAGE_DIAGRAMS } from '@/features/kits/menu/MenuCoverageDiagrams'; // NOTE: module id: 37418
 import { MenuVariantIcon } from '@/features/kits/menu/MenuVariantIcon'; // NOTE: module id: 37418
@@ -25,7 +25,7 @@ export function MenuCoverageSection({ kit }) {
             >
               Four things a menu can do to a page.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body-lg mt-16 max-w-[62ch] leading-relaxed text-foreground-muted"
             >
@@ -34,7 +34,7 @@ export function MenuCoverageSection({ kit }) {
               that shoves the page down. One with a live canvas behind it should
               not be covered. The Kit has all four, so the answer is already in
               it.
-            </SplitTextReveal>
+            </AnimatedText>
             <FadeIn
               trigger="scroll"
               stagger={0.08}

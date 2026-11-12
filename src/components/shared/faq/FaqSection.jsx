@@ -5,7 +5,7 @@
 import { useState, useCallback } from 'react';
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701 // UNRESOLVED: name guessed from usage
@@ -66,7 +66,7 @@ export function FaqSection({
                 className="col-span-12 lg:col-span-4 lg:col-start-1 lg:sticky lg:top-[var(--v2-sticky-top)] lg:self-start"
               >
                 {eyebrow ? (
-                  <SplitTextReveal
+                  <AnimatedText
                     tag="p"
                     className="text-mono-sm mb-24 text-foreground-muted"
                     type="lines"
@@ -78,7 +78,7 @@ export function FaqSection({
                     triggerMode="scroll"
                   >
                     {eyebrow}
-                  </SplitTextReveal>
+                  </AnimatedText>
                 ) : null}
                 <RevealHeading
                   as="h2"
@@ -88,7 +88,7 @@ export function FaqSection({
                   {headline}
                 </RevealHeading>
                 <div className="mt-24">
-                  <SplitTextReveal
+                  <AnimatedText
                     tag="p"
                     className="text-body max-w-[34ch] text-foreground-muted"
                     type="lines"
@@ -100,7 +100,7 @@ export function FaqSection({
                     triggerMode="scroll"
                   >
                     {subtext}
-                  </SplitTextReveal>
+                  </AnimatedText>
                 </div>
                 {ctaLink ? (
                   <div className="mt-32 hidden lg:flex">

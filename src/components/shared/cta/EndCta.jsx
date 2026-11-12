@@ -1,7 +1,8 @@
+'use client';
 import { useRef } from "react";
 import gsap from "gsap";
 import RevealHeading from "@/components/motion/RevealHeading"; // NOTE: module id: 963160
-import SplitTextReveal from "@/features/demos/SplitTextReveal"; // NOTE: module id: 218091
+import AnimatedText from "@/components/motion/AnimatedText"; // NOTE: module id: 218091
 import Button from "@/components/ui/Button"; // NOTE: module id: 687989
 import { CtaRing, DEFAULT_HEIGHT } from "@/components/shared/cta/CtaRing"; // NOTE: module id: 809214
 import { useRevealTimeline } from "@/hooks/useRevealTimeline"; // NOTE: module id: 228414
@@ -90,7 +91,7 @@ export default function EndCta({
             </RevealHeading>
 
             {subtext && (
-              <SplitTextReveal
+              <AnimatedText
                 tag="p"
                 className="text-body max-w-[44ch] text-foreground-muted"
                 type="lines"
@@ -105,7 +106,7 @@ export default function EndCta({
                 }}
               >
                 {subtext}
-              </SplitTextReveal>
+              </AnimatedText>
             )}
 
             {children ? (

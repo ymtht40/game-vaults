@@ -1,7 +1,7 @@
 // Variable Mapping: W -> MenuCodeSection?
 
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { CodeViewer } from '@/features/animation-detail/components/CodeViewer'; // NOTE: module id: 343931 // UNRESOLVED: name guessed from usage
 import { MENU_CODE_ANIMATION, MENU_CODE_STATE } from '@/features/kits/utils/menu-kit.config'; // NOTE: module id: 37418
 
@@ -21,7 +21,7 @@ export function MenuCodeSection() {
             >
               Each menu is one drop-in component.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body mt-16 leading-relaxed text-foreground-muted"
             >
@@ -29,7 +29,7 @@ export function MenuCodeSection() {
               choreography, the accessibility floor. Pass your page in as
               children, wire the callbacks you need, ship it. React, Vue, and
               plain HTML - GSAP only, nothing else to install.
-            </SplitTextReveal>
+            </AnimatedText>
           </div>
           <div className="col-span-12 lg:col-span-5 lg:col-start-7">
             <div className="h-[480px] lg:h-[400px]">

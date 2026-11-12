@@ -4,7 +4,7 @@
 
 import { useRef } from 'react';
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { MediaHoverReveal } from '@/components/motion/MediaHoverReveal'; // NOTE: module id: 934783 // UNRESOLVED: name guessed from usage
 import { getVariantKindMeta, KIT_FORMATS_NOTE } from '@/features/kits/utils/menuKits'; // NOTE: module id: 12426 // UNRESOLVED: name guessed from usage
 import { ManifestCategoryColumn } from '@/features/kits/reveal/ManifestCategoryColumn'; // NOTE: module id: 301900
@@ -88,12 +88,12 @@ export function RevealManifestSection({ kit, videos = [] }) {
             >
               Everything you get.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body-lg mt-16 max-w-[58ch] leading-relaxed text-foreground-muted"
             >
               {descriptionText}
-            </SplitTextReveal>
+            </AnimatedText>
             <div
               ref={listContainerRef}
               className="mt-40 grid grid-cols-12 gap-x-24 gap-y-32"

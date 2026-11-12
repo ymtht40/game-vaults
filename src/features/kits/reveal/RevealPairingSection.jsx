@@ -4,7 +4,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { ReplayIcon } from '@/assets/icons'; // NOTE: module id: 182006 // UNRESOLVED: name guessed from usage
 import RangeSlider from '@/components/ui/RangeSlider'; // NOTE: module id: 125303 // UNRESOLVED: name guessed from usage
 import { getVariantKindMeta } from '@/features/kits/utils/menuKits'; // NOTE: module id: 12426 // UNRESOLVED: name guessed from usage
@@ -98,12 +98,12 @@ export function RevealPairingSection({ kit }) {
             >
               Pair any preloader with any hero.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body-lg mt-16 max-w-[60ch] leading-relaxed text-foreground-muted"
             >
               Preloaders and hero sections are one system. The preloader's release frame triggers the hero's first frame. Pick a pair and watch the real handoff.
-            </SplitTextReveal>
+            </AnimatedText>
             {hasPairs ? (
               <div className="mt-40 flex flex-col border border-foreground/15 bg-foreground/[0.04] lg:grid lg:grid-cols-[240px_1fr]">
                 <div

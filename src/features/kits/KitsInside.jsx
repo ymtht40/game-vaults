@@ -10,7 +10,7 @@ import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module i
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import {
   ANNNIMATE_IN_OUT_EASE,
@@ -123,7 +123,7 @@ export default function KitsInside({ headline, sub, kits = [] }) {
           {headline}
         </RevealHeading>
         {sub ? (
-          <SplitTextReveal
+          <AnimatedText
             tag="p"
             className="text-body-lg max-w-[46ch] text-foreground-muted"
             {...insideTextAnimation}
@@ -131,7 +131,7 @@ export default function KitsInside({ headline, sub, kits = [] }) {
             delay={0.2}
           >
             {sub}
-          </SplitTextReveal>
+          </AnimatedText>
         ) : null}
         <FadeIn trigger="scroll" delay={0.3} className="mt-16">
           <Tabs

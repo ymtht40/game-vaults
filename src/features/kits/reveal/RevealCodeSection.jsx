@@ -4,7 +4,7 @@
 
 import JSXStyle from 'styled-jsx/style'; // NOTE: module id: 437902
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { CodeViewer } from '@/features/animation-detail/components/CodeViewer'; // NOTE: module id: 343931 // UNRESOLVED: name guessed from usage
 import {
   REVEAL_CODE_ANIMATION,
@@ -29,14 +29,14 @@ export function RevealCodeSection() {
             >
               Code you would have written anyway.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body mt-16 leading-relaxed text-foreground-muted"
             >
               Real React, Vue, and HTML. Typed, SSR-safe, reduced-motion aware.
               GSAP for the motion, Three.js for the WebGL variants. Paste it and
               ship.
-            </SplitTextReveal>
+            </AnimatedText>
           </div>
           <div className="jsx-d0166576148eee8d col-span-12 lg:col-span-5 lg:col-start-7">
             <div className="jsx-d0166576148eee8d reveal-code-panel h-[340px] lg:h-[400px]">

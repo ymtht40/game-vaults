@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -141,7 +141,7 @@ export function ScrollTrackedFeatureList({
   return (
     <div className={className}>
       {eyebrow && (
-        <SplitTextReveal
+        <AnimatedText
           tag="p"
           className="text-mono-sm mb-40 text-foreground-muted"
           type="lines"
@@ -155,7 +155,7 @@ export function ScrollTrackedFeatureList({
           triggerMode="scroll"
         >
           {eyebrow}
-        </SplitTextReveal>
+        </AnimatedText>
       )}
       <div ref={listRef} className="relative flex w-full flex-col">
         <div
@@ -180,7 +180,7 @@ export function ScrollTrackedFeatureList({
               className={`list-none py-20 ${itemClassName} ${isFirst ? 'pt-0' : 'border-t border-foreground/10'} ${isLast ? 'pb-0' : ''}`}
             >
               <li>
-                <SplitTextReveal
+                <AnimatedText
                   type="lines"
                   mask="lines"
                   duration={0.6}
@@ -192,7 +192,7 @@ export function ScrollTrackedFeatureList({
                   triggerMode="scroll"
                 >
                   {item}
-                </SplitTextReveal>
+                </AnimatedText>
               </li>
             </ul>
           );

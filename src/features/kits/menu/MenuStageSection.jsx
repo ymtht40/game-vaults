@@ -5,7 +5,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { MonitorIcon } from '@phosphor-icons/react';
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import { PhoneIcon } from '@/assets/icons'; // NOTE: module id: 954243 // UNRESOLVED: name guessed from usage
 import { ReplayIcon } from '@/assets/icons'; // NOTE: module id: 182006 // UNRESOLVED: name guessed from usage
 import Select from '@/components/ui/Select'; // NOTE: module id: 977805 // UNRESOLVED: name guessed from usage
@@ -92,7 +92,7 @@ export function MenuStageSection({ kit }) {
             >
               Open every one of them.
             </RevealHeading>
-            <SplitTextReveal
+            <AnimatedText
               triggerMode="scroll"
               className="text-body-lg mt-16 max-w-[62ch] leading-relaxed text-foreground-muted"
             >
@@ -102,7 +102,7 @@ export function MenuStageSection({ kit }) {
                 Switch the stage to phone to check the mobile behaviour, which
                 is where most menus quietly fall apart.
               </span>
-            </SplitTextReveal>
+            </AnimatedText>
             {hasComponents ? (
               <div className="mt-40 flex flex-col border border-foreground/15 bg-foreground/[0.04] lg:grid lg:grid-cols-[280px_1fr]">
                 <div

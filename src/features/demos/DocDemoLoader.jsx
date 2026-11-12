@@ -10,7 +10,7 @@ const DEMO_COMPONENTS = {
   stagger: dynamic(() => import('@/features/demos/StaggerDemo'), { // NOTE: module id: 919926
     ssr: false,
   }),
-  'split-text': dynamic(() => import('@/features/demos/SplitTextReveal'), { // NOTE: module id: 432247
+  'split-text': dynamic(() => import('@/components/motion/AnimatedText'), { // NOTE: module id: 432247
     ssr: false,
   }),
   'scrub-sim': dynamic(() => import('@/features/demos/ScrubDemo'), { // NOTE: module id: 978787

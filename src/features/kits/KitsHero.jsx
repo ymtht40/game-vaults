@@ -9,7 +9,7 @@ import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module i
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import SplitTextReveal from '@/features/demos/SplitTextReveal';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import AnimatedText from '@/components/motion/AnimatedText';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { ANNNIMATE_EASE, prefersReducedMotion } from '@/components/motion/IsometricFigure'; // NOTE: module id: 576720
 // UNRESOLVED: original source path or export names are absent from this chunk.
@@ -92,14 +92,14 @@ export default function KitsHero({ kits = [] }) {
         >
           {translate('kits-v3.hero.headline')}
         </RevealHeading>
-        <SplitTextReveal
+        <AnimatedText
           tag="p"
           className="text-body-lg max-w-[52ch] text-foreground-muted"
           {...heroTextAnimation}
           delay={0.3}
         >
           {translate('kits-v3.hero.sub')}
-        </SplitTextReveal>
+        </AnimatedText>
       </div>
     </section>
   );
