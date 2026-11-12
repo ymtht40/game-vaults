@@ -9,7 +9,7 @@ import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091
 // UNRESOLVED: original source path or export names are absent from this chunk.
-import { revealFig } from '@/features/pricing/PricingSection'; // NOTE: module id: 586818
+import { revealFig } from '@/features/pricing-page/sections/PricingSection'; // NOTE: module id: 586818
 // UNRESOLVED: original source path or export names are absent from this chunk.
 import { translate } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { weekly } from '@/features/landing/bento-figures.config'; // NOTE: module id: 392197

@@ -1,29 +1,11 @@
 'use client';
 
-/* Variable Mapping:
-   o -> FaqItem
-   e -> q
-   n -> a
-   a -> isOpen
-   l -> onToggle
-   u -> isDesktop
-   d -> duration
-   f -> ease
-   h -> panelRef
-   m -> iconRef
-   g -> verticalPathRef
-   p -> timelineRef
-   x -> splitRef
-   w -> linesTweenRef
-   y -> wasOpenRef
-   b -> questionRef
-   v -> scramble
-*/
+// Variable Mapping: o -> FaqItem, e -> q, n -> a, i -> isOpen, l -> onToggle, u -> isDesktop, d -> duration, h -> ease, f -> contentRef, m -> iconRef, p -> verticalLineRef, g -> timelineRef, x -> splitInstanceRef, y -> linesTweenRef, b -> prevIsOpenRef, w -> scrambleRef, v -> scramble
 
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { SplitText } from 'gsap/SplitText';
-import { useMultilineScrambleText } from '@/hooks/useMultilineScrambleText'; // NOTE: module id: 798851
+import { useMultilineScrambleText } from '@/hooks/useMultilineScrambleText'; // NOTE: module id: 798851 // UNRESOLVED: name guessed from usage
 
 gsap.registerPlugin(SplitText);
 
@@ -37,15 +19,15 @@ export function FaqItem({
   duration = 0.8,
   ease = 'expo.inOut',
 }) {
-  const panelRef = useRef(null);
+  const contentRef = useRef(null);
   const iconRef = useRef(null);
-  const verticalPathRef = useRef(null);
+  const verticalLineRef = useRef(null);
   const timelineRef = useRef(null);
-  const splitRef = useRef(null);
+  const splitInstanceRef = useRef(null);
   const linesTweenRef = useRef(null);
-  const wasOpenRef = useRef(false);
+  const prevIsOpenRef = useRef(false);
 
-  const { ref: questionRef, scramble } = useMultilineScrambleText({
+  const { ref: scrambleRef, scramble } = useMultilineScrambleText({
     duration: 0.5,
     speed: 1,
     firstColorClass: 'scramble-brand',
@@ -54,29 +36,25 @@ export function FaqItem({
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const panelEl = panelRef.current;
-    if (!panelEl) return;
+    const contentEl = contentRef.current;
+    if (!contentEl) return;
 
-    gsap.set(panelEl, {
-      height: 0,
-      overflow: 'hidden',
-      force3D: true,
-    });
+    gsap.set(contentEl, { height: 0, overflow: 'hidden', force3D: true });
 
     const tl = gsap.timeline({
       paused: true,
       defaults: { duration, ease },
     });
 
-    tl.to(panelEl, { height: 'auto', duration, ease }, 0);
+    tl.to(contentEl, { height: 'auto', duration, ease }, 0);
 
     if (iconRef.current) {
       tl.to(iconRef.current, { rotation: -180, duration, ease }, 0);
     }
 
-    if (verticalPathRef.current) {
+    if (verticalLineRef.current) {
       tl.to(
-        verticalPathRef.current,
+        verticalLineRef.current,
         { opacity: 0, duration: 0.5 * duration, ease: 'power2.inOut' },
         0.25 * duration
       );
@@ -87,31 +65,36 @@ export function FaqItem({
     return () => {
       tl.kill();
       linesTweenRef.current?.kill();
-      splitRef.current?.revert();
+      splitInstanceRef.current?.revert();
     };
   }, [duration, ease]);
 
   useEffect(() => {
-    if (timelineRef.current && isOpen !== wasOpenRef.current) {
-      wasOpenRef.current = isOpen;
+    if (timelineRef.current && isOpen !== prevIsOpenRef.current) {
+      prevIsOpenRef.current = isOpen;
+
       if (isOpen) {
         timelineRef.current.play();
+
         if (isDesktop) {
           scramble();
         }
-        if (isDesktop && panelRef.current) {
+
+        if (isDesktop && contentRef.current) {
           const timerId = window.setTimeout(() => {
             document.fonts?.ready.then(() => {
-              const panelEl = panelRef.current;
-              if (panelEl) {
-                panelEl.querySelectorAll('p').forEach((paragraphEl) => {
-                  if (paragraphEl.querySelector('.faq-split-line')) return;
-                  splitRef.current = SplitText.create(paragraphEl, {
+              const contentEl = contentRef.current;
+              if (contentEl) {
+                contentEl.querySelectorAll('p').forEach((paragraph) => {
+                  if (paragraph.querySelector('.faq-split-line')) return;
+
+                  splitInstanceRef.current = SplitText.create(paragraph, {
                     type: 'lines',
                     mask: 'lines',
                     linesClass: 'faq-split-line',
                   });
-                  const lines = splitRef.current.lines;
+
+                  const lines = splitInstanceRef.current.lines;
                   gsap.set(lines, { yPercent: 110, force3D: true });
                   linesTweenRef.current = gsap.to(lines, {
                     yPercent: 0,
@@ -124,14 +107,15 @@ export function FaqItem({
               }
             });
           }, 180);
+
           return () => window.clearTimeout(timerId);
         }
       } else {
         timelineRef.current.reverse();
         linesTweenRef.current?.kill();
         linesTweenRef.current = null;
-        splitRef.current?.revert();
-        splitRef.current = null;
+        splitInstanceRef.current?.revert();
+        splitInstanceRef.current = null;
       }
     }
   }, [isOpen, isDesktop]);
@@ -144,7 +128,7 @@ export function FaqItem({
         aria-expanded={isOpen}
         className={`group flex w-full cursor-pointer items-start justify-between gap-16 border-0 bg-transparent py-24 text-left transition-colors duration-300 lg:items-center ${isOpen ? 'text-foreground' : 'text-foreground-muted hover:text-foreground'}`}
       >
-        <span ref={questionRef} className="text-body-lg">
+        <span ref={scrambleRef} className="text-body-lg">
           {q}
         </span>
         <svg
@@ -156,16 +140,21 @@ export function FaqItem({
           aria-hidden="true"
         >
           <path
-            ref={verticalPathRef}
+            ref={verticalLineRef}
             d="M8 1V15"
             stroke="currentColor"
             strokeWidth="1.5"
             strokeLinecap="square"
           />
-          <path d="M1 8H15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square" />
+          <path
+            d="M1 8H15"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="square"
+          />
         </svg>
       </button>
-      <div ref={panelRef}>
+      <div ref={contentRef}>
         <div className="text-body max-w-[96ch] pb-24 text-foreground-muted">
           <p>{a}</p>
         </div>

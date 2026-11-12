@@ -15,7 +15,7 @@ import {
   formats,
   values,
   weekly,
-} from '@/features/pricing-page/home/bento.config'; // NOTE: module id: 392197
+} from '@/features/pricing-page/utils/bento.config'; // NOTE: module id: 392197
 
 // NOTE: module id: 392197
 export { Tile, formats, values, weekly };

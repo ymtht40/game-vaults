@@ -180,14 +180,3 @@ export function useIsometricFigureAnimation(containerRef, figureSpec, deps = [])
   };
 }
 
-export {
-  ANNNIMATE_EASE as a,
-  IsometricFigure as N,
-  ANNNIMATE_IN_OUT_EASE as B,
-  getBoxFaces as A,
-  prefersReducedMotion as P,
-  formatPoint as L,
-  setBoxAccentElement as v,
-  useIsometricFigureAnimation as t,
-  computeViewBox as O,
-};

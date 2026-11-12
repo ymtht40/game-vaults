@@ -10,7 +10,7 @@ import StarterPackPopup from '@/features/newsletter/StarterPackPopup'; // NOTE: 
 import AnimationsLibraryNav, { VIEW_MODES } from '@/features/animation-page/components/AnimationsLibraryNav'; // NOTE: module id: 108800
 import { AnimationCollection } from '@/features/animation-page/components/AnimationCollection'; // NOTE: module id: 425565
 import { EmptyAnimationsState } from '@/features/animation-page/components/EmptyAnimationsState'; // NOTE: module id: 503408
-import EndCta from '@/features/landing/EndCta'; // NOTE: module id: 482232
+import EndCta from '@/components/shared/cta/EndCta'; // NOTE: module id: 482232
 import FAQ from '@/features/animation-page/sections/FAQ'; // NOTE: module id: 126272
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll'; // NOTE: module id: 451945
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348

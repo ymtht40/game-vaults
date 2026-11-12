@@ -15,7 +15,7 @@ import LibraryPreview from '@/components/ui/LibraryPreview';
 import LogoWall from '@/features/landing/Testimonials';
 import StarterPackSection from '@/features/landing/StarterPackSection';
 import ValueMath from '@/features/landing/ValueMath';
-import FAQ from '@/features/landing/FAQSection';
+import FAQ from '@/features/animation-page/sections/FAQ';
 import BottomCTA from '@/features/landing/BottomCTA';
 
 const PREFERRED_SLUGS = [

@@ -3,7 +3,7 @@
 // Variable Mapping: e -> roadmap, n -> animations, s -> lastShippedDaysAgo, i -> isAuthenticated, l -> suggestOpen, o -> setSuggestOpen, d -> handleOpenSuggest, c -> sectionsById, u -> counts, h -> initialVotedItemsById, m -> setVotedItemsById, f -> previewImages, t -> itemId, r -> voted, a -> prevVotedItems
 
 import { useCallback, useMemo, useState } from 'react';
-import EndCta from '@/features/landing/EndCta'; // NOTE: module id: 482232
+import EndCta from '@/components/shared/cta/EndCta'; // NOTE: module id: 482232
 import { RoadmapBoard } from '@/features/roadmap/RoadmapBoard'; // NOTE: module id: 626171
 import { RoadmapHero } from '@/features/roadmap/RoadmapHero'; // NOTE: module id: 626171
 import { SuggestModal } from '@/features/roadmap/SuggestModal'; // NOTE: module id: 626171

@@ -6,9 +6,9 @@ import Button from '@/components/ui/Button';
 import RevealHeading from '@/components/motion/RevealHeading';
 import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 import AnimatedReveal from '@/components/motion/AnimatedReveal';
-import FAQItem from '@/components/ui/FAQItem';
+import { FaqItem } from '@/components/shared/faq/FaqItem';
 
-export default function FAQ({
+export default function FAQsection({
   faqs = translate('common.faq.items'),
   eyebrow,
   headline = translate('common.faq.headline'),
@@ -111,7 +111,7 @@ export default function FAQ({
                   y={20}
                   className="w-full">
                   {faqs.map((faq, index) => (
-                    <FAQItem
+                    <FaqItem
                       key={faq.q}
                       q={faq.q}
                       a={faq.a}

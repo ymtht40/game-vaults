@@ -6,7 +6,7 @@
 
 import { useState, useRef } from 'react';
 import { usePathname } from 'next/navigation'; // NOTE: module id: 618566
-import Link from 'next/link'; // NOTE: module id: 101836
+import TransitionLink from 'next/link'; // NOTE: module id: 101836
 import gsap from 'gsap'; // NOTE: module id: 989970
 import { useGSAP } from '@gsap/react'; // NOTE: module id: 365747
 import { CaretLeft, CaretRight } from '@phosphor-icons/react'; // NOTE: module ids: 590961, 268817
@@ -103,7 +103,7 @@ export default function AnimationDetailNav({ items = [] }) {
       >
         {prevItem && (
           <>
-            <Link
+            <TransitionLink
               href={`/animations/${prevItem.slug}`}
               className={buttonClassName}
               aria-label={`Previous component: ${prevItem.title}`}
@@ -116,23 +116,23 @@ export default function AnimationDetailNav({ items = [] }) {
               >
                 {displayItems.prev?.title || prevItem.title}
               </span>
-            </Link>
+            </TransitionLink>
             <span aria-hidden="true" className="w-px self-stretch bg-foreground/10" />
           </>
         )}
 
-        <Link
+        <TransitionLink
           href="/animations"
           className={buttonClassName}
           onClick={() => trackEvent('browse_all')}
         >
           <span className="whitespace-nowrap">Browse all {itemCount}</span>
-        </Link>
+        </TransitionLink>
 
         {nextItem && (
           <>
             <span aria-hidden="true" className="w-px self-stretch bg-foreground/10" />
-            <Link
+            <TransitionLink
               href={`/animations/${nextItem.slug}`}
               className={buttonClassName}
               aria-label={`Next component: ${nextItem.title}`}
@@ -145,7 +145,7 @@ export default function AnimationDetailNav({ items = [] }) {
                 {displayItems.next?.title || nextItem.title}
               </span>
               <CaretRight className="size-14 shrink-0 text-foreground-muted" />
-            </Link>
+            </TransitionLink>
           </>
         )}
       </div>

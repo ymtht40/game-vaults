@@ -1,30 +1,15 @@
 'use client';
 
-/* Variable Mapping:
-   e -> faqs
-   s -> eyebrow
-   i -> headline
-   c -> subtext
-   h -> ctaLink
-   m -> sectionId
-   g -> inset
-   p -> list
-   x -> theme
-   w -> openIndex
-   y -> setOpenIndex
-   b -> isDesktop
-   v -> handleToggle
-   j -> faqJsonLd
-*/
+// Variable Mapping: f -> FaqSection?, e -> faqs, s -> eyebrow, a -> headline, c -> subtext, f (prop) -> ctaLink, m -> sectionId, p -> inset, g -> list, x -> theme, y -> openIndex, b -> setOpenIndex, w -> isDesktop, v -> handleToggle, j -> faqSchema
 
 import { useState, useCallback } from 'react';
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import SplitTextReveal from '@/features/demos/SplitTextReveal';// NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
+import SplitTextReveal from '@/features/demos/SplitTextReveal'; // NOTE: module id: 218091 // UNRESOLVED: name guessed from usage
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
-import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701
-import { FaqItem } from '@/components/faq/FaqItem'; // NOTE: module id: 752362
+import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701 // UNRESOLVED: name guessed from usage
+import { FaqItem } from '@/components/shared/faq/FaqItem'; // NOTE: module id: 752362
 
 // NOTE: module id: 752362
 export function FaqSection({
@@ -32,10 +17,7 @@ export function FaqSection({
   eyebrow,
   headline = t('common.faq.headline'),
   subtext = t('common.faq.subtext'),
-  ctaLink = {
-    label: t('common.faq.ctaLabel'),
-    href: '/faq',
-  },
+  ctaLink = { label: t('common.faq.ctaLabel'), href: '/faq' },
   sectionId,
   inset = false,
   list = null,
@@ -48,7 +30,7 @@ export function FaqSection({
     setOpenIndex((prevIndex) => (prevIndex === index ? null : index));
   }, []);
 
-  const faqJsonLd = {
+  const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faqs.map(({ q, a }) => ({
@@ -69,11 +51,15 @@ export function FaqSection({
     >
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <div className="v2-container py-64 lg:py-128">
         <div className={inset ? 'grid grid-cols-12 gap-x-24' : 'contents'}>
-          <div className={inset ? 'col-span-12 lg:col-span-10 lg:col-start-2' : 'contents'}>
+          <div
+            className={
+              inset ? 'col-span-12 lg:col-span-10 lg:col-start-2' : 'contents'
+            }
+          >
             <div className="grid grid-cols-12 gap-x-24 gap-y-64">
               <div
                 data-sticky={true}
@@ -94,7 +80,11 @@ export function FaqSection({
                     {eyebrow}
                   </SplitTextReveal>
                 ) : null}
-                <RevealHeading as="h2" trigger="scroll" className="max-w-[14ch]">
+                <RevealHeading
+                  as="h2"
+                  trigger="scroll"
+                  className="max-w-[14ch]"
+                >
                   {headline}
                 </RevealHeading>
                 <div className="mt-24">
@@ -122,12 +112,17 @@ export function FaqSection({
               </div>
               <div className="col-span-12 lg:col-span-7 lg:col-start-7">
                 {list ?? (
-                  <FadeIn trigger="scroll" stagger={0.06} y={20} className="w-full">
-                    {faqs.map((faq, index) => (
+                  <FadeIn
+                    trigger="scroll"
+                    stagger={0.06}
+                    y={20}
+                    className="w-full"
+                  >
+                    {faqs.map((item, index) => (
                       <FaqItem
-                        key={faq.q}
-                        q={faq.q}
-                        a={faq.a}
+                        key={item.q}
+                        q={item.q}
+                        a={item.a}
                         isOpen={openIndex === index}
                         onToggle={() => handleToggle(index)}
                         isDesktop={isDesktop}

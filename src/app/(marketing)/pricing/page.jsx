@@ -1,13 +1,14 @@
-import PricingSection from '@/features/pricing/PricingSection';
+import PricingSection from '@/features/landing/PricingSection';
 import BuildCostSection from '@/features/pricing-page/sections/BuildCostSection';
 
 import LibraryOrKitSection from '@/features/pricing-page/sections/LibraryOrKitSection';
-import StudentsSection from '@/features/pricing/StudentsSection';
+import StudentsSection from '@/features/pricing-page/sections/StudentsSection';
 
 import TestimonialsSection from '@/features/pricing-page/testimonials/TestimonialsSection';
-import V3Faq from '@/features/landing/V3Faq';
 
-import V3EndCta from '@/features/landing/V3EndCta';
+import V3Faq from '@/components/shared/faq/V3Faq';
+
+import V3EndCta from '@/components/shared/cta/V3EndCta';
 
 import { t } from '@/libs/utils/i18n';
 import { KITS } from '@/libs/data/kits';
@@ -29,15 +30,6 @@ export const metadata = {
     description: t('seo.pricing.og.description'),
   },
 };
-
-const PRICING_FAQ_LINKS = [
-  {},
-  {},
-  { '14-day money-back guarantee': '/refund' },
-  {},
-  { 'Landmark Kit': '/account/kits' },
-  { 'live preview': '/animations' },
-];
 
 export default async function PricingPage() {
   const [animations, shippedRecently] = await Promise.all([
@@ -86,10 +78,8 @@ export default async function PricingPage() {
       
       <StudentsSection />
 
-      <V3Faq
-        ns="pricing-v3.faq"
-        links={PRICING_FAQ_LINKS}
-        vars={{ cap: 25 }}
+      <V3Faq 
+      ns="pricing-v3.faq" 
       />
 
       <V3EndCta

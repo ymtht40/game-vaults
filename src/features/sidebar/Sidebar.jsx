@@ -8,7 +8,7 @@ import { useSidebar } from '@/providers/SidebarProvider'; // NOTE: module id: 85
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 
 // NOTE: Components used internally by the sidebar layout block.
-import { InlineLoader } from '@/components/ui/Loader'; // NOTE: module id: 101836 (Annimate home link)
+import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836 (Annimate home link)
 import SidebarProvider from '@/providers/SidebarProvider'; // Extracted from module 855382 helper 'm'
 import { AnimatedStrokeIcon } from '@/assets/icons/AnimatedStrokeIcon'; // Guess based on ref animation play
 
@@ -53,11 +53,11 @@ function SidebarInner({ collapsed, footer, children }) {
   return (
     <div className="flex h-full flex-col">
       <header className={cn("flex h-56 items-center border-b border-foreground/10", collapsed ? "justify-center px-0" : "px-16")}>
-        <InlineLoader href="/" aria-label="GameVault home" className="inline-flex items-center gap-8 text-foreground">
-          {/* InlineLoader internals simplified as standard usage */}
+        <TransitionLink href="/" aria-label="GameVault home" className="inline-flex items-center gap-8 text-foreground">
+          {/* TransitionLink internals simplified as standard usage */}
           <AnimatedStrokeIcon className="h-16" />
           {!collapsed && <span className="text-foreground">GameVault</span>}
-        </InlineLoader>
+        </TransitionLink>
       </header>
       
       <nav className="flex flex-1 flex-col overflow-y-auto py-12">

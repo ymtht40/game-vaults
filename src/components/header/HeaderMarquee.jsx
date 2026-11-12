@@ -3,7 +3,7 @@
 
 import { Fragment, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import Link from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
+import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836
 import { MARQUEE_ITEMS } from '@/components/header/header.config'; // NOTE: module id: 76624
 import { isOfferActive } from '@/libs/utils/packSlugs'; // NOTE: module id: 825740
 
@@ -132,7 +132,7 @@ export function HeaderMarquee({ scrolled = false, shiftY = 0 }) {
                   <Fragment key={repeatIndex}>
                     {MARQUEE_ITEMS.filter((item) => !item.offer || isOfferActive()).map((item, itemIndex) => (
                       <Fragment key={itemIndex}>
-                        <Link
+                        <TransitionLink
                           href={item.href}
                           aria-hidden={!isFirstRepeat || undefined}
                           tabIndex={isFirstRepeat ? undefined : -1}
@@ -142,7 +142,7 @@ export function HeaderMarquee({ scrolled = false, shiftY = 0 }) {
                             <span aria-hidden="true" className="size-8 shrink-0 bg-brand" />
                           ) : null}
                           {item.label}
-                        </Link>
+                        </TransitionLink>
                         <span
                           aria-hidden="true"
                           className="size-3 shrink-0 rounded-full bg-foreground/30"

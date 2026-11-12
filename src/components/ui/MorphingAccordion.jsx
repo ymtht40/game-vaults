@@ -1,182 +1,166 @@
 'use client';
+import { useId, useRef, useCallback } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { CustomEase } from "gsap/CustomEase";
+import { SplitText } from "gsap/SplitText";
 
-import React, { useCallback, useId, useRef } from 'react';
+gsap.registerPlugin(useGSAP, CustomEase, SplitText);
 
-import { gsap, useGSAP, CustomEase, SplitText } from '@/libs/utils/vendor';
-
-if (!CustomEase.get('annnimate')) {
-  CustomEase.create('annnimate', 'M0,0 C0.3,0.9 0.1,1 1,1');
+if (!CustomEase.get("annnimate")) {
+  CustomEase.create("annnimate", "M0,0 C0.3,0.9 0.1,1 1,1");
+}
+if (!CustomEase.get("annnimateInOut")) {
+  CustomEase.create("annnimateInOut", "M0,0 C0.7,0 0.16,1 1,1");
 }
 
-if (!CustomEase.get('annnimateInOut')) {
-  CustomEase.create('annnimateInOut', 'M0,0 C0.7,0 0.16,1 1,1');
-}
-
-const DEFAULT_ACCORDION_ITEMS = [
+const defaultItems = [
   {
-    question: 'What makes the racket frames different?',
-    answer:
-      'Each frame is laid up from raw carbon in a mould we designed ourselves, then hand-finished before a string is ever pulled through it. The result holds its stiffness after years on hard courts, not just out of the box.',
+    question: "What makes the racket frames different?",
+    answer: "Each frame is laid up from raw carbon in a mould we designed ourselves, then hand-finished before a string is ever pulled through it. The result holds its stiffness after years on hard courts, not just out of the box."
   },
   {
-    question: 'How are the trainers built for hard courts?',
-    answer:
-      'A dual-density outsole absorbs lateral load without collapsing under a full sprint stop. Every pair runs through eight thousand simulated cuts before it ships.',
+    question: "How are the trainers built for hard courts?",
+    answer: "A dual-density outsole absorbs lateral load without collapsing under a full sprint stop. Every pair runs through eight thousand simulated cuts before it ships."
   },
   {
-    question: 'Do you build for left-handed players?',
-    answer:
-      'Every grip and frame balance mirrors on request at no extra cost. Tell us at checkout and we build it left from the first layer.',
+    question: "Do you build for left-handed players?",
+    answer: "Every grip and frame balance mirrors on request at no extra cost. Tell us at checkout and we build it left from the first layer."
   },
   {
-    question: 'What is the warranty on frame cracking?',
-    answer:
-      'Two years against structural failure under normal play, no fine print about string tension or court surface. Send a photo, we send a replacement.',
+    question: "What is the warranty on frame cracking?",
+    answer: "Two years against structural failure under normal play, no fine print about string tension or court surface. Send a photo, we send a replacement."
   },
   {
-    question: 'Can teams order custom paint jobs?',
-    answer:
-      'Squads of six or more can specify colourway, grip weight, and string pattern as one order. Turnaround runs three weeks from a confirmed spec.',
-  },
+    question: "Can teams order custom paint jobs?",
+    answer: "Squads of six or more can specify colourway, grip weight, and string pattern as one order. Turnaround runs three weeks from a confirmed spec."
+  }
 ];
 
-export function MorphingAccordion({
-  className = '',
-  items = DEFAULT_ACCORDION_ITEMS,
+export default function MorphingAccordion({
+  className = "",
+  items = defaultItems,
   duration = 0.8,
-  ease = 'elastic.out(1,0.82)',
+  ease = "elastic.out(1,0.82)",
   goo = 9,
   multiple = false,
   startOpen = 0,
-  stagger = 0.05,
+  stagger = 0.05
 }) {
-  const instanceId = useId().replace(/:/g, '');
-  const filterPrefix = `macc-goo-${instanceId}`;
+  const rawId = useId();
+  const cleanId = rawId.replace(/:/g, "");
+  const filterId = `macc-goo-${cleanId}`;
 
-  const stageRef = useRef(null);
+  const containerRef = useRef(null);
   const rowRefs = useRef([]);
-  const gooRefs = useRef([]);
+  const gooWrapRefs = useRef([]);
   const gooTriggerRefs = useRef([]);
   const gooPanelRefs = useRef([]);
   const triggerCrispRefs = useRef([]);
   const panelCrispRefs = useRef([]);
-  const triggerRefs = useRef([]);
+  const triggerBtnRefs = useRef([]);
   const panelRefs = useRef([]);
   const panelInnerRefs = useRef([]);
   const answerRefs = useRef([]);
   const iconRefs = useRef([]);
   const blurFilterRefs = useRef([]);
-  const itemStatesRef = useRef([]);
 
-  const closeEase = ease.indexOf('elastic') === 0 ? 'annnimate' : ease;
-
+  const activeEase = ease.indexOf("elastic") === 0 ? "annnimate" : ease;
   const durationRef = useRef(duration);
   const easeRef = useRef(ease);
-  const closeEaseRef = useRef(closeEase);
+  const activeEaseRef = useRef(activeEase);
   const gooRef = useRef(goo);
   const multipleRef = useRef(multiple);
   const staggerRef = useRef(stagger);
 
   durationRef.current = duration;
   easeRef.current = ease;
-  closeEaseRef.current = closeEase;
+  activeEaseRef.current = activeEase;
   gooRef.current = goo;
   multipleRef.current = multiple;
   staggerRef.current = stagger;
 
   rowRefs.current = [];
-  gooRefs.current = [];
+  gooWrapRefs.current = [];
   gooTriggerRefs.current = [];
   gooPanelRefs.current = [];
   triggerCrispRefs.current = [];
   panelCrispRefs.current = [];
-  triggerRefs.current = [];
+  triggerBtnRefs.current = [];
   panelRefs.current = [];
   panelInnerRefs.current = [];
   answerRefs.current = [];
   iconRefs.current = [];
   blurFilterRefs.current = [];
 
-  const measureItem = useCallback((index) => {
-    const state = itemStatesRef.current[index];
+  const updateDimensions = useCallback((index) => {
+    const state = itemStates.current[index];
     if (state) {
-      state.triggerH = triggerRefs.current[index]?.offsetHeight || 0;
+      state.triggerH = triggerBtnRefs.current[index]?.offsetHeight || 0;
       state.innerH = panelInnerRefs.current[index]?.offsetHeight || 0;
       state.rowW = rowRefs.current[index]?.offsetWidth || 0;
     }
   }, []);
 
-  const syncTriggerShape = useCallback((index) => {
-    const state = itemStatesRef.current[index];
+  const setInitialTriggerDimensions = useCallback((index) => {
+    const state = itemStates.current[index];
     if (state) {
-      gsap.set(
-        [gooTriggerRefs.current[index], triggerCrispRefs.current[index]],
-        {
-          height: state.triggerH,
-          borderRadius: state.triggerH / 2,
-        },
-      );
+      gsap.set([gooTriggerRefs.current[index], triggerCrispRefs.current[index]], {
+        height: state.triggerH,
+        borderRadius: state.triggerH / 2
+      });
     }
   }, []);
 
-  const syncClosedPanelShape = useCallback((index) => {
-    const state = itemStatesRef.current[index];
+  const setInitialPanelDimensions = useCallback((index) => {
+    const state = itemStates.current[index];
     if (state) {
       gsap.set([gooPanelRefs.current[index], panelCrispRefs.current[index]], {
         x: 4,
         y: 4,
         width: state.rowW - 8,
         height: state.triggerH - 8,
-        force3D: true,
+        force3D: true
       });
     }
   }, []);
 
-  const setItemAria = useCallback((index, isOpen) => {
-    const triggerEl = triggerRefs.current[index];
-    const panelEl = panelRefs.current[index];
-
-    if (triggerEl && panelEl) {
-      triggerEl.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      panelEl.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-
+  const setAriaStates = useCallback((index, isOpen) => {
+    const trigger = triggerBtnRefs.current[index];
+    const panel = panelRefs.current[index];
+    if (trigger && panel) {
+      trigger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      panel.setAttribute("aria-hidden", isOpen ? "false" : "true");
       if (isOpen) {
-        panelEl.removeAttribute('inert');
+        panel.removeAttribute("inert");
       } else {
-        panelEl.setAttribute('inert', '');
+        panel.setAttribute("inert", "");
       }
     }
   }, []);
 
-  const toggleGooFilter = useCallback(
-    (index, isEnabled) => {
-      const gooEl = gooRefs.current[index];
-      if (gooEl) {
-        gooEl.style.filter = isEnabled
-          ? `url(#${filterPrefix}-${index})`
-          : 'none';
-      }
-    },
-    [filterPrefix],
-  );
+  const toggleGooFilter = useCallback((index, isActive) => {
+    const gooWrap = gooWrapRefs.current[index];
+    if (gooWrap) {
+      gooWrap.style.filter = isActive ? `url(#${filterId}-${index})` : "none";
+    }
+  }, [filterId]);
 
-  const updateBlurStdDeviation = useCallback((index) => {
-    const blurEl = blurFilterRefs.current[index];
-    const state = itemStatesRef.current[index];
-
-    if (blurEl && state) {
-      blurEl.setAttribute('stdDeviation', String(state.gooProxy.std));
+  const updateBlurFilter = useCallback((index) => {
+    const blurFilter = blurFilterRefs.current[index];
+    const state = itemStates.current[index];
+    if (blurFilter && state) {
+      blurFilter.setAttribute("stdDeviation", String(state.gooProxy.std));
     }
   }, []);
 
-  const killItemTweens = useCallback((index) => {
-    const state = itemStatesRef.current[index];
+  const killMainTimeline = useCallback((index) => {
+    const state = itemStates.current[index];
     if (state) {
       if (state.tl) {
         state.tl.kill();
         state.tl = null;
       }
-
       gsap.killTweensOf([
         gooPanelRefs.current[index],
         panelCrispRefs.current[index],
@@ -184,13 +168,13 @@ export function MorphingAccordion({
         rowRefs.current[index],
         iconRefs.current[index],
         state.gooProxy,
-        answerRefs.current[index],
+        answerRefs.current[index]
       ]);
     }
   }, []);
 
-  const resetAnswerSplit = useCallback((index) => {
-    const state = itemStatesRef.current[index];
+  const killAnswerTimelineAndSplitText = useCallback((index) => {
+    const state = itemStates.current[index];
     if (state) {
       if (state.answerTl) {
         state.answerTl.kill();
@@ -200,452 +184,310 @@ export function MorphingAccordion({
         state.split.revert();
         state.split = null;
       }
-
-      gsap.set(answerRefs.current[index], {
-        autoAlpha: 0,
-      });
+      gsap.set(answerRefs.current[index], { autoAlpha: 0 });
     }
   }, []);
 
-  const animateAnswerIn = useCallback(
-    (index) => {
-      const state = itemStatesRef.current[index];
-      const answerEl = answerRefs.current[index];
+  const initAnswerSplitText = useCallback((index) => {
+    const state = itemStates.current[index];
+    const answerEl = answerRefs.current[index];
+    if (!state || !answerEl) return;
 
-      if (!state || !answerEl) {
-        return;
-      }
-
-      const runSplit = () => {
-        resetAnswerSplit(index);
-        gsap.set(answerEl, {
-          autoAlpha: 1,
-        });
-
-        state.split = SplitText.create(answerEl, {
-          type: 'lines',
-          mask: 'lines',
-          linesClass: 'macc_answer_line',
-          onSplit: (splitInstance) => {
-            gsap.set(splitInstance.lines, {
-              yPercent: 100,
-              y: 0,
-              force3D: true,
-            });
-
-            state.answerTl = gsap.timeline();
-            state.answerTl.to(splitInstance.lines, {
-              yPercent: 0,
-              y: 0,
-              duration: 0.6,
-              stagger: staggerRef.current,
-              ease: 'annnimate',
-              force3D: true,
-            });
-          },
-        });
-      };
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(runSplit);
-      } else {
-        runSplit();
-      }
-    },
-    [resetAnswerSplit],
-  );
-
-  const openItem = useCallback(
-    (index) => {
-      const state = itemStatesRef.current[index];
-      if (!state) {
-        return;
-      }
-
-      state.isOpen = true;
-      measureItem(index);
-      setItemAria(index, true);
-      killItemTweens(index);
-
-      const expandedHeight = 10 + state.innerH + 16;
-
-      toggleGooFilter(index, true);
-      state.gooProxy.std = gooRef.current;
-      updateBlurStdDeviation(index);
-
-      const tl = gsap.timeline({
-        defaults: {
-          force3D: true,
-        },
+    const createSplitText = () => {
+      killAnswerTimelineAndSplitText(index);
+      gsap.set(answerEl, { autoAlpha: 1 });
+      state.split = SplitText.create(answerEl, {
+        type: "lines",
+        mask: "lines",
+        linesClass: "macc_answer_line",
+        onSplit: (splitInstance) => {
+          gsap.set(splitInstance.lines, { yPercent: 100, y: 0, force3D: true });
+          state.answerTl = gsap.timeline();
+          state.answerTl.to(splitInstance.lines, {
+            yPercent: 0,
+            y: 0,
+            duration: 0.6,
+            stagger: staggerRef.current,
+            ease: "annnimate",
+            force3D: true
+          });
+        }
       });
+    };
 
-      state.tl = tl;
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(createSplitText);
+    } else {
+      createSplitText();
+    }
+  }, [killAnswerTimelineAndSplitText]);
 
-      tl.to(
-        [gooPanelRefs.current[index], panelCrispRefs.current[index]],
-        {
+  const openAccordion = useCallback((index) => {
+    const state = itemStates.current[index];
+    if (!state) return;
+
+    state.isOpen = true;
+    updateDimensions(index);
+    setAriaStates(index, true);
+    killMainTimeline(index);
+
+    const panelTargetHeight = 10 + state.innerH + 16;
+    toggleGooFilter(index, true);
+    state.gooProxy.std = gooRef.current;
+    updateBlurFilter(index);
+
+    const tl = gsap.timeline({ defaults: { force3D: true } });
+    state.tl = tl;
+
+    tl.to([gooPanelRefs.current[index], panelCrispRefs.current[index]], {
+      x: 0,
+      y: state.triggerH + 10,
+      width: state.rowW,
+      height: state.innerH,
+      duration: durationRef.current,
+      ease: easeRef.current
+    }, 0)
+    .to(panelRefs.current[index], {
+      height: panelTargetHeight,
+      duration: durationRef.current,
+      ease: easeRef.current
+    }, 0)
+    .to(rowRefs.current[index], {
+      marginTop: 16,
+      duration: durationRef.current,
+      ease: easeRef.current
+    }, 0)
+    .to(iconRefs.current[index], {
+      rotation: 135,
+      duration: 0.5,
+      ease: "annnimateInOut"
+    }, 0)
+    .to(state.gooProxy, {
+      std: 0,
+      duration: 0.25 * durationRef.current,
+      ease: "power1.in",
+      onUpdate: () => updateBlurFilter(index),
+      onComplete: () => toggleGooFilter(index, false)
+    }, 0.4 * durationRef.current)
+    .call(() => initAnswerSplitText(index), null, 0.32 * durationRef.current);
+
+  }, [updateDimensions, setAriaStates, killMainTimeline, toggleGooFilter, updateBlurFilter, initAnswerSplitText]);
+
+  const closeAccordion = useCallback((index) => {
+    const state = itemStates.current[index];
+    if (!state) return;
+
+    state.isOpen = false;
+    setAriaStates(index, false);
+    killMainTimeline(index);
+
+    const closeDuration = 0.65 * durationRef.current;
+    toggleGooFilter(index, true);
+
+    const tl = gsap.timeline({ defaults: { force3D: true } });
+    state.tl = tl;
+
+    tl.to(state.gooProxy, {
+      std: gooRef.current,
+      duration: 0.3 * closeDuration,
+      ease: "power1.in",
+      onUpdate: () => updateBlurFilter(index)
+    }, 0)
+    .to([gooPanelRefs.current[index], panelCrispRefs.current[index]], {
+      x: 4,
+      y: 4,
+      width: state.rowW - 8,
+      height: state.triggerH - 8,
+      duration: closeDuration,
+      ease: activeEaseRef.current
+    }, 0)
+    .to(panelRefs.current[index], {
+      height: 0,
+      duration: closeDuration,
+      ease: activeEaseRef.current
+    }, 0)
+    .to(rowRefs.current[index], {
+      marginTop: 0,
+      duration: closeDuration,
+      ease: activeEaseRef.current
+    }, 0)
+    .to(iconRefs.current[index], {
+      rotation: 0,
+      duration: 0.5,
+      ease: "annnimateInOut"
+    }, 0)
+    .to(answerRefs.current[index], {
+      autoAlpha: 0,
+      duration: 0.15,
+      ease: "power2.out"
+    }, 0)
+    .to(state.gooProxy, {
+      std: 0,
+      duration: 0.3 * closeDuration,
+      ease: "power1.out",
+      onUpdate: () => updateBlurFilter(index),
+      onComplete: () => {
+        toggleGooFilter(index, false);
+        killAnswerTimelineAndSplitText(index);
+      }
+    }, 0.7 * closeDuration);
+
+  }, [setAriaStates, killMainTimeline, toggleGooFilter, updateBlurFilter, killAnswerTimelineAndSplitText]);
+
+  const focusAdjacentTrigger = useCallback((currentIndex, direction) => {
+    const length = items.length;
+    if (length) {
+      triggerBtnRefs.current[(currentIndex + direction + length) % length]?.focus();
+    }
+  }, [items.length]);
+
+  const handleKeyDown = useCallback((e, index) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      focusAdjacentTrigger(index, 1);
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      focusAdjacentTrigger(index, -1);
+    }
+  }, [focusAdjacentTrigger]);
+
+  const itemStates = useRef([]);
+
+  const { contextSafe } = useGSAP(() => {
+    itemStates.current = items.map(() => ({
+      isOpen: false,
+      triggerH: 0,
+      innerH: 0,
+      rowW: 0,
+      split: null,
+      answerTl: null,
+      tl: null,
+      gooProxy: { std: 0 }
+    }));
+
+    const initialOpenIndex = startOpen == null ? -1 : startOpen;
+
+    items.forEach((_, index) => {
+      updateDimensions(index);
+      setInitialTriggerDimensions(index);
+      setInitialPanelDimensions(index);
+      toggleGooFilter(index, false);
+      gsap.set(answerRefs.current[index], { autoAlpha: 0 });
+
+      const state = itemStates.current[index];
+      const isInitiallyOpen = index === initialOpenIndex;
+      state.isOpen = isInitiallyOpen;
+      setAriaStates(index, isInitiallyOpen);
+
+      if (isInitiallyOpen) {
+        gsap.set([gooPanelRefs.current[index], panelCrispRefs.current[index]], {
           x: 0,
           y: state.triggerH + 10,
           width: state.rowW,
-          height: state.innerH,
-          duration: durationRef.current,
-          ease: easeRef.current,
-        },
-        0,
-      )
-        .to(
-          panelRefs.current[index],
-          {
-            height: expandedHeight,
-            duration: durationRef.current,
-            ease: easeRef.current,
-          },
-          0,
-        )
-        .to(
-          rowRefs.current[index],
-          {
-            marginTop: 16,
-            duration: durationRef.current,
-            ease: easeRef.current,
-          },
-          0,
-        )
-        .to(
-          iconRefs.current[index],
-          {
-            rotation: 135,
-            duration: 0.5,
-            ease: 'annnimateInOut',
-          },
-          0,
-        )
-        .to(
-          state.gooProxy,
-          {
-            std: 0,
-            duration: 0.25 * durationRef.current,
-            ease: 'power1.in',
-            onUpdate: () => updateBlurStdDeviation(index),
-            onComplete: () => toggleGooFilter(index, false),
-          },
-          0.4 * durationRef.current,
-        )
-        .call(() => animateAnswerIn(index), null, 0.32 * durationRef.current);
-    },
-    [
-      measureItem,
-      setItemAria,
-      killItemTweens,
-      toggleGooFilter,
-      updateBlurStdDeviation,
-      animateAnswerIn,
-    ],
-  );
-
-  const closeItem = useCallback(
-    (index) => {
-      const state = itemStatesRef.current[index];
-      if (!state) {
-        return;
-      }
-
-      state.isOpen = false;
-      setItemAria(index, false);
-      killItemTweens(index);
-
-      const closeDuration = 0.65 * durationRef.current;
-      toggleGooFilter(index, true);
-
-      const tl = gsap.timeline({
-        defaults: {
-          force3D: true,
-        },
-      });
-
-      state.tl = tl;
-
-      tl.to(
-        state.gooProxy,
-        {
-          std: gooRef.current,
-          duration: 0.3 * closeDuration,
-          ease: 'power1.in',
-          onUpdate: () => updateBlurStdDeviation(index),
-        },
-        0,
-      )
-        .to(
-          [gooPanelRefs.current[index], panelCrispRefs.current[index]],
-          {
-            x: 4,
-            y: 4,
-            width: state.rowW - 8,
-            height: state.triggerH - 8,
-            duration: closeDuration,
-            ease: closeEaseRef.current,
-          },
-          0,
-        )
-        .to(
-          panelRefs.current[index],
-          {
-            height: 0,
-            duration: closeDuration,
-            ease: closeEaseRef.current,
-          },
-          0,
-        )
-        .to(
-          rowRefs.current[index],
-          {
-            marginTop: 0,
-            duration: closeDuration,
-            ease: closeEaseRef.current,
-          },
-          0,
-        )
-        .to(
-          iconRefs.current[index],
-          {
-            rotation: 0,
-            duration: 0.5,
-            ease: 'annnimateInOut',
-          },
-          0,
-        )
-        .to(
-          answerRefs.current[index],
-          {
-            autoAlpha: 0,
-            duration: 0.15,
-            ease: 'power2.out',
-          },
-          0,
-        )
-        .to(
-          state.gooProxy,
-          {
-            std: 0,
-            duration: 0.3 * closeDuration,
-            ease: 'power1.out',
-            onUpdate: () => updateBlurStdDeviation(index),
-            onComplete: () => {
-              toggleGooFilter(index, false);
-              resetAnswerSplit(index);
-            },
-          },
-          0.7 * closeDuration,
-        );
-    },
-    [
-      setItemAria,
-      killItemTweens,
-      toggleGooFilter,
-      updateBlurStdDeviation,
-      resetAnswerSplit,
-    ],
-  );
-
-  const moveFocus = useCallback(
-    (index, direction) => {
-      const total = items.length;
-      if (total) {
-        triggerRefs.current[(index + direction + total) % total]?.focus();
-      }
-    },
-    [items.length],
-  );
-
-  const handleKeyDown = useCallback(
-    (event, index) => {
-      if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
-        event.preventDefault();
-        moveFocus(index, 1);
-      } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
-        event.preventDefault();
-        moveFocus(index, -1);
-      }
-    },
-    [moveFocus],
-  );
-
-  const { contextSafe } = useGSAP(
-    () => {
-      itemStatesRef.current = items.map(() => ({
-        isOpen: false,
-        triggerH: 0,
-        innerH: 0,
-        rowW: 0,
-        split: null,
-        answerTl: null,
-        tl: null,
-        gooProxy: {
-          std: 0,
-        },
-      }));
-
-      const initialOpenIndex = startOpen == null ? -1 : startOpen;
-
-      items.forEach((item, index) => {
-        measureItem(index);
-        syncTriggerShape(index);
-        syncClosedPanelShape(index);
-        toggleGooFilter(index, false);
-
-        gsap.set(answerRefs.current[index], {
-          autoAlpha: 0,
+          height: state.innerH
         });
+        gsap.set(panelRefs.current[index], {
+          height: 10 + state.innerH + 16
+        });
+        gsap.set(rowRefs.current[index], {
+          marginTop: 16
+        });
+        gsap.set(iconRefs.current[index], {
+          rotation: 135
+        });
+        initAnswerSplitText(index);
+      }
+    });
 
-        const state = itemStatesRef.current[index];
-        const isInitiallyOpen = index === initialOpenIndex;
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.globalTimeline.timeScale(20);
+    });
 
-        state.isOpen = isInitiallyOpen;
-        setItemAria(index, isInitiallyOpen);
-
-        if (isInitiallyOpen) {
-          gsap.set(
-            [gooPanelRefs.current[index], panelCrispRefs.current[index]],
-            {
-              x: 0,
-              y: state.triggerH + 10,
-              width: state.rowW,
-              height: state.innerH,
-            },
-          );
-          gsap.set(panelRefs.current[index], {
-            height: 10 + state.innerH + 16,
-          });
-          gsap.set(rowRefs.current[index], {
-            marginTop: 16,
-          });
-          gsap.set(iconRefs.current[index], {
-            rotation: 135,
-          });
-          animateAnswerIn(index);
-        }
-      });
-
-      const mm = gsap.matchMedia();
-      mm.add('(prefers-reduced-motion: reduce)', () => {
-        gsap.globalTimeline.timeScale(20);
-      });
-
-      let resizeTimer = null;
-
-      function handleResize() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          items.forEach((item, index) => {
-            const state = itemStatesRef.current[index];
-            if (state) {
-              measureItem(index);
-              syncTriggerShape(index);
-
-              if (state.isOpen) {
-                gsap.set(
-                  [gooPanelRefs.current[index], panelCrispRefs.current[index]],
-                  {
-                    x: 0,
-                    y: state.triggerH + 10,
-                    width: state.rowW,
-                    height: state.innerH,
-                  },
-                );
-                gsap.set(panelRefs.current[index], {
-                  height: 10 + state.innerH + 16,
-                });
-                gsap.set(rowRefs.current[index], {
-                  marginTop: 16,
-                });
-              } else {
-                syncClosedPanelShape(index);
-                gsap.set(rowRefs.current[index], {
-                  marginTop: 0,
-                });
-              }
+    let resizeTimeout = null;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        items.forEach((_, index) => {
+          const state = itemStates.current[index];
+          if (state) {
+            updateDimensions(index);
+            setInitialTriggerDimensions(index);
+            if (state.isOpen) {
+              gsap.set([gooPanelRefs.current[index], panelCrispRefs.current[index]], {
+                x: 0,
+                y: state.triggerH + 10,
+                width: state.rowW,
+                height: state.innerH
+              });
+              gsap.set(panelRefs.current[index], {
+                height: 10 + state.innerH + 16
+              });
+              gsap.set(rowRefs.current[index], {
+                marginTop: 16
+              });
+            } else {
+              setInitialPanelDimensions(index);
+              gsap.set(rowRefs.current[index], {
+                marginTop: 0
+              });
             }
-          });
-        }, 150);
-      }
-
-      function handleVisibilityChange() {
-        if (document.hidden) {
-          gsap.globalTimeline.pause();
-        } else {
-          gsap.globalTimeline.resume();
-        }
-      }
-
-      window.addEventListener('resize', handleResize);
-      document.addEventListener('visibilitychange', handleVisibilityChange);
-
-      return () => {
-        clearTimeout(resizeTimer);
-        window.removeEventListener('resize', handleResize);
-        document.removeEventListener(
-          'visibilitychange',
-          handleVisibilityChange,
-        );
-        mm.revert();
-        itemStatesRef.current.forEach((state) => {
-          if (state?.tl) {
-            state.tl.kill();
-          }
-          if (state?.answerTl) {
-            state.answerTl.kill();
-          }
-          if (state?.split?.revert) {
-            state.split.revert();
           }
         });
-      };
-    },
-    {
-      scope: stageRef,
-      dependencies: [items.length, startOpen],
-    },
-  );
+      }, 150);
+    };
 
-  const handleToggleItem = contextSafe((index) => {
-    const state = itemStatesRef.current[index];
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        gsap.globalTimeline.pause();
+      } else {
+        gsap.globalTimeline.resume();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      mm.revert();
+      itemStates.current.forEach((state) => {
+        if (state?.tl) state.tl.kill();
+        if (state?.answerTl) state.answerTl.kill();
+        if (state?.split?.revert) state.split.revert();
+      });
+    };
+  }, { scope: containerRef, dependencies: [items.length, startOpen] });
+
+  const handleTriggerClick = contextSafe((index) => {
+    const state = itemStates.current[index];
     if (state) {
       if (state.isOpen) {
-        closeItem(index);
+        closeAccordion(index);
         return;
       }
-
       if (!multipleRef.current) {
-        itemStatesRef.current.forEach((otherState, otherIndex) => {
-          if (otherIndex !== index && otherState && otherState.isOpen) {
-            closeItem(otherIndex);
+        itemStates.current.forEach((s, idx) => {
+          if (idx !== index && s && s.isOpen) {
+            closeAccordion(idx);
           }
         });
       }
-
-      openItem(index);
+      openAccordion(index);
     }
   });
 
   return (
-    <div className={`macc_wrap${className ? ` ${className}` : ''}`}>
-      <div
-        ref={stageRef}
-        className="macc_stage"
-        data-anm-morphing-accordion={true}
-      >
-        <svg
-          className="macc_filter_svg"
-          width="0"
-          height="0"
-          aria-hidden="true"
-          focusable="false"
-        >
+    <div className={`macc_wrap${className ? " " + className : ""}`}>
+      <div ref={containerRef} className="macc_stage" data-anm-morphing-accordion>
+        <svg className="macc_filter_svg" width="0" height="0" aria-hidden="true" focusable="false">
           <defs>
-            {items.map((item, index) => (
+            {items.map((_, index) => (
               <filter
                 key={index}
-                id={`${filterPrefix}-${index}`}
+                id={`${filterId}-${index}`}
                 colorInterpolationFilters="sRGB"
                 x="-50%"
                 y="-50%"
@@ -653,18 +495,14 @@ export function MorphingAccordion({
                 height="200%"
               >
                 <feGaussianBlur
-                  ref={(el) => {
-                    if (el) {
-                      blurFilterRefs.current[index] = el;
-                    }
-                  }}
+                  ref={(el) => { if (el) blurFilterRefs.current[index] = el; }}
                   in="SourceGraphic"
                   stdDeviation="0"
                   result="macc_blur"
                 />
                 <feColorMatrix
                   in="macc_blur"
-                  mode="matrix"
+                  type="matrix"
                   values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
                   result="macc_goo"
                 />
@@ -675,75 +513,51 @@ export function MorphingAccordion({
 
         <div className="macc_list">
           {items.map((item, index) => {
-            const triggerId = `ga-trigger-${instanceId}-${index}`;
-            const panelId = `ga-panel-${instanceId}-${index}`;
+            const triggerId = `ga-trigger-${cleanId}-${index}`;
+            const panelId = `ga-panel-${cleanId}-${index}`;
 
             return (
               <div
                 key={index}
-                ref={(el) => {
-                  if (el) {
-                    rowRefs.current[index] = el;
-                  }
-                }}
+                ref={(el) => { if (el) rowRefs.current[index] = el; }}
                 className="macc_row"
-                data-anm-macc-row={true}
+                data-anm-macc-row
               >
                 <div
-                  ref={(el) => {
-                    if (el) {
-                      gooRefs.current[index] = el;
-                    }
-                  }}
+                  ref={(el) => { if (el) gooWrapRefs.current[index] = el; }}
                   className="macc_goo"
-                  data-anm-macc-goo={true}
+                  data-anm-macc-goo
                   aria-hidden="true"
                 >
                   <div
-                    ref={(el) => {
-                      if (el) {
-                        gooTriggerRefs.current[index] = el;
-                      }
-                    }}
+                    ref={(el) => { if (el) gooTriggerRefs.current[index] = el; }}
                     className="macc_goo_trigger"
                   />
                   <div
-                    ref={(el) => {
-                      if (el) {
-                        gooPanelRefs.current[index] = el;
-                      }
-                    }}
+                    ref={(el) => { if (el) gooPanelRefs.current[index] = el; }}
                     className="macc_goo_panel"
                   />
                 </div>
 
                 <button
-                  ref={(el) => {
-                    if (el) {
-                      triggerRefs.current[index] = el;
-                    }
-                  }}
+                  ref={(el) => { if (el) triggerBtnRefs.current[index] = el; }}
                   className="macc_trigger"
                   type="button"
-                  data-anm-macc-trigger={true}
+                  data-anm-macc-trigger
                   id={triggerId}
                   aria-controls={panelId}
                   aria-expanded="false"
-                  onClick={() => handleToggleItem(index)}
-                  onKeyDown={(event) => handleKeyDown(event, index)}
+                  onClick={() => handleTriggerClick(index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
                 >
                   <span className="macc_index">
-                    {String(index + 1).padStart(2, '0')}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   <span className="macc_question">{item.question}</span>
                   <svg
-                    ref={(el) => {
-                      if (el) {
-                        iconRefs.current[index] = el;
-                      }
-                    }}
+                    ref={(el) => { if (el) iconRefs.current[index] = el; }}
                     className="macc_icon"
-                    data-anm-macc-icon={true}
+                    data-anm-macc-icon
                     viewBox="0 0 16 16"
                     fill="none"
                     aria-hidden="true"
@@ -764,54 +578,33 @@ export function MorphingAccordion({
                 </button>
 
                 <div
-                  ref={(el) => {
-                    if (el) {
-                      triggerCrispRefs.current[index] = el;
-                    }
-                  }}
+                  ref={(el) => { if (el) triggerCrispRefs.current[index] = el; }}
                   className="macc_trigger_crisp"
                   aria-hidden="true"
                 />
-
                 <div
-                  ref={(el) => {
-                    if (el) {
-                      panelCrispRefs.current[index] = el;
-                    }
-                  }}
+                  ref={(el) => { if (el) panelCrispRefs.current[index] = el; }}
                   className="macc_panel_crisp"
                   aria-hidden="true"
                 />
 
                 <div
-                  ref={(el) => {
-                    if (el) {
-                      panelRefs.current[index] = el;
-                    }
-                  }}
+                  ref={(el) => { if (el) panelRefs.current[index] = el; }}
                   className="macc_panel"
-                  data-anm-macc-panel={true}
+                  data-anm-macc-panel
                   id={panelId}
                   role="region"
                   aria-labelledby={triggerId}
                   aria-hidden="true"
                 >
                   <div
-                    ref={(el) => {
-                      if (el) {
-                        panelInnerRefs.current[index] = el;
-                      }
-                    }}
+                    ref={(el) => { if (el) panelInnerRefs.current[index] = el; }}
                     className="macc_panel_inner"
                   >
                     <p
-                      ref={(el) => {
-                        if (el) {
-                          answerRefs.current[index] = el;
-                        }
-                      }}
+                      ref={(el) => { if (el) answerRefs.current[index] = el; }}
                       className="macc_answer"
-                      data-anm-macc-answer={true}
+                      data-anm-macc-answer
                     >
                       {item.answer}
                     </p>
@@ -824,5 +617,4 @@ export function MorphingAccordion({
       </div>
     </div>
   );
-} 
-export default MorphingAccordion
+}

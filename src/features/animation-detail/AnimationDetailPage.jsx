@@ -22,7 +22,7 @@ import UseCaseItem from '@/features/animation-page/components/UseCaseItem'; // N
 import { CustomizePanel } from '@/features/animation-detail/components/CustomizePanel'; // NOTE: module id: 135178
 import { CodeViewer, McpNotice } from '@/features/animation-detail/components/CodeViewer'; // NOTE: module id: 343931
 import { PaywallBlock } from '@/features/paywall/PaywallBlock'; // NOTE: module id: 993603
-import FaqSection from '@/features/animation-detail/sections/AnimationFAQ'; // NOTE: module id: 126272
+import FaqSection from '@/components/shared/faq/FAQsection'; // NOTE: module id: 126272
 import StarterPackPopup from '@/features/newsletter/StarterPackPopup'; // NOTE: module id: 573564
 
 import AnimationViewTracker from '@/features/animation-detail/preview/AnimationViewTracker';

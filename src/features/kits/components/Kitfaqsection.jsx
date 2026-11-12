@@ -1,6 +1,6 @@
 // Variable Mapping: e -> kit, n -> faqs, i -> resolvedFaqs
 
-import { FaqSection } from '@/components/faq/FaqSection'; // NOTE: module id: 752362
+import FaqSection from '@/components/shared/faq/FAQsection'; // NOTE: module id: 752362
 
 // NOTE: module id: 498872
 export function KitFaqSection({ kit, faqs }) {
