@@ -4,9 +4,9 @@ import DocsQuickStart from '@/features/docs/components/DocsQuickStart';
 import { DOC_CARDS } from '@/features/docs/docsNav';
 
 export const metadata = {
-  title: 'Documentation | GameVault',
+  title: 'Guides & Documentation',
   description:
-    'Install GameVault, copy your first component, and learn how the components are built to be tuned.',
+    'Learn how to buy, verify, and secure your MLBB game account safely on DriveX Gaming.',
 };
 
 function slugify(text) {
@@ -37,7 +37,7 @@ export default function DocsPage() {
           <div className="flex min-w-0 flex-col">
             <h1 className="text-h2 text-foreground">Documentation.</h1>
             <p className="text-body mt-16 leading-relaxed text-foreground-reading max-w-[64ch]">
-              Install GameVault, copy your first component, and learn how the components are built to be tuned. Every component also has its own doc on its library page.
+              Learn how to buy, verify, and secure your MLBB game account safely on DriveX Gaming.
             </p>
           </div>
         </div>

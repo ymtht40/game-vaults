@@ -7,26 +7,34 @@ import '@/styles/style.css';
 export const metadata = {
   metadataBase: new URL("https://app.drivexstore.shop"),
   title: {
-    default: "GameVault | Production-grade GSAP components",
-    template: "%s | GameVault",
+    default: "DriveX Gaming | Your Trusted MLBB & Game Accounts Marketplace",
+    template: "%s | DriveX Gaming",
   },
   description:
-    "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
-  keywords: ["GSAP", "React", "Vue", "HTML", "Animation", "Components", "Tailwind CSS"],
-  authors: [{ name: "DriveX Studio" }],
-  creator: "DriveX Studio",
+    "Your Trusted MLBB Marketplace. Safe, fast, and verified Mobile Legends & game account trades with high quality accounts and lifetime warranty.",
+  keywords: [
+    "DriveX Gaming",
+    "DriveX Store",
+    "MLBB Accounts",
+    "Mobile Legends Account",
+    "Game Accounts",
+    "Buy MLBB Account",
+    "MLBB Marketplace",
+  ],
+  authors: [{ name: "DriveX Gaming" }],
+  creator: "DriveX Gaming",
   openGraph: {
-    title: "GameVault | Production-grade GSAP components",
+    title: "DriveX Gaming | Your Trusted MLBB & Game Accounts Marketplace",
     description:
-      "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
+      "Safe, fast, and verified MLBB & game account trades. High quality accounts with lifetime warranty at DriveX Store.",
     url: "https://app.drivexstore.shop",
-    siteName: "GameVault",
+    siteName: "DriveX Gaming",
     images: [
       {
-        url: "/imgs/og-image.jpg", 
+        url: "/imgs/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "GameVault - Production-grade GSAP components",
+        alt: "DriveX Gaming - Your Trusted MLBB Marketplace",
       },
     ],
     locale: "en_US",
@@ -34,10 +42,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "GameVault | Production-grade GSAP components",
+    title: "DriveX Gaming | Your Trusted MLBB & Game Accounts Marketplace",
     description:
-      "Production-grade GSAP components for React, Vue and HTML. Browse, preview live, copy the code, and ship motion that holds up on real client work.",
-    images: ["/imgs/og-image.jpg"], 
+      "Safe, fast, and verified MLBB & game account trades. High quality accounts with lifetime warranty at DriveX Store.",
+    images: ["/imgs/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -87,8 +95,6 @@ const shadowsIntoLight = localFont({
 const themeScript = `
 (function(){try{const theme=localStorage.getItem('theme')||'dark';const systemTheme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';const resolvedTheme=theme==='system'?systemTheme:theme;if(resolvedTheme==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){document.documentElement.classList.add('dark');}})();`;
 
-												
-
 export default async function RootLayout({ children }) {
   const [latestAnimation, categories] = await Promise.all([
     getLatestAnimation(),
@@ -98,9 +104,10 @@ export default async function RootLayout({ children }) {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "GameVault",
-    url: "https://app.drivexstore.shop/",
-    description: "Production-grade GSAP components for React, Vue and HTML.",
+    name: "DriveX Gaming",
+    alternateName: "DriveX Store",
+    url: "https://drivexstore.shop/",
+    description: "Your Trusted MLBB Marketplace. Safe, fast, and verified game account trades.",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://app.drivexstore.shop/animations?q={search_term_string}",
@@ -111,11 +118,16 @@ export default async function RootLayout({ children }) {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "DriveX Studio",
-    url: "https://app.drivexstore.shop/",
+    name: "DriveX Gaming",
+    url: "https://drivexstore.shop/",
     logo: "https://app.drivexstore.shop/imgs/logo.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Bangkok",
+      addressCountry: "TH",
+    },
     sameAs: [
-      "https://github.com/drivex-studio",
+      "https://www.facebook.com/",
     ],
   };
 
@@ -126,13 +138,13 @@ export default async function RootLayout({ children }) {
       {
         "@type": "SiteNavigationElement",
         position: 1,
-        name: "Component Library",
+        name: "Accounts Marketplace",
         url: "https://app.drivexstore.shop/animations",
       },
       {
         "@type": "SiteNavigationElement",
         position: 2,
-        name: "Documentation",
+        name: "Guides & FAQ",
         url: "https://app.drivexstore.shop/docs",
       },
       {
@@ -156,9 +168,8 @@ export default async function RootLayout({ children }) {
       suppressHydrationWarning
     >
       <head>
-      <meta charSet="utf-8" /> 
+        <meta charSet="utf-8" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        {}
         <Script
           id="website-schema"
           type="application/ld+json"
@@ -176,9 +187,9 @@ export default async function RootLayout({ children }) {
         />
       </head>
       <body className="bg-background text-foreground font-sans">
-      <Provider categories={categories}>
-      {children}
-      </Provider>
+        <Provider categories={categories}>
+          {children}
+        </Provider>
       </body>
     </html>
   );

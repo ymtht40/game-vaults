@@ -7,7 +7,7 @@ import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module i
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { toast } from 'sonner'; // NOTE: module id: 846696
-import { SuggestFormField } from '@/features/roadmap/SuggestFormField'; // NOTE: module id: 626171
+import { SuggestFormField } from '@/features/marketing/roadmap/SuggestFormField'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171
 export function SuggestForm({ open, isAuthenticated, onSuccess }) {

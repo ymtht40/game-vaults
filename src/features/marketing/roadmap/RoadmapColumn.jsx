@@ -3,7 +3,7 @@
 // Variable Mapping: O -> RoadmapColumn, e -> column, r -> effectiveCount, a -> effectiveVoted, n -> isAuthenticated, s -> onVoteChange, i -> onOpenSuggest, l -> suggestOpen
 
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
-import { RoadmapCard } from '@/features/roadmap/RoadmapCard'; // NOTE: module id: 626171
+import { RoadmapCard } from '@/features/marketing/roadmap/RoadmapCard'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171
 export function RoadmapColumn({

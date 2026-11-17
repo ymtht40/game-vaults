@@ -5,9 +5,9 @@
 import { useState } from 'react';
 import { CalendarDotIcon } from '@phosphor-icons/react';
 import { cn } from '@/libs/utils/className'; // NOTE: module id: 103746
-import { SuggestTile } from '@/features/roadmap/SuggestTile'; // NOTE: module id: 626171
-import { VoteButton } from '@/features/roadmap/VoteButton'; // NOTE: module id: 626171
-import { CARD_VARIANT_CLASSES } from '@/features/roadmap/roadmap.config'; // NOTE: module id: 626171
+import { SuggestTile } from '@/features/marketing/roadmap/SuggestTile'; // NOTE: module id: 626171
+import { VoteButton } from '@/features/marketing/roadmap/VoteButton'; // NOTE: module id: 626171
+import { CARD_VARIANT_CLASSES } from '@/features/marketing/utils/roadmap.config'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171
 export function RoadmapCard({

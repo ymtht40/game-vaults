@@ -10,7 +10,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from '@/components/ui/Dialog'; // NOTE: module id: 753145
-import { SuggestForm } from '@/features/roadmap/SuggestForm'; // NOTE: module id: 626171
+import { SuggestForm } from '@/features/marketing/roadmap/SuggestForm'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171
 export function SuggestModal({ open, onOpenChange, isAuthenticated }) {

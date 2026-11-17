@@ -29,9 +29,9 @@ export const SOLO_BASE_CENTS = { quarterly: 8700, yearly: 24000 };
 const getStudioBasePrice = (cycle) => calculateSeatsTotalCents(2, SOLO_BASE_CENTS[cycle], CYCLE_MONTHS[cycle]) / 100;
 
 export const appConfig = {
-  appName: "Annnimate",
-  appDescription: "Production GSAP motion components for React and Vue. Every component shipped on a real brand site before it reached the library. By Good Fella.",
-  domainName: "annnimate.com",
+  appName: "DriveX Gaming",
+  appDescription: "Your Trusted MLBB Marketplace. Safe, fast, and verified Mobile Legends & game account trades with lifetime warranty.",
+  domainName: "drivexstore.shop",
   crisp: {
     id: "",
     onlyShowOnRoutes: ["/"]
@@ -42,25 +42,25 @@ export const appConfig = {
         isFeatured: true,
         priceId: legacyPrices.pro,
         name: "Pro",
-        description: "Perfect for individual designers and developers.",
+        description: "Perfect for individual buyers and gamers.",
         price: 199,
         priceAnchor: null,
         userAmount: 1,
         isBillingCycle: "yearly",
         features: [
-          { name: "Full access to animation library" },
-          { name: "All code formats (HTML, React, Webflow)" },
-          { name: "GSAP integration" },
-          { name: "Save & organize favorites" },
-          { name: "New animations monthly" },
-          { name: "Documentation & support" },
-          { name: "All future updates" }
+          { name: "Full access to verified accounts" },
+          { name: "Fast transaction & instant delivery" },
+          { name: "Lifetime warranty protection" },
+          { name: "Save & organize favorite accounts" },
+          { name: "New accounts listed daily" },
+          { name: "24/7 customer support" },
+          { name: "Priority trade assistance" }
         ]
       },
       {
         priceId: legacyPrices.team,
         name: "Team",
-        description: "For agencies and teams collaborating on projects.",
+        description: "For resellers and trading teams.",
         price: 300,
         priceAnchor: null,
         isBillingCycle: "yearly",
@@ -70,7 +70,7 @@ export const appConfig = {
           { name: "Everything in Pro" },
           { name: "Minimum 3 team members included" },
           { name: "Shared team workspace" },
-          { name: "Team collaboration tools" },
+          { name: "Team management tools" },
           { name: "Priority support" },
           { name: "Additional seats: €159/year each" }
         ]
@@ -84,16 +84,16 @@ export const appConfig = {
         surface: "dark",
         isPopular: true,
         seatTag: "1 seat",
-        pitch: "For one developer working solo or on freelance work.",
+        pitch: "For individual gamers looking for verified MLBB accounts.",
         yearly: { price: 199, listPrice: 240, priceId: subscriptionPrices.soloYearly, cycleLabel: "/year" },
         quarterly: { price: 20, listPrice: 29, cycleTotal: 60, listCycleTotal: 87, priceId: quarterlyPrices.soloQuarterly, cycleLabel: "/month" },
         features: [
           { componentCount: true },
           { shippedRecently: true },
-          "React, Vue and HTML",
-          "MCP server for Cursor and Claude Code",
-          "New components as they ship",
-          "Documentation and support"
+          "Safe & verified MLBB accounts",
+          "Fast transaction & instant handover",
+          "Lifetime warranty included",
+          "24/7 support"
         ]
       },
       {
@@ -106,7 +106,7 @@ export const appConfig = {
         maxSeats: 20,
         soloCents: SOLO_BASE_CENTS,
         seatTag: "2 to 20 seats",
-        pitch: "For a studio or team shipping client work. Every seat after the first costs less.",
+        pitch: "For resellers and gaming communities.",
         yearly: { 
           price: getStudioBasePrice("yearly"), 
           listPrice: getStudioBasePrice("yearly"), 
@@ -125,7 +125,7 @@ export const appConfig = {
           "Everything in Solo, for every seat",
           "10% off every seat after the first, up to 40%",
           "Add or remove seats any time",
-          "MCP server for the whole team",
+          "Dedicated trade support",
           "Priority support"
         ]
       }
@@ -138,10 +138,10 @@ export const appConfig = {
     cdn: "https://cdn-id.cloudfront.net/"
   },
   resend: {
-    fromNoReply: "Annnimate <noreply@annnimate.com>",
-    fromAdmin: "Team at Annnimate <team@annnimate.com>",
-    supportEmail: "support@annnimate.com",
-    contactEmail: "contact@annnimate.com"
+    fromNoReply: "DriveX Gaming <noreply@drivexstore.shop>",
+    fromAdmin: "Team at DriveX Gaming <team@drivexstore.shop>",
+    supportEmail: "support@drivexstore.shop",
+    contactEmail: "contact@drivexstore.shop"
   },
   colors: { main: "#b3fca0" },
   auth: { loginUrl: "/login", callbackUrl: "/animations" },

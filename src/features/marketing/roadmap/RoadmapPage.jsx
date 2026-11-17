@@ -4,9 +4,9 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import EndCta from '@/components/shared/cta/EndCta'; // NOTE: module id: 482232
-import { RoadmapBoard } from '@/features/roadmap/RoadmapBoard'; // NOTE: module id: 626171
-import { RoadmapHero } from '@/features/roadmap/RoadmapHero'; // NOTE: module id: 626171
-import { SuggestModal } from '@/features/roadmap/SuggestModal'; // NOTE: module id: 626171
+import { RoadmapBoard } from '@/features/marketing/roadmap/RoadmapBoard'; // NOTE: module id: 626171
+import { RoadmapHero } from '@/features/marketing/roadmap/RoadmapHero'; // NOTE: module id: 626171
+import { SuggestModal } from '@/features/marketing/roadmap/SuggestModal'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171
 export default function RoadmapPage({ roadmap, animations = [], lastShippedDaysAgo }) {

@@ -7,8 +7,8 @@ import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { SecondaryButton } from '@/components/ui/SecondaryButton'; // NOTE: module id: 520237
-import { RoadmapStatItem } from '@/features/roadmap/RoadmapStatItem'; // NOTE: module id: 626171
-import { HERO_SUBTEXT_ANIMATION } from '@/features/roadmap/roadmap.config'; // NOTE: module id: 626171
+import { RoadmapStatItem } from '@/features/marketing/roadmap/RoadmapStatItem'; // NOTE: module id: 626171
+import { HERO_SUBTEXT_ANIMATION } from '@/features/marketing/utils/roadmap.config'; // NOTE: module id: 626171
 
 // NOTE: module id: 626171
 export function RoadmapHero({

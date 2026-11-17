@@ -5,8 +5,8 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { Flip } from 'gsap/Flip';
-import { RoadmapColumn } from '@/features/roadmap/RoadmapColumn'; // NOTE: module id: 626171
-import { BOARD_COLUMNS } from '@/features/roadmap/roadmap.config'; // NOTE: module id: 626171
+import { RoadmapColumn } from '@/features/marketing/roadmap/RoadmapColumn'; // NOTE: module id: 626171
+import { BOARD_COLUMNS } from '@/features/marketing/utils/roadmap.config'; // NOTE: module id: 626171
 
 gsap.registerPlugin(Flip);
 
