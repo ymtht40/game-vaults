@@ -92,6 +92,14 @@ const shadowsIntoLight = localFont({
   weight: '400',
 });
 
+const notoSansMyanmar = localFont({
+  src: '../../public/fonts/NotoSansMyanmarUI-VF.woff2',
+  variable: '--font-myanmar',
+  weight: '100 900',
+  style: 'normal',
+  display: 'swap',
+});
+
 const themeScript = `
 (function(){try{const theme=localStorage.getItem('theme')||'dark';const systemTheme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';const resolvedTheme=theme==='system'?systemTheme:theme;if(resolvedTheme==='dark'){document.documentElement.classList.add('dark');}else{document.documentElement.classList.remove('dark');}}catch(e){document.documentElement.classList.add('dark');}})();`;
 
@@ -164,6 +172,7 @@ export default async function RootLayout({ children }) {
         ${geistSans.variable}
         ${geistMono.variable}
         ${shadowsIntoLight.variable}
+        ${notoSansMyanmar.variable}
       `}
       suppressHydrationWarning
     >

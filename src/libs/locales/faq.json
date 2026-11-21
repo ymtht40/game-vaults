@@ -1,17 +1,17 @@
 {
   "hero": {
-    "stamp": "Reference · Updated",
+    "stamp": "Support · Updated",
     "updatedFallback": "recently",
     "headline": "Questions and answers.",
-    "subtext": "The single source of truth on GameVault. The library, the Kits, the pricing, the licensing. If your question isn't here, write us and it gets added."
+    "subtext": "Everything you need to know about DriveX Gaming -- account verification, handover process, payment methods, and lifetime warranty. If your question isn't here, message us."
   },
   "group": {
     "questionsCountSuffix": "questions"
   },
   "endCta": {
     "headline": "That covers it.",
-    "subtext": "If something slipped through, write us and we add it. Otherwise the library is here, ready to ship into your next project.",
-    "primaryLabel": "Get the library",
-    "secondaryLabel": "Write us"
+    "subtext": "Still have a question about an account or payment? Message our team directly or browse available accounts now.",
+    "primaryLabel": "Browse accounts",
+    "secondaryLabel": "Contact us"
   }
 }

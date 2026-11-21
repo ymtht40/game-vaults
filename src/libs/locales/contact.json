@@ -1,25 +1,25 @@
 {
   "hero": {
-    "anchor": "Usually a same-day reply",
-    "headline": "Reach a person.",
-    "subtext": "GameVault is two people, Julian and Adrian. Send anything below, or jump straight to the answers most questions already have."
+    "anchor": "Fast response · Always open",
+    "headline": "Reach our team.",
+    "subtext": "Have a question about an MLBB account, payment method (KBZPay, WavePay, Thai Bank), or warranty support? Message DriveX Gaming directly below."
   },
   "channels": {
-    "eyebrow": "Talk to the studio",
+    "eyebrow": "Talk to DriveX Gaming",
     "headline": "Tell us what you need.",
-    "body": "Use the form for anything. If it's a common question, the links beside it are faster.",
+    "body": "Use the form for custom account requests, trade-ins, or order support. For quick answers, check the links beside it.",
     "routes": [
       {
         "name": "FAQ",
-        "role": "Most answers already live here."
+        "role": "Payment, handover, and warranty answers."
       },
       {
-        "name": "Docs",
-        "role": "Install, attributes, React and Vue."
+        "name": "Guides",
+        "role": "Moonton bind & account security steps."
       },
       {
-        "name": "Roadmap",
-        "role": "Want a component built? Request it and vote."
+        "name": "Requests",
+        "role": "Looking for a specific skin? Request it here."
       }
     ]
   },
@@ -31,27 +31,27 @@
     "honeypotLabel": "Company",
     "labelName": "Name",
     "labelEmail": "Email",
-    "labelSubject": "Subject (optional)",
+    "labelSubject": "Subject / Account ID (optional)",
     "labelMessage": "Message",
     "placeholderName": "Your name",
-    "placeholderEmail": "you@studio.com",
-    "placeholderSubject": "Subject (optional)",
-    "placeholderMessage": "What's going on?",
+    "placeholderEmail": "you@example.com",
+    "placeholderSubject": "Account inquiry, trade-in, or support",
+    "placeholderMessage": "Tell us which account or skin you're looking for...",
     "privacyPrefix": "By sending this you agree to our",
     "privacyLink": "privacy policy",
-    "preferEmail": "Prefer plain email?",
+    "preferEmail": "Prefer direct email?",
     "submit": "Send message",
     "submitLoading": "Sending...",
-    "doneHeadline": "Got it. We read every one.",
-    "doneBody": "A real person replies from a real address, usually the same day.",
-    "toastSuccess": "Message sent. We'll get back to you.",
+    "doneHeadline": "Got it. Our team is on it.",
+    "doneBody": "A DriveX Gaming support admin will reply to you as soon as possible.",
+    "toastSuccess": "Message sent. We'll get back to you shortly.",
     "toastError": "Something went wrong. Try again?",
     "errorSend": "Could not send your message."
   },
   "endCta": {
-    "headline": "It's all built already.",
-    "subtext": "Every component ships as real React and Vue code, ready for production. Take a look around, or get the whole library.",
-    "primaryLabel": "Get the library",
-    "secondaryLabel": "Browse components"
+    "headline": "Ready to find your next account?",
+    "subtext": "Every account is verified for clean binds and backed by DriveX Gaming lifetime warranty.",
+    "primaryLabel": "Browse accounts",
+    "secondaryLabel": "View deals"
   }
 }

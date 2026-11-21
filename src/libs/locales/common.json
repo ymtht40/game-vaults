@@ -1,9 +1,9 @@
 {
   "endCta": {
-    "headline": "Take the component you'd have built yourself.",
-    "subtext": "Browse the library, grab one, drop it into your build. The first one is free.",
-    "primaryLabel": "Get GameVault",
-    "secondaryLabel": "Browse the library"
+    "headline": "Upgrade to your dream MLBB account today.",
+    "subtext": "Browse verified accounts, inspect every skin, and get instant handover with lifetime warranty.",
+    "primaryLabel": "Browse accounts",
+    "secondaryLabel": "Contact support"
   },
   "faq": {
     "headline": "Questions and answers.",
@@ -11,48 +11,48 @@
     "ctaLabel": "See all questions",
     "items": [
       {
-        "q": "What is GameVault?",
-        "a": "GameVault is a GSAP motion component library for React and Vue, built by Good Fella. Every component is built to the standard we ship for real brands. Some shipped on those brand sites, the rest are Good Fella originals held to the same bar. Either way you are not copying an experiment, you are copying motion built to ship."
+        "q": "What is DriveX Gaming?",
+        "a": "DriveX Gaming (DriveX Store) is a trusted MLBB and game accounts marketplace trusted by over 102K+ gamers. Every account goes through strict ownership verification and clean bind checks before being listed."
       },
       {
-        "q": "How often do new GameVault components ship?",
-        "a": "GameVault ships new signature components regularly, included in any active Library subscription at no extra cost. The changelog lists every component as it lands, so you can see the cadence for yourself before you buy."
+        "q": "How often are new MLBB accounts listed?",
+        "a": "We list fresh, verified MLBB accounts daily -- ranging from budget-friendly starter accounts to high-tier Collector, Legend, and rare event skin accounts."
       },
       {
-        "q": "How is GameVault different from Aceternity, Magic UI, and other Framer Motion libraries?",
-        "a": "GameVault is built on GSAP, not Framer Motion. Aceternity and Magic UI are great for Framer Motion landing-page UI. GameVault is production code you can ship to a client on Monday, on the engine that runs award-level work, the GSAP option for developers who notice."
+        "q": "How is DriveX Gaming different from random social media sellers?",
+        "a": "Unlike unverified peer-to-peer trades, DriveX Gaming inspects every account's bind history, guarantees clean third-party unbinding, handles step-by-step Moonton email transfers, and backs verified accounts with a lifetime warranty."
       },
       {
-        "q": "Does GameVault work with Next.js App Router and Nuxt?",
-        "a": "Yes. GameVault's React components are Server Component safe and work with the Next.js App Router. The Vue components are Nuxt ready. Each one uses useGSAP in React or a composable in Vue, so the GSAP context cleans up on unmount without extra plumbing from you."
+        "q": "How long does the account handover take?",
+        "a": "Handover is fast and usually completed within 5 to 15 minutes after payment confirmation. Our support team stays with you until the Moonton email and password are fully changed to yours."
       },
       {
-        "q": "Do I need GSAP installed to use GameVault?",
-        "a": "Yes. GameVault runs on GSAP, which is free for any project including every plugin. Install it with one npm install gsap. The docs walk you through the setup for React, Vue, and HTML."
+        "q": "What payment methods do you accept?",
+        "a": "We accept KBZPay, WavePay, Thai Bank Transfer (PromptPay), and international card payments via Stripe."
       },
       {
-        "q": "Are GameVault components accessible and reduced-motion aware?",
-        "a": "Yes. Every GameVault component respects prefers-reduced-motion and falls back to a calm, usable state. Interactive components handle keyboard focus and ARIA. The docs spell out what each one does when motion is reduced."
+        "q": "Are all third-party binds removed before delivery?",
+        "a": "Yes. Every account is checked to ensure clean binds (no lingering Facebook, TikTok, VK, or Game Center connections) so you receive 100% full ownership."
       },
       {
-        "q": "Is there a free version of GameVault?",
-        "a": "There is a free Starter Pack of production components in React, Vue and HTML, delivered to your inbox and free to use in any project with no expiration. A new component goes free every week and joins the pack. Every component's live preview is also free to explore with no account needed, and the full code library is a paid subscription."
+        "q": "Do you offer budget or starter MLBB accounts?",
+        "a": "Yes. Alongside Collector and Legend tier accounts, we regularly drop verified starter and mid-tier accounts at affordable prices."
       },
       {
-        "q": "Does GameVault have a lifetime plan?",
-        "a": "GameVault no longer offers a lifetime plan. The Library is a subscription billed quarterly or yearly, so the catalog keeps growing and the components keep getting maintained. Developers who bought Lifetime before the 2026 relaunch keep their access. See the What's New page for the migration detail."
+        "q": "How does the Lifetime Warranty work?",
+        "a": "Our Lifetime Warranty protects buyers against account retrieval by the original owner. Keep your transaction receipt and follow our security checklist after handover to remain fully protected."
       },
       {
-        "q": "Can I use GameVault in commercial and client work?",
-        "a": "Yes. Every GameVault tier covers unlimited commercial client projects. You and your seats can ship with the components on any work you produce. The only limit is repackaging or reselling the components as a competing library."
+        "q": "Can I sell or trade in my MLBB account to DriveX Gaming?",
+        "a": "Yes. We buy and trade verified MLBB accounts. Message our support team with your skin list, rank, and bind details for a quick quote."
       },
       {
-        "q": "Do Library subscribers get a discount on Landmark Kits?",
-        "a": "GameVault Library members get 20% off every Landmark Kit purchase for as long as the subscription is active. Past Kit buyers get 20% off their first year of any Library plan. The two products are separate, but they reward each other."
+        "q": "Do VIP members get discounts on account bundles?",
+        "a": "Yes. Active DriveX VIP members receive exclusive discounts and early access to newly listed Collector and Legend accounts."
       },
       {
-        "q": "What is GameVault's refund policy?",
-        "a": "GameVault has a 14-day, no-questions-asked refund on both Library subscriptions and Landmark Kits. If it does not fit how you work, email us within 14 days of purchase and we refund you in full."
+        "q": "What is DriveX Gaming's refund policy?",
+        "a": "If an account does not match the listed skins, rank, or clean bind status prior to handover completion, you receive a 100% full refund or instant replacement."
       }
     ]
   },
@@ -60,129 +60,129 @@
     "actions": {
       "account": "Account",
       "login": "Login",
-      "getAccess": "Get access"
+      "getAccess": "Browse accounts"
     },
-    "logoByline": "by Good Fella",
-    "latestComponentLabel": "Latest component",
+    "logoByline": "by DriveX Store",
+    "latestComponentLabel": "Latest account",
     "marquee": {
-      "label": "Road to 100 pricing - the library from €20 a month",
-      "labelMenuKit": "The Menu Kit is out now"
+      "label": "Safe, Fast & Verified MLBB Accounts · Lifetime Warranty",
+      "labelMenuKit": "New Collector & Legend Account Drops Available"
     },
     "nav": {
       "library": {
-        "label": "Library",
+        "label": "Accounts",
         "intro": {
-          "eyebrow": "The library",
-          "heading": "Curated, not a catalog dump.",
-          "text": "Every component built to the bar we ship for real brands. Filter, preview live, copy in React or Vue.",
-          "ctaLabel": "Browse the library"
+          "eyebrow": "Marketplace",
+          "heading": "Verified, not risky random trades.",
+          "text": "Every MLBB account inspected for clean binds and authentic skins. Filter by tier, preview details, and buy safely.",
+          "ctaLabel": "Browse all accounts"
         },
         "columns": {
-          "byCategory": "By category",
+          "byCategory": "By tier",
           "collections": "Collections"
         },
         "links": {
-          "allComponents": "All components",
+          "allComponents": "All accounts",
           "mostPopular": "Most popular",
           "saved": "Saved",
-          "showcase": "Showcase"
+          "showcase": "Reviews"
         }
       },
       "kits": {
-        "label": "Kits",
+        "label": "Bundles",
         "badge": "New",
         "intro": {
-          "eyebrow": "Landmark Kits",
-          "heading": "Depth, not breadth.",
-          "text": "A deep, stand-alone collection built around one system. Two Kits so far: Reveal, preloaders and hero sections as one mixable system, and Menu, ten site navigation menus as one system. React, Vue, HTML / CSS / JS. Not for Webflow.",
-          "ctaLabel": "See the Menu Kit"
+          "eyebrow": "Special Collections",
+          "heading": "Curated high-tier accounts.",
+          "text": "Hand-picked MLBB account bundles featuring rare Collector, Legend, KOF, and Aspirants skins. Clean bind guaranteed with lifetime warranty.",
+          "ctaLabel": "See Featured Bundles"
         },
         "columns": {
-          "theKits": "The Kits",
-          "learn": "Learn",
-          "stayClose": "Stay close"
+          "theKits": "Collections",
+          "learn": "Guides",
+          "stayClose": "More"
         },
         "links": {
-          "revealKit": "Reveal",
-          "menuKit": "Menu",
-          "whatAKitIs": "What a Kit is",
-          "kitVsLibrary": "Kit vs. the Library",
-          "foundingOffer": "Founding offer",
-          "roadmap": "Roadmap",
+          "revealKit": "Collector Tier",
+          "menuKit": "Legend Tier",
+          "whatAKitIs": "How verification works",
+          "kitVsLibrary": "VIP vs. Single Buy",
+          "foundingOffer": "Special offers",
+          "roadmap": "Upcoming drops",
           "pricing": "Pricing"
         },
         "featured": {
-          "eyebrow": "Out now",
-          "title": "The Menu Kit",
-          "imageAlt": "The Menu Kit"
+          "eyebrow": "Featured",
+          "title": "Legend & Collector Tier",
+          "imageAlt": "DriveX Gaming Featured Accounts"
         }
       },
       "learn": {
-        "label": "Learn",
+        "label": "Guides",
         "intro": {
-          "eyebrow": "Concepts, patterns, tools",
-          "heading": "Learn the vocabulary.",
-          "text": "Definitions and examples for the GSAP and animation concepts behind production motion. Free, citable, and cross-linked with the components that use each idea.",
-          "ctaLabel": "Open concepts"
+          "eyebrow": "Safety, handover, warranty",
+          "heading": "Trade with confidence.",
+          "text": "Step-by-step guides on Moonton email transfer, securing your new account, payment methods, and how our lifetime warranty protects you.",
+          "ctaLabel": "Read guides"
         },
         "columns": {
-          "concepts": "Concepts",
+          "concepts": "Safety Guides",
           "explore": "Explore"
         },
         "links": {
-          "easing": "Easing",
-          "scroll": "Scroll",
-          "timeline": "Timeline",
-          "text": "Text",
-          "react": "React",
-          "performance": "Performance",
-          "plugins": "Plugins",
-          "patterns": "Patterns",
-          "freeTools": "Free tools",
+          "easing": "Moonton Bind",
+          "scroll": "Email Transfer",
+          "timeline": "Handover Steps",
+          "text": "Security Tips",
+          "react": "Payment Guide",
+          "performance": "Warranty Rules",
+          "plugins": "Verification",
+          "patterns": "Account Tiers",
+          "freeTools": "Price Check",
           "documentation": "Documentation",
-          "comparisons": "Comparisons"
+          "comparisons": "Why DriveX"
         }
       },
       "docs": {
-        "label": "Docs"
+        "label": "Guides"
       },
       "pricing": {
         "label": "Pricing"
       },
       "showcase": {
-        "label": "Showcase"
+        "label": "Reviews"
       }
     }
   },
   "footer": {
     "columns": {
       "platform": "Platform",
-      "library": "Library",
-      "kits": "Kits"
+      "library": "Marketplace",
+      "kits": "Collections"
     },
     "platformLinks": {
       "howItWorks": "How it works",
-      "documentation": "Documentation",
-      "mcpServer": "MCP server",
-      "learnGsap": "Learn GSAP",
-      "freeTools": "Free tools",
-      "compare": "Compare",
-      "stateOfWebAnimation": "State of Web Animation",
-      "changelog": "Changelog",
-      "roadmap": "Roadmap",
-      "pricing": "Pricing",
+      "documentation": "Buying guides",
+      "mcpServer": "Trade verification",
+      "learnGsap": "Account security",
+      "freeTools": "Account valuation",
+      "compare": "Why DriveX",
+      "stateOfWebAnimation": "Warranty policy",
+      "changelog": "Recent drops",
+      "roadmap": "Upcoming stock",
+      "pricing": "Pricing & VIP",
       "faqs": "FAQs",
-      "affiliates": "Affiliates"
+      "affiliates": "Reseller program"
     },
     "libraryLinks": {
-      "allComponents": "All components",
-      "showcase": "Showcase"
+      "allComponents": "All accounts",
+      "showcase": "Customer reviews"
     },
     "kitsLinks": {
-      "seeTheKits": "See the Kits",
-      "whatAKitIs": "What a Kit is",
-      "kitVsLibrary": "Kit vs. the Library",
-      "foundingOffer": "Founding offer"
+      "seeTheKits": "See bundles",
+      "whatAKitIs": "How verification works",
+      "kitVsLibrary": "VIP vs. Single Buy",
+      "foundingOffer": "Special offers"
     },
     "legalLinks": {
       "privacy": "Privacy",
@@ -191,8 +191,8 @@
       "refund": "Refund"
     },
     "status": {
-      "justShipped": "Just shipped:",
-      "default": "Library shipping weekly"
+      "justShipped": "Just listed:",
+      "default": "Verified accounts updated daily"
     },
     "relativeTime": {
       "today": "today",
@@ -203,81 +203,81 @@
       "monthAgo": "1 month ago",
       "monthsAgo": "{n} months ago"
     },
-    "studioClock": "{time} CET",
-    "askAi": "Ask about GameVault on",
+    "studioClock": "{time} ICT",
+    "askAi": "Learn about DriveX Gaming on",
     "contact": "Contact",
-    "copyright": "© {year} GameVault",
-    "builtBy": "Built by",
-    "builtByName": "Good Fella",
+    "copyright": "© {year} DriveX Gaming",
+    "builtBy": "Operated by",
+    "builtByName": "DriveX Store",
     "cookiePreferences": "Cookie Preferences"
   },
   "starterPack": {
-    "headline": "A new free component every week.",
-    "body": "Production components in React, Vue and HTML, built to the same standard we ship for real brands. The free pack grows every week. In your inbox now. No card, no catch.",
-    "buttonLabel": "Send me the free pack"
+    "headline": "Fresh starter deals every week.",
+    "body": "Get notified when affordable, clean-bind MLBB starter accounts and special flash deals drop at DriveX Gaming. Fast handover, full support.",
+    "buttonLabel": "Get deal alerts"
   },
   "docCapture": {
-    "headline": "Try the library before you decide.",
-    "body": "The Starter Pack: free production components in React, Vue and HTML, straight from the library. A new one lands every week. No card, no catch.",
-    "railBody": "Free production components in React, Vue and HTML. No card, no catch.",
-    "buttonLabel": "Get the free pack"
+    "headline": "Looking for a specific MLBB account?",
+    "body": "Join our alert list for weekly verified MLBB drops, rare skin listings, and exclusive DriveX Gaming member deals.",
+    "railBody": "Weekly verified MLBB account drops and exclusive deals.",
+    "buttonLabel": "Get deal alerts"
   },
   "testimonials": {
-    "heading": "The people using it ship for a living.",
-    "sub": "Studios and senior developers, on real client work.",
+    "heading": "Trusted by 102K+ gamers across the community.",
+    "sub": "Real buyers and MLBB players who traded safely with DriveX Gaming.",
     "items": [
       {
-        "body": "In the process of creating a digital first studio, assets like GameVault are essential for providing that interactive edge on our products. Julian has created a tool that really helps us in the creative iteration process and saves us quite a bit of time.",
-        "name": "Lukas Haentjens",
-        "role": "Co-founder, Three Sixty One"
+        "body": "Super fast transaction and smooth Moonton email transfer. Bought a Collector skin account and the admin guided me through every security step in under 10 minutes.",
+        "name": "Min Kaung",
+        "role": "Verified Buyer · Mythical Glory"
       },
       {
-        "body": "GameVault makes it easier to work with animations without overcomplicating the setup. The library is broad, the tool is well built, and the animations are smooth and well crafted. I especially like the React integration, it fits naturally into how I usually build things.",
-        "name": "Edoardo Lunardi",
-        "role": "Award-winning Senior Frontend Developer"
+        "body": "Clean bind exactly as described. Paid via KBZPay and got my login details right away. Easily the most reliable MLBB store I have dealt with.",
+        "name": "Flash Nikk",
+        "role": "Verified Buyer · Collector Tier"
       },
       {
-        "body": "I'm a lifetime user of GameVault. It's really good - clean documentation, code is nice and light, and the animations it gives me are world class. Similar services are 2-3 times the cost and don't offer the level of polish that GameVault does.",
-        "name": "Matthew Stobo",
-        "role": "Lifetime Member"
+        "body": "Bought two accounts from DriveX Gaming already. Zero issues, responsive support, and the lifetime warranty gives real peace of mind.",
+        "name": "Lawi Chan",
+        "role": "Repeat Customer"
       }
     ]
   },
   "valueMath": {
-    "headline": "What building this yourself costs.",
-    "intro": "Every number here is real work, priced at €80 an hour. Pick how much you'd actually use.",
-    "usageAria": "How much you would use",
+    "headline": "What topping up skins yourself costs.",
+    "intro": "Compare the real diamond cost of spinning Collector, Legend, and Event skins yourself versus buying a verified account.",
+    "usageAria": "Select account tier",
     "usage": {
-      "site": "One site",
-      "projects": "A few projects",
-      "client": "Client work"
+      "site": "Starter",
+      "projects": "Collector",
+      "client": "World Collector"
     },
-    "modeLabel": "What one component costs you to build",
-    "modeAria": "Built by hand or with AI",
+    "modeLabel": "Estimated diamond & event recharge cost",
+    "modeAria": "Standard recharge or event discounts",
     "mode": {
-      "hand": "By hand",
-      "ai": "With AI"
+      "hand": "Direct Top-Up",
+      "ai": "Event Draws"
     },
     "rows": {
-      "design": "Motion design and timing",
-      "build": "Build and interaction states",
-      "responsive": "Responsive and reduced motion",
-      "qa": "Cross-browser and device QA"
+      "design": "Collector & Legend skin draws",
+      "build": "Collab & Limited event skins",
+      "responsive": "Max emblems & recall effects",
+      "qa": "Time spent grinding rank & BP"
     },
-    "rowTotal": "One component",
-    "savedLabel": "What you don't spend building",
-    "savedHours": "{hours} hours of work at €80 an hour.",
+    "rowTotal": "Estimated value",
+    "savedLabel": "What you save with DriveX Gaming",
+    "savedHours": "Save up to {hours}+ hours of grinding and event waiting.",
     "points": {
-      "components": "{count} components you never scope, build or QA.",
-      "breakEven": "It pays for itself before you finish the first one.",
-      "ownership": "Anything you paste stays yours and keeps working, even if you cancel."
+      "components": "{count} verified accounts ready to play immediately.",
+      "breakEven": "Get rare limited skins for a fraction of original top-up cost.",
+      "ownership": "100% clean bind handover with DriveX lifetime warranty."
     },
-    "compareBuildLabel": "Build it yourself",
-    "compareUsLabel": "With GameVault",
+    "compareBuildLabel": "Top-up yourself",
+    "compareUsLabel": "With DriveX Gaming",
     "compareBuildValue": "€{money}",
-    "priceLine": "€{price} a year.",
-    "priceSupport": "The whole library, every format and everything we ship next.",
-    "ctaLanding": "Get the library",
-    "ctaPricing": "See the plans"
+    "priceLine": "From €{price}.",
+    "priceSupport": "Verified clean-bind accounts with instant handover and support.",
+    "ctaLanding": "Browse accounts",
+    "ctaPricing": "See deals"
   }
 }

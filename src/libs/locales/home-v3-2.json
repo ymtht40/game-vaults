@@ -1,0 +1,115 @@
+{
+  "hero": {
+    "headline": "Your trusted MLBB & game accounts marketplace.",
+    "sub": "Safe, fast, and verified Mobile Legends account trades. High-quality accounts with instant handover and lifetime warranty.",
+    "cta": "Browse accounts",
+    "ctaFree": "View {count} starter deals",
+    "logosLabel": "Trusted payment methods"
+  },
+  "spotlight": {
+    "headline": "Inspect every detail before you buy.",
+    "line": "{title}, verified and ready for instant handover. Check skins, emblems, and bind status with full transparency.",
+    "open": "View account details",
+    "formats": "Verified status",
+    "browse": "See all {count} accounts"
+  },
+  "bento": {
+    "headline": "Safe, fast, and verified from day one.",
+    "award": {
+      "title": "High quality accounts",
+      "line": "Curated MLBB accounts with Collector, Legend, and rare event skins inspected by our team."
+    },
+    "formats": {
+      "title": "Flexible payment options",
+      "line": "Pay easily with KBZPay, WavePay, Thai Bank (PromptPay), or international cards."
+    },
+    "agent": {
+      "title": "Fast transaction & handover",
+      "line": "Direct step-by-step Moonton email change and bind transfer completed within minutes."
+    },
+    "values": {
+      "title": "Lifetime warranty included",
+      "line": "Every verified account is backed by DriveX Gaming lifetime protection against retrieval."
+    },
+    "code": {
+      "title": "Clean bind guaranteed",
+      "line": "All third-party connections are checked and cleared before handover so you own 100% access."
+    },
+    "weekly": {
+      "title": "New drops every day",
+      "line": "{count} verified accounts available today, with fresh MLBB stock added regularly."
+    },
+    "browse": "Browse marketplace"
+  },
+  "shipped": {
+    "headline": "Just listed",
+    "line": "{count} verified accounts and counting. Click one to inspect skins and stats.",
+    "open": "View account"
+  },
+  "showcase": {
+    "headline": "Trusted by 102K+ gamers at DriveX Gaming",
+    "link": "See all reviews"
+  },
+  "pricing": {
+    "headline": "Verified accounts and VIP deals for every budget.",
+    "popular": "Most popular",
+    "soloLabel": "VIP Buyer",
+    "studioLabel": "Reseller, per seat",
+    "kitLabel": "{title} Bundle",
+    "billedQuarterly": "{total} billed quarterly",
+    "moreSeats": "More than {max} reseller seats? Email us.",
+    "oneTime": "One-time payment",
+    "kitComponents": "{count} verified accounts in one collection",
+    "kitFormats": "Clean Bind · Instant Handover",
+    "kitOwned": "One-time purchase, yours forever",
+    "kitCta": "Get the {title} Bundle",
+    "perMonth": "/month",
+    "billedYearly": "{total} billed yearly",
+    "monthsFree": "{months} months free"
+  },
+  "starterPack": {
+    "body": "{count} budget-friendly MLBB starter accounts and weekly special drops. Clean bind, verified safety, and full handover support from DriveX Gaming."
+  },
+  "faq": {
+    "headline": "Questions, answered.",
+    "subtext": "Everything gamers ask right before trading. The full list lives on the FAQ page.",
+    "items": [
+      {
+        "q": "Are all MLBB accounts on DriveX Gaming verified and safe?",
+        "a": "Yes. Every account listed on DriveX Gaming goes through strict ownership verification and bind inspection before going live. You receive full Moonton access with clean third-party binds."
+      },
+      {
+        "q": "How does the account handover process work?",
+        "a": "Right after your payment is confirmed, our support team guides you step-by-step through changing the Moonton email and password so the account is 100% secured under your own email."
+      },
+      {
+        "q": "What does the Lifetime Warranty cover?",
+        "a": "Our Lifetime Warranty protects buyers against account retrieval by the original owner. As long as you keep your transaction proof and follow our basic account security steps, your account is protected."
+      },
+      {
+        "q": "What is DriveX Gaming's refund policy?",
+        "a": "If an account does not match the listed skins, rank, or bind status before handover is completed, we offer a full refund or instant replacement. Completed account handovers (up to {cap} verification checks passed) and one-time bundles are final sale once full access is transferred."
+      },
+      {
+        "q": "What payment methods do you accept?",
+        "a": "We support KBZPay, WavePay, Thai Bank Transfer (PromptPay), and international card payments via Stripe. Transactions are fast and confirmed within minutes."
+      },
+      {
+        "q": "Can I request a specific MLBB skin or hero account?",
+        "a": "Yes. If you are looking for a specific Collector, Legend, KOF, or Aspirants skin account that is not listed yet, message our support team directly and we will source a verified match for you."
+      },
+      {
+        "q": "Do you have affordable starter accounts?",
+        "a": "Yes. We regularly list verified starter and mid-tier accounts alongside high-tier Collector accounts, so gamers on any budget can trade safely with DriveX Gaming."
+      },
+      {
+        "q": "Can I sell or trade in my current MLBB account?",
+        "a": "Yes. DriveX Gaming buys and trades verified MLBB accounts. Contact our team with your skin count, rank, and bind details for a fast valuation."
+      }
+    ]
+  },
+  "endCta": {
+    "headline": "Ready to grab your next MLBB account?",
+    "subtext": "{count} verified accounts ready for fast transaction, clean bind handover, and lifetime warranty."
+  }
+}

@@ -1,54 +1,54 @@
 {
   "plans": {
-    "headline": "Every component. {perMonth} a month.",
-    "sub": "Billed {yearly} a year, or {quarterly} a quarter. Studio teams pay per seat, and every seat after the first costs less."
+    "headline": "VIP access & deals from {perMonth} a month.",
+    "sub": "Billed {yearly} a year, or {quarterly} a quarter. Reseller teams save more on every additional seat."
   },
   "shipped": {
-    "headline": "{count} components. {recent} new in the last 30 days.",
-    "line": "Solo and Studio come with every one of them. Click one to take a closer look."
+    "headline": "{count} verified accounts. {recent} listed in the last 30 days.",
+    "line": "Every listing is inspected for clean binds and authentic skins. Click one to take a closer look."
   },
   "buildCost": {
-    "headline": "One component takes a day to build. All {count} cost {yearly} a year.",
-    "rate": "Your hourly rate",
-    "hoursLabel": "Hours to build one component",
-    "yours": "One component, built by you",
-    "ours": "All {count}, a year of GameVault",
-    "payback": "GameVault pays for itself after {time} of your work.",
+    "headline": "Building a high-tier account takes years. Grab one ready-to-play from {yearly}.",
+    "rate": "Your estimated budget",
+    "hoursLabel": "Months spent grinding skins",
+    "yours": "Top-up & grind yourself",
+    "ours": "Verified account from DriveX",
+    "payback": "Save {time} of grinding and event waiting instantly.",
     "minutes": "{n} minutes",
     "hour": "1 hour",
     "hours": "{n} hours"
   },
   "quotes": {
-    "headline": "From people who pay for it."
+    "headline": "From gamers who traded with us."
   },
   "libraryOrKit": {
-    "headline": "The Library goes broad. A Kit goes deep.",
-    "sub": "Kits are separate products. Not bundled with the Library, not unlocked with a subscription.",
+    "headline": "Single Accounts or VIP Access.",
+    "sub": "Choose how you want to shop -- buy a single verified account one-time or unlock VIP reseller benefits.",
     "library": {
-      "title": "The Library",
-      "line": "Every kind of component a site needs, from buttons to page transitions, with new ones as they ship.",
+      "title": "VIP Marketplace Access",
+      "line": "Early access to rare MLBB drops, priority support, and exclusive member discounts on every account.",
       "facts": [
         {
-          "label": "Components",
+          "label": "Verified Stock",
           "value": "{count} and counting"
         },
         {
-          "label": "Price",
+          "label": "VIP Plan",
           "value": "From {perMonth} a month"
         },
         {
-          "label": "Formats",
-          "value": "React, Vue and HTML"
+          "label": "Protection",
+          "value": "Lifetime Warranty"
         }
       ],
-      "cta": "Browse the library"
+      "cta": "Browse accounts"
     },
     "kit": {
-      "title": "A Landmark Kit",
-      "line": "A deep, stand-alone collection of animations built around one system you'd otherwise build from scratch.",
+      "title": "Curated Account Bundles",
+      "line": "High-tier MLBB accounts featuring rare Collector, Legend, and limited event skins ready for instant handover.",
       "facts": [
         {
-          "label": "Kits",
+          "label": "Tiers",
           "value": "{names}"
         },
         {
@@ -56,50 +56,50 @@
           "value": "{price} one-time"
         },
         {
-          "label": "Formats",
-          "value": "React, Vue and HTML"
+          "label": "Handover",
+          "value": "Clean Bind · Instant"
         }
       ],
-      "cta": "See the Kits"
+      "cta": "See collections"
     },
-    "stack": "They stack. 20% off every Kit while you're a Library member, and 20% off your first Library year when you own a Kit."
+    "stack": "VIP members get up to 20% off special account bundles and early alerts before public listing."
   },
   "students": {
-    "headline": "Students pay half.",
-    "line": "Studying design or development? Get half off the Solo plan for your first year, or any Landmark Kit. Ask with your university email and we send you a code.",
-    "cta": "Ask for your code"
+    "headline": "Community & loyal buyer perks.",
+    "line": "Active member of the DriveX Gaming community? Message us with your previous order ID for exclusive repeat-buyer discounts.",
+    "cta": "Claim your discount"
   },
   "faq": {
     "headline": "Questions before you pay.",
-    "subtext": "Short answers to what people ask on this page.",
+    "subtext": "Quick answers on payments, handover, and warranty.",
     "items": [
       {
-        "q": "How does GameVault Studio pricing work?",
-        "a": "GameVault Studio covers as many seats as you choose, from 2 to 20, and you can add or remove seats any time. Every seat after the first costs 10% less, up to 40% off. Seats are per-developer, so every team member shipping with the components needs one. More than 20, email us."
+        "q": "What payment methods can I use?",
+        "a": "We accept KBZPay, WavePay, Thai Bank Transfer (PromptPay), and international card payments via Stripe. Message us if you need a local bank QR."
       },
       {
-        "q": "Can I use GameVault in commercial and client work?",
-        "a": "Yes. Every GameVault tier covers unlimited commercial client projects. You and your seats can ship with the components on any work you produce. The only limit is repackaging or reselling the components as a competing library."
+        "q": "How fast do I get my account after payment?",
+        "a": "Once payment is verified, handover starts immediately -- usually completed within 5 to 15 minutes with full Moonton email transfer."
       },
       {
-        "q": "What is GameVault's refund policy?",
-        "a": "GameVault has a 14-day money-back guarantee on your first Library payment. Email us within 14 days and we refund you in full. Renewals are not refunded. The guarantee is for trying GameVault, so it ends once your account has taken more than {cap} components. Landmark Kits and Packs are final sale, because you get the full code the moment you pay."
+        "q": "What is DriveX Gaming's refund policy?",
+        "a": "If an account does not match the listed skins, rank, or clean bind status before handover is finalized, we provide a full refund or instant replacement. Completed handovers (after {cap} verification checks) and one-time account purchases are final once full access is transferred."
       },
       {
-        "q": "Can I cancel any time?",
-        "a": "Yes. Cancel from your account and you keep access until the end of the period you paid for. Cancel at least a day before the renewal date and you are not charged again. GameVault code you already pasted into your projects is yours and keeps working."
+        "q": "Can I cancel my VIP plan anytime?",
+        "a": "Yes. You can cancel from your account page at any time and keep VIP benefits until the end of your current billing period."
       },
       {
-        "q": "Is a Landmark Kit included in the Library?",
-        "a": "No. A Landmark Kit is a separate one-time purchase, not part of the Library subscription. Library members get 20% off every Kit while the subscription is active, and past Kit buyers get 20% off their first year of any Library plan."
+        "q": "Are single accounts included in the VIP subscription?",
+        "a": "No. Individual MLBB accounts and curated bundles are one-time purchases. VIP membership gives you early drop access, priority sourcing, and member discounts."
       },
       {
-        "q": "Is there a free version of GameVault?",
-        "a": "There is a free Starter Pack of production components in React, Vue and HTML, delivered to your inbox and free to use in any project with no expiration. A new component goes free every week and joins the pack. Every component's live preview is also free to explore with no account needed, and the full code library is a paid subscription."
+        "q": "Do you guarantee clean binds?",
+        "a": "Yes. Every account is checked before handover to ensure all third-party binds are cleared and only your Moonton email remains linked."
       }
     ]
   },
   "endCta": {
-    "headline": "All {count} components for {perMonth} a month."
+    "headline": "Explore {count} verified accounts starting from {perMonth}."
   }
 }
