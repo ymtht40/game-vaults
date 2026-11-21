@@ -7,7 +7,7 @@ import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module id: 943348 // UNRESOLVED: name guessed from usage
 import TransitionLink from '@/components/navigation/TransitionLink'; // NOTE: module id: 101836 // UNRESOLVED: name guessed from usage
 import MorphingAccordion from '@/components/ui/MorphingAccordion'; // NOTE: module id: 4707 // UNRESOLVED: name guessed from usage
-import { FaqSection } from '@/components/shared/faq/FaqSection'; // NOTE: module id: 752362
+import FaqSection from '@/sections/faq/FaqSection'; // NOTE: module id: 752362
 import { DEFAULT_FAQ_LINKS } from '@/features/pricing-page/utils/v3-faq.config'; // NOTE: module id: 475345
 
 function renderAnswerWithLinks(answerText, linkMap = {}) {

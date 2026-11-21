@@ -6,9 +6,9 @@ import StudentsSection from '@/features/pricing-page/sections/StudentsSection';
 
 import TestimonialsSection from '@/features/pricing-page/testimonials/TestimonialsSection';
 
-import V3Faq from '@/components/shared/faq/V3Faq';
+import V3Faq from '@/sections/faq/V3Faq';
 
-import V3EndCta from '@/components/shared/cta/V3EndCta';
+import V3EndCta from '@/sections/cta/V3EndCta';
 
 import { t } from '@/libs/utils/i18n';
 import { KITS } from '@/libs/data/kits';

@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 import RevealHeading from '@/components/motion/RevealHeading';
 import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 import AnimatedReveal from '@/components/motion/AnimatedReveal';
-import { FaqItem } from '@/components/shared/faq/FaqItem';
+import { FaqItem } from '@/sections/faq/FaqItem';
 
 export default function FAQsection({
   faqs = translate('common.faq.items'),

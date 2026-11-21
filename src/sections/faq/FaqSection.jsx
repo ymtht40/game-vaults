@@ -9,10 +9,10 @@ import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id:
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391 // UNRESOLVED: name guessed from usage
 import Button from '@/components/ui/Button'; // NOTE: module id: 687989
 import { useBreakpoint } from '@/hooks/useBreakpoint'; // NOTE: module id: 400701 // UNRESOLVED: name guessed from usage
-import { FaqItem } from '@/components/shared/faq/FaqItem'; // NOTE: module id: 752362
+import { FaqItem } from '@/sections/faq/FaqItem'; // NOTE: module id: 752362
 
 // NOTE: module id: 752362
-export function FaqSection({
+export default function FaqSection({
   faqs = t('common.faq.items'),
   eyebrow,
   headline = t('common.faq.headline'),

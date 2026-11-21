@@ -12,10 +12,10 @@ import TwoWaysSection from '@/features/landing/TwoWaysSection';
 import PricingSection from '@/features/landing/PricingSection';
 import CustomCursor from '@/features/landing/CustomCursor';
 import LibraryPreview from '@/components/ui/LibraryPreview';
-import LogoWall from '@/features/landing/Testimonials';
+import TestimonialsSection from '@/features/landing/Testimonialssection';
 import StarterPackSection from '@/features/landing/StarterPackSection';
 import ValueMath from '@/features/landing/ValueMath';
-import FAQ from '@/features/animation-page/sections/FAQ';
+import FaqSection from '@/sections/faq/FaqSection';
 import BottomCTA from '@/features/landing/BottomCTA';
 
 const PREFERRED_SLUGS = [
@@ -124,13 +124,13 @@ export default function LandingClient({
           items={animations}
           count={animations.length}
         />
-        <LogoWall images={imageUrls} />
+        <TestimonialsSection images={imageUrls} />
         <StarterPackSection theme="dark" />
         <PricingSection shippedRecently={shippedRecently} />
         <ValueMath
           cta={{ label: t('common.valueMath.ctaLanding'), href: '/pricing' }}
         />
-        <FAQ />
+        <FaqSection />
         <BottomCTA
           images={imageUrls}
           bleed={true}
