@@ -1,3 +1,4 @@
+'use client';
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391

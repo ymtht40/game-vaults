@@ -1,115 +1,115 @@
 {
   "hero": {
-    "headline": "စိတ်ချယုံကြည်ရတဲ့ MLBB Account Marketplace",
-    "sub": "Safe, Fast & Verified Trades -- အရည်အသွေးမြင့် MLBB Account များကို မြန်ဆန်တိကျတဲ့ ဝန်ဆောင်မှု၊ Lifetime Warranty အာမခံချက်အပြည့်နဲ့ DriveX Gaming မှာ ဝယ်ယူနိုင်ပါပြီ။",
-    "cta": "Account များကြည့်ရန်",
-    "ctaFree": "Starter Deal {count} ခုကြည့်ရန်",
-    "logosLabel": "လက်ခံသော ငွေပေးချေမှုများ"
+    "headline": "Your trusted MLBB & game accounts marketplace.",
+    "sub": "Safe, fast, and verified Mobile Legends account trades. High-quality accounts with instant handover and lifetime warranty.",
+    "cta": "Browse accounts",
+    "ctaFree": "View {count} starter deals",
+    "logosLabel": "Trusted payment methods"
   },
   "spotlight": {
-    "headline": "မဝယ်ခင် အသေးစိတ် အရင်စစ်ဆေးကြည့်ပါ",
-    "line": "{title} -- Skin စာရင်း၊ Emblem နဲ့ Bind Status တွေကို ပွင့်လင်းမြင်သာစွာ စစ်ဆေးပြီးမှ စိတ်ကြိုက်ရွေးချယ် ဝယ်ယူနိုင်ပါတယ်။",
-    "open": "အသေးစိတ်ကြည့်ရန်",
-    "formats": "စစ်ဆေးပြီးသား",
-    "browse": "Account အားလုံး ({count}) ကြည့်ရန်"
+    "headline": "Inspect every detail before you buy.",
+    "line": "{title}, verified and ready for instant handover. Check skins, emblems, and bind status with full transparency.",
+    "open": "View account details",
+    "formats": "Verified status",
+    "browse": "See all {count} accounts"
   },
   "bento": {
-    "headline": "ဝယ်ယူသူတိုင်း စိတ်ချရစေမယ့် DriveX အာမခံချက်",
+    "headline": "Safe, fast, and verified from day one.",
     "award": {
-      "title": "High Quality Accounts",
-      "line": "Collector, Legend နဲ့ ရှားပါး Event Skin တွေပါဝင်တဲ့ MLBB Account ကောင်းများကို သေချာရွေးချယ် စစ်ဆေးပေးထားပါတယ်။"
+      "title": "High quality accounts",
+      "line": "Curated MLBB accounts with Collector, Legend, and rare event skins inspected by our team."
     },
     "formats": {
-      "title": "လွယ်ကူတဲ့ ငွေပေးချေမှု",
-      "line": "KBZPay, WavePay, Thai Bank (PromptPay) နဲ့ International Card များဖြင့် အလွယ်တကူ ပေးချေနိုင်ပါတယ်။"
+      "title": "Flexible payment options",
+      "line": "Pay easily with KBZPay, WavePay, Thai Bank (PromptPay), or international cards."
     },
     "agent": {
-      "title": "မြန်ဆန်တိကျတဲ့ လွှဲပြောင်းမှု",
-      "line": "ငွေလွှဲအတည်ပြုပြီး မိနစ်ပိုင်းအတွင်း Moonton Email ချိန်းပေးပြီး Account အပြည့်အဝ လွှဲပြောင်းပေးပါတယ်။"
+      "title": "Fast transaction & handover",
+      "line": "Direct step-by-step Moonton email change and bind transfer completed within minutes."
     },
     "values": {
-      "title": "Lifetime Warranty အာမခံ",
-      "line": "DriveX Gaming မှ စစ်ဆေးရောင်းချသော Account တိုင်းအတွက် ပြန်ဆွဲခြင်းမှ ကာကွယ်ပေးတဲ့ Lifetime Warranty ပါဝင်ပါတယ်။"
+      "title": "Lifetime warranty included",
+      "line": "Every verified account is backed by DriveX Gaming lifetime protection against retrieval."
     },
     "code": {
-      "title": "Clean Bind 100% အာမခံ",
-      "line": "Third-party bind တွေ အကုန်ရှင်းလင်းထားပြီး ဝယ်ယူသူရဲ့ ကိုယ်ပိုင် Moonton Email တစ်ခုတည်းနဲ့သာ ချိတ်ဆက်ပေးပါတယ်။"
+      "title": "Clean bind guaranteed",
+      "line": "All third-party connections are checked and cleared before handover so you own 100% access."
     },
     "weekly": {
-      "title": "နေ့စဉ် Account အသစ်များ",
-      "line": "လက်ရှိ Verified Account {count} ခု အသင့်ရှိနေပြီး နေ့စဉ် stock အသစ်တွေ ထပ်တင်ပေးနေပါတယ်။"
+      "title": "New drops every day",
+      "line": "{count} verified accounts available today, with fresh MLBB stock added regularly."
     },
-    "browse": "Marketplace သို့သွားရန်"
+    "browse": "Browse marketplace"
   },
   "shipped": {
-    "headline": "အသစ်ရောက် Account များ",
-    "line": "Verified Account {count} ခု အသင့်ရှိနေပါပြီ။ Skin နဲ့ Rank အသေးစိတ်ကြည့်ဖို့ နှိပ်လိုက်ပါ။",
-    "open": "Account ကြည့်ရန်"
+    "headline": "Just listed",
+    "line": "{count} verified accounts and counting. Click one to inspect skins and stats.",
+    "open": "View account"
   },
   "showcase": {
-    "headline": "102K+ Gamers တွေ ယုံကြည်အားပေးတဲ့ DriveX Gaming",
-    "link": "Review များကြည့်ရန်"
+    "headline": "Trusted by 102K+ gamers at DriveX Gaming",
+    "link": "See all reviews"
   },
   "pricing": {
-    "headline": "ဘတ်ဂျက်အလိုက် စိတ်ကြိုက်ရွေးချယ်နိုင်တဲ့ Deals များ",
-    "popular": "လူကြိုက်အများဆုံး",
+    "headline": "Verified accounts and VIP deals for every budget.",
+    "popular": "Most popular",
     "soloLabel": "VIP Buyer",
     "studioLabel": "Reseller, per seat",
     "kitLabel": "{title} Bundle",
-    "billedQuarterly": "၃ လတစ်ကြိမ် {total}",
-    "moreSeats": "Reseller {max} ဦးအထက်အတွက် ဆက်သွယ်ပါ",
-    "oneTime": "တစ်ကြိမ်တည်း ပေးချေမှု",
-    "kitComponents": "Verified Account {count} ခု ပါဝင်သည်",
+    "billedQuarterly": "{total} billed quarterly",
+    "moreSeats": "More than {max} reseller seats? Email us.",
+    "oneTime": "One-time payment",
+    "kitComponents": "{count} verified accounts in one collection",
     "kitFormats": "Clean Bind · Instant Handover",
-    "kitOwned": "တစ်ခါဝယ်ပြီး အမြဲပိုင်ဆိုင်နိုင်သည်",
-    "kitCta": "{title} Bundle ဝယ်ယူရန်",
-    "perMonth": "/လ",
-    "billedYearly": "တစ်နှစ်စာ {total}",
-    "monthsFree": "{months} လ အခမဲ့"
+    "kitOwned": "One-time purchase, yours forever",
+    "kitCta": "Get the {title} Bundle",
+    "perMonth": "/month",
+    "billedYearly": "{total} billed yearly",
+    "monthsFree": "{months} months free"
   },
   "starterPack": {
-    "body": "ဈေးနှုန်းသက်သာပြီး Clean Bind ဖြစ်တဲ့ MLBB Starter Account {count} ခုနဲ့ အပတ်စဉ် Special Deal များကို DriveX Gaming မှာ ရယူနိုင်ပါတယ်။"
+    "body": "{count} budget-friendly MLBB starter accounts and weekly special drops. Clean bind, verified safety, and full handover support from DriveX Gaming."
   },
   "faq": {
-    "headline": "အမေးများသော မေးခွန်းများ",
-    "subtext": "Account မဝယ်ခင် သိထားသင့်တဲ့ အချက်အလက်များ။ အပြည့်အစုံကို FAQ စာမျက်နှာမှာ ဖတ်ရှုနိုင်ပါတယ်။",
+    "headline": "Questions, answered.",
+    "subtext": "Everything gamers ask right before trading. The full list lives on the FAQ page.",
     "items": [
       {
-        "q": "DriveX Gaming က MLBB Account တွေ တကယ်စိတ်ချရပါသလား?",
-        "a": "စိတ်ချရပါတယ်။ တင်ရောင်းတဲ့ Account တိုင်းကို မူလပိုင်ရှင် အချက်အလက်နဲ့ Third-party bind တွေ အကုန်သေချာစစ်ဆေးပြီးမှ တင်ပေးတာဖြစ်လို့ 100% Clean Bind နဲ့ ပိုင်ဆိုင်နိုင်ပါတယ်။"
+        "q": "Are all MLBB accounts on DriveX Gaming verified and safe?",
+        "a": "Yes. Every account listed on DriveX Gaming goes through strict ownership verification and bind inspection before going live. You receive full Moonton access with clean third-party binds."
       },
       {
-        "q": "ငွေလွှဲပြီးရင် Account ကို ဘယ်လိုလွှဲပြောင်းပေးလဲ?",
-        "a": "ငွေလွှဲအတည်ပြုပြီးတာနဲ့ Admin ဘက်ကနေ ဝယ်ယူသူရဲ့ ကိုယ်ပိုင် Email ကို Moonton Account ချိန်းပေးပြီး Password ပြောင်းတဲ့အထိ အဆင့်ဆင့် တိုက်ရိုက်လုပ်ဆောင်ပေးပါတယ်။"
+        "q": "How does the account handover process work?",
+        "a": "Right after your payment is confirmed, our support team guides you step-by-step through changing the Moonton email and password so the account is 100% secured under your own email."
       },
       {
-        "q": "Lifetime Warranty ဆိုတာ ဘယ်လိုအာမခံမျိုးလဲ?",
-        "a": "ဝယ်ယူပြီးနောက် မူလပိုင်ရှင်ဘက်က Account ပြန်ဆွဲသွားတာမျိုး ဖြစ်ခဲ့ရင် DriveX Gaming ဘက်က အပြည့်အဝ တာဝန်ယူဖြေရှင်းပေးတဲ့ အာမခံဖြစ်ပါတယ်။ ငွေလွှဲပြေစာနဲ့ ကျွန်တော်တို့ပေးထားတဲ့ Security guide အတိုင်း လိုက်နာထားဖို့ပဲ လိုပါတယ်။"
+        "q": "What does the Lifetime Warranty cover?",
+        "a": "Our Lifetime Warranty protects buyers against account retrieval by the original owner. As long as you keep your transaction proof and follow our basic account security steps, your account is protected."
       },
       {
-        "q": "Refund Policy (ငွေပြန်အမ်းခြင်း) ဘယ်လိုရှိလဲ?",
-        "a": "Account လွှဲပြောင်းမှု မပြီးဆုံးခင်မှာ ဖော်ပြထားတဲ့ Skin, Rank ဒါမှမဟုတ် Clean Bind အခြေအနေနဲ့ မကိုက်ညီခဲ့ရင် 100% ငွေပြန်အမ်းခြင်း သို့မဟုတ် အစားထိုးလဲလှယ်ပေးပါတယ်။ စစ်ဆေးမှုအဆင့် ({cap}) ခုလုံး ပြီးမြောက်ပြီး အပြည့်အဝ လွှဲပြောင်းပြီးသား Account များကတော့ Final Sale ဖြစ်ပါတယ်။"
+        "q": "What is DriveX Gaming's refund policy?",
+        "a": "If an account does not match the listed skins, rank, or bind status before handover is completed, we offer a full refund or instant replacement. Completed account handovers (up to {cap} verification checks passed) and one-time bundles are final sale once full access is transferred."
       },
       {
-        "q": "ဘယ် Payment တွေနဲ့ ငွေချေလို့ရလဲ?",
-        "a": "KBZPay, WavePay, Thai Bank Transfer (PromptPay) နဲ့ International Card (Stripe) တို့နဲ့ မြန်ဆန်စွာ ပေးချေနိုင်ပါတယ်။"
+        "q": "What payment methods do you accept?",
+        "a": "We support KBZPay, WavePay, Thai Bank Transfer (PromptPay), and international card payments via Stripe. Transactions are fast and confirmed within minutes."
       },
       {
-        "q": "ကိုယ်လိုချင်တဲ့ Skin သီးသန့် မှာလို့ရလား?",
-        "a": "ရပါတယ်။ Website မှာ မတင်ရသေးတဲ့ Collector, Legend, KOF ဒါမှမဟုတ် Aspirants Skin တွေပါတဲ့ Account မျိုး လိုချင်ရင် Support ကို တိုက်ရိုက်စာပို့ပြီး ရှာခိုင်းနိုင်ပါတယ်။"
+        "q": "Can I request a specific MLBB skin or hero account?",
+        "a": "Yes. If you are looking for a specific Collector, Legend, KOF, or Aspirants skin account that is not listed yet, message our support team directly and we will source a verified match for you."
       },
       {
-        "q": "ဈေးသက်သာတဲ့ Starter Account တွေရော ရှိလား?",
-        "a": "ရှိပါတယ်။ Collector Tier အကြီးစားတွေအပြင် ဘတ်ဂျက်သက်သာတဲ့ Starter နဲ့ Mid-tier MLBB Account ကောင်းလေးတွေကိုပါ ပုံမှန်တင်ပေးနေပါတယ်။"
+        "q": "Do you have affordable starter accounts?",
+        "a": "Yes. We regularly list verified starter and mid-tier accounts alongside high-tier Collector accounts, so gamers on any budget can trade safely with DriveX Gaming."
       },
       {
-        "q": "ကိုယ့်မှာရှိတဲ့ MLBB Account ကို ပြန်ရောင်း / အလဲအထပ် လုပ်လို့ရလား?",
-        "a": "ရပါတယ်။ DriveX Gaming မှာ Verified Account များကို ဈေးကောင်းပေး ပြန်ဝယ်ခြင်းနဲ့ အလဲအထပ် (Trade-in) ဝန်ဆောင်မှုတွေပါ ရှိပါတယ်။"
+        "q": "Can I sell or trade in my current MLBB account?",
+        "a": "Yes. DriveX Gaming buys and trades verified MLBB accounts. Contact our team with your skin count, rank, and bind details for a fast valuation."
       }
     ]
   },
   "endCta": {
-    "headline": "သင့်စိတ်ကြိုက် MLBB Account ကို အခုပဲ ရှာဖွေလိုက်ပါ",
-    "subtext": "Verified Account {count} ခု -- မြန်ဆန်တဲ့ ဝန်ဆောင်မှု၊ Clean Bind နဲ့ Lifetime Warranty အပြည့်။"
+    "headline": "Ready to grab your next MLBB account?",
+    "subtext": "{count} verified accounts ready for fast transaction, clean bind handover, and lifetime warranty."
   }
 }

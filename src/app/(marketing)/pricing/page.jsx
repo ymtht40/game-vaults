@@ -1,13 +1,11 @@
-import PricingSection from '@/features/landing/PricingSection';
+import PricingSection from '@/features/pricing-page/sections/PricingSection';
 import BuildCostSection from '@/features/pricing-page/sections/BuildCostSection';
-
+import ShippedSection from '@/features/pricing-page/sections/ShippedSection';
 import LibraryOrKitSection from '@/features/pricing-page/sections/LibraryOrKitSection';
 import StudentsSection from '@/features/pricing-page/sections/StudentsSection';
-
-import TestimonialsSection from '@/features/pricing-page/testimonials/TestimonialsSection';
+import TestimonialsSection from '@/sections/testimonials/TestimonialsSection';
 
 import V3Faq from '@/sections/faq/V3Faq';
-
 import V3EndCta from '@/sections/cta/V3EndCta';
 
 import { t } from '@/libs/utils/i18n';
@@ -15,10 +13,7 @@ import { KITS } from '@/libs/data/kits';
 import { getActivePrice } from '@/libs/config/appConfig';
 import { soloPlan, DEFAULT_COMPONENT_COUNT } from '@/features/pricing/utils/pricing.config';
 import { formatEuro, roundCurrency } from '@/libs/utils/pricingFormatters';
-import {
-  getPublishedAnimations,
-  getShippedRecently,
-} from '@/libs/supabase/latestAnimation';
+import { getPublishedAnimations, getShippedRecently } from '@/libs/supabase/latestAnimation';
 
 export const revalidate = 60;
 
@@ -66,7 +61,21 @@ export default async function PricingPage() {
         yearly={yearlyPrice}
         count={count}
       />
-
+      
+      <ShippedSection
+        items={animations}
+        count={count}
+        headline={t('pricing-v3.shipped.headline', {
+          count,
+          recent: shippedRecently,
+        })}
+        line={t('pricing-v3.shipped.line')}
+        theme="dark"
+      />
+      <TestimonialsSection
+        headline={t('pricing-v3.quotes.headline')}
+        names={['Min Kaung', 'Flash Nikk']}
+      />
       <LibraryOrKitSection
         count={count}
         perMonth={perMonth}
@@ -74,8 +83,7 @@ export default async function PricingPage() {
         theme="dark"
         kitHref="/account/kits"
       />
-      <TestimonialsSection images={imageUrls} />
-      
+
       <StudentsSection />
 
       <V3Faq 

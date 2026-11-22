@@ -12,7 +12,7 @@ import TwoWaysSection from '@/features/landing/TwoWaysSection';
 import PricingSection from '@/features/landing/PricingSection';
 import CustomCursor from '@/features/landing/CustomCursor';
 import LibraryPreview from '@/components/ui/LibraryPreview';
-import TestimonialsSection from '@/features/landing/Testimonialssection';
+import TestimonialsSlider from '@/sections/testimonials/TestimonialsSlider';
 import StarterPackSection from '@/features/landing/StarterPackSection';
 import ValueMath from '@/features/landing/ValueMath';
 import FaqSection from '@/sections/faq/FaqSection';
@@ -124,7 +124,7 @@ export default function LandingClient({
           items={animations}
           count={animations.length}
         />
-        <TestimonialsSection images={imageUrls} />
+        <TestimonialsSlider images={imageUrls} />
         <StarterPackSection theme="dark" />
         <PricingSection shippedRecently={shippedRecently} />
         <ValueMath
