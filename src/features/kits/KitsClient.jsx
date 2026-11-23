@@ -6,7 +6,7 @@ import KitsHero from '@/features/kits/KitsHero';
 import KitsInside from '@/features/kits/KitsInside';
 import KitsWhy from '@/features/kits/KitsWhy';
 import LibraryOrKit from '@/features/pricing/LibraryOrKit';
-import V3Faq from '@/sections/faq/V3Faq';
+import Accordion from '@/sections/accordion/Accordion';
 import V3EndCta from '@/sections/cta/V3EndCta';
 
 // Only answers 1 and 5 contain inline links (matches the production page).
@@ -32,7 +32,7 @@ export default function KitsClient({ libraryCount = 0 }) {
       />
       <KitsWhy price={KIT_PRICE} />
       <LibraryOrKit count={libraryCount} kits={KITS} theme="light" />
-      <V3Faq ns="kits-v3.faq" links={KITS_FAQ_LINKS} vars={{ price: KIT_PRICE }} />
+      <Accordion ns="kits-v3.faq" links={KITS_FAQ_LINKS} vars={{ price: KIT_PRICE }} />
       <V3EndCta
         images={KIT_RING_IMAGES}
         headline={translate('kits-v3.endCta.headline')}

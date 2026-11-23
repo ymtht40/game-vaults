@@ -5,7 +5,7 @@ import LibraryOrKitSection from '@/features/pricing-page/sections/LibraryOrKitSe
 import StudentsSection from '@/features/pricing-page/sections/StudentsSection';
 import TestimonialsSection from '@/sections/testimonials/TestimonialsSection';
 
-import V3Faq from '@/sections/faq/V3Faq';
+import Accordion from '@/sections/accordion/Accordion';
 import V3EndCta from '@/sections/cta/V3EndCta';
 
 import { t } from '@/libs/utils/i18n';
@@ -86,7 +86,7 @@ export default async function PricingPage() {
 
       <StudentsSection />
 
-      <V3Faq 
+      <Accordion 
       ns="pricing-v3.faq" 
       />
 
