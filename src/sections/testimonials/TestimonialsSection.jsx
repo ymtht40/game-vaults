@@ -1,8 +1,12 @@
 'use client';
-import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
-import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
-import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
-import { testimonials } from '@/libs/data/testimonials'; // NOTE: module id: 967791
+
+import RevealHeading from '@/components/motion/RevealHeading';
+import AnimatedText from '@/components/motion/AnimatedText';
+import FadeIn from '@/components/motion/FadeIn';
+import { testimonials } from '@/libs/data/testimonials';
+
+const ITEM_STAGGER = 0.12;
+const CAPTION_DELAY = 0.3;
 
 const textRevealProps = {
   type: 'lines',
@@ -10,23 +14,23 @@ const textRevealProps = {
   duration: 0.6,
   stagger: 0.03,
   ease: 'power2.out',
-  animationProps: {
-    yPercent: 100,
-  },
+  animationProps: { yPercent: 100 },
 };
 
-// Variable Mapping: o -> resolvedQuotes
-// NOTE: module id: 979652
+function resolveQuotes(names, quotes) {
+  if (!names) return quotes;
+
+  return names
+    .map((name) => testimonials.find((item) => item.name === name))
+    .filter(Boolean);
+}
+
 export default function TestimonialsSection({
   headline,
   names,
   quotes = [],
 }) {
-  const resolvedQuotes = names
-    ? names
-        .map((name) => testimonials.find((item) => item.name === name))
-        .filter(Boolean)
-    : quotes;
+  const resolvedQuotes = resolveQuotes(names, quotes);
 
   return (
     <section
@@ -42,6 +46,7 @@ export default function TestimonialsSection({
         >
           {headline}
         </RevealHeading>
+
         <div className="grid grid-cols-12 gap-y-64 lg:gap-x-24">
           {resolvedQuotes.map((quote, index) => (
             <figure
@@ -53,14 +58,15 @@ export default function TestimonialsSection({
                 className="text-h4 !font-normal"
                 {...textRevealProps}
                 triggerMode="scroll"
-                delay={0.12 * index}
+                delay={ITEM_STAGGER * index}
               >
                 {quote.body}
               </AnimatedText>
+
               <FadeIn
                 as="figcaption"
                 trigger="scroll"
-                delay={0.3 + 0.12 * index}
+                delay={CAPTION_DELAY + ITEM_STAGGER * index}
                 className="flex items-center gap-16"
               >
                 {quote.avatarSrc ? (
@@ -69,17 +75,13 @@ export default function TestimonialsSection({
                       src={quote.avatarSrc}
                       alt=""
                       className="absolute inset-0 object-cover"
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                      }}
+                      style={{ width: '100%', height: '100%' }}
                     />
                   </div>
                 ) : null}
+
                 <div className="flex flex-col gap-2">
-                  <span className="text-body-sm font-medium">
-                    {quote.name}
-                  </span>
+                  <span className="text-body-sm font-medium">{quote.name}</span>
                   <span className="text-body-sm text-foreground-muted">
                     {quote.role}
                   </span>

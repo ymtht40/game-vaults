@@ -5,11 +5,11 @@ import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { CustomEase } from 'gsap/CustomEase';
 import { SplitText } from 'gsap/SplitText';
-import { testimonials } from '@/libs/data/testimonials'; // NOTE: module id: 967791 // UNRESOLVED: name guessed from usage
-import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160 // UNRESOLVED: name guessed from usage
-import { CaretLeftIcon } from '@phosphor-icons/react'; // NOTE: module id: 590961 // UNRESOLVED: name guessed from usage
-import { CaretRightIcon } from '@phosphor-icons/react'; // NOTE: module id: 268817 // UNRESOLVED: name guessed from usage
+import { testimonials } from '@/libs/data/testimonials';
+import { t } from '@/libs/utils/i18n';
+import RevealHeading from '@/components/motion/RevealHeading';
+import { CaretLeftIcon } from '@phosphor-icons/react';
+import { CaretRightIcon } from '@phosphor-icons/react';
 
 gsap.registerPlugin(CustomEase, SplitText);
 CustomEase.create('annnimateInOut', 'M0,0 C0.7,0 0.16,1 1,1');
@@ -18,7 +18,6 @@ const defaultTestimonials = [...testimonials].sort(
   (a, b) => /Lunardi/.test(b.name) - /Lunardi/.test(a.name),
 );
 
-// NOTE: module id: 397360
 export default function TestimonialsSection({ items = defaultTestimonials }) {
   const sectionRef = useRef(null);
   const quoteRefs = useRef([]);

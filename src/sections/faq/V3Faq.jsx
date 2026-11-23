@@ -37,7 +37,7 @@ function renderAnswerWithLinks(answerText, linkMap = {}) {
     );
 }
 
-// NOTE: module id: 475345
+// NOTE: module id: 475345 
 export default function V3Faq({
   ns = 'home-v3.faq',
   links = DEFAULT_FAQ_LINKS,

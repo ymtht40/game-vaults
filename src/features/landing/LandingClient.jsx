@@ -15,7 +15,7 @@ import LibraryPreview from '@/components/ui/LibraryPreview';
 import TestimonialsSlider from '@/sections/testimonials/TestimonialsSlider';
 import StarterPackSection from '@/features/landing/StarterPackSection';
 import ValueMath from '@/features/landing/ValueMath';
-import FaqSection from '@/sections/faq/FaqSection';
+import FaqSection from '@/sections/accordion/Accordion';
 import BottomCTA from '@/features/landing/BottomCTA';
 
 const PREFERRED_SLUGS = [
