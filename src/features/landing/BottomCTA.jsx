@@ -8,7 +8,7 @@ import RevealHeading from '@/components/motion/RevealHeading';
 import AnimatedSubtext from '@/components/motion/AnimatedSubtext';
 import RingBackground, {
   RING_SECTION_MIN_VH,
-} from '@/features/landing/RingBackground';
+} from '@/components/motion/RingBackground';
 
 const DEFAULT_HEADLINE = translate('common.endCta.headline');
 const DEFAULT_SUBTEXT = translate('common.endCta.subtext');
