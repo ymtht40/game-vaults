@@ -6,7 +6,7 @@ import PlatformMockup from '@/features/platform/PlatformMockup';
 import PlatformSteps from '@/features/platform/PlatformSteps';
 import PlatformCode from '@/features/platform/PlatformCode';
 import PlatformDocs from '@/features/platform/PlatformDocs';
-import LibraryOrKit from '@/features/pricing-v3/LibraryOrKit';
+import LibraryOrKit from '@/features/pricing/LibraryOrKit';
 import V3Ground from '@/components/ui/V3Ground';
 import V3EndCta from '@/components/shared/end-cta/V3EndCta';
 import { t } from '@/libs/utils/i18n';
