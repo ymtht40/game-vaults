@@ -1,8 +1,10 @@
-import { boxEase, setBoxVisibility } from '@/components/canvas/IsoBoxes'; // NOTE: module id: 576720
+import {
+  ANNNIMATE_IN_OUT_EASE as boxEase,
+  setBoxAccentElement as setBoxVisibility,
+} from '@/components/motion/IsometricFigure';
 
 const awardHeights = [50, 80, 32];
 
-// NOTE: module id: 392197
 export const awardFig = {
   model: () => [
     ...[-1, 0, 1].map((step, idx) => ({
@@ -89,7 +91,6 @@ export const awardFig = {
   },
 };
 
-// NOTE: module id: 392197
 export const formatsFig = {
   model: () =>
     [-1, 0, 1].map((step) => ({
@@ -133,7 +134,6 @@ export const formatsFig = {
   },
 };
 
-// NOTE: module id: 392197
 export const agentFig = {
   model: () => {
     const boxes = [];
@@ -211,7 +211,6 @@ export const agentFig = {
 
 const easeCurve = (step) => 14 + 96 * (1 - Math.pow(2, (-10 * step) / 8));
 
-// NOTE: module id: 392197
 export const valuesFig = {
   model: () =>
     Array.from({ length: 9 }, (_, idx) => ({
@@ -268,7 +267,6 @@ const codeOffsets = [
   [16, 12],
 ];
 
-// NOTE: module id: 392197
 export const codeFig = {
   model: () =>
     codeOffsets.map((offset, idx) => ({
@@ -314,7 +312,6 @@ export const codeFig = {
   },
 };
 
-// NOTE: module id: 392197
 export const weeklyFig = {
   model: () => [
     ...Array.from({ length: 9 }, (_, idx) => ({
