@@ -1,20 +1,13 @@
 'use client';
 
-// Variable Mapping: g -> pricingTextAnimation, p -> priceDisplay, f -> kitNames, m -> kitPrice
-
-// UNRESOLVED: original source path or export names are absent from this chunk.
-import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
-// UNRESOLVED: original source path or export names are absent from this chunk.
-import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
-// UNRESOLVED: original source path or export names are absent from this chunk.
-import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
-// UNRESOLVED: original source path or export names are absent from this chunk.
-import { revealFig } from '@/features/pricing-page/sections/PricingSection'; // NOTE: module id: 586818
-// UNRESOLVED: original source path or export names are absent from this chunk.
-import { translate } from '@/libs/utils/i18n'; // NOTE: module id: 398682
-import { weekly } from '@/features/landing/bento-figures.config'; // NOTE: module id: 392197
-import { Column } from '@/features/pricing/components/Column'; // NOTE: module id: 547118
-import { interpolateFacts } from '@/features/pricing/utils/interpolateFacts'; // NOTE: module id: 547118
+import RevealHeading from '@/components/motion/RevealHeading';
+import FadeIn from '@/components/motion/FadeIn';
+import AnimatedText from '@/components/motion/AnimatedText';
+import { revealFig } from '@/features/pricing/utils/pricing.config';
+import { translate } from '@/libs/utils/i18n';
+import { weekly } from '@/features/landing/bento-figures.config';
+import { Column } from '@/features/pricing/components/Column';
+import { interpolateFacts } from '@/features/pricing/utils/interpolateFacts';
 
 const pricingTextAnimation = {
   type: 'lines',
@@ -26,7 +19,9 @@ const pricingTextAnimation = {
     yPercent: 100,
   },
 };
-// NOTE: module id: 547118
+
+export { Column };
+
 export default function LibraryOrKit({
   count = 0,
   perMonth = 20,
@@ -34,12 +29,13 @@ export default function LibraryOrKit({
   theme = 'dark',
   kitHref = '/kits',
 }) {
-  let priceDisplay;
   const kitNames = kits.map((kit) => kit.title).join(' and ');
+  const priceDisplay = kits[0]?.priceDisplay;
   const kitPrice =
-    ('string' == typeof (priceDisplay = kits[0]?.priceDisplay)
+    (typeof priceDisplay === 'string'
       ? priceDisplay.replace(/^EUR\s*/, '€')
       : priceDisplay) || '€149';
+
   return (
     <section data-theme={theme} className="bg-background py-64 text-foreground lg:py-160">
       <div className="v2-container flex flex-col gap-48 lg:gap-64">
