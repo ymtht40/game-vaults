@@ -1,21 +1,18 @@
 'use client';
 
-// Variable Mapping: e -> kit, r -> owns, a -> priceId, n -> images, s -> videos, l -> isAuthenticated, i -> manifest, o -> capture, c -> pricing
+import { KitClosingCta } from '@/features/kits/components/Kitclosingcta';
+import { KitFaqSection } from '@/features/kits/components/Kitfaqsection';
+import { KitFloatingBuyBar } from '@/features/kits/components/Kitfloatingbuybar';
+import { BrandLogoSection } from '@/components/ui/BrandLogoSection';
+import StarterPackPopup from '@/features/newsletter/StarterPackPopup';
+import { RevealCaptureSection } from '@/features/kits/reveal/RevealCaptureSection';
+import { RevealCodeSection } from '@/features/kits/reveal/RevealCodeSection';
+import { RevealHeroSection } from '@/features/kits/reveal/RevealHeroSection';
+import { RevealManifestSection } from '@/features/kits/reveal/RevealManifestSection';
+import { RevealPairingSection } from '@/features/kits/reveal/RevealPairingSection';
+import { RevealPricingSection } from '@/features/kits/reveal/RevealPricingSection';
+import { REVEAL_FAQS } from '@/features/kits/utils/reveal-kit.config';
 
-import { KitClosingCta } from '@/features/kits/components/Kitclosingcta'; // NOTE: module id: 752959 // UNRESOLVED: name guessed from usage
-import { KitFaqSection } from '@/features/kits/components/Kitfaqsection'; // NOTE: module id: 498872 // UNRESOLVED: name guessed from usage
-import { KitFloatingBuyBar } from '@/features/kits/components/Kitfloatingbuybar'; // NOTE: module id: 525425 // UNRESOLVED: name guessed from usage
-import { BrandLogoSection } from '@/components/ui/BrandLogoSection'; // NOTE: module id: 950377 // UNRESOLVED: name guessed from usage
-import { StarterPackModal } from '@/features/kits/components/Starterpackmodal'; // NOTE: module id: 573564 // UNRESOLVED: name guessed from usage
-import { RevealCaptureSection } from '@/features/kits/reveal/RevealCaptureSection'; // NOTE: module id: 301900
-import { RevealCodeSection } from '@/features/kits/reveal/RevealCodeSection'; // NOTE: module id: 301900
-import { RevealHeroSection } from '@/features/kits/reveal/RevealHeroSection'; // NOTE: module id: 301900
-import { RevealManifestSection } from '@/features/kits/reveal/RevealManifestSection'; // NOTE: module id: 301900
-import { RevealPairingSection } from '@/features/kits/reveal/RevealPairingSection'; // NOTE: module id: 301900
-import { RevealPricingSection } from '@/features/kits/reveal/RevealPricingSection'; // NOTE: module id: 301900
-import { REVEAL_FAQS } from '@/features/kits/utils/reveal-kit.config'; // NOTE: module id: 301900
-
-// NOTE: module id: 301900
 export default function RevealKitLayout({
   kit,
   owns = false,
@@ -29,7 +26,7 @@ export default function RevealKitLayout({
 }) {
   return (
     <>
-      <StarterPackModal
+      <StarterPackPopup
         isAuthenticated={isAuthenticated}
         source="kit-reveal-ad"
         idPrefix="kit-reveal-modal"

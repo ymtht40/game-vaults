@@ -1,12 +1,16 @@
 'use client';
 
 import { useRef } from 'react';
-import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
-import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id: 218091
-import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
-import Button from '@/components/ui/Button'; // NOTE: module id: 687989
-import { IsoBoxes, useIsoBoxes, boxEase } from '@/components/canvas/IsoBoxes'; // NOTE: module id: 576720
-import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
+import RevealHeading from '@/components/motion/RevealHeading';
+import AnimatedText from '@/components/motion/AnimatedText';
+import FadeIn from '@/components/motion/FadeIn';
+import Button from '@/components/ui/Button';
+import {
+  IsometricFigure,
+  useIsometricFigureAnimation,
+  ANNNIMATE_IN_OUT_EASE,
+} from '@/components/motion/IsometricFigure';
+import { t } from '@/libs/utils/i18n';
 
 const textRevealProps = {
   type: 'lines',
@@ -68,16 +72,18 @@ const studentBoxFig = {
     timeline.to(boxes.slice(1), {
       z: (_, box) => box.z + 40,
       duration: 0.6,
-      ease: boxEase,
+      ease: ANNNIMATE_IN_OUT_EASE,
     });
   },
 };
 
-// Variable Mapping: e -> containerRef, u -> boxes, m -> handleMouseEnter, x -> handleMouseLeave
-// NOTE: module id: 952244
 export default function StudentsSection() {
   const containerRef = useRef(null);
-  const { rest: boxes, onEnter: handleMouseEnter, onLeave: handleMouseLeave } = useIsoBoxes(containerRef, studentBoxFig);
+  const {
+    rest: boxes,
+    onEnter: handleMouseEnter,
+    onLeave: handleMouseLeave,
+  } = useIsometricFigureAnimation(containerRef, studentBoxFig);
 
   return (
     <section
@@ -98,7 +104,7 @@ export default function StudentsSection() {
             onMouseLeave={handleMouseLeave}
             className="h-full w-full"
           >
-            <IsoBoxes boxes={boxes} />
+            <IsometricFigure boxes={boxes} />
           </div>
         </FadeIn>
         <div className="flex flex-col items-center gap-32">

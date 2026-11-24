@@ -1,26 +1,23 @@
 'use client';
 
-// Variable Mapping: e -> kit, a -> owns, r -> priceId, n -> images, l -> isAuthenticated, i -> coverage, s -> craft
-
-import { KitClosingCta } from '@/features/kits/components/Kitclosingcta'; // NOTE: module id: 752959 // UNRESOLVED: name guessed from usage
-import { KitFaqSection } from '@/features/kits/components/Kitfaqsection'; // NOTE: module id: 498872 // UNRESOLVED: name guessed from usage
-import { KitFloatingBuyBar } from '@/features/kits/components/Kitfloatingbuybar'; // NOTE: module id: 525425 // UNRESOLVED: name guessed from usage
-import KitPricingSection from '@/features/kits/components/Kitpricingsection'; // NOTE: module id: 509259 // UNRESOLVED: name guessed from usage
-import { BrandLogoSection } from '@/components/ui/BrandLogoSection'; // NOTE: module id: 950377 // UNRESOLVED: name guessed from usage
-import { StarterPackModal } from '@/features/kits/components/Starterpackmodal'; // NOTE: module id: 573564 // UNRESOLVED: name guessed from usage
-import { MenuCodeSection } from '@/features/kits/menu/MenuCodeSection'; // NOTE: module id: 37418
-import { MenuCoverageSection } from '@/features/kits/menu/MenuCoverageSection'; // NOTE: module id: 37418
-import { MenuCraftSection } from '@/features/kits/menu/MenuCraftSection'; // NOTE: module id: 37418
-import { MenuHeroSection } from '@/features/kits/menu/MenuHeroSection'; // NOTE: module id: 37418
-import { MenuStageSection } from '@/features/kits/menu/MenuStageSection'; // NOTE: module id: 37418
+import { KitClosingCta } from '@/features/kits/components/Kitclosingcta';
+import { KitFaqSection } from '@/features/kits/components/Kitfaqsection';
+import { KitFloatingBuyBar } from '@/features/kits/components/Kitfloatingbuybar';
+import KitPricingSection from '@/features/kits/components/Kitpricingsection';
+import { BrandLogoSection } from '@/components/ui/BrandLogoSection';
+import StarterPackPopup from '@/features/newsletter/StarterPackPopup';
+import { MenuCodeSection } from '@/features/kits/menu/MenuCodeSection';
+import { MenuCoverageSection } from '@/features/kits/menu/MenuCoverageSection';
+import { MenuCraftSection } from '@/features/kits/menu/MenuCraftSection';
+import { MenuHeroSection } from '@/features/kits/menu/MenuHeroSection';
+import { MenuStageSection } from '@/features/kits/menu/MenuStageSection';
 import {
   MENU_FAQS,
   MENU_INCLUDED_ITEMS,
   MENU_SHOWREEL_POSTER_URL,
   MENU_SHOWREEL_VIDEO_URL,
-} from '@/features/kits/utils/menu-kit.config'; // NOTE: module id: 37418
+} from '@/features/kits/utils/menu-kit.config';
 
-// NOTE: module id: 37418
 export default function MenuKitLayout({
   kit,
   owns = false,
@@ -32,7 +29,7 @@ export default function MenuKitLayout({
 }) {
   return (
     <>
-      <StarterPackModal
+      <StarterPackPopup
         isAuthenticated={isAuthenticated}
         source="kit-menu-ad"
         idPrefix="kit-menu-modal"
