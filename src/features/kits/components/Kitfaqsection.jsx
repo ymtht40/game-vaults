@@ -1,6 +1,6 @@
 // Variable Mapping: e -> kit, n -> faqs, i -> resolvedFaqs
 
-import Accordion from '@/components/sections/accordion/Accordion'; // NOTE: module id: 752362
+import Accordion from '@/components/shared/accordion/Accordion'; // NOTE: module id: 752362
 
 // NOTE: module id: 498872
 export function KitFaqSection({ kit, faqs }) {

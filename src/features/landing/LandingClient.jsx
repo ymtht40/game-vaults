@@ -6,16 +6,16 @@ import { perfLog } from '@/libs/utils/perf';
 import { useAnimation } from '@/providers/AnimationProvider';
 import HeroSection from '@/features/landing/HeroSection';
 import ProblemSection from '@/features/landing/ProblemSection';
-import HowItWorksSection from '@/features/landing/HowItWorksSection';
+
 import OneComponentSection from '@/features/landing/OneComponentSection';
 import TwoWaysSection from '@/features/landing/TwoWaysSection';
-import PricingSection from '@/components/sections/pricing/PricingSection';
+import PricingSection from '@/components/shared/pricing/PricingSection';
 import CustomCursor from '@/features/landing/CustomCursor';
 import LibraryPreview from '@/components/ui/LibraryPreview';
-import TestimonialsSlider from '@/components/sections/testimonials/TestimonialsSlider';
+import TestimonialsSlider from '@/components/shared/testimonials/TestimonialsSlider';
 import StarterPackSection from '@/features/landing/StarterPackSection';
-import ValueMath from '@/features/landing/ValueMath';
-import Accordion from '@/components/sections/accordion/Accordion';
+
+import Accordion from '@/components/shared/accordion/Accordion';
 import BottomCTA from '@/features/landing/BottomCTA';
 
 const PREFERRED_SLUGS = [
@@ -113,7 +113,6 @@ export default function LandingClient({
           pool={animations}
         />
         <ProblemSection />
-        <HowItWorksSection animations={animations} />
         <OneComponentSection />
         <TwoWaysSection
           images={imageUrls}
@@ -125,11 +124,27 @@ export default function LandingClient({
           count={animations.length}
         />
         <TestimonialsSlider images={imageUrls} />
-        <StarterPackSection theme="dark" />
-        <PricingSection shippedRecently={shippedRecently} />
-        <ValueMath
-          cta={{ label: t('common.valueMath.ctaLanding'), href: '/pricing' }}
+        <PricingSection
+          shippedRecently={60}
+          count={185}
+          kits={[
+            {
+              slug: 'reveal',
+              title: 'Reveal',
+              tagline: 'Preloaders and hero sections, built as one system.',
+              priceDisplay: 'EUR 149',
+              componentCount: 13,
+            },
+            {
+              slug: 'menu',
+              title: 'Menu',
+              tagline: 'Site navigation, built as one system.',
+              priceDisplay: 'EUR 149',
+              componentCount: 10,
+            },
+          ]}
         />
+       <StarterPackSection theme="dark" />
         <Accordion />
         <BottomCTA
           images={imageUrls}

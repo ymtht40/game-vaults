@@ -1,5 +1,5 @@
 // NOTE: module id: 896659
-import EndCta from "@/components/sections/end-cta/EndCta"; // NOTE: module id: 482232
+import EndCta from "@/components/shared/end-cta/EndCta"; // NOTE: module id: 482232
 import { t } from "@/libs/utils/i18n";     // NOTE: module id: 398682
 
 export default function V3EndCta({

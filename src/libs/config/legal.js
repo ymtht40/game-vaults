@@ -6,7 +6,7 @@ export const LEGAL = {
   companyAddress: '[Street, postal code, city, country]',
   registerInfo: '[Company registration number / VAT ID]',
   supportEmail: 'contact@drivexstore.shop',
-  siteUrl: 'https://app.drivexstore.shop',
+  siteUrl: 'https://drivexapp.dpdns.org',
   governingLaw: '[Country / jurisdiction]',
   refundWindowDays: 14,
   lastUpdated: '2026-11-06',

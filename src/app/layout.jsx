@@ -5,7 +5,7 @@ import { getLatestAnimation, getCategories } from '@/libs/supabase/latestAnimati
 import '@/styles/style.css';
 
 export const metadata = {
-  metadataBase: new URL("https://app.drivexstore.shop"),
+  metadataBase: new URL("https://drivexapp.dpdns.org"),
   title: {
     default: "DriveX Gaming | Your Trusted MLBB & Game Accounts Marketplace",
     template: "%s | DriveX Gaming",
@@ -27,7 +27,7 @@ export const metadata = {
     title: "DriveX Gaming | Your Trusted MLBB & Game Accounts Marketplace",
     description:
       "Safe, fast, and verified MLBB & game account trades. High quality accounts with lifetime warranty at DriveX Store.",
-    url: "https://app.drivexstore.shop",
+    url: "https://drivexapp.dpdns.org",
     siteName: "DriveX Gaming",
     images: [
       {
@@ -118,7 +118,7 @@ export default async function RootLayout({ children }) {
     description: "Your Trusted MLBB Marketplace. Safe, fast, and verified game account trades.",
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://app.drivexstore.shop/animations?q={search_term_string}",
+      target: "https://drivexapp.dpdns.org/animations?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -128,7 +128,7 @@ export default async function RootLayout({ children }) {
     "@type": "Organization",
     name: "DriveX Gaming",
     url: "https://drivexstore.shop/",
-    logo: "https://app.drivexstore.shop/imgs/logo.png",
+    logo: "https://drivexapp.dpdns.org/imgs/logo.png",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Bangkok",
@@ -147,19 +147,19 @@ export default async function RootLayout({ children }) {
         "@type": "SiteNavigationElement",
         position: 1,
         name: "Accounts Marketplace",
-        url: "https://app.drivexstore.shop/animations",
+        url: "https://drivexapp.dpdns.org/animations",
       },
       {
         "@type": "SiteNavigationElement",
         position: 2,
         name: "Guides & FAQ",
-        url: "https://app.drivexstore.shop/docs",
+        url: "https://drivexapp.dpdns.org/docs",
       },
       {
         "@type": "SiteNavigationElement",
         position: 3,
         name: "Roadmap",
-        url: "https://app.drivexstore.shop/roadmap",
+        url: "https://drivexapp.dpdns.org/roadmap",
       },
     ],
   };

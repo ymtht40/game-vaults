@@ -61,7 +61,7 @@ export function getCodeForPlatform(codeState, platform) {
 
 function formatCodeForAi({ animation, code, platform, lang }) {
   const title = animation.title || animation.name || 'this component';
-  const sourceUrl = `https://app.drivexstore.shop/animations/${animation.slug}`;
+  const sourceUrl = `https://drivexapp.dpdns.org/animations/${animation.slug}`;
   const howItWorks = animation.metadata?.teaching?.blocks
     ?.map((block) => block.text)
     .filter(Boolean)

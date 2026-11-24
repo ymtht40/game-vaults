@@ -5,7 +5,7 @@ import { t } from '@/libs/utils/i18n';
 import { analytics } from '@/libs/analytics/posthogAnalytics';
 import TransitionLink from '@/components/navigation/TransitionLink';
 import MorphingAccordion from '@/components/ui/MorphingAccordion';
-import AccordionSection from '@/components/sections/accordion/AccordionSection';
+import AccordionSection from '@/components/shared/accordion/AccordionSection';
 import { DEFAULT_FAQ_LINKS } from '@/features/pricing-page/utils/v3-faq.config';
 
 const ANSWER_LINK_CLASS =

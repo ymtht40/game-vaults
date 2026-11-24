@@ -9,7 +9,7 @@ import { analytics } from '@/libs/analytics/posthogAnalytics'; // NOTE: module i
 // b -> AskAi
 
 const ASK_AI_QUERY = encodeURIComponent(
-  'What does GameVault (https://app.drivexstore.shop), the production-ready GSAP component library for React, Vue and HTML, offer - and how do I add a component to my project?'
+  'What does GameVault (https://drivexapp.dpdns.org), the production-ready GSAP component library for React, Vue and HTML, offer - and how do I add a component to my project?'
 );
 
 function ClaudeIcon(props) {

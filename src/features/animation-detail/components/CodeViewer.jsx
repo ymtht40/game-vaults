@@ -412,7 +412,7 @@ export function CodeViewer({ codeState, animation, onCodeChange, defaultPlatform
               type="button"
               onClick={async () => {
                 const name = animation.title || animation.name || "this component";
-                const url = `https://app.drivexstore.shop/animations/${animation.slug}`;
+                const url = `https://drivexapp.dpdns.org/animations/${animation.slug}`;
                 const instructionText = animation.metadata?.teaching?.blocks?.map(b => b.text).filter(Boolean).join("\n\n");
                 const aiPrompt = [
                   `# ${name}`,

@@ -9,7 +9,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
-  'https://app.drivexstore.shop'
+  'https://drivexapp.dpdns.org'
 ).replace(/\/+$/, '');
 
 function json(data, status = 200) {
