@@ -1,7 +1,7 @@
 import PricingSection from '@/features/pricing-page/sections/PricingSection';
 import BuildCostSection from '@/features/pricing-page/sections/BuildCostSection';
 import ShippedSection from '@/features/pricing-page/sections/ShippedSection';
-import LibraryOrKitSection from '@/features/pricing-page/sections/LibraryOrKitSection';
+import LibraryOrKit from '@/features/pricing/LibraryOrKit';
 import StudentsSection from '@/features/pricing-page/sections/StudentsSection';
 import TestimonialsSection from '@/components/shared/testimonials/TestimonialsSection';
 
@@ -56,12 +56,12 @@ export default async function PricingPage() {
         shippedRecently={shippedRecently}
         count={count}
       />
-      
+
       <BuildCostSection
         yearly={yearlyPrice}
         count={count}
       />
-      
+
       <ShippedSection
         items={animations}
         count={count}
@@ -76,7 +76,7 @@ export default async function PricingPage() {
         headline={t('pricing-v3.quotes.headline')}
         names={['Min Kaung', 'Flash Nikk']}
       />
-      <LibraryOrKitSection
+      <LibraryOrKit
         count={count}
         perMonth={perMonth}
         kits={KITS}
@@ -86,8 +86,8 @@ export default async function PricingPage() {
 
       <StudentsSection />
 
-      <Accordion 
-      ns="pricing-v3.faq" 
+      <Accordion
+        ns="pricing-v3.faq"
       />
 
       <V3EndCta
