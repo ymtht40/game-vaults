@@ -4,7 +4,7 @@ import gsap from "gsap";
 import RevealHeading from "@/components/motion/RevealHeading"; // NOTE: module id: 963160
 import AnimatedText from "@/components/motion/AnimatedText"; // NOTE: module id: 218091
 import Button from "@/components/ui/Button"; // NOTE: module id: 687989
-import { CtaRing, DEFAULT_HEIGHT } from "@/sections/cta/CtaRing"; // NOTE: module id: 809214
+import { CtaRing, DEFAULT_HEIGHT } from "@/components/sections/end-cta/CtaRing"; // NOTE: module id: 809214
 import { useRevealTimeline } from "@/hooks/useRevealTimeline"; // NOTE: module id: 228414
 import { t } from "@/libs/utils/i18n"; // NOTE: module id: 398682
 

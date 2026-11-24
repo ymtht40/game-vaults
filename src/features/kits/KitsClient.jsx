@@ -6,8 +6,8 @@ import KitsHero from '@/features/kits/KitsHero';
 import KitsInside from '@/features/kits/KitsInside';
 import KitsWhy from '@/features/kits/KitsWhy';
 import LibraryOrKit from '@/features/pricing/LibraryOrKit';
-import Accordion from '@/sections/accordion/Accordion';
-import V3EndCta from '@/sections/cta/V3EndCta';
+import Accordion from '@/components/sections/accordion/Accordion';
+import V3EndCta from '@/components/sections/end-cta/V3EndCta';
 
 // Only answers 1 and 5 contain inline links (matches the production page).
 const KITS_FAQ_LINKS = [

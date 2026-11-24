@@ -7,7 +7,7 @@ import AnimatedText from '@/components/motion/AnimatedText';
 import FadeIn from '@/components/motion/FadeIn';
 import Button from '@/components/ui/Button';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
-import { AccordionItem } from '@/sections/accordion/AccordionItem';
+import { AccordionItem } from '@/components/sections/accordion/AccordionItem';
 
 const STICKY_COLUMN_CLASS =
   'col-span-12 lg:col-span-4 lg:col-start-1 lg:sticky lg:top-[var(--v2-sticky-top)] lg:self-start';

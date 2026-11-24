@@ -1,13 +1,13 @@
 // Variable Mapping: e -> kit, n -> faqs, i -> resolvedFaqs
 
-import FaqSection from '@/sections/faq/FaqSection'; // NOTE: module id: 752362
+import Accordion from '@/components/sections/accordion/Accordion'; // NOTE: module id: 752362
 
 // NOTE: module id: 498872
 export function KitFaqSection({ kit, faqs }) {
   const resolvedFaqs = faqs || kit?.metadata?.faq || [];
 
   return resolvedFaqs.length ? (
-    <FaqSection
+    <Accordion
       faqs={resolvedFaqs}
       eyebrow="Questions"
       headline="Before you buy."

@@ -9,13 +9,13 @@ import ProblemSection from '@/features/landing/ProblemSection';
 import HowItWorksSection from '@/features/landing/HowItWorksSection';
 import OneComponentSection from '@/features/landing/OneComponentSection';
 import TwoWaysSection from '@/features/landing/TwoWaysSection';
-import PricingSection from '@/features/landing/PricingSection';
+import PricingSection from '@/components/sections/pricing/PricingSection';
 import CustomCursor from '@/features/landing/CustomCursor';
 import LibraryPreview from '@/components/ui/LibraryPreview';
-import TestimonialsSlider from '@/sections/testimonials/TestimonialsSlider';
+import TestimonialsSlider from '@/components/sections/testimonials/TestimonialsSlider';
 import StarterPackSection from '@/features/landing/StarterPackSection';
 import ValueMath from '@/features/landing/ValueMath';
-import FaqSection from '@/sections/accordion/Accordion';
+import Accordion from '@/components/sections/accordion/Accordion';
 import BottomCTA from '@/features/landing/BottomCTA';
 
 const PREFERRED_SLUGS = [
@@ -130,7 +130,7 @@ export default function LandingClient({
         <ValueMath
           cta={{ label: t('common.valueMath.ctaLanding'), href: '/pricing' }}
         />
-        <FaqSection />
+        <Accordion />
         <BottomCTA
           images={imageUrls}
           bleed={true}

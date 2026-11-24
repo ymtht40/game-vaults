@@ -11,7 +11,7 @@ import AnimatedText from '@/components/motion/AnimatedText'; // NOTE: module id:
 import RevealHeading from '@/components/motion/RevealHeading'; // NOTE: module id: 963160
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 
-import V3Ground from '@/sections/v3/V3Ground.jsx'; // NOTE: module id: 578275
+import V3Ground from '@/components/ui/V3Ground.jsx'; // NOTE: module id: 578275
 
 /* Variable Mapping:
  * u -> bodyAnimation, e -> headline, r -> body, h -> actions, m -> visual,

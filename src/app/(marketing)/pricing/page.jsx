@@ -3,10 +3,10 @@ import BuildCostSection from '@/features/pricing-page/sections/BuildCostSection'
 import ShippedSection from '@/features/pricing-page/sections/ShippedSection';
 import LibraryOrKitSection from '@/features/pricing-page/sections/LibraryOrKitSection';
 import StudentsSection from '@/features/pricing-page/sections/StudentsSection';
-import TestimonialsSection from '@/sections/testimonials/TestimonialsSection';
+import TestimonialsSection from '@/components/sections/testimonials/TestimonialsSection';
 
-import Accordion from '@/sections/accordion/Accordion';
-import V3EndCta from '@/sections/cta/V3EndCta';
+import Accordion from '@/components/sections/accordion/Accordion';
+import V3EndCta from '@/components/sections/end-cta/V3EndCta';
 
 import { t } from '@/libs/utils/i18n';
 import { KITS } from '@/libs/data/kits';

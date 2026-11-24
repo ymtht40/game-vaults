@@ -10,7 +10,7 @@ import {
 
 import { t } from '@/libs/utils/i18n'; // NOTE: module id: 398682
 import { V3SectionHeader } from '@/features/home-v3/V3SectionHeader'; // NOTE: module id: 118970
-import V3StepRail from '@/sections/v3/V3StepRail'; // NOTE: module id: 838507
+import V3StepRail from '@/components/ui/V3StepRail'; // NOTE: module id: 838507
 import FadeIn from '@/components/motion/FadeIn'; // NOTE: module id: 460391
 
 /* Variable Mapping:

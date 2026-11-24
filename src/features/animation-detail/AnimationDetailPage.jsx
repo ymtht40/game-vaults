@@ -22,7 +22,7 @@ import UseCaseItem from '@/features/animation-page/components/UseCaseItem'; // N
 import { CustomizePanel } from '@/features/animation-detail/components/CustomizePanel'; // NOTE: module id: 135178
 import { CodeViewer, McpNotice } from '@/features/animation-detail/components/CodeViewer'; // NOTE: module id: 343931
 import { PaywallBlock } from '@/features/paywall/PaywallBlock'; // NOTE: module id: 993603
-import FaqSection from '@/sections/faq/FaqSection'; // NOTE: module id: 126272
+import Accordion from '@/components/sections/accordion/Accordion'; // NOTE: module id: 126272
 import StarterPackPopup from '@/features/newsletter/StarterPackPopup'; // NOTE: module id: 573564
 
 import AnimationViewTracker from '@/features/animation-detail/preview/AnimationViewTracker';
@@ -324,7 +324,7 @@ export default function AnimationDetailPage({
               <LockedDocsCallout isAuthenticated={isAuthenticated} />
             )}
 
-            <FaqSection items={faq} heading="Frequently asked" />
+            <Accordion items={faq} heading="Frequently asked" />
           </div>
 
           {isCustomizable ? (
