@@ -4,7 +4,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRevealTimeline } from '@/hooks/useRevealTimeline';
 import { useUser } from '@/providers/UserProvider';
-import { getDiscordLinkForUser } from '@/libs/utils/discord';
+import { getDiscordInviteUrl } from '@/libs/config/discord';
 import { t } from '@/libs/utils/i18n';
 import {
   SquaresFour,
@@ -433,7 +433,7 @@ export default function AnimationsFilterBar({
 }) {
   const { user, profile } = useUser();
   const isAuthenticated = !!user;
-  const discordLink = getDiscordLinkForUser(profile);
+  const discordLink = getDiscordInviteUrl(profile);
   const gridRef = useRef(null);
   const dropdownRef = useRef(null);
   const prevCategoryRef = useRef(null);
