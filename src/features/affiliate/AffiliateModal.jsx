@@ -1,22 +1,20 @@
 'use client';
 
-// Variable Mapping: u -> PromoDialog, m -> AffiliateModalMedia, v -> contentRef, A -> getExternalLinkProps
-
 import { useRef } from 'react';
-import { X } from '@phosphor-icons/react'; // NOTE: module id: 137410
-import { AFFILIATE_URL } from '@/libs/config/affiliate'; // NOTE: module id: 664294
+import { X } from '@phosphor-icons/react';
+import { AFFILIATE_URL } from '@/libs/config/affiliate';
 import {
   Dialog,
   DialogContent,
   DialogClose,
   DialogTitle,
   DialogDescription
-} from '@/components/ui/Dialog'; // NOTE: module id: 753145
-import Button from '@/components/ui/Button'; // NOTE: module id: 687989
-import { SecondaryButton } from '@/components/ui/SecondaryButton'; // NOTE: module id: 511757
-import DescriptionList from '@/components/ui/SpecList'; // NOTE: module id: 567874
-import GroundBackground from '@/components/ui/GroundBackground'; // NOTE: module id: 578275
-import { AffiliateEarningsCard } from '@/features/affiliate/AffiliateEarningsCard'; // NOTE: module id: 664466
+} from '@/components/ui/Dialog';
+import Button from '@/components/ui/Button';
+import { SecondaryButton } from '@/components/ui/SecondaryButton';
+import DescriptionList from '@/components/ui/SpecList';
+import V3Ground from '@/components/ui/V3Ground';
+import { AffiliateEarningsCard } from '@/features/affiliate/AffiliateEarningsCard';
 
 function PromoDialog({
   open,
@@ -107,13 +105,12 @@ function PromoDialog({
 function AffiliateModalMedia() {
   return (
     <div className="relative flex h-full min-h-[300px] items-center justify-center px-24 pt-72 pb-32 md:p-32 md:pt-72">
-      <GroundBackground tone="dusk" />
+      <V3Ground tone="dusk" />
       <AffiliateEarningsCard className="relative" />
     </div>
   );
 }
 
-// NOTE: module id: 634401
 export default function AffiliateModal({ open, onOpenChange, onAction }) {
   return (
     <PromoDialog
@@ -140,4 +137,3 @@ export default function AffiliateModal({ open, onOpenChange, onAction }) {
     </PromoDialog>
   );
 }
-
